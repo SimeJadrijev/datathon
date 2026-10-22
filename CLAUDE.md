@@ -18,14 +18,19 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 
 ## Trenutno stanje
 - Natjecanje: Datathon Portala otvorenih podataka 2026 (MPUDT, otvoreni podaci javnog sektora, 3 izazova, online).
-- **HITNO: prijave do 23.10.2026. 24:00, prijavu podnosi mentor (nastavnik fakulteta). Rješenje + video do 9.11.2026.**
-- Faza: prijava. Kriteriji ocjenjivanja još nepoznati (treba pročitati Pravila na data.gov.hr).
+- **HITNO: prijave do 23.10.2026. 24:00. SVAKI član tima ispunjava online obrazac (naziv tima, izazov, kontakt mentora). Mentor (nastavnik visokog učilišta) je voditelj tima. Rješenje + video (do 3 min) mailom do 9.11.2026. 24:00.**
+- Faza: prijava. Pravila i Javni poziv PROČITANI (PDF-ovi u `context/izvori/`), sažetak u `context/competition.md`.
+- Ocjenjivanje: max 60 b. Najviše nose Izvedivost (10), UI/UX (10), video (10). Ostalih 6 kriterija po 5. Nagrada se ne dodjeljuje ispod 50 b.
+- Preporuka: jedan izazov, radni prototip + API podaci + više izvora. Zasebno rješenje po izazovu je obvezno.
+- Otvoreno: smije li se kod javno na GitHub (sigurnosna politika), vidi `work/decisions.md`.
 - Zadnje ažurirano: 2026-10-22
 
 ## Index
 | File | Sadržaj |
 |---|---|
-| `context/competition.md` | pravila, format, kriteriji ocjenjivanja, nagrade |
+| `context/competition.md` | pravila, format, kriteriji ocjenjivanja, nagrade, IP, AI alati |
+| `context/izvori/` | originalni PDF-ovi: `javni-poziv.pdf`, `pravila.pdf` |
+| `.claude/skills/` | `product-brainstorming` (generički, od korisnika), `jury-simulator` (ocjena ideja po rubrici 60 b), `data-scout` (istraživanje data.gov.hr CKAN API-ja) |
 | `context/timeline.md` | rokovi i raspored |
 | `context/data.md` | datasetovi, izvori, ograničenja |
 | `team/team.md` | članovi, uloge, jake strane |
