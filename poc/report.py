@@ -274,4 +274,17 @@ def generate(con):
             w(f"| {i} | [{r['naziv'][:80]}]({r['url']}) | {r['izvor']} | {r['status'] or '?'} | {r['rok_prijave'] or '?'} | {'; '.join(r['razlozi'])} |")
         w("")
 
+    # 8. zakoni i propisi
+    pr = con.execute("SELECT COUNT(*), SUM(vrsta='zakon'), SUM(eli_meta), MIN(datum_objave), MAX(datum_objave) FROM propisi").fetchone()
+    if pr[0]:
+        w("## 8. Zakoni i propisi (Narodne novine, službeni dio)\n")
+        w(f"{pr[0]} propisa ({pr[1]} zakona) objavljenih od {pr[3]} do {pr[4]}, s popisa službenog dijela NN-a; "
+          f"službeni ELI metapodaci (datum donošenja, vrsta) dohvaćeni za {pr[2]} najnovijih zakona. "
+          "Prikaz s filtrima: `web/zakoni.html`.\n")
+        w("| Vrsta | Broj |")
+        w("|---|---:|")
+        for v in con.execute("SELECT vrsta, COUNT(*) n FROM propisi GROUP BY vrsta ORDER BY n DESC LIMIT 8"):
+            w(f"| {v['vrsta']} | {v['n']} |")
+        w("")
+
     (config.ROOT / "IZVJESTAJ.md").write_text("\n".join(L) + "\n", encoding="utf-8")

@@ -47,7 +47,13 @@ Varijable postavljene u okruženju imaju prednost pred `.env`.
 | `python eval/make_sample.py` | `eval/uzorak.csv` sa 15 nasumičnih natječaja za ručnu provjeru |
 | `python eval/usporedi.py` | točnost po polju nakon što tim ispuni stupce `tocno_*` |
 
-## Pregled podataka u browseru
+## Mini web (natječaji i zakoni)
+
+`run_all.py` na kraju izvozi podatke u `web/data/`. Otvori **`web/index.html`** (natječaji) ili **`web/zakoni.html`** (zakoni i propisi iz Narodnih novina) dvostrukim klikom; server nije potreban. Filtri: status, ciljna skupina, područje, vrsta, županija, izvor (natječaji); vrsta propisa, razdoblje, područje (zakoni). Polja koja je izvukao AI označena su s „AI".
+
+Samo osvježiti podatke za web bez novog dohvata: `python web/build.py`.
+
+## Pregled baze u browseru (Datasette)
 
 Baza se može pregledati i filtrirati u browseru preko [Datasette](https://datasette.io/) (samo alat za pregled, nije dio rješenja):
 

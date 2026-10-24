@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zakoni i propisi – POC pregled</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="propisi">
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">Natječaji i propisi <small>POC, Datathon 2026</small></div>
+      <nav class="tabs">
+        <a href="index.html">Natječaji</a>
+        <a href="zakoni.html" class="active">Zakoni i propisi</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <details class="notice">
+      <summary>Odakle su podaci <span id="cov-summary"></span></summary>
+      <p>Službeni dio Narodnih novina (narodne-novine.nn.hr), tekuća i prošla godina. Naziv, vrsta, broj NN i datum
+        objave su s popisa NN-a; datum donošenja dolazi iz službenih ELI metapodataka akta (dohvaćeni za najnovije zakone).
+        Područje je procijenjeno iz naslova ključnim riječima i služi samo za grubo filtriranje.</p>
+    </details>
+
+    <section class="stats" id="stats"></section>
+
+    <div class="layout">
+      <button class="filters-toggle" id="filters-toggle" aria-expanded="false">Filtri</button>
+      <aside class="filters" id="filters">
+        <h3>Pretraga</h3>
+        <input class="search" id="q" type="search" placeholder="npr. porez, energija, rad…" aria-label="Pretraga">
+        <h3>Vrsta propisa</h3>
+        <div class="seg" id="f-vrsta"></div>
+        <h3>Razdoblje</h3>
+        <select id="f-razdoblje" aria-label="Razdoblje">
+          <option value="30">Zadnjih 30 dana</option>
+          <option value="90">Zadnja 3 mjeseca</option>
+          <option value="365">Zadnjih godinu dana</option>
+          <option value="0">Sve</option>
+        </select>
+        <h3>Područje (iz naslova)</h3>
+        <div class="seg" id="f-podrucja"></div>
+        <button class="reset" id="reset">Poništi filtre</button>
+      </aside>
+
+      <section>
+        <div class="toolbar"><span class="count" id="count"></span></div>
+        <div class="list" id="list"></div>
+        <button class="load-more" id="more" hidden>Prikaži još</button>
+      </section>
+    </div>
+    <p class="foot" id="foot"></p>
+  </main>
+
+  <script src="data/propisi.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

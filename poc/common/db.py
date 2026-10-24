@@ -49,6 +49,11 @@ CREATE TABLE IF NOT EXISTS llm_log (
     output_tokens INTEGER, cijena_usd REAL, svrha TEXT
 );
 CREATE TABLE IF NOT EXISTS pokretanja (run_id INTEGER PRIMARY KEY, ts TEXT, napomena TEXT);
+CREATE TABLE IF NOT EXISTS propisi (
+    id TEXT PRIMARY KEY, naziv TEXT, vrsta TEXT, nn_broj TEXT, dokument INTEGER,
+    datum_objave TEXT, datum_dokumenta TEXT, url TEXT, eli TEXT, pdf TEXT,
+    podrucja TEXT, eli_meta INTEGER, dohvaceno TEXT, prvi_run_id INTEGER
+);
 """
 
 
@@ -81,6 +86,18 @@ def upsert(con, rec: dict, run_id: int, extra: dict):
     con.execute(
         f"INSERT OR REPLACE INTO natjecaji ({','.join(cols)}) VALUES ({','.join('?' * len(cols))})",
         [row[c] for c in cols],
+    )
+
+
+def upsert_propis(con, akt: dict, run_id: int):
+    prev = con.execute("SELECT prvi_run_id FROM propisi WHERE id=?", (akt["id"],)).fetchone()
+    con.execute(
+        "INSERT OR REPLACE INTO propisi VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        (akt["id"], akt["naziv"], akt["vrsta"], akt["nn_broj"], akt["dokument"], akt["datum_objave"],
+         akt.get("datum_dokumenta"), akt["url"], akt["eli"], akt["pdf"],
+         json.dumps(akt["podrucja"], ensure_ascii=False) if akt.get("podrucja") else None,
+         int(bool(akt.get("eli_meta"))), datetime.now().isoformat(timespec="seconds"),
+         prev["prvi_run_id"] if prev else run_id),
     )
 
 

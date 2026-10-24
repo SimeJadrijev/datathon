@@ -157,6 +157,7 @@ def main():
     ap.add_argument("--refresh", action="store_true")
     ap.add_argument("--llm-limit", type=int, default=5)
     ap.add_argument("--bez-opendata", action="store_true")
+    ap.add_argument("--bez-nn", action="store_true", help="preskoči Narodne novine (zakoni i propisi)")
     ap.add_argument("--samo-izvjestaj", action="store_true")
     a = ap.parse_args()
     import report
@@ -175,11 +176,21 @@ def main():
         logs = [f.result() for f in as_completed(futs)]
     save(con, run_id, logs)
     print(f"Izvori gotovi za {time.monotonic() - t0:.0f} s, u bazi {con.execute('SELECT COUNT(*) FROM natjecaji').fetchone()[0]} natječaja")
+    if not a.bez_nn and not a.izvori:
+        from sources import nn
+        t1 = time.monotonic()
+        akti = nn.run()
+        for akt in akti:
+            db.upsert_propis(con, akt, run_id)
+        con.commit()
+        print(f"Narodne novine: {len(akti)} propisa ({sum(x['vrsta'] == 'zakon' for x in akti)} zakona) za {time.monotonic() - t1:.0f} s")
     run_llm(con, run_id, a.llm_limit)
     if not a.bez_opendata:
         report.collect_opendata()
     report.generate(con)
-    print(f"Gotovo. Izvještaj: {config.ROOT / 'IZVJESTAJ.md'}")
+    from web.build import build
+    build(con)
+    print(f"Gotovo. Izvještaj: {config.ROOT / 'IZVJESTAJ.md'}, web: {config.ROOT / 'web' / 'index.html'}")
 
 
 if __name__ == "__main__":

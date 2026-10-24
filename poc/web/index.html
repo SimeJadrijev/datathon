@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Natječaji – POC pregled</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="natjecaji">
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">Natječaji i propisi <small>POC, Datathon 2026</small></div>
+      <nav class="tabs">
+        <a href="index.html" class="active">Natječaji</a>
+        <a href="zakoni.html">Zakoni i propisi</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <details class="notice" id="coverage">
+      <summary>Odakle su podaci i koliko ih je <span id="cov-summary"></span></summary>
+      <p>Svi natječaji su stvarni, dohvaćeni sa službenih stranica i API-ja tijela; svaki ima poveznicu na izvor.
+        POC namjerno dohvaća samo dio: kod velikih izvora (Ured za udruge, MZOM) samo prve stranice popisa, a puni tekst
+        i PDF-ove za najviše 40 natječaja po izvoru. Polja označena <span class="badge ai">AI</span> izvukao je jezični model
+        iz teksta natječaja i mogu biti pogrešna; provjerite ih na izvoru.</p>
+      <div class="cov-wrap"><table class="cov" id="cov-table"></table></div>
+    </details>
+
+    <section class="stats" id="stats"></section>
+
+    <div class="layout">
+      <button class="filters-toggle" id="filters-toggle" aria-expanded="false">Filtri</button>
+      <aside class="filters" id="filters">
+        <h3>Pretraga</h3>
+        <input class="search" id="q" type="search" placeholder="npr. vozila, stipendija, OPG…" aria-label="Pretraga">
+        <h3>Status</h3>
+        <div class="seg" id="f-status"></div>
+        <h3>Za koga</h3>
+        <div class="seg" id="f-skupine"></div>
+        <h3>Područje</h3>
+        <div class="seg" id="f-podrucja"></div>
+        <h3>Vrsta</h3>
+        <div class="seg" id="f-vrsta"></div>
+        <h3>Županija</h3>
+        <select id="f-zupanija" aria-label="Županija"></select>
+        <h3>Izvor</h3>
+        <div id="f-izvor"></div>
+        <h3>Ostalo</h3>
+        <label class="check"><input type="checkbox" id="f-rok"> Samo s rokom prijave</label>
+        <label class="check"><input type="checkbox" id="f-iznos"> Samo s iznosom</label>
+        <button class="reset" id="reset">Poništi filtre</button>
+      </aside>
+
+      <section>
+        <div class="toolbar">
+          <span class="count" id="count"></span>
+          <select id="sort" aria-label="Poredak">
+            <option value="rok">Rok: najbliži prvi</option>
+            <option value="novo">Najnovije objavljeni</option>
+            <option value="iznos">Najveći iznos po korisniku</option>
+          </select>
+        </div>
+        <div class="list" id="list"></div>
+        <button class="load-more" id="more" hidden>Prikaži još</button>
+      </section>
+    </div>
+    <p class="foot" id="foot"></p>
+  </main>
+
+  <script src="data/natjecaji.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

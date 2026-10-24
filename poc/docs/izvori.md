@@ -67,6 +67,14 @@ Za svaki izvor: struktura, robots.txt, odabrani pristup. User-Agent `DatathonPOC
 - Nema jedinstvenog popisa: "Natječaji / Pozivi / Rezultati", "Javni pozivi za poduzetnike", "Stipendije Grada Zagreba", "Potpore obrazovanju", eko.zagreb.hr... Svaka stranica ručno uređena, linkovi oblika `/naslov/ID`, popis u `div.newswrap`. Stare stavke (2024.) ostaju na stranicama.
 - **Pristup**: nekoliko tematskih stranica; najveći trošak održavanja.
 
+## 9. Narodne novine – službeni dio (zakoni i propisi), dodano naknadno
+- **robots.txt**: zabranjuje oglasni dio (`/clanci/oglasi/`) i pojedinačne stare akte; službeni dio je dopušten.
+- Popis: `search.aspx?sortiraj=4&kategorija=1&godina=<G>&rpp=200&qtype=1&pretraga=da&str=<N>` (str je indeks stranice **od 0**), 200 akata po stranici, stavka `div.searchListItem`: naslov, „NN 121/2026, (1434), odluka, 23.10.2026." (broj NN, broj dokumenta, vrsta, datum).
+- Naslov sadrži skriveni `span.score` s brojem relevantnosti, koji se mora ukloniti prije čitanja teksta.
+- Svaki akt ima **ELI** identifikator `/eli/sluzbeni/<godina>/<broj NN>/<dokument>` (+ `/pdf`), a stranica akta nosi ELI RDFa metapodatke: `type_document`, `date_document` (donošenje), `date_publication`, `passed_by`.
+- ~1.450 akata u 2026. do 23. 10. (67 zakona), ~2.400 u 2025.
+- **Pristup**: HTML popis po godini + ELI metapodaci za najnovije zakone.
+
 ## Opcionalno (nije rađeno)
 - Narodne novine (oglasni dio) i EOJN: izvan opsega (javna nabava, ne potpore).
 - eufondovi.gov.hr: novi portal EU fondova 2021.-2027.; preporuka za sljedeći korak.

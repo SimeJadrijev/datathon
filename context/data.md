@@ -21,4 +21,5 @@ _Još nema. Popunjava se kroz `data-scout`, jedan blok po skupu (izdavatelj, res
 - `podaci-o-financiranju-udruga` (Ured za udruge): XLSX, ~90.000 isplata, stupci DAVATELJ, ORGANIZACIJA, **OIB**, PROJEKT, ŽUPANIJA, GODINA, IZNOS. Ključ za spajanje: OIB (-> `registar-udruga`). **Podaci završavaju 2016.** iako je skup „ažuriran" 2026.
 - `subvencije-poduzetnicima-grada-rijeke-lista-korisnika`: samo 2018., resursi vraćaju 404. `potpore-poduzetnicima-grad-karlovac`: DOCX. `potpore-inovatorima-grada-zagreba`: 2014.-2015.
 - Na portalu gotovo nema skupova o natječajima („natječaj" 5, „stipendije" 1).
-- Sudski registar (sudreg-data.gov.hr): OpenAPI javan, svi endpointi traže OAuth2 client credentials (registracija).
+- Sudski registar (sudreg-data.gov.hr): OAuth2 client credentials, besplatna registracija, ključ odmah nakon potvrde e-maila. `detalji_subjekta` po OIB-u radi; `glavna_djelatnost` je NKD 2007 šifra bez točke (1072 -> 10.72), `pretezita_djelatnost` je za javne korisnike prazna.
+- Narodne novine, službeni dio: popis po godini (HTML, 200/str, `str` od 0) + ELI RDFa metapodaci po aktu. ~1.450 akata u 2026.

@@ -2,7 +2,7 @@
 
 _Generirano 2026-10-24 skriptom `run_all.py` / `report.py`. Brojke su iz `data/natjecaji.sqlite`._
 
-**Ukupno u bazi: 1485 natječaja/poziva iz 11 izvora; otvorenih: 191; najavljenih: 5.** LLM izvlačenje: 2 zapisa.
+**Ukupno u bazi: 1485 natječaja/poziva iz 11 izvora; otvorenih: 185; najavljenih: 5.** LLM izvlačenje: 300 zapisa.
 
 ## Zaključak
 
@@ -14,12 +14,16 @@ _Generirano 2026-10-24 skriptom `run_all.py` / `report.py`. Brojke su iz `data/n
 - **Ured za udruge (udruge.gov.hr) je najvrjedniji izvor**: središnji katalog natječaja za udruge od SVIH davatelja (ministarstva, gradovi, općine, zajednice), ~97 otvorenih i ~3.250 zatvorenih, a detalj ima strukturirana polja: županija, rok, ukupni/min/max iznos. To je de facto već „otvoreni podatak o natječajima", samo bez API-ja.
 - **Rok i iznos pravilima (bez LLM-a)**: na otvorenim natječajima rok ima ~56 %, iznos ~50 %. Kod strukturiranih izvora (udruge, fondovieu, MZOM) rok je ~100 % kad se dohvati detalj; kod FZOEU, HZZ i HAMAG rok i iznos su u PDF-u ili su „do utroška sredstava", pa tu treba LLM.
 - **Podudaranje radi** za sva 3 profila: građanin s e-autom dobije FZOEU poziv za vozila (EnU-2/26) na prvom mjestu, student državne i bilateralne stipendije s rokom, IT d.o.o. (OIB -> NKD 62.01 -> digitalizacija/inovacije) vaučere za digitalizaciju, HZZ potpore i riječki Startup inkubator. Simulacija obavijesti (`notify_dry_run.py`) za zadnjih 14 dana šalje sva 3 korisnika smislene nove natječaje.
-- **LLM trošak je zanemariv**: procjena ~0,0006 USD po natječaju s Haiku 5.5, < 1 USD za cijeli skup. Novac nije prepreka; točnost jest nepoznanica.
+- **LLM (Claude Haiku 5.5) je pokrenut na 300 natječaja**: 298 uspješno, 2 prekida veze. Trošak ~0,0008 USD po natječaju; cijeli skup od ~1.500 bio bi ~1,3 USD. Na 113 otvorenih natječaja koje je obradio: rok 74 %, iznos 73 %, sažetak uvjeta 100 %, popis potrebnih dokumenata 46 % (ostali ga nemaju u tekstu koji je dohvaćen). LLM ispravlja pravila tamo gdje je to važno: FZOEU poziv za e-aute pravila čitaju kao 2.500 € i rok 31. 3. 2028., a LLM točno kao 9.000 € po automobilu i bez roka prijave (2028. je kraj razdoblja nabave).
+- **Haiku vs Sonnet 5.5** (15 nasumičnih natječaja): rok se slaže 100 %, ukupni iznos 100 %, max iznos 87 %, područja 81 %, ciljne skupine 65 %. Haiku je dovoljan za masovno izvlačenje; ciljne skupine su najnesigurnije polje. Ručna provjera točnosti (`eval/uzorak.csv`) još nije napravljena.
+- **Sudski registar radi s pravim ključem** (besplatna registracija, ključ odmah). Iz OIB-a dobijemo naziv, sjedište i djelatnost: polje `glavna_djelatnost` je NKD 2007 šifra (npr. 1072 -> 10.72), pa lanac OIB -> NKD -> relevantni natječaji radi na stvarnim tvrtkama.
+- **Narodne novine (novi zakoni i propisi)**: 3.842 propisa iz 2025. i 2026. (169 zakona) s popisa službenog dijela, uz službene ELI metapodatke (europski standard za propise) za najnovije zakone. To je drugi, potpuno strukturiran izvor.
+- **Mini web** (`web/index.html`, `web/zakoni.html`): filtriranje natječaja po statusu, ciljnoj skupini, području, vrsti, županiji i izvoru, i propisa po vrsti, razdoblju i području. Svaki zapis ima link na izvor, a polja iz AI-ja su označena.
 
 ### Najveći rizici (kritički)
-1. **Točnost LLM-a nije izmjerena.** U ovom okruženju nema `ANTHROPIC_API_KEY`, pa je LLM kod napisan, ali nije pokrenut. Prije odluke: pokrenuti `python run_all.py --llm-limit 5`, pa `--llm-limit 300` i ispuniti `eval/uzorak.csv` (15 natječaja, ~1 h rada jedne osobe).
+1. **Točnost LLM-a nije ručno izmjerena.** Haiku i Sonnet se dobro slažu, ali to nije dokaz točnosti. Prije odluke ispuniti `eval/uzorak.csv` (15 natječaja, ~1 h rada jedne osobe).
 2. **„Tko je dobio novac" je slaba točka.** Skup „Podaci o financiranju udruga" ima ~90.000 isplata s OIB-om primatelja, ali **podaci završavaju 2016.** (metapodaci kažu ažurirano 2026., sadržaj ne). Rijeka: samo 2018. i link vraća 404. Karlovac: DOCX. Zagreb inovatori: 2014.-2015. Rezultate ne obećavati u demu, ili ih prikazati kao „ovo nedostaje, evo standarda" (vidi dolje).
-3. **Kriterij „upotreba otvorenih podataka" (prednost živim API-jima):** naši glavni podaci NISU s data.gov.hr, nego s web stranica tijela. Na data.gov.hr praktički nema skupova o natječajima („natječaj" 5, „stipendije" 1 skup). Žiri to može vidjeti kao scraping, a ne korištenje otvorenih podataka. Ublažavanje: povezati s data.gov.hr gdje stvarno ima smisla (Registar udruga po OIB-u, Popis javnopravnih tijela kao šifrarnik davatelja, NKD 2025, Popis JLS) i **Sudski registar API** (treba registracija za OAuth ključ: zatražiti ODMAH, ne znamo koliko traje).
+3. **Kriterij „upotreba otvorenih podataka" (prednost živim API-jima):** naši glavni podaci NISU s data.gov.hr, nego s web stranica tijela. Na data.gov.hr praktički nema skupova o natječajima („natječaj" 5, „stipendije" 1 skup). Žiri to može vidjeti kao scraping, a ne korištenje otvorenih podataka. Ublažavanje: povezati s data.gov.hr gdje stvarno ima smisla (Registar udruga po OIB-u, Popis javnopravnih tijela kao šifrarnik davatelja, NKD 2025, Popis JLS) , **Sudski registar API** (radi, provjereno) i **Narodne novine s ELI metapodacima**.
 4. **Pravila za ciljne skupine i područja su preširoka** (npr. poziv za udžbenike označen kao „student", HZZ mjere kao „poljoprivrednik"). Za demo to mora riješiti LLM ili ručno označen skup od ~50 demo natječaja.
 5. **Duplikati među izvorima** (22 ista naziva: MZOM/AMPEU, Osijek/udruge) i **šum u izvorima** (vijesti o dodijeljenim potporama, radionice, oglasi). Filtar po naslovu hvata većinu, ali ne sve.
 6. **Održavanje**: 11 parsera = 11 mjesta koja pucaju kad tijelo promijeni stranicu. Zagreb (5/5) i Rijeka (4/5) su preskupi za vrijednost koju daju.
@@ -75,9 +79,9 @@ Najjači argument prema žiriju (MPUDT je organizator i vlasnik data.gov.hr): ne
 _(OIB i oznaka tijela su rezervirana mjesta; rok i iznos po korisniku ostavljeni su `null` jer ih POC nije provjerio u PDF-u poziva.)_
 
 ### Sljedeći koraci prije zaključavanja ideje (~27. 10.)
-1. Postaviti `ANTHROPIC_API_KEY`, pokrenuti LLM na 5 pa na ~300 natječaja i ispuniti `eval/uzorak.csv` (cilj: rok i iznos ≥ 85 % točni).
-2. Zatražiti OAuth ključ za Sudski registar.
-3. Pustiti `jury-simulator` na suženu verziju ideje (demo s 6 izvora + standard) prije odluke.
+1. Ručno ispuniti `eval/uzorak.csv` (cilj: rok i iznos ≥ 85 % točni).
+2. Pustiti `jury-simulator` na suženu verziju ideje (demo s 6 izvora + NN + standard) prije odluke.
+3. Povezati zakone i natječaje: natječaji citiraju pravni temelj („Narodne novine, broj 98/26"), što se može spojiti s ELI identifikatorom propisa.
 
 ## 1. Izvori
 
@@ -85,23 +89,23 @@ Svih 8 skupina izvora iz upute je pokušano (11 modula). „Dohvaćeno" = stavke
 
 | Skupina | Izvor | Metoda | Dohvaćeno | Otvorenih | S rokom | S iznosom | S PDF-om (preuzeto) | Vrijeme | HTTP (cache) | Težina 1-5 | Problemi |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|:---:|---|
-| 1. APPRRR | apprrr | RSS + WordPress REST API | 91 | 5 | 56 | 31 | 18 (14) | 123 s | 0 (56) | 2 | RSS ima samo 10 objava; arhiva preko WP REST API-ja. Dokumenti su na zasebnoj stranici intervencije, a ne u objavi. Objave miješaju natječaje, izmjene i obavijesti o isplatama. |
-| 2. FZOEU | fzoeu | statični HTML (jedna stranica, accordion) | 28 | 8 | 7 | 13 | 28 (15) | 17 s | 0 (36) | 2 | Zadani URL /hr/natjecaji/7 preusmjerava; pravi popis je jedna accordion stranica. Status je u CSS klasi. Rok je samo u tekstu/PDF-u, često 'do utroška sredstava'. |
-| 3. EU fondovi (NPOO) | fondovieu | server-renderirani HTML (Nuxt SSR), paginacija | 142 | 8 | 142 | 40 | 2 (2) | 35 s | 0 (60) | 3 | Nuxt SSR radi bez JS-a, ali filtar 'u najavi' nije pronađen; robots.txt zabranjuje /download pa prilozi nisu dostupni. Pokriva samo NPOO; pozivi 2021.-2027. su na eufondovi.gov.hr. |
-| 4. HAMAG-BICRO | hamag | statični HTML (WordPress), paginacija | 110 | 23 | 24 | 21 | 15 (15) | 99 s | 0 (69) | 3 | WP bez REST API-ja; grid s kategorijama u CSS klasama. Dio stavki vodi na eufondovi.gov.hr. Puno vijesti (webinari, najave) među natječajima. |
-| 5. HZZ mjere | hzz | WordPress REST API (custom post type `measures`) | 97 | 16 | 16 | 40 | 97 (15) | 144 s | 0 (32) | 1 | Čist WP REST API s taksonomijama (godina, ciljna skupina). Mjere su kontinuirane: nema roka ni ukupnog iznosa u tekstu. |
-| 6. Ured za udruge | udruge | statični HTML, paginacija + filtar statusa | 246 | 96 | 40 | 40 | 1 (1) | 44 s | 0 (107) | 1 | Najbolji izvor: središnji katalog s filtrima i strukturiranim detaljem (županija, rok, ukupni/min/max iznos). Tekst natječaja je samo poveznica na stranicu davatelja. Na izvoru ukupno: {'otvoreni': 97, 'zatvoreni': 3250}. |
-| 7. Stipendije | mzom | statični HTML, paginacija | 91 | 10 | 77 | 14 | 7 (7) | 62 s | 0 (62) | 2 | Isti CMS kao udruge.gov.hr; 'Rok:' u popisu. Popis miješa oglase za posao i obavijesti (filtrira se po naslovu). Na izvoru ukupno: 1547. |
-| 7. Stipendije | ampeu | statični HTML (Craft CMS), paginacija | 237 | 5 | 36 | 7 | 8 (8) | 86 s | 0 (66) | 2 | Statični HTML s paginacijom; 'Rok je prošao' kao oznaka statusa. Većina stavki su Erasmus+/CEEPUS pozivi institucijama i obavijesti o radionicama. |
-| 8. Gradovi | osijek | WordPress REST API (custom post type `natjecaji`) | 292 | 1 | 4 | 1 | 92 (10) | 29 s | 0 (21) | 2 | WP REST API s tipom 'natjecaji', ali tip miješa savjetovanja, oglase, prodaju zemljišta (~57 % se filtrira). Sadržaj je gotovo uvijek samo PDF/DOCX u ACF polju. Na izvoru ukupno: 1042. |
-| 8. Gradovi | rijeka | statični HTML + WordPress REST API (vijesti) | 111 | 12 | 67 | 63 | 9 (4) | 26 s | 0 (14) | 4 | Natječaji za financiranje nisu na jednom mjestu: stranica 'Ostali natječaji' ima 1-2 stavke, ostalo su vijesti. Pretraga vijesti donosi i izvještaje o već dodijeljenom novcu. |
-| 8. Gradovi | zagreb | statični HTML, više ručno uređenih tematskih stranica | 40 | 7 | 28 | 18 | 15 (15) | 133 s | 0 (69) | 5 | Nema jedinstvenog popisa; tematske stranice uređene ručno, vlastiti CMS bez semantičkih klasa, stare stavke (2024.) se ne uklanjaju. Za svaku temu treba poseban URL. |
+| 1. APPRRR | apprrr | RSS + WordPress REST API | 91 | 6 | 54 | 33 | 18 (14) | 56 s | 0 (56) | 2 | RSS ima samo 10 objava; arhiva preko WP REST API-ja. Dokumenti su na zasebnoj stranici intervencije, a ne u objavi. Objave miješaju natječaje, izmjene i obavijesti o isplatama. |
+| 2. FZOEU | fzoeu | statični HTML (jedna stranica, accordion) | 28 | 8 | 6 | 11 | 28 (15) | 59 s | 0 (36) | 2 | Zadani URL /hr/natjecaji/7 preusmjerava; pravi popis je jedna accordion stranica. Status je u CSS klasi. Rok je samo u tekstu/PDF-u, često 'do utroška sredstava'. |
+| 3. EU fondovi (NPOO) | fondovieu | server-renderirani HTML (Nuxt SSR), paginacija | 142 | 8 | 142 | 40 | 2 (2) | 24 s | 0 (60) | 3 | Nuxt SSR radi bez JS-a, ali filtar 'u najavi' nije pronađen; robots.txt zabranjuje /download pa prilozi nisu dostupni. Pokriva samo NPOO; pozivi 2021.-2027. su na eufondovi.gov.hr. |
+| 4. HAMAG-BICRO | hamag | statični HTML (WordPress), paginacija | 110 | 23 | 23 | 20 | 15 (15) | 56 s | 0 (69) | 3 | WP bez REST API-ja; grid s kategorijama u CSS klasama. Dio stavki vodi na eufondovi.gov.hr. Puno vijesti (webinari, najave) među natječajima. |
+| 5. HZZ mjere | hzz | WordPress REST API (custom post type `measures`) | 97 | 16 | 13 | 41 | 97 (15) | 65 s | 0 (32) | 1 | Čist WP REST API s taksonomijama (godina, ciljna skupina). Mjere su kontinuirane: nema roka ni ukupnog iznosa u tekstu. |
+| 6. Ured za udruge | udruge | statični HTML, paginacija + filtar statusa | 246 | 96 | 40 | 40 | 1 (1) | 39 s | 0 (107) | 1 | Najbolji izvor: središnji katalog s filtrima i strukturiranim detaljem (županija, rok, ukupni/min/max iznos). Tekst natječaja je samo poveznica na stranicu davatelja. Na izvoru ukupno: {'otvoreni': 97, 'zatvoreni': 3250}. |
+| 7. Stipendije | mzom | statični HTML, paginacija | 91 | 11 | 78 | 15 | 7 (7) | 35 s | 0 (62) | 2 | Isti CMS kao udruge.gov.hr; 'Rok:' u popisu. Popis miješa oglase za posao i obavijesti (filtrira se po naslovu). Na izvoru ukupno: 1547. |
+| 7. Stipendije | ampeu | statični HTML (Craft CMS), paginacija | 237 | 5 | 36 | 9 | 8 (8) | 44 s | 0 (66) | 2 | Statični HTML s paginacijom; 'Rok je prošao' kao oznaka statusa. Većina stavki su Erasmus+/CEEPUS pozivi institucijama i obavijesti o radionicama. |
+| 8. Gradovi | osijek | WordPress REST API (custom post type `natjecaji`) | 292 | 1 | 4 | 1 | 92 (10) | 23 s | 0 (21) | 2 | WP REST API s tipom 'natjecaji', ali tip miješa savjetovanja, oglase, prodaju zemljišta (~57 % se filtrira). Sadržaj je gotovo uvijek samo PDF/DOCX u ACF polju. Na izvoru ukupno: 1042. |
+| 8. Gradovi | rijeka | statični HTML + WordPress REST API (vijesti) | 111 | 10 | 66 | 68 | 9 (4) | 15 s | 0 (14) | 4 | Natječaji za financiranje nisu na jednom mjestu: stranica 'Ostali natječaji' ima 1-2 stavke, ostalo su vijesti. Pretraga vijesti donosi i izvještaje o već dodijeljenom novcu. |
+| 8. Gradovi | zagreb | statični HTML, više ručno uređenih tematskih stranica | 40 | 1 | 28 | 24 | 15 (15) | 63 s | 0 (69) | 5 | Nema jedinstvenog popisa; tematske stranice uređene ručno, vlastiti CMS bez semantičkih klasa, stare stavke (2024.) se ne uklanjaju. Za svaku temu treba poseban URL. |
 
 Isti natječaj u više izvora (isti normalizirani naziv): **22** (npr. MZOM i AMPEU objavljuju iste stipendije, Osijek i Ured za udruge iste pozive za udruge). Konačni proizvod treba deduplikaciju; `match.py` ih spaja po nazivu.
 
 ## 2. Potpunost polja
 
-Cijeli skup (1485 zapisa). „Prije" = samo pravila/regex i strukturirani podaci izvora; „poslije" = nakon LLM-a (2 zapisa obrađeno LLM-om). Na otvorenim i detaljno dohvaćenim natječajima potpunost je bitno veća, vidi drugu tablicu.
+Cijeli skup (1485 zapisa). „Prije" = samo pravila/regex i strukturirani podaci izvora; „poslije" = nakon LLM-a (300 zapisa obrađeno LLM-om). Na otvorenim i detaljno dohvaćenim natječajima potpunost je bitno veća, vidi drugu tablicu.
 
 | Polje | Prije LLM (svi) | Poslije LLM (svi) | Prije LLM (s detaljima, n=856) | Poslije LLM (s detaljima) |
 |---|---:|---:|---:|---:|
@@ -113,16 +117,16 @@ Cijeli skup (1485 zapisa). „Prije" = samo pravila/regex i strukturirani podaci
 | vrsta | 98 % | 98 % | 99 % | 99 % |
 | status | 69 % | 69 % | 55 % | 55 % |
 | datum_objave | 93 % | 93 % | 99 % | 99 % |
-| rok_prijave | 33 % | 33 % | 41 % | 41 % |
+| rok_prijave | 33 % | 33 % | 41 % | 40 % |
 | iznos_ukupno_eur | 12 % | 12 % | 21 % | 21 % |
-| iznos_po_korisniku_min_eur | 6 % | 6 % | 10 % | 10 % |
-| iznos_po_korisniku_max_eur | 16 % | 16 % | 28 % | 28 % |
-| ciljne_skupine | 75 % | 75 % | 79 % | 79 % |
-| podrucja | 83 % | 83 % | 88 % | 88 % |
-| nkd_sifre | 3 % | 3 % | 5 % | 5 % |
+| iznos_po_korisniku_min_eur | 6 % | 10 % | 10 % | 17 % |
+| iznos_po_korisniku_max_eur | 16 % | 18 % | 28 % | 30 % |
+| ciljne_skupine | 75 % | 77 % | 79 % | 82 % |
+| podrucja | 83 % | 84 % | 88 % | 89 % |
+| nkd_sifre | 3 % | 2 % | 5 % | 4 % |
 | zupanije | 86 % | 86 % | 100 % | 100 % |
-| uvjeti_sazetak | 0 % | 0 % | 0 % | 0 % |
-| potrebni_dokumenti | 0 % | 0 % | 0 % | 0 % |
+| uvjeti_sazetak | 0 % | 20 % | 0 % | 35 % |
+| potrebni_dokumenti | 0 % | 12 % | 0 % | 21 % |
 | prilozi | 26 % | 26 % | 45 % | 45 % |
 | sirovi_tekst_hash | 100 % | 100 % | 100 % | 100 % |
 | dohvaceno | 100 % | 100 % | 100 % | 100 % |
@@ -151,7 +155,7 @@ Visoko slaganje dvaju modela ne dokazuje točnost (mogu griješiti isto), ali po
 
 | Model | Poziva | Ulazni tokeni | Izlazni tokeni | Trošak USD | USD po natječaju |
 |---|---:|---:|---:|---:|---:|
-| claude-haiku-5-5 | 307 | 1920416 | 139397 | 0.2617 | 0.00085 |
+| claude-haiku-5-5 | 607 | 3727369 | 272476 | 0.5090 | 0.00084 |
 | claude-sonnet-5-5 | 30 | 196888 | 12642 | 0.5202 | 0.01734 |
 
 - **claude-haiku-5-5**: ~3447 ulaznih + ~450 izlaznih tokena po natječaju ≈ **0.00057 USD/natječaj**; za 626 natječaja s tekstom ≈ 0.36 USD, za cijeli skup (1485) ≈ 0.85 USD.
@@ -247,13 +251,13 @@ Profil: tip `student` + gradjanin, interesi ['okolis', 'obrazovanje', 'znanost']
 | # | Natječaj | Izvor | Status | Rok | Zašto |
 |---|---|---|---|---|---|
 | 1 | [Natječaj za stipendije Nacionalnoga stipendijskog programa Slovačke Republike u ](https://www.ampeu.hr/natjecaji/natjecaj-za-stipendije-nacionalnoga-stipendijskog-programa-slovacke-republike-u-akademskoj-godini-2026-2027-ljetni-semestar) | ampeu | otvoren | 2026-10-31 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren; rok uskoro (2026-10-31) |
-| 2 | [Javni natječaj za dodjelu državnih stipendija za studente pripadnike romske naci](https://mzom.gov.hr/istaknute-teme/natjecaji-196/8068) | mzom | otvoren | 2026-10-31 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren; rok uskoro (2026-10-31) |
-| 3 | [Natječaj za dodjelu 12.150 državnih stipendija za akademsku godinu 2026./2027. s](https://mzom.gov.hr/istaknute-teme/natjecaji-196/natjecaj-za-dodjelu-12-150-drzavnih-stipendija-za-akademsku-godinu-2026-2027-studentima-u-redovitom-statusu-koji-studiraju-na-visokim-ucilistima-u-republici-hrvatskoj/8096) | mzom | otvoren | 2026-11-03 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren; rok uskoro (2026-11-03) |
-| 4 | [Javni poziv za dodjelu državnih stipendija u STEM područjima znanosti za akadems](https://mzom.gov.hr/javni-poziv-za-dodjelu-drzavnih-stipendija-u-stem-podrucjima-znanosti-za-akademsku-godinu-2026-2027-studentima-u-redovitom-statusu-koji-su-upisani-na-visoka-ucilista-u-republici-hrvatskoj/8114) | mzom | otvoren | 2026-11-11 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren; rok uskoro (2026-11-11) |
-| 5 | [Natječaj za stipendije Švicarske Konfederacije u akademskoj godini 2027./2028.](https://mzom.gov.hr/istaknute-teme/natjecaji-196/natjecaj-za-stipendije-svicarske-konfederacije-u-akademskoj-godini-2027-2028/7990) | mzom | otvoren | 2026-11-30 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren |
-| 6 | [Natječaj za stipendije Slobodne Države Bavarske za diplomske i poslijediplomske ](https://www.ampeu.hr/natjecaji/natjecaj-za-stipendije-slobodne-drzave-bavarske-za-diplomske-i-poslijediplomske-studije-u-akademskoj-godini-2027-2028) | ampeu | otvoren | 2026-12-01 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren |
-| 7 | [Natječaj Zaklade „Dr. Viktor Ružić“ za dodjelu stipendija učenicima i studentima](https://www.rijeka.hr/natjecaj-zaklade-dr-viktor-ruzic-za-dodjelu-stipendija-ucenicima-i-studentima/) | rijeka | otvoren | 2027-06-30 | ciljna skupina: student; lokalno (Primorsko-goranska); područje: obrazovanje; ključne riječi u nazivu: stipendij; otvoren |
-| 8 | [Objavljeni prijedlozi rang-lista za dodjelu stipendija Grada Rijeke u školskoj/a](https://www.rijeka.hr/objavljeni-prijedlozi-rang-lista-za-dodjelu-stipendija-grada-rijeke-u-skolskoj-akademskoj-godini-2025-2026/) | rijeka | ? | ? | status nepoznat; ciljna skupina: student; lokalno (Primorsko-goranska); područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij |
+| 2 | [Natječaj CEEPUS freemover stipendije u ljetnom semestru ak. god. 2026./2027.](https://www.ampeu.hr/natjecaji/natjecaj-ceepus-freemover-stipendije-u-ljetnom-semestru-ak-god-2026-2027) | ampeu | otvoren | 2026-11-01 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren; rok uskoro (2026-11-01) |
+| 3 | [Javni poziv za dodjelu državnih stipendija u STEM područjima znanosti za akadems](https://mzom.gov.hr/javni-poziv-za-dodjelu-drzavnih-stipendija-u-stem-podrucjima-znanosti-za-akademsku-godinu-2026-2027-studentima-u-redovitom-statusu-koji-su-upisani-na-visoka-ucilista-u-republici-hrvatskoj/8114) | mzom | otvoren | 2026-11-11 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren; rok uskoro (2026-11-11) |
+| 4 | [Natječaj za stipendije Švicarske Konfederacije u akademskoj godini 2027./2028.](https://www.ampeu.hr/natjecaji/natjecaj-za-stipendije-svicarske-konfederacije-u-akademskoj-godini-2027-2028) | ampeu | otvoren | 2026-11-30 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren |
+| 5 | [Natječaj za stipendije Slobodne Države Bavarske za diplomske i poslijediplomske ](https://www.ampeu.hr/natjecaji/natjecaj-za-stipendije-slobodne-drzave-bavarske-za-diplomske-i-poslijediplomske-studije-u-akademskoj-godini-2027-2028) | ampeu | otvoren | 2026-12-01 | ciljna skupina: student; područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij; otvoren |
+| 6 | [Objavljeni prijedlozi rang-lista za dodjelu stipendija Grada Rijeke u školskoj/a](https://www.rijeka.hr/objavljeni-prijedlozi-rang-lista-za-dodjelu-stipendija-grada-rijeke-u-skolskoj-akademskoj-godini-2025-2026/) | rijeka | ? | ? | status nepoznat; ciljna skupina: student; lokalno (Primorsko-goranska); područje: obrazovanje, znanost; ključne riječi u nazivu: stipendij |
+| 7 | [Ćakula o stipendijama kao najava natječaja za dodjelu stipendija Grada Rijeke](https://www.rijeka.hr/cakula-o-stipendijama-kao-najava-natjecaja-za-dodjelu-stipendija-grada-rijeke/) | rijeka | najavljen | ? | ciljna skupina: student; lokalno (Primorsko-goranska); područje: obrazovanje; ključne riječi u nazivu: stipendij; najavljen |
+| 8 | [Javni natječaj za dodjelu državnih stipendija za studente pripadnike romske naci](https://mzom.gov.hr/istaknute-teme/natjecaji-196/8068) | mzom | otvoren | 2026-10-31 | ciljna skupina: student; područje: obrazovanje; ključne riječi u nazivu: stipendij; otvoren; rok uskoro (2026-10-31) |
 
 ### Građanin koji želi kupiti električni automobil
 
@@ -262,7 +266,6 @@ Profil: tip `gradjanin`, interesi ['promet', 'energetika'], lokacija {'grad': 'Z
 | # | Natječaj | Izvor | Status | Rok | Zašto |
 |---|---|---|---|---|---|
 | 1 | [Javni poziv za sufinanciranje energetski učinkovitih vozila za fizičke osobe (En](https://www.fzoeu.hr/hr/nacionalni-javni-pozivi-i-natjecaji/1367#275) | fzoeu | otvoren | ? | ciljna skupina: gradjanin; područje: promet, energetika; ključne riječi u nazivu: vozil; otvoren |
-| 2 | [Biram Hrvatsku – mobilnost radne snage](https://mjere.hzz.hr/mjere/biram-hrvatsku-mobilnost-radne-snage-2026/) | hzz | otvoren | ? | ciljna skupina: gradjanin; područje: promet; otvoren |
 
 ### Mala IT tvrtka (d.o.o.), profil iz Sudskog registra po OIB-u
 
@@ -270,12 +273,27 @@ Profil: tip `doo` + obrt, interesi ['digitalizacija', 'inovacije', 'zaposljavanj
 
 | # | Natječaj | Izvor | Status | Rok | Zašto |
 |---|---|---|---|---|---|
-| 1 | [Objavljen Javni poziv za upis pružatelja usluga u Katalog pružatelja usluga u ok](https://hamagbicro.hr/objavljen-javni-poziv-za-upis-pruzatelja-usluga-u-katalog-pruzatelja-usluga-u-okviru-poziva-vauceri-za-digitalizaciju/) | hamag | otvoren | ? | ciljna skupina: doo; područje: digitalizacija; ključne riječi u nazivu: digital, vaučer; otvoren |
-| 2 | [Potpore za zapošljavanje – zeleno/digitalno](https://mjere.hzz.hr/mjere/potpore-za-zaposljavanje-zeleno-digitalno-2026/) | hzz | otvoren | ? | ciljna skupina: doo; područje: digitalizacija, zaposljavanje; ključne riječi u nazivu: digital; otvoren |
-| 3 | [Potpore za pripravništvo i mlade – zeleno/digitalno](https://mjere.hzz.hr/mjere/potpore-za-pripravnistvo-i-mlade-zeleno-digitalno-2026/) | hzz | otvoren | ? | ciljna skupina: doo; područje: digitalizacija, zaposljavanje; ključne riječi u nazivu: digital; otvoren |
-| 4 | [Predstavljanje Javnog poziva za 18. generaciju korisnika Startup inkubatora Rije](https://www.rijeka.hr/predstavljanje-javnog-poziva-za-18-generaciju-korisnika-startup-inkubatora-rijeka/) | rijeka | otvoren | 2026-11-16 | ciljna skupina: doo; lokalno (Primorsko-goranska); područje: inovacije; ključne riječi u nazivu: startup; otvoren; rok uskoro (2026-11-16) |
-| 5 | [Dodjela potpora za komercijalizaciju inovacija riječkim poduzetnicima](https://www.rijeka.hr/dodjela-potpora-za-komercijalizaciju-inovacija-rijeckim-poduzetnicima/) | rijeka | ? | ? | status nepoznat; ciljna skupina: doo; lokalno (Primorsko-goranska); područje: inovacije; ključne riječi u nazivu: inovac |
-| 6 | [Grad Rijeka i Zaklada FIPRO: Potpisani ugovori o dodjeli bespovratnih potpora ri](https://www.rijeka.hr/grad-rijeka-i-zaklada-fipro-potpisani-ugovori-o-dodjeli-bespovratnih-potpora-rijeckim-inovatorima/) | rijeka | ? | ? | status nepoznat; ciljna skupina: doo; lokalno (Primorsko-goranska); područje: inovacije, zaposljavanje |
-| 7 | [Potpora za očuvanje radnih mjesta kod poslodavaca pogođenih posljedicama požara ](https://mjere.hzz.hr/mjere/potpora-za-ocuvanje-radnih-mjesta-kod-poslodavaca-pogodenih-posljedicama-pozara/) | hzz | otvoren | 2026-10-31 | ciljna skupina: doo; područje: zaposljavanje; otvoren; rok uskoro (2026-10-31) |
-| 8 | [Poziv na dostavu projektnih prijedloga u sklopu FOREST poziva 2026. godine](https://mzom.gov.hr/istaknute-teme/natjecaji-196/poziv-na-dostavu-projektnih-prijedloga-u-sklopu-forest-poziva-2026-godine/8027) | mzom | otvoren | 2026-12-02 | ciljna skupina: doo; područje: inovacije; otvoren |
+| 1 | [Objavljen Javni poziv za upis pružatelja usluga u Katalog pružatelja usluga u ok](https://hamagbicro.hr/objavljen-javni-poziv-za-upis-pruzatelja-usluga-u-katalog-pruzatelja-usluga-u-okviru-poziva-vauceri-za-digitalizaciju/) | hamag | otvoren | ? | ciljna skupina: doo; područje: digitalizacija, inovacije; ključne riječi u nazivu: digital, vaučer; otvoren |
+| 2 | [Potpore za samozapošljavanje – zeleno/digitalno](https://mjere.hzz.hr/mjere/potpore-za-samozaposljavanje-zeleno-digitalno-2026/) | hzz | otvoren | ? | ciljna skupina: doo; područje: digitalizacija, zaposljavanje; ključne riječi u nazivu: digital; otvoren |
+| 3 | [Predstavljanje Javnog poziva za 18. generaciju korisnika Startup inkubatora Rije](https://www.rijeka.hr/predstavljanje-javnog-poziva-za-18-generaciju-korisnika-startup-inkubatora-rijeka/) | rijeka | otvoren | 2026-11-16 | ciljna skupina: doo; lokalno (Primorsko-goranska); područje: inovacije; ključne riječi u nazivu: startup; otvoren; rok uskoro (2026-11-16) |
+| 4 | [Program akceleracije: Javni poziv za dodjelu vaučera za internacionalizaciju pos](https://hamagbicro.hr/program-akceleracije-javni-poziv-za-dodjelu-vaucera-za-internacionalizaciju-poslovanja/) | hamag | otvoren | 2026-12-01 | ciljna skupina: doo; područje: inovacije; ključne riječi u nazivu: vaučer; otvoren |
+| 5 | [Objavljen Javni poziv za korištenje usluga EDIH-a CROBOHUB++](https://hamagbicro.hr/objavljen-javni-poziv-za-koristenje-usluga-edih-a-crobohub/) | hamag | otvoren | ? | ciljna skupina: doo; područje: digitalizacija, inovacije; otvoren |
+| 6 | [Otvoren Javni poziv za sudjelovanje u programu Job Shadowing u okviru projekta B](https://hamagbicro.hr/otvoren-javni-poziv-za-sudjelovanje-u-programu-job-shadowing-u-okviru-projekta-bond-3/) | hamag | otvoren | ? | ciljna skupina: doo; područje: digitalizacija, inovacije; otvoren |
+| 7 | [Potpore za zapošljavanje – zeleno/digitalno](https://mjere.hzz.hr/mjere/potpore-za-zaposljavanje-zeleno-digitalno-2026/) | hzz | otvoren | ? | ciljna skupina: doo; područje: zaposljavanje; ključne riječi u nazivu: digital; otvoren |
+| 8 | [Potpore za pripravništvo i mlade – zeleno/digitalno](https://mjere.hzz.hr/mjere/potpore-za-pripravnistvo-i-mlade-zeleno-digitalno-2026/) | hzz | otvoren | ? | ciljna skupina: doo; područje: zaposljavanje; ključne riječi u nazivu: digital; otvoren |
+
+## 8. Zakoni i propisi (Narodne novine, službeni dio)
+
+3842 propisa (169 zakona) objavljenih od 2025-01-02 do 2026-10-23, s popisa službenog dijela NN-a; službeni ELI metapodaci (datum donošenja, vrsta) dohvaćeni za 60 najnovijih zakona. Prikaz s filtrima: `web/zakoni.html`.
+
+| Vrsta | Broj |
+|---|---:|
+| odluka | 1909 |
+| pravilnik | 608 |
+| rješenje | 541 |
+| uredba | 196 |
+| zakon | 169 |
+| ostalo | 163 |
+| presuda | 101 |
+| naredba | 46 |
 
