@@ -11,3 +11,9 @@
 - Prijedlog (još ne odlučeno): ideja mora biti zaključana oko 27.10. da ostane ~10 dana za izradu. Brainstorm iz dva smjera (od podataka i od problema).
 - Nepushani/necommitani: PDF-ovi u `context/izvori/`, `.claude/skills/` i izmjene md fileova nakon prvog commita.
 - Skillovi `video-script` (3 min) i UI/UX nisu napisani, treba ih tek u fazi izrade.
+
+## 2026-10-24
+- Napravljen POC izvedivosti za ideju „agregator natječaja, poticaja i stipendija" (izazov C) u `poc/` (Python, odvojeno od `apps/`), grana `poc/natjecaji-scraper`. Rezultat: `poc/IZVJESTAJ.md`, izviđanje izvora: `poc/docs/izvori.md`.
+- Brojke: ~1.485 natječaja iz 11 modula (8 skupina izvora), ~190 otvorenih, ~3-4 min po pokretanju. Nijedan izvor ne traži login/CAPTCHA/JS. Javni API (WP REST): APPRRR, HZZ, Osijek, Rijeka-vijesti.
+- Ključni nalazi: udruge.gov.hr je središnji strukturiran katalog natječaja za udruge (rok, iznosi, županija); „Podaci o financiranju udruga" na data.gov.hr imaju OIB primatelja, ali završavaju 2016.; Sudski registar API traži OAuth registraciju (korišten mock); LLM nije pokrenut (nema ANTHROPIC_API_KEY), procjena troška < 1 USD za cijeli skup.
+- Preporuka POC-a: izvedivo samo kao suženi demo (6 izvora) + prijedlog standarda „Otvoreni podaci o natječajima". Odluka o ideji još NIJE donesena; prije toga izmjeriti LLM točnost (`poc/eval/`) i zatražiti Sudreg ključ.

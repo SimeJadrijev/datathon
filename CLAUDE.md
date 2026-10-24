@@ -43,6 +43,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 | `work/ideas.md` | ideje i pristupi (s kritičkom ocjenom) |
 | `work/decisions.md` | odluke + obrazloženja |
 | `work/tasks.md` | tko radi što, status |
+| `poc/` | POC izvedivosti agregatora natječaja (Python): `IZVJESTAJ.md`, `README.md`, `docs/izvori.md` |
 | `log.md` | kronološki dnevnik |
 | `README.md` | opis projekta i pokretanje |
 

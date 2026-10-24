@@ -16,3 +16,9 @@ _Datasetovi, izvori, shema, veličina, licence i ograničenja. Obvezni dio dokum
 
 ## Kandidat-skupovi
 _Još nema. Popunjava se kroz `data-scout`, jedan blok po skupu (izdavatelj, resurs/format, licenca, svježina, ključ za spajanje, kvaliteta, način dohvata)._
+
+## Nalazi POC-a natječaja (2026-10-24, detalji u `poc/IZVJESTAJ.md`)
+- `podaci-o-financiranju-udruga` (Ured za udruge): XLSX, ~90.000 isplata, stupci DAVATELJ, ORGANIZACIJA, **OIB**, PROJEKT, ŽUPANIJA, GODINA, IZNOS. Ključ za spajanje: OIB (-> `registar-udruga`). **Podaci završavaju 2016.** iako je skup „ažuriran" 2026.
+- `subvencije-poduzetnicima-grada-rijeke-lista-korisnika`: samo 2018., resursi vraćaju 404. `potpore-poduzetnicima-grad-karlovac`: DOCX. `potpore-inovatorima-grada-zagreba`: 2014.-2015.
+- Na portalu gotovo nema skupova o natječajima („natječaj" 5, „stipendije" 1).
+- Sudski registar (sudreg-data.gov.hr): OpenAPI javan, svi endpointi traže OAuth2 client credentials (registracija).
