@@ -30,13 +30,14 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - Web: apsolutni importi preko aliasa `@/` (= `src/`). Svaka mapa u `src/` ima barrel `index.ts` (novu mapu uvijek dodaj s njim). Tipovi u `types/*.type.ts`, jedna mapa po stranici u `pages/`.
 - Rute su wouter (ne React Router). Providere (ErrorBoundary, QueryClient) držimo u `App.tsx`, rute u `Router.tsx`.
 - Prije predaje: `yarn build` i `yarn lint` u `apps/web` moraju proći.
+- Pravila pisanja koda: skill `spring-boot-api` (za `apps/api`) i `react-web` (za `apps/web`). Prije pisanja koda u tim mapama učitaj odgovarajući skill.
 
 ## Index
 | File | Sadržaj |
 |---|---|
 | `context/competition.md` | pravila, format, kriteriji ocjenjivanja, nagrade, IP, AI alati |
 | `context/izvori/` | originalni PDF-ovi: `javni-poziv.pdf`, `pravila.pdf` |
-| `.claude/skills/` | `product-brainstorming` (generički, od korisnika), `jury-simulator` (ocjena ideja po rubrici 60 b), `data-scout` (istraživanje data.gov.hr CKAN API-ja) |
+| `.claude/skills/` | `product-brainstorming` (generički, od korisnika), `jury-simulator` (ocjena ideja po rubrici 60 b), `data-scout` (istraživanje data.gov.hr CKAN API-ja), `spring-boot-api` i `react-web` (konvencije koda za `apps/`) |
 | `context/timeline.md` | rokovi i raspored |
 | `context/data.md` | datasetovi, izvori, ograničenja |
 | `team/team.md` | članovi, uloge, jake strane |
