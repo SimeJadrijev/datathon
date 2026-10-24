@@ -25,6 +25,12 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - Otvoreno: smije li se kod javno na GitHub (sigurnosna politika), vidi `work/decisions.md`.
 - Zadnje ažurirano: 2026-10-22
 
+## Tehnički stack i konvencije
+- Monorepo: `apps/web` (React 19, TS, Vite, wouter, TanStack Query, axios), `apps/api` (Spring Boot 4, Java 25, JPA, Postgres u Dockeru). Pokretanje: vidi `README.md`.
+- Web: apsolutni importi preko aliasa `@/` (= `src/`). Svaka mapa u `src/` ima barrel `index.ts` (novu mapu uvijek dodaj s njim). Tipovi u `types/*.type.ts`, jedna mapa po stranici u `pages/`.
+- Rute su wouter (ne React Router). Providere (ErrorBoundary, QueryClient) držimo u `App.tsx`, rute u `Router.tsx`.
+- Prije predaje: `yarn build` i `yarn lint` u `apps/web` moraju proći.
+
 ## Index
 | File | Sadržaj |
 |---|---|
@@ -38,6 +44,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 | `work/decisions.md` | odluke + obrazloženja |
 | `work/tasks.md` | tko radi što, status |
 | `log.md` | kronološki dnevnik |
+| `README.md` | opis projekta i pokretanje |
 
 ## Sigurnosna pravila organizacije
 Vrijede pravila iz organizacijskog CLAUDE.md-a (npr. ništa se ne objavljuje na javne platforme, ne pristupa se cookiejima). Podatke natjecanja i kod ne dijelimo javno bez provjere.
