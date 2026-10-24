@@ -1,0 +1,46 @@
+# Preglednik baze za provjeru POC-a (Windows treba UTF-8 način rada):
+#   $env:PYTHONUTF8=1; .venv\Scripts\datasette data/natjecaji.sqlite -m datasette.yml -p 8001 --setting truncate_cells_html 300
+title: POC natječaji – pregled podataka
+description: Natječaji skupljeni iz 11 izvora, polja izvučena pravilima i LLM-om. Spremljeni upiti su ispod tablica.
+databases:
+  natjecaji:
+    queries:
+      otvoreni:
+        title: Otvoreni i najavljeni natječaji
+        sql: |
+          SELECT izvor, naziv, status, rok_prijave, iznos_ukupno_eur, iznos_po_korisniku_max_eur,
+                 ciljne_skupine, podrucja, zupanije, izvuceno_llm, url
+          FROM natjecaji
+          WHERE status IN ('otvoren', 'najavljen')
+            AND (:izvor = '' OR izvor = :izvor)
+          ORDER BY rok_prijave IS NULL, rok_prijave
+      pravila_vs_llm:
+        title: Pravila (regex) vs LLM, isti natječaj
+        sql: |
+          SELECT id, naziv,
+                 json_extract(pravila_json, '$.rok_prijave') AS rok_pravila,
+                 json_extract(llm_json, '$.rok_prijave') AS rok_llm,
+                 json_extract(pravila_json, '$.iznos_po_korisniku_max_eur') AS max_pravila,
+                 json_extract(llm_json, '$.iznos_po_korisniku_max_eur') AS max_llm,
+                 json_extract(pravila_json, '$.ciljne_skupine') AS skupine_pravila,
+                 json_extract(llm_json, '$.ciljne_skupine') AS skupine_llm,
+                 uvjeti_sazetak, potrebni_dokumenti, url
+          FROM natjecaji
+          WHERE llm_json IS NOT NULL
+          ORDER BY izvor
+      po_izvoru:
+        title: Brojke po izvoru
+        sql: |
+          SELECT izvor, COUNT(*) AS ukupno,
+                 SUM(status = 'otvoren') AS otvorenih,
+                 SUM(rok_prijave IS NOT NULL) AS s_rokom,
+                 SUM(COALESCE(iznos_po_korisniku_max_eur, iznos_ukupno_eur) IS NOT NULL) AS s_iznosom,
+                 SUM(pdf_preuzeto > 0) AS s_preuzetim_pdf,
+                 SUM(izvuceno_llm) AS llm
+          FROM natjecaji GROUP BY izvor ORDER BY ukupno DESC
+      llm_trosak:
+        title: Trošak LLM-a
+        sql: |
+          SELECT model, svrha, COUNT(*) AS poziva, SUM(input_tokens) AS ulaz, SUM(output_tokens) AS izlaz,
+                 ROUND(SUM(cijena_usd), 4) AS usd, ROUND(SUM(cijena_usd) / COUNT(*), 5) AS usd_po_natjecaju
+          FROM llm_log GROUP BY model, svrha

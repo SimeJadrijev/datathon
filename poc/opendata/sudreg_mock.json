@@ -1,0 +1,89 @@
+{
+  "00000000001": {
+    "_napomena": "MOCK: izmišljena tvrtka, struktura kao stvarni odgovor detalji_subjekta (provjereno 24. 10. 2026.)",
+    "oib": 1,
+    "potpuni_oib": "00000000001",
+    "mbs": 999000001,
+    "status": 1,
+    "datum_osnivanja": "2021-03-15T00:00:00",
+    "tvrtka": {
+      "ime": "PRIMJER SOFTVER d.o.o. za računalno programiranje",
+      "naznaka_imena": "PRIMJER SOFTVER"
+    },
+    "sjediste": {
+      "sifra_zupanije": 8,
+      "naziv_zupanije": "Primorsko-goranska županija",
+      "naziv_opcine": "Rijeka",
+      "naziv_naselja": "Rijeka",
+      "ulica": "Primjerna ulica",
+      "kucni_broj": 1,
+      "postanski_broj": 51000
+    },
+    "pravni_oblik": {
+      "vrsta_pravnog_oblika": {
+        "sifra": 0,
+        "naziv": "društvo s ograničenom odgovornošću",
+        "kratica": "d.o.o."
+      }
+    },
+    "glavna_djelatnost": 6201
+  },
+  "00000000002": {
+    "_napomena": "MOCK: izmišljena tvrtka, struktura kao stvarni odgovor detalji_subjekta (provjereno 24. 10. 2026.)",
+    "oib": 2,
+    "potpuni_oib": "00000000002",
+    "mbs": 999000002,
+    "status": 1,
+    "datum_osnivanja": "2018-06-01T00:00:00",
+    "tvrtka": {
+      "ime": "PRIMJER SOLAR j.d.o.o. za elektroinstalacije",
+      "naznaka_imena": "PRIMJER SOLAR"
+    },
+    "sjediste": {
+      "sifra_zupanije": 14,
+      "naziv_zupanije": "Osječko-baranjska županija",
+      "naziv_opcine": "Osijek",
+      "naziv_naselja": "Osijek",
+      "ulica": "Primjerna ulica",
+      "kucni_broj": 2,
+      "postanski_broj": 31000
+    },
+    "pravni_oblik": {
+      "vrsta_pravnog_oblika": {
+        "sifra": 0,
+        "naziv": "jednostavno društvo s ograničenom odgovornošću",
+        "kratica": "j.d.o.o."
+      }
+    },
+    "glavna_djelatnost": 4321
+  },
+  "00000000003": {
+    "_napomena": "MOCK: izmišljena tvrtka, struktura kao stvarni odgovor detalji_subjekta (provjereno 24. 10. 2026.)",
+    "oib": 3,
+    "potpuni_oib": "00000000003",
+    "mbs": 999000003,
+    "status": 1,
+    "datum_osnivanja": "2015-01-20T00:00:00",
+    "tvrtka": {
+      "ime": "PRIMJER AGRO d.o.o. za poljoprivredu",
+      "naznaka_imena": "PRIMJER AGRO"
+    },
+    "sjediste": {
+      "sifra_zupanije": 16,
+      "naziv_zupanije": "Vukovarsko-srijemska županija",
+      "naziv_opcine": "Vinkovci",
+      "naziv_naselja": "Vinkovci",
+      "ulica": "Primjerna ulica",
+      "kucni_broj": 3,
+      "postanski_broj": 32100
+    },
+    "pravni_oblik": {
+      "vrsta_pravnog_oblika": {
+        "sifra": 0,
+        "naziv": "društvo s ograničenom odgovornošću",
+        "kratica": "d.o.o."
+      }
+    },
+    "glavna_djelatnost": 111
+  }
+}

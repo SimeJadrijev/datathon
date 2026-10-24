@@ -1,0 +1,8 @@
+{
+  "naziv": "Student iz Rijeke, interes okoliš",
+  "tip": "student",
+  "dodatni_tipovi": ["gradjanin"],
+  "interesi": ["okolis", "obrazovanje", "znanost"],
+  "kljucne_rijeci": ["stipendij", "okoliš", "klimat"],
+  "lokacija": {"grad": "Rijeka", "zupanija": "Primorsko-goranska"}
+}

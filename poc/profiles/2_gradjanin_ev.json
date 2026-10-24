@@ -1,0 +1,7 @@
+{
+  "naziv": "Građanin koji želi kupiti električni automobil",
+  "tip": "gradjanin",
+  "interesi": ["promet", "energetika"],
+  "kljucne_rijeci": ["vozil", "električn", "e-mobilnost"],
+  "lokacija": {"grad": "Zagreb", "zupanija": "Grad Zagreb"}
+}
