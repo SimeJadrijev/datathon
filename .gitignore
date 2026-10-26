@@ -1,2 +1,5 @@
 # Secrets stay local (Sudreg, Claude API, admin key)
 .env
+
+# Python caches (tools/)
+__pycache__/
