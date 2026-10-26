@@ -31,7 +31,7 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 
 | Paket | Sadržaj | Dana | Vlasnik | Status |
 |---|---|---|---|---|
-| 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | GOTOVO na `feature/pkg-1-foundations` (nije pushano, čeka PR); otvoreno samo: komentar s tablicom OIB-ova na issue #3 |
+| 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | GOTOVO, PR #12 čeka review i merge (merge prvi, ostali paketi ovise o njemu) |
 | 2 Ingest: core and first sources (#4) | INGEST-1 do 4 | 3,3 | Luka | OTVORENO (nakon #3) |
 | 3 Ingest: other sources | INGEST-5 do 9 | 3,1 | | OTVORENO |
 | 4 API | API-1 do 7 | 4,8 | | OTVORENO |
