@@ -21,7 +21,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/** A legal act published in Narodne novine. */
 @Entity
 @Table(name = "regulation")
 @Getter
@@ -33,7 +32,6 @@ public class Regulation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** Year, issue and document number, for example "2026-121-1434". */
     @Column(name = "external_id", nullable = false, unique = true, length = 50)
     private String externalId;
 
@@ -44,7 +42,6 @@ public class Regulation {
     @Column(length = 30)
     private RegulationType type;
 
-    /** Issue of the official gazette, for example "121/2026". */
     @Column(length = 20)
     private String gazetteNumber;
 
@@ -52,13 +49,11 @@ public class Regulation {
 
     private LocalDate publishedAt;
 
-    /** Date the act was enacted, from the ELI metadata when available. */
     private LocalDate enactedAt;
 
     @Column(length = 2000)
     private String url;
 
-    /** European Legislation Identifier URI of the act. */
     @Column(length = 2000)
     private String eliUrl;
 
@@ -74,7 +69,6 @@ public class Regulation {
     @Column(columnDefinition = "TEXT")
     private String summary;
 
-    /** True when the fields came from the official ELI metadata, not from the HTML page. */
     private boolean eliMetadata;
 
     private Instant fetchedAt;

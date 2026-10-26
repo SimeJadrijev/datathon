@@ -7,7 +7,6 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Set;
 
-/** One regulation in the seed snapshot. Field names match {@link Regulation}. */
 public record SeedRegulation(
         String externalId,
         String title,
@@ -29,7 +28,6 @@ public record SeedRegulation(
         return regulation;
     }
 
-    /** Copies the snapshot values onto an entity, keeping the AI summary if there is one. */
     void applyTo(Regulation regulation) {
         regulation.setTitle(title);
         regulation.setType(type);

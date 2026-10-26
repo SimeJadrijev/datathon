@@ -10,8 +10,6 @@ import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
 import org.springframework.dao.DataIntegrityViolationException;
 
-// Runs against the Docker Postgres (docker compose up -d): the unique constraint is what we test,
-// so an in-memory database with another dialect would prove little. Each test rolls back.
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class FundingCallRepositoryTest {

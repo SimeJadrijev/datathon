@@ -37,14 +37,12 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FundingCall {
 
-    /** Value in {@link #counties} meaning the call is open to the whole country. */
     public static final String ALL_COUNTIES = "ALL";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // source + externalId is the natural key, so re-imports update instead of duplicating
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 40)
     private SourceCode source;
@@ -73,7 +71,6 @@ public class FundingCall {
 
     private LocalDate deadline;
 
-    /** Free text when there is no fixed date, for example "do utroška sredstava". */
     @Column(length = 500)
     private String deadlineNote;
 
@@ -103,7 +100,6 @@ public class FundingCall {
     @Column(name = "county", length = 100)
     private Set<String> counties = new HashSet<>();
 
-    /** NKD activity codes, for example "62.01". */
     @ElementCollection
     @CollectionTable(name = "funding_call_activity_code", joinColumns = @JoinColumn(name = "funding_call_id"))
     @Column(name = "activity_code", length = 10)
@@ -123,18 +119,14 @@ public class FundingCall {
     @OrderColumn(name = "position")
     private List<Attachment> attachments = new ArrayList<>();
 
-    // Raw JSON array written by AI-4. Kept as text so the model does not depend on
-    // Hibernate's JSON mapper (Jackson 2 vs 3 on the classpath); AI-4 owns its shape.
     @Column(columnDefinition = "TEXT")
     private String eligibilityQuestions;
 
-    /** SHA-256 of the source text; ingest updates a record only when it changes. */
     @Column(length = 64)
     private String rawTextHash;
 
     private boolean extractedByLlm;
 
-    /** Names of the fields that were filled by the LLM, so the UI can label them "AI". */
     @ElementCollection
     @CollectionTable(name = "funding_call_ai_field", joinColumns = @JoinColumn(name = "funding_call_id"))
     @Column(name = "field_name", length = 50)
@@ -147,12 +139,10 @@ public class FundingCall {
     @Column(length = 500)
     private String hiddenReason;
 
-    /** Id of the funding call this one duplicates (from another source). */
     private Long duplicateOf;
 
     private Instant fetchedAt;
 
-    /** Raw page and PDF text used for extraction and the LLM. Never sent by the API. */
     @Column(columnDefinition = "TEXT")
     private String sourceText;
 

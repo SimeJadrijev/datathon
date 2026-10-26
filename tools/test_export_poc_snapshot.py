@@ -1,4 +1,3 @@
-"""Tests for export_poc_snapshot.py. Run: python -m unittest tools/test_export_poc_snapshot.py"""
 import json
 import sqlite3
 import sys
@@ -7,7 +6,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import export_poc_snapshot as export  # noqa: E402
+import export_poc_snapshot as export
 
 POC_ROW = {
     "id": "fzoeu-275", "izvor": "fzoeu", "url": "https://www.fzoeu.hr/hr/nacionalni-javni-pozivi-i-natjecaji/1367#275",
@@ -45,7 +44,7 @@ class ExportFundingCallTest(unittest.TestCase):
         self.assertIsNone(record["deadline"])
         self.assertEqual(record["counties"], ["ALL"])
         self.assertEqual(record["targetGroups"], ["CITIZEN"])
-        self.assertEqual(record["areas"], ["TRANSPORT"])  # unknown area dropped with a warning
+        self.assertEqual(record["areas"], ["TRANSPORT"])
         self.assertEqual(record["attachments"], [{"name": "Poziv", "url": "https://www.fzoeu.hr/docs/275/a.pdf"}])
         self.assertEqual(record["aiFields"], ["conditionsSummary"])
         self.assertEqual(record["fetchedAt"], "2026-10-24T08:15:00Z")

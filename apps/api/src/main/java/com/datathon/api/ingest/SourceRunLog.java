@@ -18,7 +18,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/** Result of one source inside an ingest run, also shown on the sources page ("data as of"). */
 @Entity
 @Table(name = "source_run_log")
 @Getter
@@ -47,7 +46,6 @@ public class SourceRunLog {
 
     private int errors;
 
-    /** Last error message, so a failing source is visible without reading the server log. */
     @Column(columnDefinition = "TEXT")
     private String errorMessage;
 

@@ -13,7 +13,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/** One LLM call with its token count and cost, so the run stays inside {@code llm.budget-usd}. */
 @Entity
 @Table(name = "llm_usage")
 @Getter
@@ -35,7 +34,6 @@ public class LlmUsage {
     @Column(precision = 12, scale = 6)
     private BigDecimal costUsd;
 
-    /** What the call was for, for example "extraction" or "regulation-summary". */
     @Column(length = 50)
     private String purpose;
 

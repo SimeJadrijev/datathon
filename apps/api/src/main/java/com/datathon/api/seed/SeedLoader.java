@@ -14,10 +14,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.json.JsonMapper;
 
-/**
- * Fills empty tables from the snapshot in {@code resources/seed} on startup, so a clean checkout
- * has data without running the scrapers or depending on other people's servers during the demo.
- */
 @Slf4j
 @Component
 @RequiredArgsConstructor

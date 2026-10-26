@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** Writes the seed snapshot into the database. Upserts by natural key, so running it twice is safe. */
 @Slf4j
 @Service
 @RequiredArgsConstructor

@@ -1,13 +1,3 @@
-"""One-time export of the POC SQLite database into the API seed files (DATA-2).
-
-Reads the tables `natjecaji` and `propisi` from the POC database and writes
-apps/api/src/main/resources/seed/funding-calls.json and regulations.json with
-English enum values, so the API and the web app can start from real data
-before the Java scrapers exist. Not part of the product; standard library only.
-
-Usage:
-    python tools/export_poc_snapshot.py path/to/natjecaji.sqlite
-"""
 import argparse
 import json
 import sqlite3
@@ -28,7 +18,6 @@ SOURCES = {
     "apprrr": "APPRRR",
     "mzom": "MZOM",
 }
-# Dropped from the MVP: expensive to maintain, low coverage (work/decisions.md, 26.10.)
 SKIPPED_SOURCES = {"rijeka", "osijek", "zagreb", "ampeu", "hamag"}
 
 TYPES = {
@@ -68,7 +57,6 @@ AREAS = {
     "mladi": "YOUTH",
     "civilno_drustvo": "CIVIL_SOCIETY",
 }
-# POC field name -> Java field name, used to list the fields the LLM filled
 FIELD_NAMES = {
     "vrsta": "type",
     "status": "status",
@@ -88,7 +76,7 @@ warnings: list[str] = []
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser = argparse.ArgumentParser(description="Export the POC SQLite database into the API seed files")
     parser.add_argument("database", type=Path, help="path to the POC natjecaji.sqlite")
     args = parser.parse_args()
     if not args.database.exists():
@@ -166,7 +154,6 @@ def regulation(row: sqlite3.Row) -> dict:
 
 
 def external_id(poc_id: str, source: str) -> str:
-    # POC ids are "<source>-<id on the source>"; the Java scrapers store only the source id
     return poc_id.removeprefix(source + "-")
 
 
@@ -183,7 +170,6 @@ def counties(value: str | None) -> list[str]:
 
 
 def ai_fields(row: sqlite3.Row) -> list[str]:
-    # A field counts as AI-written when the LLM gave a value the rules did not have
     if not row["izvuceno_llm"] or not row["llm_json"]:
         return []
     llm = json.loads(row["llm_json"])
@@ -193,7 +179,6 @@ def ai_fields(row: sqlite3.Row) -> list[str]:
 
 
 def is_old_closed(status: str | None, reference_date: str | None, snapshot_date: date) -> bool:
-    # Closed calls older than a year are kept for history, but without the raw text (repo size)
     if status != "CLOSED" or not reference_date:
         return False
     return date.fromisoformat(reference_date[:10]) < snapshot_date - timedelta(days=365)
@@ -217,7 +202,6 @@ def json_list(value: str | None) -> list:
 
 
 def to_instant(value: str | None) -> str | None:
-    # The POC wrote local Zagreb time without an offset
     if not value:
         return None
     local = datetime.fromisoformat(value)

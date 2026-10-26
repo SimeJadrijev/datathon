@@ -25,7 +25,6 @@ class SeedFundingCallTest {
         assertThat(fundingCall.getSource()).isEqualTo(SourceCode.FZOEU);
         assertThat(fundingCall.getExternalId()).isEqualTo("275");
         assertThat(fundingCall.getStatus()).isEqualTo(FundingCallStatus.OPEN);
-        // EnU-2/26 has no application deadline (2028 is the end of the purchase period)
         assertThat(fundingCall.getDeadline()).isNull();
         assertThat(fundingCall.getMaxAmount()).isEqualByComparingTo(new BigDecimal("9000"));
         assertThat(fundingCall.getCounties()).containsExactly(FundingCall.ALL_COUNTIES);

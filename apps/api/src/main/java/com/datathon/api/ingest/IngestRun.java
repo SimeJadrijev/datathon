@@ -15,7 +15,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/** One ingest run over one or all sources. Each source in it writes a {@link SourceRunLog}. */
 @Entity
 @Table(name = "ingest_run")
 @Getter
@@ -32,7 +31,6 @@ public class IngestRun {
 
     private Instant finishedAt;
 
-    /** The only source this run was asked for, or null when it ran all sources. */
     @Enumerated(EnumType.STRING)
     @Column(length = 40)
     private SourceCode requestedSource;

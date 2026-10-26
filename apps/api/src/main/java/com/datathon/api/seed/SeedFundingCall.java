@@ -13,7 +13,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-/** One funding call in the seed snapshot. Field names match {@link FundingCall}. */
 public record SeedFundingCall(
         SourceCode source,
         String externalId,
@@ -46,7 +45,6 @@ public record SeedFundingCall(
         return fundingCall;
     }
 
-    /** Copies the snapshot values onto an entity, keeping fields the snapshot does not know (review, hidden). */
     void applyTo(FundingCall fundingCall) {
         fundingCall.setUrl(url);
         fundingCall.setTitle(title);
@@ -73,7 +71,6 @@ public record SeedFundingCall(
         fundingCall.setSourceText(sourceText);
     }
 
-    // Clear and refill instead of setting a new collection, so Hibernate keeps tracking the managed one
     static <T> void replace(Collection<T> target, Collection<T> values) {
         target.clear();
         if (values != null) {
