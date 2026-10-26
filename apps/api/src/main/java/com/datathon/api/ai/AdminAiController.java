@@ -1,6 +1,7 @@
 package com.datathon.api.ai;
 
 import com.datathon.api.common.AdminKeyGuard;
+import com.datathon.api.eligibility.EligibilityQuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class AdminAiController {
     private final AdminKeyGuard adminKeyGuard;
     private final FundingCallExtractionService extractionService;
     private final RegulationSummaryService summaryService;
+    private final EligibilityQuestionService questionService;
 
     @PostMapping("/extract")
     public ResponseEntity<Void> extract(
@@ -34,6 +36,14 @@ public class AdminAiController {
             @RequestParam(defaultValue = "60") int limit) {
         adminKeyGuard.verify(adminKey);
         return startBatch(() -> summaryService.start(limit));
+    }
+
+    @PostMapping("/generate-questions")
+    public ResponseEntity<Void> generateQuestions(
+            @RequestHeader(value = "X-Admin-Key", required = false) String adminKey,
+            @RequestParam(defaultValue = "300") int limit) {
+        adminKeyGuard.verify(adminKey);
+        return startBatch(() -> questionService.start(limit));
     }
 
     private ResponseEntity<Void> startBatch(Runnable start) {

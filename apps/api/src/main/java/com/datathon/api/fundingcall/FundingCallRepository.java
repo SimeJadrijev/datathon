@@ -24,4 +24,15 @@ public interface FundingCallRepository extends JpaRepository<FundingCall, Long> 
                           then 0 else 1 end, c.id
             """)
     List<Long> findIdsForExtraction(Pageable pageable);
+
+    /** Calls with enough text and no eligibility questions yet, open and announced ones first. */
+    @Query("""
+            select c.id from FundingCall c
+            where c.eligibilityQuestions is null and c.hidden = false
+              and c.sourceText is not null and length(c.sourceText) > 300
+            order by case when c.status in (com.datathon.api.fundingcall.FundingCallStatus.OPEN,
+                                            com.datathon.api.fundingcall.FundingCallStatus.ANNOUNCED)
+                          then 0 else 1 end, c.id
+            """)
+    List<Long> findIdsForQuestions(Pageable pageable);
 }

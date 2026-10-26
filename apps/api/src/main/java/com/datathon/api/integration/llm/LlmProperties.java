@@ -18,6 +18,7 @@ public class LlmProperties {
     private final String apiKey;
     private final String baseUrl;
     private final String model;
+    private final String eligibilityModel;
     private final BigDecimal budgetUsd;
     private final int maxTokens;
     private final int connectTimeoutSeconds;

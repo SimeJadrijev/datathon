@@ -67,7 +67,7 @@ class AnthropicLlmClientTest {
         when(usageRepository.sumCostUsd()).thenReturn(BigDecimal.ZERO);
         LlmProperties.Price price = new LlmProperties.Price(new BigDecimal("0.10"), new BigDecimal("0.50"));
         LlmProperties properties = new LlmProperties("test-key", "http://localhost:" + server.getAddress().getPort(),
-                "claude-haiku-5-5", new BigDecimal("2.0"), 1024, 2, 5, 3, Map.of("claude-haiku-5-5", price));
+                "claude-haiku-5-5", "claude-sonnet-5-5", new BigDecimal("2.0"), 1024, 2, 5, 3, Map.of("claude-haiku-5-5", price));
         client = new AnthropicLlmClient(properties, new MessageParamsFactory(properties),
                 new LlmUsageService(usageRepository, properties), jsonMapper,
                 new AnthropicClientFactory().create(properties));

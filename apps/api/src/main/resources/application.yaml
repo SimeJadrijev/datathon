@@ -22,6 +22,7 @@ llm:
   api-key: ${ANTHROPIC_API_KEY:}
   base-url: ${ANTHROPIC_BASE_URL:https://api.anthropic.com}
   model: ${LLM_MODEL:claude-haiku-5-5}
+  eligibility-model: ${LLM_ELIGIBILITY_MODEL:claude-sonnet-5-5}
   budget-usd: ${LLM_BUDGET_USD:2.0}
   max-tokens: ${LLM_MAX_TOKENS:4000}
   connect-timeout-seconds: ${LLM_CONNECT_TIMEOUT_SECONDS:5}
