@@ -16,9 +16,9 @@ public class FundingCallExtractionMerger {
 
     public void apply(FundingCall call, FundingCallExtraction extraction) {
         call.getAiFields().clear();
-        set(call, "provider", extraction.provider(), call::setProvider);
+        setIfMissing(call, "provider", call.getProvider(), extraction.provider(), call::setProvider);
         set(call, "type", extraction.type(), call::setType);
-        set(call, "publishedAt", extraction.publishedAt(), call::setPublishedAt);
+        setIfMissing(call, "publishedAt", call.getPublishedAt(), extraction.publishedAt(), call::setPublishedAt);
         overrideDeadline(call, extraction);
         set(call, "totalAmount", extraction.totalAmount(), call::setTotalAmount);
         set(call, "minAmount", extraction.minAmount(), call::setMinAmount);
@@ -39,6 +39,13 @@ public class FundingCallExtractionMerger {
         }
         setter.accept(value);
         call.getAiFields().add(field);
+    }
+
+    /** Provider and publish date come from the source's own metadata when it has them, so the model only fills gaps. */
+    private <T> void setIfMissing(FundingCall call, String field, Object current, T value, Consumer<T> setter) {
+        if (current == null) {
+            set(call, field, value, setter);
+        }
     }
 
     private <T> void replace(FundingCall call, String field, Collection<T> values, Collection<T> target) {

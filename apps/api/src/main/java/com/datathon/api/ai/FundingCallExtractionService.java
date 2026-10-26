@@ -9,9 +9,6 @@ import com.datathon.api.integration.llm.LlmUnavailableException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -33,23 +30,11 @@ public class FundingCallExtractionService {
     private final FundingCallExtractionMerger merger;
     private final TransactionTemplate transactionTemplate;
 
-    private final AtomicBoolean running = new AtomicBoolean(false);
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final BatchRunner batchRunner;
 
     /** Starts a batch in the background. Throws when a batch is already running. */
     public void start(int limit) {
-        if (!running.compareAndSet(false, true)) {
-            throw new IllegalStateException("An extraction batch is already running");
-        }
-        executor.submit(() -> {
-            try {
-                run(limit);
-            } catch (RuntimeException e) {
-                log.error("Extraction batch failed", e);
-            } finally {
-                running.set(false);
-            }
-        });
+        batchRunner.start("extract-funding-calls", () -> run(limit));
     }
 
     public ExtractionRunResult run(int limit) {

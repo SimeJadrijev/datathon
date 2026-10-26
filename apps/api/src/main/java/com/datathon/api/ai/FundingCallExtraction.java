@@ -51,7 +51,7 @@ public record FundingCallExtraction(
                 new ArrayList<>(strings(node.path("requiredDocuments"), MAX_DOCUMENTS)));
     }
 
-    private static String text(JsonNode node, String field) {
+    static String text(JsonNode node, String field) {
         JsonNode value = node.path(field);
         if (value.isNull() || value.isMissingNode()) {
             return null;
@@ -95,7 +95,7 @@ public record FundingCallExtraction(
         }
     }
 
-    private static <E extends Enum<E>> Set<E> enumValues(Class<E> type, JsonNode array, int max) {
+    static <E extends Enum<E>> Set<E> enumValues(Class<E> type, JsonNode array, int max) {
         Set<E> values = new LinkedHashSet<>();
         for (JsonNode element : array) {
             E value = enumValue(type, element.asString());
@@ -106,7 +106,7 @@ public record FundingCallExtraction(
         return values;
     }
 
-    private static Set<String> strings(JsonNode array, int max) {
+    static Set<String> strings(JsonNode array, int max) {
         Set<String> values = new LinkedHashSet<>();
         for (JsonNode element : array) {
             String value = element.asString().trim();

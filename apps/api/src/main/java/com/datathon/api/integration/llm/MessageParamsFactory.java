@@ -1,23 +1,21 @@
 package com.datathon.api.integration.llm;
 
 import com.anthropic.core.JsonValue;
+import com.anthropic.models.messages.JsonOutputFormat;
 import com.anthropic.models.messages.MessageCreateParams;
-import com.anthropic.models.messages.Tool;
-import com.anthropic.models.messages.ToolChoiceTool;
-import java.util.HashMap;
+import com.anthropic.models.messages.OutputConfig;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
- * Builds the SDK request. Structured output is forced with a single tool whose input schema is the requested
- * {@link ResponseSchema}, converted into the SDK's own types.
+ * Builds the SDK request. The answer is forced into the requested {@link ResponseSchema} with structured outputs
+ * (JSON schema), the same way as in the POC, so the model cannot return a value outside an enum.
  */
 @Component
 @RequiredArgsConstructor
 public class MessageParamsFactory {
-
-    static final String TOOL_NAME = "return_result";
 
     private final LlmProperties properties;
 
@@ -27,25 +25,20 @@ public class MessageParamsFactory {
                 .maxTokens(properties.getMaxTokens())
                 .system(request.systemPrompt())
                 .addUserMessage(request.userText())
-                .addTool(buildTool(request.responseSchema()))
-                .toolChoice(ToolChoiceTool.builder().name(TOOL_NAME).build())
-                .build();
-    }
-
-    private Tool buildTool(ResponseSchema schema) {
-        return Tool.builder()
-                .name(TOOL_NAME)
-                .description("Return the result in the required structure.")
-                .inputSchema(Tool.InputSchema.builder()
-                        .properties(toProperties(schema.getProperties()))
-                        .required(schema.getRequired())
+                .outputConfig(OutputConfig.builder()
+                        .effort(OutputConfig.Effort.LOW)
+                        .format(JsonOutputFormat.builder().schema(toJsonSchema(request.responseSchema())).build())
                         .build())
                 .build();
     }
 
-    private Tool.InputSchema.Properties toProperties(Map<String, Map<String, Object>> properties) {
-        Map<String, JsonValue> converted = new HashMap<>();
-        properties.forEach((name, definition) -> converted.put(name, JsonValue.from(definition)));
-        return Tool.InputSchema.Properties.builder().additionalProperties(converted).build();
+    private JsonOutputFormat.Schema toJsonSchema(ResponseSchema schema) {
+        Map<String, Object> properties = new LinkedHashMap<>(schema.getProperties());
+        return JsonOutputFormat.Schema.builder()
+                .putAdditionalProperty("type", JsonValue.from("object"))
+                .putAdditionalProperty("properties", JsonValue.from(properties))
+                .putAdditionalProperty("required", JsonValue.from(schema.getRequired()))
+                .putAdditionalProperty("additionalProperties", JsonValue.from(false))
+                .build();
     }
 }

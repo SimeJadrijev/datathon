@@ -35,3 +35,22 @@ Provjera: svaku vrijednost koju je LLM izvukao tražio sam doslovno u izvornom t
 - MZOM 7990: iznos 2.450 CHF zapisan je kao EUR. Ispravljeno: iznosi u drugim valutama su null.
 - MZOM 8068: jednom se vratio sažetak "x". Sažetak kraći od 20 znakova se odbacuje.
 - Model je nesiguran na HZZ 4372 (tekst od 80.000 znakova, šaljemo prvih 40.000). Rezultat se mijenja od poziva do poziva, a temperatura se u ovom SDK-u ne može postaviti.
+
+## Usporedba s POC-om (isti postupak kao `poc/IZVJESTAJ.md`, 26.10.)
+Slaganje Haiku i Sonnet 5.5 na istom uzorku od 21 poziva (rok: isti datum; iznosi: unutar 1 %; skupine i područja: Jaccard):
+
+| Polje | POC (15 poziva) | Java implementacija (21 poziv) |
+|---|---:|---:|
+| rok_prijave | 100 % | 100 % |
+| iznos_po_korisniku_max | 87 % | 90 % |
+| iznos_ukupno | 100 % | 100 % |
+| ciljne_skupine | 65 % | 82 % |
+| podrucja | 81 % | 85 % |
+
+Trošak po pozivu: Haiku 0,0014 USD (POC prosječno 0,00084, uzorak je ovdje duži jer su samo otvoreni pozivi), Sonnet 0,027 USD (POC 0,017). Kontrolni slučaj FZOEU 275 daje max 9.000 i rok null, isto kao u POC-u. Ovo je slaganje dva modela, ne dokaz točnosti (POC također nije imao ručni uzorak); ručna provjera je gore.
+
+Što je u Java verziji preuzeto iz POC-a nakon usporedbe koda:
+- strukturirani izlaz (JSON shema) i `effort: low` umjesto tool use-a, `max_tokens` 4000, retry do 3 puta
+- odrezan (`max_tokens`) ili odbijen (`refusal`) odgovor ne upisuje se kao "model nije našao ništa"
+- tekstovi kraći od 300 znakova se ne šalju modelu
+- davatelj i datum objave iz izvora ne pregaziti, model samo popunjava praznine

@@ -29,9 +29,15 @@ import tools.jackson.databind.json.JsonMapper;
 
 class AnthropicLlmClientTest {
 
-    private static final String TOOL_RESPONSE = """
-            {"content":[{"type":"tool_use","name":"return_result","input":{"deadline":"2026-12-01","amount":null}}],
-             "usage":{"input_tokens":1000,"output_tokens":200}}""";
+    private static final String JSON_ANSWER = "{\"deadline\":\"2026-12-01\",\"amount\":null}";
+    private static final String ANSWER_RESPONSE = response("end_turn", JSON_ANSWER);
+
+    private static String response(String stopReason, String text) {
+        String escaped = text.replace("\"", "\\\"");
+        return "{\"id\":\"msg_1\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"claude-haiku-5-5\","
+                + "\"content\":[{\"type\":\"text\",\"text\":\"" + escaped + "\"}],\"stop_reason\":\"" + stopReason + "\","
+                + "\"usage\":{\"input_tokens\":1000,\"output_tokens\":200}}";
+    }
 
     private final JsonMapper jsonMapper = JsonMapper.builder().build();
     private final Deque<FakeResponse> responses = new ArrayDeque<>();
@@ -82,7 +88,7 @@ class AnthropicLlmClientTest {
 
     @Test
     void returnsToolInputIncludingNullField() {
-        responses.add(new FakeResponse(200, TOOL_RESPONSE));
+        responses.add(new FakeResponse(200, ANSWER_RESPONSE));
 
         JsonNode result = client.complete(request());
 
@@ -92,7 +98,7 @@ class AnthropicLlmClientTest {
 
     @Test
     void savesUsageWithCost() {
-        responses.add(new FakeResponse(200, TOOL_RESPONSE));
+        responses.add(new FakeResponse(200, ANSWER_RESPONSE));
 
         client.complete(request());
 
@@ -111,16 +117,32 @@ class AnthropicLlmClientTest {
     }
 
     @Test
-    void missingToolUseThrowsResponseException() {
-        responses.add(new FakeResponse(200, "{\"content\":[{\"type\":\"text\",\"text\":\"hi\"}],\"usage\":{\"input_tokens\":10,\"output_tokens\":5}}"));
+    void answerWithoutTextBlockThrowsResponseException() {
+        responses.add(new FakeResponse(200, "{\"content\":[],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":10,\"output_tokens\":5}}"));
 
         assertThatThrownBy(() -> client.complete(request())).isInstanceOf(LlmResponseException.class);
     }
 
     @Test
+    void textThatIsNotJsonThrowsResponseException() {
+        responses.add(new FakeResponse(200, response("end_turn", "sorry, no json")));
+
+        assertThatThrownBy(() -> client.complete(request())).isInstanceOf(LlmResponseException.class);
+    }
+
+    @Test
+    void cutOffAnswerIsNotUsed() {
+        responses.add(new FakeResponse(200, response("max_tokens", JSON_ANSWER)));
+
+        assertThatThrownBy(() -> client.complete(request()))
+                .isInstanceOf(LlmResponseException.class)
+                .hasMessageContaining("MAX_TOKENS");
+    }
+
+    @Test
     void retriesOn429() {
         responses.add(new FakeResponse(429, "{}"));
-        responses.add(new FakeResponse(200, TOOL_RESPONSE));
+        responses.add(new FakeResponse(200, ANSWER_RESPONSE));
 
         JsonNode result = client.complete(request());
 

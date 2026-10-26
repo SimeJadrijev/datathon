@@ -18,14 +18,27 @@ public class AdminAiController {
 
     private final AdminKeyGuard adminKeyGuard;
     private final FundingCallExtractionService extractionService;
+    private final RegulationSummaryService summaryService;
 
     @PostMapping("/extract")
     public ResponseEntity<Void> extract(
             @RequestHeader(value = "X-Admin-Key", required = false) String adminKey,
             @RequestParam(defaultValue = "300") int limit) {
         adminKeyGuard.verify(adminKey);
+        return startBatch(() -> extractionService.start(limit));
+    }
+
+    @PostMapping("/summarize-regulations")
+    public ResponseEntity<Void> summarizeRegulations(
+            @RequestHeader(value = "X-Admin-Key", required = false) String adminKey,
+            @RequestParam(defaultValue = "60") int limit) {
+        adminKeyGuard.verify(adminKey);
+        return startBatch(() -> summaryService.start(limit));
+    }
+
+    private ResponseEntity<Void> startBatch(Runnable start) {
         try {
-            extractionService.start(limit);
+            start.run();
         } catch (IllegalStateException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
