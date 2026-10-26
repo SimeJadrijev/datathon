@@ -38,3 +38,4 @@
 - DATA-2 gotov (commit d94c901): POC ponovno pokrenut lokalno (1484 natječaja, 3860 propisa), `tools/export_poc_snapshot.py` izvezao 693 natječaja iz 6 MVP izvora + 3860 propisa (5,2 MB). `SeedLoader` puni praznu bazu pri startu (~25 s), drugi start bez duplikata.
 - SETUP-1 otvoren: Sudreg ključ (Luka) je u `apps/api/.env` (gitignored). Token se dobije, ali svi API pozivi vraćaju 401, vjerojatno račun još nije aktiviran. Demo OIB-ovi i fixturei čekaju.
 - Lokalno instaliran JDK 25 (`java-25-openjdk-devel`).
+- SETUP-1 gotov: Sudreg API proradio (prvo je vraćao 401 unatoč tokenu). Izabrani demo OIB-ovi Microblink, Valamar Riviera, Kraš; fixturei spremljeni. Nalaz: `glavna_djelatnost` često prazna (vidi `work/decisions.md`).

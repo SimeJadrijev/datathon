@@ -1,0 +1,1264 @@
+{
+ "mbs": 80005858,
+ "status": 1,
+ "sud_nadlezan": {
+  "sifra": 8,
+  "naziv": "Trgovački sud u Zagrebu",
+  "sifra_zupanije": 21,
+  "naziv_zupanije": "Grad Zagreb",
+  "sifra_opcine": 1333,
+  "naziv_opcine": "Zagreb",
+  "sifra_naselja": 72150,
+  "naziv_naselja": "Zagreb",
+  "izdaje_izvatke": 1
+ },
+ "sud_sluzba": {
+  "sifra": 8,
+  "naziv": "Trgovački sud u Zagrebu",
+  "sifra_zupanije": 21,
+  "naziv_zupanije": "Grad Zagreb",
+  "sifra_opcine": 1333,
+  "naziv_opcine": "Zagreb",
+  "sifra_naselja": 72150,
+  "naziv_naselja": "Zagreb",
+  "izdaje_izvatke": 1
+ },
+ "oib": 94989605030,
+ "mb": 3269043,
+ "potpuni_mbs": "080005858",
+ "potpuni_oib": "94989605030",
+ "ino_podruznica": 0,
+ "stecajna_masa": 0,
+ "likvidacijska_masa": 0,
+ "glavna_djelatnost": 1082,
+ "datum_osnivanja": "1974-04-18T00:00:00",
+ "vrijeme_zadnje_izmjene": "2026-09-14T09:54:14",
+ "scn_zadnje_izmjene": 8261474175395,
+ "postupak": {
+  "postupak": {
+   "znacenje": "Bez postupka"
+  }
+ },
+ "tvrtka": {
+  "ime": "KRAŠ prehrambena industrija d.d.",
+  "naznaka_imena": "KRAŠ"
+ },
+ "skracena_tvrtka": {
+  "ime": "KRAŠ d.d."
+ },
+ "prijevodi_tvrtki": [
+  {
+   "prijevod_tvrtke_rbr": 1,
+   "ime": "KRAŠ Nahrungsmittelindustrie AG",
+   "jezik": {
+    "sifra": 22,
+    "naziv": "German"
+   }
+  },
+  {
+   "prijevod_tvrtke_rbr": 2,
+   "ime": "KRAŠ Food Industry Plc",
+   "jezik": {
+    "sifra": 25,
+    "naziv": "English"
+   }
+  }
+ ],
+ "sjediste": {
+  "sifra_zupanije": 21,
+  "naziv_zupanije": "Grad Zagreb",
+  "sifra_opcine": 1333,
+  "naziv_opcine": "Zagreb",
+  "sifra_naselja": 72150,
+  "naziv_naselja": "Zagreb",
+  "sifra_ulice": 721502702,
+  "ulica": "Ravnice",
+  "kucni_broj": 48
+ },
+ "email_adrese": [
+  {
+   "email_adresa_rbr": 1,
+   "adresa": "uprava@kras.hr"
+  }
+ ],
+ "pravni_oblik": {
+  "vrsta_pravnog_oblika": {
+   "sifra": 4,
+   "naziv": "dioničko društvo",
+   "kratica": "d.d."
+  }
+ },
+ "predmeti_poslovanja": [
+  {
+   "djelatnost_rbr": 1,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "01.11",
+    "puni_naziv": "Uzgoj žitarica i drugih usjeva, d. n.*",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 2,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "01.12",
+    "puni_naziv": "Uzgoj povrća, cvijeća, ukras. bilja i rasada",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 3,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "01.13",
+    "puni_naziv": "Uzgoj voća, oraha i sl. za začine i napitke",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 4,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "01.25",
+    "puni_naziv": "Uzgoj ostalih životinja",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 5,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "01.41",
+    "puni_naziv": "Uslužne djelatnosti u biljnoj proizvodnji",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 6,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "01.42",
+    "puni_naziv": "Usluge u stočarstvu, osim veterinarskih",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 8,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "15.33",
+    "puni_naziv": "Prerada i konzerviranje voća i povrća, d. n.",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 9,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "15.71",
+    "puni_naziv": "Proizvodnja stočne hrane",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 10,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "15.72",
+    "puni_naziv": "Proizvodnja hrane za kućne ljubimce",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 11,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "15.81",
+    "puni_naziv": "Proizv. kruha, peciva, svj. tjesten. i kolača",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 12,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "15.82",
+    "puni_naziv": "Proizv. dvopeka, keksa, traj. peciva i kolača",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 13,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "15.84",
+    "puni_naziv": "Proizvodnja kakaa, čokolade i bombona",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 14,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "15.88",
+    "puni_naziv": "Proizvodnja homog. gotove i dijetetske hrane",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 15,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "40.3",
+    "puni_naziv": "Opskrba parom i toplom vodom",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 36,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "63.1",
+    "puni_naziv": "Prekrcaj tereta i skladištenje",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 37,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "63.12",
+    "puni_naziv": "Skladištenje robe",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 38,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "63.21",
+    "puni_naziv": "Ostale prateće djelatnosti u kopnenom prometu",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 39,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "65.2",
+    "puni_naziv": "Ostalo financijsko posredovanje",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 42,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "71.33",
+    "puni_naziv": "Iznajm. ured. strojeva i opr., uklj. računala",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 43,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "72.1",
+    "puni_naziv": "Pružanje savjeta o računal. opr. (hardware-u)",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 44,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "72.2",
+    "puni_naziv": "Savjet. i pribav. programske opr.(software-a)",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 45,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "72.3",
+    "puni_naziv": "Obrada podataka",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 46,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "72.4",
+    "puni_naziv": "Izrada baze podataka",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 47,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "72.5",
+    "puni_naziv": "Održavanje uredskih strojeva i računala",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 48,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "73.1",
+    "puni_naziv": "Istraž. i raz. u prir., tehn. i tehnol. znan.",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 49,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "74.1",
+    "puni_naziv": "Pravne, računovodstvene i poslovne djel.",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 51,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "74.3",
+    "puni_naziv": "Tehničko ispitivanje i analiza",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 52,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "74.4",
+    "puni_naziv": "Promidžba (reklama i propaganda)",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 53,
+   "nacionalna_klasifikacija_djelatnosti": {
+    "sifra": "74.82",
+    "puni_naziv": "Djelatnosti pakiranja",
+    "verzija": "NKD 1994"
+   }
+  },
+  {
+   "djelatnost_rbr": 54,
+   "djelatnost_tekst": "profesionalna rehabilitacija i zapošljavanje invalida koja se provodi obavljanjem poslova iz proizvodnog programa Društva i to: pakiranje proizvoda iz standardnog programa Društva i proizvoda trećih osoba,pakiranje specijalnih i prigodnih konditorskih"
+  },
+  {
+   "djelatnost_rbr": 55,
+   "djelatnost_tekst": "proizvoda, izrada ambalažnog materijala i ambalaže za konditorske proizvode, izrada atrapa (imitacije konditorskih proizvoda), izrada i održavanje zaštitne odjeće djelatnika Društva,"
+  },
+  {
+   "djelatnost_rbr": 56,
+   "djelatnost_tekst": "izrada tehničke i tehnološke dokumentacije za prehrambenu proizvodnju,"
+  },
+  {
+   "djelatnost_rbr": 57,
+   "djelatnost_tekst": "kontrola sirovina, ambalaže i gotovih proizvoda iz djelatnosti prehrambene industrije,"
+  },
+  {
+   "djelatnost_rbr": 58,
+   "djelatnost_tekst": "ekonomske, organizacijske i tehnološke usluge,"
+  },
+  {
+   "djelatnost_rbr": 59,
+   "djelatnost_tekst": "izrada opreme i rezervnih dijelova opreme za prehrambenu industriju,"
+  },
+  {
+   "djelatnost_rbr": 60,
+   "djelatnost_tekst": "izrada i popravak predmeta od drva i srodnih materijala,"
+  },
+  {
+   "djelatnost_rbr": 61,
+   "djelatnost_tekst": "izrada i popravak nespomenutih raznovrsnih proizvoda (sredstava rada),"
+  },
+  {
+   "djelatnost_rbr": 62,
+   "djelatnost_tekst": "zastupanje inozemnih tvrtki,"
+  },
+  {
+   "djelatnost_rbr": 65,
+   "djelatnost_tekst": "međunarodno otpremništvo,"
+  },
+  {
+   "djelatnost_rbr": 66,
+   "djelatnost_tekst": "izvoz i uvoz tehničkih i drugih usluga u istraživanju u prehrambenoj industriji,"
+  },
+  {
+   "djelatnost_rbr": 67,
+   "djelatnost_tekst": "ustupanje investicijskih radova stranoj osobi u Republici Hrvatskoj,"
+  },
+  {
+   "djelatnost_rbr": 69,
+   "djelatnost_tekst": "usluge kontrole kvalitete i kvantitete robe u međunarodnom prometu,"
+  },
+  {
+   "djelatnost_rbr": 70,
+   "djelatnost_tekst": "usluge istraživanja te pružanja i korištenja znanja u gospodarstvu,"
+  },
+  {
+   "djelatnost_rbr": 71,
+   "djelatnost_tekst": "međunarodno prometno-agencijski poslovi,"
+  },
+  {
+   "djelatnost_rbr": 72,
+   "djelatnost_tekst": "pribavljanje i ustupanje prava industrijskog vlasništva,"
+  },
+  {
+   "djelatnost_rbr": 73,
+   "djelatnost_tekst": "usluge atestiranja"
+  },
+  {
+   "djelatnost_rbr": 74,
+   "djelatnost_tekst": "uzgoj stoke, peradi i ostalih životinja"
+  },
+  {
+   "djelatnost_rbr": 75,
+   "djelatnost_tekst": "proizvodnja sjemena i sadnog materijala"
+  },
+  {
+   "djelatnost_rbr": 78,
+   "djelatnost_tekst": "iznajmljivanje ostalih strojeva i opreme"
+  },
+  {
+   "djelatnost_rbr": 79,
+   "djelatnost_tekst": "održavanje dizala, pokretnih stepenica"
+  },
+  {
+   "djelatnost_rbr": 80,
+   "djelatnost_tekst": "umjeravanje, popravak i održavanje mjerila mase i instrumenata"
+  },
+  {
+   "djelatnost_rbr": 81,
+   "djelatnost_tekst": "organiziranje koncerata, priredbi, revija, izložbi, festivala, zabavnih igara i sl."
+  },
+  {
+   "djelatnost_rbr": 82,
+   "djelatnost_tekst": "djelatnost zabavnih i tematskih parkova"
+  },
+  {
+   "djelatnost_rbr": 83,
+   "djelatnost_tekst": "športska poduka"
+  },
+  {
+   "djelatnost_rbr": 84,
+   "djelatnost_tekst": "športska rekreacija"
+  },
+  {
+   "djelatnost_rbr": 85,
+   "djelatnost_tekst": "djelatnost informacijskog društva"
+  },
+  {
+   "djelatnost_rbr": 86,
+   "djelatnost_tekst": "ekološka proizvodnja"
+  },
+  {
+   "djelatnost_rbr": 87,
+   "djelatnost_tekst": "prerada ekološke hrane"
+  },
+  {
+   "djelatnost_rbr": 88,
+   "djelatnost_tekst": "prerada ekološke hrane za životinje"
+  },
+  {
+   "djelatnost_rbr": 89,
+   "djelatnost_tekst": "stručna kontrola nad ekološkom proizvodnjom"
+  },
+  {
+   "djelatnost_rbr": 90,
+   "djelatnost_tekst": "uvoz ekoloških proizvoda"
+  },
+  {
+   "djelatnost_rbr": 91,
+   "djelatnost_tekst": "pripremanje hrane i pružanje usluga prehrane"
+  },
+  {
+   "djelatnost_rbr": 92,
+   "djelatnost_tekst": "pripremanje i usluživanje pića i napitaka"
+  },
+  {
+   "djelatnost_rbr": 93,
+   "djelatnost_tekst": "pružanje usluga smještaja"
+  },
+  {
+   "djelatnost_rbr": 94,
+   "djelatnost_tekst": "pripremanje hrane za potrošnju na drugom mjestu sa ili bez usluživanja (u prijevoznom sredstvu, na priredbama i sl.) i opskrba tom hranom (catering)"
+  },
+  {
+   "djelatnost_rbr": 95,
+   "djelatnost_tekst": "turističke usluge u nautičkom turizmu"
+  },
+  {
+   "djelatnost_rbr": 96,
+   "djelatnost_tekst": "turističke usluge u ostalim oblicima turističke ponude"
+  },
+  {
+   "djelatnost_rbr": 97,
+   "djelatnost_tekst": "ostale turističke usluge"
+  },
+  {
+   "djelatnost_rbr": 98,
+   "djelatnost_tekst": "turističke usluge koje uključuju športsko-rekreativne ili pustolovne aktivnosti"
+  },
+  {
+   "djelatnost_rbr": 99,
+   "djelatnost_tekst": "proizvodnja dječje hrane"
+  },
+  {
+   "djelatnost_rbr": 100,
+   "djelatnost_tekst": "gospodarenje šumama"
+  },
+  {
+   "djelatnost_rbr": 101,
+   "djelatnost_tekst": "stručni poslovi prostornog uređenja"
+  },
+  {
+   "djelatnost_rbr": 102,
+   "djelatnost_tekst": "projektiranje, građenje, uporaba i uklanjanje građevina"
+  },
+  {
+   "djelatnost_rbr": 103,
+   "djelatnost_tekst": "nadzor nad gradnjom"
+  },
+  {
+   "djelatnost_rbr": 104,
+   "djelatnost_tekst": "kupnja i prodaja robe"
+  },
+  {
+   "djelatnost_rbr": 105,
+   "djelatnost_tekst": "obavljanje trgovačkog posredovanja na domaćem i inozemnom tržištu"
+  },
+  {
+   "djelatnost_rbr": 106,
+   "djelatnost_tekst": "javni cestovni prijevoz putnika i tereta u domaćem i međunarodnom prometu"
+  },
+  {
+   "djelatnost_rbr": 107,
+   "djelatnost_tekst": "poslovanje nekretninama"
+  },
+  {
+   "djelatnost_rbr": 108,
+   "djelatnost_tekst": "zastupanje inozemnih tvrtki"
+  },
+  {
+   "djelatnost_rbr": 109,
+   "djelatnost_tekst": "gospodarenje ribama slatkih voda"
+  },
+  {
+   "djelatnost_rbr": 110,
+   "djelatnost_tekst": "gospodarenje lovišem i divljači"
+  },
+  {
+   "djelatnost_rbr": 111,
+   "djelatnost_tekst": "čišćenje svih vrsta objekata"
+  },
+  {
+   "djelatnost_rbr": 112,
+   "djelatnost_tekst": "čišćenje i održavanje ventilacije"
+  },
+  {
+   "djelatnost_rbr": 113,
+   "djelatnost_tekst": "poslovi ovjeravanja zakonitih mjerila i/ili poslovi pripreme zakonitih mjerila za ovjeravanje"
+  },
+  {
+   "djelatnost_rbr": 114,
+   "djelatnost_tekst": "proizvodnja dodataka prehrani"
+  }
+ ],
+ "evidencijske_djelatnosti": [
+  {
+   "djelatnost_rbr": 1,
+   "djelatnost_tekst": "djelatnost montaže, popravka, održavanje i isključivanje iz uporabe rashladnih i klima uređaja"
+  },
+  {
+   "djelatnost_rbr": 2,
+   "djelatnost_tekst": "djelatnost proizvodnje, stavljanja na tržište i korištenje kemikalija"
+  }
+ ],
+ "temeljni_kapitali": [
+  {
+   "temeljni_kapital_rbr": 3,
+   "valuta": {
+    "sifra": 978,
+    "naziv": "euro"
+   },
+   "iznos": 79560470
+  }
+ ],
+ "statusni_postupci": [
+  {
+   "statusni_postupak_rbr": 1,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Statut dioničkog društva donijet je na Glavnoj skupštini održanoj 12. kolovoza 1995. godine"
+  },
+  {
+   "statusni_postupak_rbr": 2,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 05. srpnja 1997. godine dopunjen je članak 7 Statuta - odredba o temeljnom kapitalu; risan je stavak 2 članka 23 - odredbao nemogućnosti promjene podataka u knjizi dionica od dana objave sazivanja Glavne skupštine; dopunjen je stavak 2 članka 33 - odredba o stavljanju na uvid dioičarima godišnjeg obračuna, izvješća Uprave i Nadzornog odbora, te prijedloga rasporeda dobiti; izmijenjen je stavak 3 članka 40, na način da će se temeljni kapital povećavati sukladno čl. 7 Statuta; u članku 42 zamijenjene su riječi ˝nadležnog državnog organa˝ riječima ˝javnog bilježnika˝ i dodana je odredba o pravnom prometu dionica u obliku elektroničkih zapisa; članci 44 i 45 brisani su kao suvišni. Pročišćeni tekst Statuta od 05. srpnja 1997. godine dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 3,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Promjene temeljnog kapitala, ukupnoga iznosa članskih uloga, sredstva za početak rada: Upravi se daje ovlast da, uz suglasnost Nadzornog odbora, tijekom vremena od pet godina, računajući od dana upisa izmjene Statuta u Sudski registar, izdavanjem novih dionica za uloge u novcu, stvarima ili pravima, temeljni kapital poveća odjednom ili u više navrata, do iznosa od 271.538.000,00 kuna. Uprava je, uz suglasnost Nadzornog odbora, ovlaštena isključiti pravo prvenstva dioničara pri upisu novih dionica."
+  },
+  {
+   "statusni_postupak_rbr": 4,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 4.srpnja 1998. izmijenjen je Statut na sljedeći način: - u članku 7.iza st. 5. dodan je novi stavak - odredba o odobrenom kapitalu; - izmijenjen je članak 8. - odredba o dionicama; - brisani su st. 1. članka 27. i čl. 28. - odredbe o kvorumu; - izmijenjen je st. 1. članka 36. - odredba o isplati dividende; - brisan je članak 41. - odredba o dioničarskim ispravama; - izmijenjen je članak 42. - odredba o prijenosu dionica.   Pročišćeni tekst Statuta od 4.srpnja 1998. dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 5,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Upravi je dana ovlast da, uz suglasnost Nadzornog odbora, tijekom vremena od pet godina, računajući od dana upisa izmjena Statuta u Sudski registar, donese jednu ili više odluka o provođenju uvjetnog povećanja temeljnog kapitala izdavanjem zamjenjivih obveznica do iznosa od 271.538.000,00 kuna radi ostvarivanja prava vjerovnika na zamjenu zamjenjivih obveznica u dionice Društva. Uprava je ovlaštena, uz suglasnost Nadzornog odbora, isključiti pravo prvenstva dioničara pri upisu novih dionica.  Glavna skupština Društva održana 4.7.1998. donijela je odluku da se dosadašnji temeljni kapital koji iznosi 543.076.000,00 kuna uvjetno poveća za iznos do 271.538.000,00 kuna, radi ostvarivanja prava vjerovnika na zamjenu zamjenjivih obveznica u dionice Društva. Društvo će radi povećanja temeljnog kapitala izdati do 678.845 redovnih dionica koje glase na ime, serije B, nominalne vrijednosti svake po 400,00 kuna. Pravo upisa dionica imaju imatelji zamjenjivih i u cijelosti uplaćenih obveznica Društva. Prava ostalih na upis navedenih dionica isključuju se u cijelosti."
+  },
+  {
+   "statusni_postupak_rbr": 6,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 17. srpnja 1999. izmijenjen je Statut na sljedeći način: - članak 3. stavak 1. - odredba o sjedištu Društva; - članak 10. stavak 1. - odredba o broju članova Uprave; - članak 14. - odredba o broju članova Nadzornog odbora; - članak 15. - odredba o izboru članova Nadzornog odbora; - članak 17. - dodana je odredba o početku mandata članova Nadzornog odbora; - članak 18. - odredba o konstituirajućoj sjednici Nadzornog odbora - članak 22. - brisane su riječi ˝odnosno plaća ako su u radnom odnosu u Društvu˝. Pročišćeni tekst Statuta od 17. srpnja 1999. dostavljen Sudu u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 7,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 16. lipnja 2001.g. izmijenjeni su članak 9., 24., i 35. Statuta, a brisani su članci 25. i 40. Statuta - izmijenjene su odredbe o knjizi dionica, uvjetima za sudjelovanje i korištenje prava glasa na Glavnoj skupštini, isplati dividende i predujma na ime dividende - nastale zbog činjenice da se prijenosom podataka iz knjige dionica u središnju depozitarnu agenciju u Društvu više ne vodi knjiga dionica, već su dionice upisane i njihov prijenos se provodi na vlasničkim računima imatelja dionica u središnjoj depozitarnoj agenciji. Pročišćeni tekst Statuta od 16. lipnja 2001.g. dostavljen Sudu za zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 8,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 28. rujna 2002.g. u članku 7. Statuta brisani su stavci 5. i 7. - odredbe o odobrenom kapitalu. Pročišćeni tekst Statuta od 28. rujna 2002. dostavljen Sudu za zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 9,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Skupštine društva od 17.07.2004.god. izmjenjen je Statut društva tako da se iza čl. 1. dodaje novi čl. 1a, u čl.7. u odredbi o temeljnom kapitalu društva i dionicama, u čl. 10 u odredbi o sastavu Uprave društva, u čl. 14. i 15. u odredbi o broju i izboru članova Nadzornog odbora, u čl. 17. u odredbi o mandatu članova Nadzornog odobra, u čl. 18. u odredbi o konstituiranju Nadzornog odbora, u čl. 19. u odredbi o nadležnosti Nadzornog odbora, u čl. 20. i 21. u odredbi o odlučivanju u Nadzornom odboru, u čl. 22. u odredbi o nagradi za rad članovima Nadzornog odbora te se iza čl. 22. dodaje čl. 22a, u čl. 23. u odredbi o sazivanju Glavne skupštine, u čl. 25. i 26. u odredbi o pravu glasa, mijenja se naslov iznad čl. 30., u čl.31. u odredbi o vođenju poslovnih knjiga i podnošenja izvješća, mijenja se podnaslov iznad čl. 32., čl.32. briše se, u čl.33. i 34. u odredbi o podjeli dobiti, u čl. 36. u odredbi o objavi podataka i pripoćenja društva, u čl. 38. u prijelaznim i završnim odredbama. Pročišćeni tekst statuta s potvrdom javnog bilježnika prilaže se u zbirku sudskih isprava."
+  },
+  {
+   "statusni_postupak_rbr": 10,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Glavna skupština je dana 17.07.2004.god. donijela odluku o povećanju temeljnog kapitala društva ulaganjem prava sa iznsoa od 543.076.000,00 Kn za iznos od 6.372.400,00 Kn na iznos od 549.448.400,00 Kn izdavanjem novih 15.931 redovnih dioncia na ime, nominalnog iznosa 400,00 Kn."
+  },
+  {
+   "statusni_postupak_rbr": 11,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Skupštine društva od 9.srpnja 2005.g. izmijenjen je Statut društva tako da se mijenja čl. 8. st. 5. u odredbi o odredbi o temeljnom kapitalu i dionicama društva; čl. 11. st. 3. u odredbi o upravi društva; čl. 14. st. 2. u odredbi o zastupanju društva, te se u istom članku dodaje novi stavak 3., čl. 39. se briše. Pročišćeni tekst Statuta od 9.srpnja 2005.g. s potvrdom javnog bilježnika prilaže se u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 12,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom glavne skupštine od 23.06.2007. godine izmijenjen je Statut u članku 7. stavak 1. o predmetu poslovanja, članku 8. stavak 5., u članku 14. stavak 1., stavak 3. u istom članku briše se, izmjenjen je članak 15. te je zajedno s ostalim neizmjenjenim odredbama sastavljen pročišćeni tekst Statuta dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 13,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Ovom društvu pripojeno je društvo MURVICA PLUS društvo s ograničenom odgovornošću za poslovne usluge sa sjedištem u Zadru, Ulica Vlatka Mačeka 3, temeljem Ugovora o pripajanju od 31. listopada 2007. godine i odluke jedinog člana društva od 31. listopada 2007. godine i odluke jedinog člana preuzetog društva od 22. listopada 2007. godine. Odluke o pripajanju nisu pobijane."
+  },
+  {
+   "statusni_postupak_rbr": 14,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Odlukom glavne skupštine od 22.08.2009. izmijenjen je članak 7. o predmetu poslovanju, te članak 26. i 35. u dijelu naziva \"Središnja depozitarna agencija\" koji naziv je zamijenjen na \"Središnje klirniško depozitarno društvo\", te je pročišćeni tekst Statuta od 26.08.2009. dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 15,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom glavne skupštine od 26.06.2010. godine izmijenjen je Statut u čl. 7 o predmetu poslovanja, čl. 11 o upravi, čl. 20 o Nadzornom odboru, čl. 24, 26, 27 i 28 o glavnoj skupštini, te čl. 35 o upotrebi dobiti. Pročišćeni tekst Statuta društva od 26.06.2010. godine dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 16,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom glavne skupštine od 25.08.2012. godine izmjenjen je Statut od 26.06.2010. godine u čl. 7. o predmetu poslovanja i čl.8. st. 5. Potpuni tekst Statuta od kolovoza 2012. godine dostavljen sudu u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 17,
+   "vrsta_statusnog_postupka": {
+    "sifra": 64,
+    "naziv": "Statusne promjene: prekogranično pripojenje subjektu upisa",
+    "redoslijed": 174
+   },
+   "tekst": "Ovom društvu pripojeno je društvo KRAŠ CZ, spol. s r.o. sa sjedištem u Pragu, K Sokolovně 37, Češka Republika, broj CZ25772651, upisano u trgovački registar Gradskog suda u Pragu, odjel C, uložak 68884, a temeljem Zajedničkog plana pripajanja od 09. rujna 2014. godine i Potvrde o pripajanju od 15.10.2014. godine."
+  },
+  {
+   "statusni_postupak_rbr": 18,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Ovom društvu pripojeno je društvo KRAŠ SLOVAKIA, s r.o. sa sjedištem u Bratislavi, Trnavska cesta 50/A, Slovačka Republika, MB 36 033 634, upisano u trgovački registar Općinskog suda Bratislava I, odjel Sro, uložak broj 26018/B, a temeljem Zajedničkog plana pripajanja od 24. veljače 2014. godine i Potvrde o pripajanju od 10.11.2014. godine."
+  },
+  {
+   "statusni_postupak_rbr": 19,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Ovom društvu pripojeno je društvo KONDIN d.o.o. za razvoj i unapređenje konditorske industrije sa sjedištem u Zagrebu, Heinzelova 47/B/II, OIB: 20121429283, upisano kod Trgovačkog suda u Zagrebu pod brojem MBS: 080347224, a temeljem Ugovora o pripajanju od 01.02.2016. godine i odluke sa sjednice Nadzornog odbora ovog društva od 25.02.2016. godine i odluke jedinog člana pripojenog društva od 08.03.2016. godine.\nOdluke o pripajanju nisu pobijane u za to propisanom roku.\n"
+  },
+  {
+   "statusni_postupak_rbr": 20,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Statut od 25.08.2016. godine izmijenjen je odlukom Glavne Skupštine od 27.08.2016. godine u čl.1. i čl.3. o tvrtki društva, čl.7. o predmetu poslovanja, čl.10. o temeljnom kapitalu i dionicama, čl.36. o poslovnoj tajni i čl.37. o objavi podataka i priopćenja društva, te je usvojen potpuni tekst Statuta od 27.08.2016. godine koji je dostavljen sudu u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 21,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Statut od 27.08.2016. godine izmijenjen je odlukom Glavne Skupštine od 25.08.2017. godine u čl. 8. st. 5. o temeljnom kapitalu i dionicama, te je usvojen potpuni tekst Statuta od 25.08.2017. godine koji je dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 22,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Statut od 25. kolovoza 2017. godine izmijenjen je odlukom Glavne Skupštine od 31. kolovoza 2018. godine u čl. 7. o predmetu poslovanja i u članku 35. o upotrebi dobiti, te je usvojen potpuni tekst Statuta od 31. kolovoza 2018. godine koji je dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 23,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Statut dioničkog društva KRAŠ, prehrambena industrija, d.d. od 31.08.2018. godine izmijenjen je Odlukom Nadzornog odbora od 18.12.2018. godine o usklađenju odredbi Statuta društva s iznosom povećanja temeljnog kapitala društva i brojem novi dionica, a koja je donesena temeljem Odluke Glavne Skupštine društva od dana 31.08.2018. godine o povećanju temeljnog kapitala i izdanju novih redovnih dionica javnom ponudom u članku 8. stavak 1. i stavak 2. o temeljnom kapitalu, te je usvojen potpuni (pročišćeni)tekst Statuta KRAŠ, prehrambena industrija d.d. Zagreb koji se prilaže u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 24,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom Glavne Skupštine društva od dana 31.08.2018. godine o povećanju temeljnog kapitala i izdanju novih redovnih dionica javnom ponudom na temelju koje je donesena Odluka uprave društva o utvrđenju rezultata postupka povećanja temeljnog kapitala, uspješnosti izdanja novih dionica, točnog iznosa povećanja temeljnog kapitala i točnog broja novih redovnih dionica, povećan je temeljni kapital društva s iznosa od 549.448.400,00 kn, za iznos od 50.000.000,00 kn, na iznos od 599.448.400,00 kn, uplatom u novcu."
+  },
+  {
+   "statusni_postupak_rbr": 25,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Ovom društvu pripojeno je društvo KRAŠ-TRGOVINA d.o.o. sa sjedištem u Zagrebu, Ravnice 48, OIB 19890028161, upisano kod Trgovačkog suda u Zagrebu pod brojem MBS 080018428, a temeljem Ugovora o pripajanju od 30.04.2020.godine i suglasnosti nadzornog odbora ovog društva od 30.04.2020.godine i odluke jedinog člana pripojenog društva od 17.06.2020.godine.\n\nČlanovi uprave društava izjavljuju da Odluke o pripajanju nisu pobijane u za to propisanom roku odnosno izjavljuju da se u ime društava odriču prava pobijanja odluka iz bilo kojeg razloga predviđenog Zakonom o trgovačkim društvima."
+  },
+  {
+   "statusni_postupak_rbr": 26,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Statut od 18. prosinca 2018. godine izmijenjen je odlukom Glavne Skupštine od 24. srpnja 2020. godine u članku 13. stavak 2., članku 14. stavak 1., članku 16., članku 23., članku 27. stavak 3., članku 35. stavak 1., te članku 37. stavak 1., te je usvojen potpuni tekst statuta od 25. srpnja 2020. godine koji je dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 27,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Statut od 25.07.2020. godine izmijenjen je odlukama Glavne Skupštine od 24.06.2021. godine u članku 7. stavak 1. i članku 20. stavak 2., te je usvoje potpuni tekst Statuta od 24.06.2021. godine koji je dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 28,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Ovom društvu pripojeno je društvo KAROLINA tvornica keksa, vafla i slanica, društvo s ograničenom odgovornošću, sa sjedištem u Osijeku (Grad Osijek), Vukovarska cesta 209 a, OIB: 10984562711, upisano kod Trgovačkog suda u Osijeku pod brojem MBS: 030003718, a temeljem Ugovora o pripajanju od 23.06.2021. godine i prethodne suglasnosti Nadzornog odbora ovog društva od 28.10.2021. godine i odluke skupštine pripojenog društva od 29.10.2021. godine"
+  },
+  {
+   "statusni_postupak_rbr": 29,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Statut društva od 24.06.2021. godine izmijenjen je odlukom Glavne skupštine društva od 07.06.2023. godine u odredbama članka 8. koji se odnosi na temeljni kapital i dionice, članka 11. koji se odnosi na sastav i izbor članova uprave, članka 21. koji se odnosi na odlučivanje u nadzornom odboru, članka 26. koji se odnosi na pravo sudjelovanja na Glavnoj skupštini, članka 27. koji se odnosi na pravo glasa na Glavnoj skupštini i članka 39. koji se odnosi na prijelazne i završne odredbe.\nPotpuni tekst Statuta od 07.06.2023. godine dostavljen sudu u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 30,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom Glavne skupštine od 07.06.2023. godine usklađen je temeljni kapital društva sa eurima."
+  },
+  {
+   "statusni_postupak_rbr": 31,
+   "vrsta_statusnog_postupka": {
+    "sifra": 64,
+    "naziv": "Statusne promjene: prekogranično pripojenje subjektu upisa",
+    "redoslijed": 174
+   },
+   "tekst": "Ovom društvu pripaja se društvo KRAŠCOMMERCE, podjetje za trgovino, d.o.o., Slovenija, Ljubljana, Beograjska ulica 4, upisano u sudski/poslovni registar pod brojem 5539234000, EUID: SIPRS.5539234000, Agencije Republike Slovenije za javnopravne evidencije i usluge, temeljem Zajedničkog plana pripajanja od 29.06.2023. godine. Odluke o pripajanju nisu pobijane u za to propisanom roku."
+  },
+  {
+   "statusni_postupak_rbr": 32,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Statut društva od 07.06.2023. godine izmjenjen je u odredbi članka 8. koji se odnosi na temeljni kapital i dionice. Odlukom uprave društva o usklađivanju Statuta društva od 26.08.2026. godine temeljem članka 352. st. 3. t. 3. ZTD-a, a nakon donošenja Odluke uprave društva o povlačenju dionica od 26.08.2026. godine, utemeljene na ovlaštenju Glavne Skupštine društva iz Odluke o davanju ovlaštenja upravi društva za stjecanje dionica društva od 19.06.2024. godine Potpuni tekst Statuta od 26.08.2026. godine dostavljen sudu u zbirku isprava."
+  }
+ ],
+ "gfi": [
+  {
+   "gfi_rbr": 1,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2008,
+   "datum_dostave": "2009-06-30T00:00:00",
+   "datum_od": "2008-01-01T00:00:00",
+   "datum_do": "2008-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 2,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2008,
+   "datum_dostave": "2009-09-30T00:00:00",
+   "datum_od": "2008-01-01T00:00:00",
+   "datum_do": "2008-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 3,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2009,
+   "datum_dostave": "2010-06-30T00:00:00",
+   "datum_od": "2009-01-01T00:00:00",
+   "datum_do": "2009-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 4,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2009,
+   "datum_dostave": "2010-09-21T00:00:00",
+   "datum_od": "2009-01-01T00:00:00",
+   "datum_do": "2009-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 5,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2010,
+   "datum_dostave": "2011-06-17T00:00:00",
+   "datum_od": "2010-01-01T00:00:00",
+   "datum_do": "2010-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 6,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2010,
+   "datum_dostave": "2011-06-17T00:00:00",
+   "datum_od": "2010-01-01T00:00:00",
+   "datum_do": "2010-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 7,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2011,
+   "datum_dostave": "2012-06-21T00:00:00",
+   "datum_od": "2011-01-01T00:00:00",
+   "datum_do": "2011-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 8,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2011,
+   "datum_dostave": "2012-09-24T00:00:00",
+   "datum_od": "2011-01-01T00:00:00",
+   "datum_do": "2011-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 9,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2012,
+   "datum_dostave": "2013-06-03T00:00:00",
+   "datum_od": "2012-01-01T00:00:00",
+   "datum_do": "2012-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 10,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2012,
+   "datum_dostave": "2013-09-06T00:00:00",
+   "datum_od": "2012-01-01T00:00:00",
+   "datum_do": "2012-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 11,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2013,
+   "datum_dostave": "2014-06-16T00:00:00",
+   "datum_od": "2013-01-01T00:00:00",
+   "datum_do": "2013-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 12,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2013,
+   "datum_dostave": "2014-09-19T00:00:00",
+   "datum_od": "2013-01-01T00:00:00",
+   "datum_do": "2013-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 13,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2014,
+   "datum_dostave": "2015-06-23T00:00:00",
+   "datum_od": "2014-01-01T00:00:00",
+   "datum_do": "2014-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 14,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2014,
+   "datum_dostave": "2015-09-16T00:00:00",
+   "datum_od": "2014-01-01T00:00:00",
+   "datum_do": "2014-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 15,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2015,
+   "datum_dostave": "2016-06-14T00:00:00",
+   "datum_od": "2015-01-01T00:00:00",
+   "datum_do": "2015-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 16,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2015,
+   "datum_dostave": "2016-07-06T00:00:00",
+   "datum_od": "2015-01-01T00:00:00",
+   "datum_do": "2015-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 17,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2016,
+   "datum_dostave": "2017-06-29T00:00:00",
+   "datum_od": "2016-01-01T00:00:00",
+   "datum_do": "2016-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 18,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2016,
+   "datum_dostave": "2017-08-31T00:00:00",
+   "datum_od": "2016-01-01T00:00:00",
+   "datum_do": "2016-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 19,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2017,
+   "datum_dostave": "2018-06-18T00:00:00",
+   "datum_od": "2017-01-01T00:00:00",
+   "datum_do": "2017-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 20,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2017,
+   "datum_dostave": "2018-09-14T00:00:00",
+   "datum_od": "2017-01-01T00:00:00",
+   "datum_do": "2017-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 21,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2018,
+   "datum_dostave": "2019-06-12T00:00:00",
+   "datum_od": "2018-01-01T00:00:00",
+   "datum_do": "2018-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 22,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2018,
+   "datum_dostave": "2019-06-12T00:00:00",
+   "datum_od": "2018-01-01T00:00:00",
+   "datum_do": "2018-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 23,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2019,
+   "datum_dostave": "2020-06-30T00:00:00",
+   "datum_od": "2019-01-01T00:00:00",
+   "datum_do": "2019-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 24,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2019,
+   "datum_dostave": "2020-07-27T00:00:00",
+   "datum_od": "2019-01-01T00:00:00",
+   "datum_do": "2019-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 25,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2020,
+   "datum_dostave": "2021-05-27T00:00:00",
+   "datum_od": "2020-01-01T00:00:00",
+   "datum_do": "2020-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 26,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2020,
+   "datum_dostave": "2021-10-05T00:00:00",
+   "datum_od": "2020-01-01T00:00:00",
+   "datum_do": "2020-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 27,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2021,
+   "datum_dostave": "2022-04-30T00:00:00",
+   "datum_od": "2021-01-01T00:00:00",
+   "datum_do": "2021-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 28,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2021,
+   "datum_dostave": "2022-06-14T00:00:00",
+   "datum_od": "2021-01-01T00:00:00",
+   "datum_do": "2021-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 29,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2022,
+   "datum_dostave": "2023-06-20T00:00:00",
+   "datum_od": "2022-01-01T00:00:00",
+   "datum_do": "2022-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 30,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2022,
+   "datum_dostave": "2023-06-20T00:00:00",
+   "datum_od": "2022-01-01T00:00:00",
+   "datum_do": "2022-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 31,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2023,
+   "datum_dostave": "2024-06-21T00:00:00",
+   "datum_od": "2023-01-01T00:00:00",
+   "datum_do": "2023-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 32,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2023,
+   "datum_dostave": "2024-06-21T00:00:00",
+   "datum_od": "2023-01-01T00:00:00",
+   "datum_do": "2023-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 33,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2024,
+   "datum_dostave": "2025-06-17T00:00:00",
+   "datum_od": "2024-01-01T00:00:00",
+   "datum_do": "2024-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 34,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2024,
+   "datum_dostave": "2025-06-17T00:00:00",
+   "datum_od": "2024-01-01T00:00:00",
+   "datum_do": "2024-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 35,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2025,
+   "datum_dostave": "2026-06-19T00:00:00",
+   "datum_od": "2025-01-01T00:00:00",
+   "datum_do": "2025-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 36,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2025,
+   "datum_dostave": "2026-06-19T00:00:00",
+   "datum_od": "2025-01-01T00:00:00",
+   "datum_do": "2025-12-31T00:00:00"
+  }
+ ],
+ "promjene": [
+  {
+   "id": 42210241,
+   "vrijeme": "2026-09-14T09:54:14",
+   "scn": 8261474175395
+  }
+ ]
+}
