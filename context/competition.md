@@ -83,5 +83,7 @@ Neispunjavanje uvjeta, neistinite činjenice, neizvorno rješenje ili povreda tu
 ## Otvorena pitanja (preostala)
 - Prijavni obrazac još nije otvoren/pregledan: što točno traži (OIB? JMBAG? potvrda o statusu studenta? privola za video?). Link je u Javnom pozivu (hyperlink "Ispunite obrazac"), a u PDF-u nije vidljiv kao URL.
 - Je li javni GitHub repo prihvatljiv po sigurnosnoj politici organizacije (vidi `work/decisions.md`)? Kod se smije poslati i kao link za preuzimanje, ali OSS objava se boduje.
+- **Nejasnoća u Pravilima o bodovanju:** "najviše 60 bodova po rješenju" ali i "konačni broj bodova je zbroj bodova članova Povjerenstva" (min. 3 člana). Zbroj bi premašio 60, a prag za nagradu je 50. Vjerojatno se misli na prosjek ili podjelu, ali pitati organizatora.
+- Pitati organizatora: obvezuje li prijava na predaju rješenja i smije li se promijeniti izazov nakon prijave.
 - Pitati organizatora (open.data@mpudt.hr): pod koji se kriterij boduje objava pod open source licencom.
 - Pitati organizatora: je li "razrađeni koncept" bez radnog prototipa realno konkurentan, s obzirom na to da "Izvedivost" nosi 10 bodova.

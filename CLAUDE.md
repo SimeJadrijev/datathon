@@ -6,6 +6,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - Djeluj kao iskusni tech poduzetnik + iskusni softver inženjer, ne kao pomoćnik koji samo potvrđuje.
 - UVIJEK kritički sagledaj svaku ideju i prijedlog (naše i svoje): rizici, slabosti, što žiri vidi, alternative. Reci otvoreno ako je ideja loša ili preambiciozna.
 - Daj konkretne tehničke savjete i preporuke, ne popise opcija. Optimiziraj za kriterije ocjenjivanja i ograničeno vrijeme, ne za savršenstvo.
+- Na jednostavna pitanja odgovaraj kratko i jasno, bez objašnjavanja nepotrebnih detalja (korisnik tako lakše čita). Dulje i detaljnije samo kad je tema složena ili korisnik to traži.
 
 ## Pravila vođenja memorije (KRITIČNO)
 - Kontekst se često puni, pa je istina u fileovima, ne u razgovoru.
@@ -18,18 +19,19 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 
 ## Trenutno stanje
 - Natjecanje: Datathon Portala otvorenih podataka 2026 (MPUDT, otvoreni podaci javnog sektora, 3 izazova, online).
-- **HITNO: prijave do 23.10.2026. 24:00. SVAKI član tima ispunjava online obrazac (naziv tima, izazov, kontakt mentora). Mentor (nastavnik visokog učilišta) je voditelj tima. Rješenje + video (do 3 min) mailom do 9.11.2026. 24:00.**
-- Faza: prijava. Pravila i Javni poziv PROČITANI (PDF-ovi u `context/izvori/`), sažetak u `context/competition.md`.
+- **PRIJAVA PREDANA, prijavljeni smo na izazove A i C. Izazov B odbačen. HITNO: rješenje + video (do 3 min) mailom na open.data@mpudt.hr do 9.11.2026. 24:00. Cilj: zaključati ideju oko 27.10.**
+- Faza: odabir ideje za izazov A i/ili C. Pravila i Javni poziv PROČITANI (PDF-ovi u `context/izvori/`), sažetak u `context/competition.md`. Sime želi zanimljivu AI/data science temu iskoristivu za diplomski (želja, NIJE obavezno pravilo).
 - Ocjenjivanje: max 60 b. Najviše nose Izvedivost (10), UI/UX (10), video (10). Ostalih 6 kriterija po 5. Nagrada se ne dodjeljuje ispod 50 b.
-- Preporuka: jedan izazov, radni prototip + API podaci + više izvora. Zasebno rješenje po izazovu je obvezno.
+- Radni prototip + API podaci + više izvora. Zasebno rješenje po izazovu je obvezno, pa su A i C dva odvojena projekta (asistent savjetuje jedan glavni, drugi samo ako prvi stoji do ~1.11.). Aktivne ideje u `work/ideas.md`: 13-16 (moje) i 19-28 (Gemini, korisniku draže, s mojom ocjenom). Korisnik preferira Geminijeve (konkretan problem + "wow" demo). Najbolji kandidati: 27 DoktorGdje i 25 KrizniŠtab OS, oba uvjetno ovisno o podacima (testovi u `work/tasks.md`).
 - Otvoreno: smije li se kod javno na GitHub (sigurnosna politika), vidi `work/decisions.md`.
-- Zadnje ažurirano: 2026-10-22
+- Zadnje ažurirano: 2026-10-23
 
 ## Index
 | File | Sadržaj |
 |---|---|
 | `context/competition.md` | pravila, format, kriteriji ocjenjivanja, nagrade, IP, AI alati |
 | `context/izvori/` | originalni PDF-ovi: `javni-poziv.pdf`, `pravila.pdf` |
+| `context/scout/` | rezultati data-scouta po izazovu: `izazov-A.md`, `izazov-B.md`, `izazov-C.md` |
 | `.claude/skills/` | `product-brainstorming` (generički, od korisnika), `jury-simulator` (ocjena ideja po rubrici 60 b), `data-scout` (istraživanje data.gov.hr CKAN API-ja) |
 | `context/timeline.md` | rokovi i raspored |
 | `context/data.md` | datasetovi, izvori, ograničenja |
