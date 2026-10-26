@@ -1,0 +1,2 @@
+# Secrets stay local (Sudreg, Claude API, admin key)
+.env

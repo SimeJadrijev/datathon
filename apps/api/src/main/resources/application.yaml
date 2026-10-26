@@ -9,3 +9,28 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
+
+# Loads the POC snapshot from resources/seed into empty tables on startup (DATA-2)
+seed:
+  enabled: ${SEED_ENABLED:true}
+
+# Java scrapers (INGEST-*)
+ingest:
+  on-startup: false
+  cache-dir: ${INGEST_CACHE_DIR:data/cache}
+  closed-pages: 5
+
+# Claude API (AI-*); without a key the app serves the results already in the database
+llm:
+  api-key: ${ANTHROPIC_API_KEY:}
+  budget-usd: 2.0
+
+# Sudski registar open data API (INGEST-9, API-7)
+sudreg:
+  base-url: https://sudreg-data.gov.hr
+  client-id: ${SUDREG_CLIENT_ID:}
+  client-secret: ${SUDREG_CLIENT_SECRET:}
+
+# Protects /api/admin/** with the X-Admin-Key header
+admin:
+  key: ${ADMIN_KEY:}
