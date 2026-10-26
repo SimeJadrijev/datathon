@@ -31,8 +31,8 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 
 | Paket | Sadržaj | Dana | Vlasnik | Status |
 |---|---|---|---|---|
-| 1 Foundations | SETUP-1, DATA-1, DATA-2 | 2,2 | | OTVORENO |
-| 2 Ingest: core and first sources | INGEST-1 do 4 | 3,3 | | OTVORENO |
+| 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | U TIJEKU: DATA-1 i DATA-2 gotovi na `feature/pkg-1-foundations` (nije pushano); SETUP-1 čeka: Sudreg ključ daje token, ali API vraća 401 (aktivacija?) |
+| 2 Ingest: core and first sources (#4) | INGEST-1 do 4 | 3,3 | Luka | OTVORENO (nakon #3) |
 | 3 Ingest: other sources | INGEST-5 do 9 | 3,1 | | OTVORENO |
 | 4 API | API-1 do 7 | 4,8 | | OTVORENO |
 | 5 AI | AI-1 do 4 | 3,2 | | OTVORENO |
