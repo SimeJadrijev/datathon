@@ -27,17 +27,18 @@
 Osnova: branch `poc/natjecaji-scraper`. Odluke i obrazloženja u `work/decisions.md` (26.10.). Procjene su u danima rada, vlasnici još nisu dodijeljeni.
 
 ### MVP (nužno za demo i video)
-| # | Zadatak | Procjena | Vlasnik | Status |
+Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa** (jedan paket = jedan GitHub issue = jedan vlasnik), unutar njih 40 koraka s ID-evima (SETUP, DATA, API, INGEST, AI, WEB, QUALITY, DELIVERY), ~30 dana rada, na engleskom. Veličina PR-ova nije bitna, bitno je izbjeći merge konflikte (svaki vlasnik radi u svojim mapama). Stare oznake M0-M8 više ne vrijede. Status i vlasnici se prate na GitHub issue-ima koje otvara korisnik. Vlasnike dogovara tim interno, nisu upisani.
+
+| Paket | Sadržaj | Dana | Vlasnik | Status |
 |---|---|---|---|---|
-| M0 | Registrirati Sudreg ključ + odabrati pravi OIB za demo | 0,2 d | | OTVORENO |
-| M1 | Postgres shema (natječaji, propisi) + seed snapshot iz POC SQLite-a, commitan s datumom ("stanje na dan") | 1,5 d | | OTVORENO |
-| M2 | Spring API: `/funding-calls`, `/regulations`, `/match`, OpenAPI dokumentacija | 2 d | | OTVORENO |
-| M3 | Java ingest za 6 izvora (udruge, FZOEU, fondovieu, HZZ, APPRRR, MZOM) + NN zakoni, provjera naspram POC-a | 3 d | | OTVORENO |
-| M4 | React UI: onboarding profila (tip, županija, interesi ili OIB), kartice "zašto ti odgovara", detalj natječaja, tab zakoni s filtrima | 4 d | | OTVORENO |
-| M5 | AI sloj: LLM sažetak uvjeta, "ispunjavam li uvjete?" (upitnik nad `uvjeti_sazetak`), sažetak zakona; cache u bazi, disclaimer + izvor | 2 d | | OTVORENO |
-| M6 | Ručno čišćenje ~50-100 demo natječaja (skupine, status, duplikati) + ručna točnost na 15 zapisa (`eval/uzorak.csv`, cilj rok i iznos ≥ 85 %) | 1,5 d | | OTVORENO |
-| M7 | Video do 3 min: scenarij odmah, snimanje, montaža | 2 d | | OTVORENO |
-| M8 | Dokumentacija: arhitektura, popis skupova s izdavateljima i poveznicama, korišteni AI alati (obvezno) | 1 d | | OTVORENO |
+| 1 Foundations | SETUP-1, DATA-1, DATA-2 | 2,2 | | OTVORENO |
+| 2 Ingest: core and first sources | INGEST-1 do 4 | 3,3 | | OTVORENO |
+| 3 Ingest: other sources | INGEST-5 do 9 | 3,1 | | OTVORENO |
+| 4 API | API-1 do 7 | 4,8 | | OTVORENO |
+| 5 AI | AI-1 do 4 | 3,2 | | OTVORENO |
+| 6 Web: foundation, profile, recommendations | WEB-1 do 4 | 3,2 | | OTVORENO |
+| 7 Web: lists, details, laws, sources | WEB-5 do 9 | 3,9 | | OTVORENO |
+| 8 Quality and delivery | QUALITY-1 do 3, DELIVERY-1 do 5 | 6,2 | | OTVORENO |
 
 ### Nice-to-have (tek kad MVP stoji)
 - Scheduler s pravom razlikom dvaju dohvata + stvarne obavijesti (mail).
