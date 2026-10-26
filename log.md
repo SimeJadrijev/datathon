@@ -21,3 +21,9 @@
 - Dodani skillovi za fazu izrade: `.claude/skills/spring-boot-api` (slojevi, DTO recordi, jedinstveni oblik greške `{statusCode, message, error}` usklađen s frontendom, klijenti za vanjske API-je, testovi) i `.claude/skills/react-web` (struktura s barrelima, API/Query hookovi, wouter rute, UI/UX pravila za 4 stanja ekrana). Grana `chore/coding-skills`. Uočeno: `vite.config.ts` još nema proxy `/api` → `localhost:8080`.
 - Skillovi `spring-boot-api` i `react-web` prevedeni na engleski; odluka o jeziku u `work/decisions.md`.
 - Ispravak: sav kod na engleskom (ne hrvatske domenske imenice). Skillovi ažurirani, dodan rječnik domenskih pojmova HR → EN u `spring-boot-api`.
+
+## 2026-10-26
+- Pregledan branch `origin/poc/natjecaji-scraper` bez checkouta (`git show`). POC: 11 scrapera, SQLite, ~1485 natječaja (~185 otvorenih), NN zakoni (3842), `match.py`, mini web, izvještaj. Sažetak i kritika dani korisniku.
+- Subagent-recenzent je našao propuste (demo se ne može pokrenuti iz repoa, podaci slabiji nego u izvještaju, obavijesti su simulacija). Nalazi i odluke u `work/decisions.md`.
+- Odluke korisnika: samo izazov C, Spring Boot fiksan (Python ingest samo ako je bolji, asistent preporučuje prepis u Javu), zakoni jednako važni, bez logina, Claude API s cacheom, Sudreg treba registraciju, A ostaje rezerva, podjela posla još nije dogovorena.
+- MVP breakdown upisan u `work/tasks.md` (M0-M8 + nice-to-have). GitHub issueji NISU otvarani, čekaju korisnikovu potvrdu.

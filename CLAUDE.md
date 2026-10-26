@@ -23,8 +23,9 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - Faza: odabir ideje za izazov A i/ili C. Pravila i Javni poziv PROČITANI (PDF-ovi u `context/izvori/`), sažetak u `context/competition.md`. Sime želi zanimljivu AI/data science temu iskoristivu za diplomski (želja, NIJE obavezno pravilo).
 - Ocjenjivanje: max 60 b. Najviše nose Izvedivost (10), UI/UX (10), video (10). Ostalih 6 kriterija po 5. Nagrada se ne dodjeljuje ispod 50 b.
 - Radni prototip + API podaci + više izvora. Zasebno rješenje po izazovu je obvezno, pa su A i C dva odvojena projekta (asistent savjetuje jedan glavni, drugi samo ako prvi stoji do ~1.11.). Aktivne ideje u `work/ideas.md`: 13-16 (moje) i 19-28 (Gemini, korisniku draže, s mojom ocjenom). Korisnik preferira Geminijeve (konkretan problem + "wow" demo). Najbolji kandidati: 27 DoktorGdje i 25 KrizniŠtab OS, oba uvjetno ovisno o podacima (testovi u `work/tasks.md`).
+- **26.10.: ODLUČENO graditi agregator natječaja + zakona (izazov C), osnova je branch `poc/natjecaji-scraper`.** MVP prvo, plan M0-M8 u `work/tasks.md`, odluke i recenzija POC-a u `work/decisions.md`. Bez logina, Claude API s cacheom, Java backend (prepis scrapera u Javu za 6 izvora čeka potvrdu). A je rezerva. Starije ideje (13-28) više nisu aktivne.
 - Otvoreno: smije li se kod javno na GitHub (sigurnosna politika), vidi `work/decisions.md`.
-- Zadnje ažurirano: 2026-10-22
+- Zadnje ažurirano: 2026-10-26
 
 ## Tehnički stack i konvencije
 - Monorepo: `apps/web` (React 19, TS, Vite, wouter, TanStack Query, axios), `apps/api` (Spring Boot 4, Java 25, JPA, Postgres u Dockeru). Pokretanje: vidi `README.md`.

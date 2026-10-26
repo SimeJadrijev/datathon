@@ -50,6 +50,20 @@ Podaci scouta (vidi `context/data.md`) govore:
 - Do jasnog odgovora kod se **ne objavljuje javno**. Opcije: (a) pitati security/AppSec smije li se osobni projekt za natjecanje objaviti, (b) predati kod kao arhivu ili link za preuzimanje (Pravila to dopuštaju za prevelike privitke), ali link mora trajati do objave rezultata i mora biti na odobrenom mjestu (npr. SharePoint).
 - Odluka ovisi o korisniku jer je pitanje politike organizacije, ne tehničko.
 
+## 2026-10-26: Pregled POC-a natjecaji-scraper, odluke za MVP (korisnik)
+- Branch `poc/natjecaji-scraper` (Python, SQLite, 11 scrapera, NN zakoni, match.py, mini web) je osnova. Pregled i review u razgovoru, plan u `work/tasks.md`.
+- **Izazov: samo C** za ovaj projekt (natječaji i zakoni). A ostaje rezerva po ranijoj odluci.
+- **Backend: Spring Boot (Java) je fiksan.** Korisnik: Python ingest ostaje samo ako je bolji od Java varijante, inače sve u jednom stacku. Asistent preporučuje **prepis u Javu samo za 6 MVP izvora + NN** (Jsoup, PDFBox, Anthropic Java SDK). Zašto: scraperi su mali (50-90 linija po izvoru), jedan stack = jedan Docker, jedna shema i manje mjesta za pad u demu. Python POC ostaje kao referenca: Java scraper se provjerava usporedbom broja dohvaćenih zapisa i polja s POC-ovim SQLite-om. Za razvoj frontenda odmah seed u Postgres iz POC SQLite-a. **POTVRĐENO (korisnik, 26.10.): prepis u Javu.** GitHub issue-e otvara korisnik, asistent piše specifikacije u `work/mvp-task-specs.md`.
+- **LLM u runtimeu: Claude API s cacheom** (korisnik). Rezultati (sažetci, izvučena polja) se unaprijed izračunaju i spreme u bazu, pa demo radi bez ključa. Claude/Claude Code se navodi u dokumentaciji kao AI alat (Pravila VIII). Rizik: pravilo "softver otvorenog koda" se može čitati strogo, pa pitati organizatora zajedno s ostalim pitanjima.
+- **Sudreg:** treba registracija za ključ (besplatna, ključ odmah). Za video treba pravi OIB, ne mock `00000000001`. Mock gubi bodove za živi API.
+- **Izazov A ostaje rezerva**, ne radi se dok C ne stoji.
+- **Podjela posla** još nije dogovorena (tim nije raspoređen).
+- **Recenzija POC-a (subagent, 26.10.), ključni nalazi:** demo se ne može pokrenuti iz repoa (`data/` i `web/data/` u `.gitignore`, treba commitan snapshot s datumom); rok poznat za 33-41 %, status 55-69 %, NKD 2-5 % zapisa (lanac OIB→NKD→natječaj je gotovo prazan); LLM obradio samo 300 od 1485; ručna točnost nije mjerena; "zašto ti odgovara" su ručni bodovi, ne AI; obavijesti su simulacija po `datum_objave`; fondovieu zabranjuje `/download`, NN oglasni dio zabranjen; `.idea/` i `.claude/launch.json` su commitani u POC branchu.
+- **Izbaciti iz MVP-a:** login, stvarni mailovi, "tko je dobio" (podaci završavaju 2016.), Zagreb, Rijeka, AMPEU, Osijek, HAMAG, eufondovi, NKD 2025 ako ne stignemo. Poveznica zakon↔natječaj je nice-to-have.
+- **Zakoni su jednako važan dio** kao natječaji (ne samo drugi tab).
+- **Bez računa/logina:** profil se unosi formom (ili OIB), bez registracije. Zašto: malo bodova u rubrici, puno posla.
+- **Pristup: MVP prvo** (što treba za demo i video), nice-to-have poslije.
+
 ## 2026-10-24: Jezik skillova za kod i imena u kodu
 - Skillovi `spring-boot-api` i `react-web` pisani su na **engleskom**: čisto su tehnički, učitavaju se pri svakom pisanju koda (hrvatski troši ~1,5-2x više tokena), a tehnički pojmovi su ionako engleski. Claude i dalje komunicira na hrvatskom (CLAUDE.md).
 - `jury-simulator` i `data-scout` ostaju na hrvatskom (puni domenskih pojmova iz pravila i naziva skupova).
