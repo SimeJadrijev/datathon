@@ -24,15 +24,21 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - Ocjenjivanje: max 60 b. Najviše nose Izvedivost (10), UI/UX (10), video (10). Ostalih 6 kriterija po 5. Nagrada se ne dodjeljuje ispod 50 b.
 - Radni prototip + API podaci + više izvora. Zasebno rješenje po izazovu je obvezno, pa su A i C dva odvojena projekta (asistent savjetuje jedan glavni, drugi samo ako prvi stoji do ~1.11.). Aktivne ideje u `work/ideas.md`: 13-16 (moje) i 19-28 (Gemini, korisniku draže, s mojom ocjenom). Korisnik preferira Geminijeve (konkretan problem + "wow" demo). Najbolji kandidati: 27 DoktorGdje i 25 KrizniŠtab OS, oba uvjetno ovisno o podacima (testovi u `work/tasks.md`).
 - Otvoreno: smije li se kod javno na GitHub (sigurnosna politika), vidi `work/decisions.md`.
-- Zadnje ažurirano: 2026-10-23
+- Zadnje ažurirano: 2026-10-22
+
+## Tehnički stack i konvencije
+- Monorepo: `apps/web` (React 19, TS, Vite, wouter, TanStack Query, axios), `apps/api` (Spring Boot 4, Java 25, JPA, Postgres u Dockeru). Pokretanje: vidi `README.md`.
+- Web: apsolutni importi preko aliasa `@/` (= `src/`). Svaka mapa u `src/` ima barrel `index.ts` (novu mapu uvijek dodaj s njim). Tipovi u `types/*.type.ts`, jedna mapa po stranici u `pages/`.
+- Rute su wouter (ne React Router). Providere (ErrorBoundary, QueryClient) držimo u `App.tsx`, rute u `Router.tsx`.
+- Prije predaje: `yarn build` i `yarn lint` u `apps/web` moraju proći.
+- Pravila pisanja koda: skill `spring-boot-api` (za `apps/api`) i `react-web` (za `apps/web`). Prije pisanja koda u tim mapama učitaj odgovarajući skill.
 
 ## Index
 | File | Sadržaj |
 |---|---|
 | `context/competition.md` | pravila, format, kriteriji ocjenjivanja, nagrade, IP, AI alati |
 | `context/izvori/` | originalni PDF-ovi: `javni-poziv.pdf`, `pravila.pdf` |
-| `context/scout/` | rezultati data-scouta po izazovu: `izazov-A.md`, `izazov-B.md`, `izazov-C.md` |
-| `.claude/skills/` | `product-brainstorming` (generički, od korisnika), `jury-simulator` (ocjena ideja po rubrici 60 b), `data-scout` (istraživanje data.gov.hr CKAN API-ja) |
+| `.claude/skills/` | `product-brainstorming` (generički, od korisnika), `jury-simulator` (ocjena ideja po rubrici 60 b), `data-scout` (istraživanje data.gov.hr CKAN API-ja), `spring-boot-api` i `react-web` (konvencije koda za `apps/`) |
 | `context/timeline.md` | rokovi i raspored |
 | `context/data.md` | datasetovi, izvori, ograničenja |
 | `team/team.md` | članovi, uloge, jake strane |
@@ -40,6 +46,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 | `work/decisions.md` | odluke + obrazloženja |
 | `work/tasks.md` | tko radi što, status |
 | `log.md` | kronološki dnevnik |
+| `README.md` | opis projekta i pokretanje |
 
 ## Sigurnosna pravila organizacije
 Vrijede pravila iz organizacijskog CLAUDE.md-a (npr. ništa se ne objavljuje na javne platforme, ne pristupa se cookiejima). Podatke natjecanja i kod ne dijelimo javno bez provjere.

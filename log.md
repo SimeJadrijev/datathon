@@ -17,12 +17,7 @@
 - Korisnik nije razumio ideju Spojnik i traži više ideja. Dodano pravilo u CLAUDE.md: na jednostavna pitanja odgovaraj kratko. Drugi krug ideja (6–12) upisan u `work/ideas.md`: AI za PDF/XLS tablice, zdravlje portala, graf javnog sektora, bicikl odluka Zagreb, feed iz dnevnih registara, karta kulturne praznine, chat nad podacima.
 - Skillovi `video-script` (3 min) i UI/UX nisu napisani, treba ih tek u fazi izrade.
 
-## 2026-10-23
-- Tim je predao prijavu na izazove A i C. Izazov B odbačen. Sime želi AI/DS temu iskoristivu za diplomski (želja, ne pravilo).
-- Treći krug ideja (13-18) upisan u `work/ideas.md`, favoriti: "Radar nabave" (C) i "Pristupačnost po profilu korisnika" (A). `decisions.md`, `tasks.md` i CLAUDE.md ažurirani.
-- Odgovoreno korisniku: nisam pregledao svih 3956 skupova, detaljno ~32 (oko 1% kataloga). Ponuđen sustavan prolaz kroz metapodatke svih skupova (odgovor još nije stigao).
-- Korisnik je nezadovoljan idejama 13-16 ("slabo") i daje drugom agentu internet research za nove ideje. Napisan prompt na hrvatskom (u razgovoru, nije u fileu). Rezultat treba ubaciti u `work/ideas.md` i provući kroz `jury-simulator`.
-- Korisnik je dao Geminijevih 10 ideja (draže mu od mojih). Provjerio sam podatke CKAN pretragama i upisao ideje 19-28 s kritikom u `work/ideas.md`. Zaključak: odbaciti 22, 24, 26, nezavisno slabo 19; 27 i 25 uvjetno jaki, ovise o podacima. Nula pogodaka u pretrazi nije dokaz da skup ne postoji. Predloženi testovi podataka za 27 i 25 u `tasks.md`.
-- 2026-10-24: korisnik predložio "Obrtnik.AI" (Gemini). Provjerio CKAN: Narodne novine, eFondovi, OCDS i Obrtni registar nisu nađeni na portalu, Sudreg 401, EOJN daje registar ugovora a ne otvorene natječaje. Upisano kao ideja 29 s verdiktom (pitch jak, podaci većinom nepostojeći). Skillovi iz `.claude/skills/` sada su učitani (vidljivi u `/context`).
-- 2026-10-24: korisnik dao link na NN API. Provjereno izravno: radi (godine 2015-2026, 121 izdanje u 2026, metapodaci akata JSON-LD/RDF), puni tekst samo HTML scraping, limit 3 zahtjeva/s, licenca nepotvrđena. Upisano u `context/data.md`, verdikt ideje 29 ažuriran (Pravni štit izvediv samostalno, Skener prilika i OIB onboarding i dalje otpadaju).
-- Na zahtjev korisnika očišćen `work/ideas.md`: ostale aktivne ideje 13-16 (A i C), ostalo (Spojnik, izazov B, duplikati, plitke ideje) premješteno u "Odbačene" s jednim retkom razloga. Numeracija ostavljena stabilnom. U `tasks.md` test za Spojnik označen kao odbačen, dodan prijedlog jeftinih testova za 13 i 14 (čeka potvrdu).
+## 2026-10-24
+- Dodani skillovi za fazu izrade: `.claude/skills/spring-boot-api` (slojevi, DTO recordi, jedinstveni oblik greške `{statusCode, message, error}` usklađen s frontendom, klijenti za vanjske API-je, testovi) i `.claude/skills/react-web` (struktura s barrelima, API/Query hookovi, wouter rute, UI/UX pravila za 4 stanja ekrana). Grana `chore/coding-skills`. Uočeno: `vite.config.ts` još nema proxy `/api` → `localhost:8080`.
+- Skillovi `spring-boot-api` i `react-web` prevedeni na engleski; odluka o jeziku u `work/decisions.md`.
+- Ispravak: sav kod na engleskom (ne hrvatske domenske imenice). Skillovi ažurirani, dodan rječnik domenskih pojmova HR → EN u `spring-boot-api`.
