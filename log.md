@@ -50,3 +50,5 @@
 - Nalaz za API/QUALITY: u seedu `counties` miješa `ALL` i "Područje cijele Hrvatske" (8 zapisa); županije su u kratkom obliku ("Primorsko-goranska"), forma šalje isti oblik.
 - Ivanove primjedbe nakon lokalnog pregleda ispravljene: tekst uz županiju, nova komponenta `Select` (strelica s razmakom; u Chromeu/Edgeu 135+ stiliziran popis opcija preko `appearance: base-select`, ostali preglednici imaju nativni popis), odabrani tip se može odznačiti ponovnim klikom, kompaktniji razmak u sažetku profila. Pitanja za kolege u PR 1 zapisana u `work/tasks.md`. Firefox nije instaliran, testirano samo u Chromiumu.
 - Provjereno u specu: više profila ni `additionalTypes` u web koracima nisu traženi, profil ostaje s jednim tipom.
+- Proxy provjeren pravim pozivom: s pokrenutim API-jem `curl.exe -i http://localhost:5173/api/meta` vraća Springov JSON 404. Nalaz za API-1: zbog devtoolsa Spring u grešci vraća cijeli stack trace.
+- Branch `feature/pkg-6-web` pushan. `gh` CLI nije instaliran, pa PR 1 otvara Ivan ručno na GitHubu s pripremljenim opisom (engleski, `Refs #8`, pitanja za kolege i napomene za API i paket 7).
