@@ -53,12 +53,19 @@ public class FundingCallExtractionService {
                 break;
             } catch (LlmResponseException e) {
                 failed++;
-                log.warn("Extraction failed for funding call {}: {}", id, e.getMessage());
+                markAttempted(id);
+                log.warn("Extraction failed for funding call {}, keeping the rule values: {}", id, e.getMessage());
             }
         }
         BigDecimal cost = llmUsageRepository.sumCostUsd().subtract(costBefore);
         log.info("Extraction batch: {} extracted, {} failed, {} skipped, {} USD", extracted, failed, skipped, cost);
         return new ExtractionRunResult(extracted, failed, skipped, cost);
+    }
+
+    /** A call the model cannot read is not offered again, otherwise every batch would pay for it once more. */
+    private void markAttempted(Long id) {
+        transactionTemplate.executeWithoutResult(status ->
+                fundingCallRepository.findById(id).ifPresent(call -> call.setExtractedByLlm(true)));
     }
 
     /** The model call runs outside any transaction, so a slow call never holds a database connection. */

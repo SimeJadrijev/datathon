@@ -1,6 +1,7 @@
 package com.datathon.api.ai;
 
 import com.datathon.api.common.AdminKeyGuard;
+import com.datathon.api.common.InvalidRequestException;
 import com.datathon.api.eligibility.EligibilityQuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class AdminAiController {
             @RequestHeader(value = "X-Admin-Key", required = false) String adminKey,
             @RequestParam(defaultValue = "300") int limit) {
         adminKeyGuard.verify(adminKey);
-        return startBatch(() -> extractionService.start(limit));
+        return startBatch(limit, () -> extractionService.start(limit));
     }
 
     @PostMapping("/summarize-regulations")
@@ -35,7 +36,7 @@ public class AdminAiController {
             @RequestHeader(value = "X-Admin-Key", required = false) String adminKey,
             @RequestParam(defaultValue = "60") int limit) {
         adminKeyGuard.verify(adminKey);
-        return startBatch(() -> summaryService.start(limit));
+        return startBatch(limit, () -> summaryService.start(limit));
     }
 
     @PostMapping("/generate-questions")
@@ -43,10 +44,13 @@ public class AdminAiController {
             @RequestHeader(value = "X-Admin-Key", required = false) String adminKey,
             @RequestParam(defaultValue = "300") int limit) {
         adminKeyGuard.verify(adminKey);
-        return startBatch(() -> questionService.start(limit));
+        return startBatch(limit, () -> questionService.start(limit));
     }
 
-    private ResponseEntity<Void> startBatch(Runnable start) {
+    private ResponseEntity<Void> startBatch(int limit, Runnable start) {
+        if (limit < 1) {
+            throw new InvalidRequestException("limit must be at least 1");
+        }
         try {
             start.run();
         } catch (IllegalStateException e) {
