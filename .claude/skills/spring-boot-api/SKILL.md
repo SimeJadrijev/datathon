@@ -47,6 +47,17 @@ com.datathon.api
 | županija / JLS | `county` / `municipality` |
 | djelatnost (NKD) | `activityCode` (NKD) |
 | OIB | `oib` (proper Croatian identifier, keep as is) |
+| vrsta natječaja (natječaj / poticaj / javni poziv / stipendija / zajam / nagrada) | `FundingCallType`: `GRANT` / `SUBSIDY` / `PUBLIC_CALL` / `SCHOLARSHIP` / `LOAN` / `AWARD` |
+| ciljne skupine (građanin, obrt, d.o.o., udruga, JLS, student, poljoprivrednik) | `TargetGroup`: `CITIZEN`, `CRAFT_BUSINESS`, `COMPANY`, `ASSOCIATION`, `LOCAL_GOVERNMENT`, `STUDENT`, `FARMER` |
+| cijela država (županije "sve") | `FundingCall.ALL_COUNTIES` = `"ALL"` |
+| izvori (udruge.gov.hr, FZOEU, fondovieu, HZZ, APPRRR, MZOM, NN) | `SourceCode`: `ASSOCIATIONS_OFFICE`, `FZOEU`, `EU_FUNDS_NPOO`, `HZZ`, `APPRRR`, `MZOM`, `NARODNE_NOVINE` |
+| prilog (dokument natječaja) | `Attachment` (`name`, `url`) |
+| sažetak uvjeta / potrebni dokumenti | `conditionsSummary` / `requiredDocuments` |
+| vrsta propisa (zakon, uredba, pravilnik, odluka) | `RegulationType`: `LAW`, `DECREE`, `ORDINANCE`, `DECISION`, `OTHER` |
+| broj Narodnih novina (npr. 121/2026) | `gazetteNumber` |
+| ELI (European Legislation Identifier) | `eliUrl`, `eliMetadata` |
+| pokretanje dohvaćanja / zapis po izvoru | `IngestRun` / `SourceRunLog` |
+| potrošnja LLM-a (tokeni, cijena) | `LlmUsage` |
 Add new terms here before using them in code.
 
 - Don't create `service/impl/` + an interface for every service. Use an interface only when there really are two implementations (e.g. real and mock Sudski registar client).

@@ -9,3 +9,23 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
+
+seed:
+  enabled: ${SEED_ENABLED:true}
+
+ingest:
+  on-startup: false
+  cache-dir: ${INGEST_CACHE_DIR:data/cache}
+  closed-pages: 5
+
+llm:
+  api-key: ${ANTHROPIC_API_KEY:}
+  budget-usd: 2.0
+
+sudreg:
+  base-url: https://sudreg-data.gov.hr
+  client-id: ${SUDREG_CLIENT_ID:}
+  client-secret: ${SUDREG_CLIENT_SECRET:}
+
+admin:
+  key: ${ADMIN_KEY:}

@@ -68,3 +68,18 @@ Podaci scouta (vidi `context/data.md`) govore:
 - Skillovi `spring-boot-api` i `react-web` pisani su na **engleskom**: čisto su tehnički, učitavaju se pri svakom pisanju koda (hrvatski troši ~1,5-2x više tokena), a tehnički pojmovi su ionako engleski. Claude i dalje komunicira na hrvatskom (CLAUDE.md).
 - `jury-simulator` i `data-scout` ostaju na hrvatskom (puni domenskih pojmova iz pravila i naziva skupova).
 - ~~U kodu domenske imenice na hrvatskom~~ **ISPRAVAK (korisnik, isti dan): sav kod je na engleskom** (paketi, klase, metode, polja, tablice, JSON, URL-ovi). Hrvatski nazivi u `poc/` postoje samo zato što je to POC i ne prenose se. Domenski pojmovi se prevode po rječniku u skillu `spring-boot-api` (natječaj → `FundingCall`, propis → `Regulation`...). Na hrvatskom ostaju samo UI tekst i poruke grešaka koje API vraća korisniku.
+
+## 2026-10-26: DATA-1 model podataka i ovisnosti (Luka, issue #3)
+- **Ovisnosti dodane jednom, u DATA-1** (da kasniji koraci ne diraju `pom.xml`): Jsoup 1.23.2 (HTML parseri), PDFBox 3.0.8 (tekst iz PDF-ova poziva), springdoc-openapi 3.2.0 (izgrađen za Spring Boot 4.1.2, OpenAPI za kriterij Arhitektura), anthropic-java 3.3.0 (službeni Claude SDK). Alternativa bez ovisnosti (regex nad HTML-om, vlastiti PDF parser, ručni OpenAPI) je skuplja i krhkija.
+- **`eligibilityQuestions` je TEXT sa sirovim JSON-om**, ne `@JdbcTypeCode(JSON)`. Zašto: Hibernate JSON mapiranje treba Jackson, a na classpathu su Jackson 3 (Boot 4) i Jackson 2 (Anthropic SDK). TEXT izbjegava taj rizik, a oblik pitanja ionako definira AI-4.
+- **`SourceCode` je u paketu `source/`**, jer ga koriste `fundingcall`, `ingest` i budući `/api/sources` (API-5).
+- `SourceRunLog` ima i `errorMessage` (nije bio u specifikaciji): INGEST-2 traži da se greška izvora vidi u logu izvora. `Regulation` ima `fetchedAt` za "podaci od" na stranici izvora.
+- Test jedinstvenosti `source + externalId` radi nad Docker Postgresom (`@DataJpaTest` + `replace = NONE`), bez H2/Testcontainersa, pa testovi traže `docker compose up -d`.
+- Lokalno: `mvnw` nema izvršni bit u gitu (tim radi na Windowsima), na Linuxu pokretati `sh mvnw ...`.
+
+## 2026-10-26: SETUP-1 Sudreg, demo OIB-ovi i nalazi o API-ju (Luka, issue #3)
+- Ključ je registriran na Luku (aplikacija "Nazor", javni korisnik). Drži ga Luka u `apps/api/.env` (gitignored); ostali članovi ga dobivaju preko password managera, ne preko repoa ili chata. Prvih ~sat vremena nakon registracije API je vraćao 401 iako je token izdan, poslije je proradio sam.
+- **Demo OIB-ovi** (javne tvrtke, fixturei u `apps/api/src/test/resources/fixtures/sudreg/`): Microblink d.o.o. 21173725829 (Zagreb, NKD 62.01, IT persona), Valamar Riviera d.d. 36201212847 (Poreč, Istarska, NKD 55.10, turizam), KRAŠ d.d. 94989605030 (Zagreb, NKD 10.82, proizvodnja).
+- **`glavna_djelatnost` je često prazna** (Infobip, Podravka, Nanobit je nemaju). Posljedica za INGEST-9/API-7: lanac OIB → NKD → natječaji treba fallback (npr. pravni oblik → ciljna skupina, sjedište → županija) i UI mora reći kad NKD nije poznat.
+- `/subjekti?tvrtka_naziv=` traži SQL LIKE uzorak: `KRAŠ%` radi brzo, `%KRAŠ%` zna isteći (timeout), bez `%` traži točan naziv. Odgovor nema naziv, samo OIB/MBS, pa naziv treba iz `detalji_subjekta`.
+- `detalji_subjekta` za javne korisnike: najviše 6 zahtjeva u minuti (Upute v3.0.0). Token traje 6 h. Java klijent (INGEST-9) mora poštovati oboje i keširati odgovore.

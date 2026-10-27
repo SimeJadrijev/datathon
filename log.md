@@ -31,3 +31,11 @@
 - `work/mvp-task-specs.md` v2: korisnik traži manje taskove (jedan task = jedan PR, otprilike po featureu) i engleski jezik. Prepisano u 40 taskova s prefiksima SETUP/DATA/API/INGEST/AI/WEB/QUALITY/DELIVERY (~30 dana rada), uz pregled, ovisnosti, kritični put i prijedlog podjele na 4 osobe. Stare oznake M0-M8 više ne postoje (u `work/tasks.md` još jesu, treba uskladiti). Nije commitano, issue-e otvara korisnik.
 - `work/mvp-task-specs.md` v3: korisnik odustao od zahtjeva za male PR-ove i traži 7-8 taskova. Preoblikovano u 8 radnih paketa (jedan paket = jedan issue = jedan vlasnik), 40 koraka zadržava ID-eve. Dodana pravila protiv merge konflikata: pom.xml i application.yaml se diraju samo u DATA-1, sve rute i placeholder stranice u WEB-1, FundingCallCard iz WEB-4 koristi WEB-5. Vlasnici (Sime 1+5+QUALITY, Ivan 2+3, Luka 4+7, Nino 6+DELIVERY) su prijedlog, nepotvrđeni. Sigurnosna kopija v2 je izvan repoa. Nije commitano.
 - Korisnik traži da se iz specifikacija ukloni tko radi koji paket (dogovara tim interno). Imena i sekcija "Suggested owners" uklonjeni iz `work/mvp-task-specs.md` i `work/tasks.md`, redoslijed rada sada ide po paketima. Prijedlog podjele iz ranijeg zapisa više ne vrijedi.
+
+## 2026-10-26 (Luka, večer)
+- Luka preuzeo GitHub issue #3 (Foundations) i #4 (Ingest core). Branch `feature/pkg-1-foundations`.
+- DATA-1 gotov (commit 95bf9b3): entiteti FundingCall, Regulation, IngestRun, SourceRunLog, LlmUsage, enumi, repozitoriji, ovisnosti (Jsoup, PDFBox, springdoc, anthropic-java) i config blokovi. Odluke u `work/decisions.md`.
+- DATA-2 gotov (commit d94c901): POC ponovno pokrenut lokalno (1484 natječaja, 3860 propisa), `tools/export_poc_snapshot.py` izvezao 693 natječaja iz 6 MVP izvora + 3860 propisa (5,2 MB). `SeedLoader` puni praznu bazu pri startu (~25 s), drugi start bez duplikata.
+- SETUP-1 otvoren: Sudreg ključ (Luka) je u `apps/api/.env` (gitignored). Token se dobije, ali svi API pozivi vraćaju 401, vjerojatno račun još nije aktiviran. Demo OIB-ovi i fixturei čekaju.
+- Lokalno instaliran JDK 25 (`java-25-openjdk-devel`).
+- SETUP-1 gotov: Sudreg API proradio (prvo je vraćao 401 unatoč tokenu). Izabrani demo OIB-ovi Microblink, Valamar Riviera, Kraš; fixturei spremljeni. Nalaz: `glavna_djelatnost` često prazna (vidi `work/decisions.md`).
