@@ -39,3 +39,9 @@
 - SETUP-1 otvoren: Sudreg ključ (Luka) je u `apps/api/.env` (gitignored). Token se dobije, ali svi API pozivi vraćaju 401, vjerojatno račun još nije aktiviran. Demo OIB-ovi i fixturei čekaju.
 - Lokalno instaliran JDK 25 (`java-25-openjdk-devel`).
 - SETUP-1 gotov: Sudreg API proradio (prvo je vraćao 401 unatoč tokenu). Izabrani demo OIB-ovi Microblink, Valamar Riviera, Kraš; fixturei spremljeni. Nalaz: `glavna_djelatnost` često prazna (vidi `work/decisions.md`).
+
+## 2026-10-27 (Ivan)
+- Ivan preuzeo paket 6 (issue #8). Paketi 3 (#5) i 8 (#10) još nemaju vlasnika; API kolega se treba assignati na #6.
+- WEB-1 napravljen na `feature/pkg-6-web` (nije commitano): Vite proxy `/api` → 8080, `global.css` (CSS varijable, reset), `AppLayout` sa sticky headerom, navigacijom (mobilni izbornik), skip linkom i footerom; rute za sve stranice + placeholder stranice; komponente `Button`/`ButtonLink`, `Card`, `Badge`, `ExternalLink`, `PageHeader`, `LoadingState`, `ErrorState`, `EmptyState`; `utils` (`formatDate`, `formatAmount`, `formatDeadline`, `isDeadlineUrgent`, `classNames`). ErrorPage i NotFoundPage na hrvatskom, axios greške imaju hrvatsku zamjensku poruku. `yarn lint` i `yarn build` prolaze, provjereno u pregledniku na 1280 px i mobitelu.
+- Radni naziv aplikacije "Natječaji i zakoni" (`constants/app.ts`), tim ga može promijeniti na jednom mjestu.
+- Nalaz: projekt traži Node 22.13+ (`@eslint/js`), README ispravljen. Na Ivanovom računalu je Node 22.12, Java 11 (treba JDK 25) i Docker nije pokrenut.

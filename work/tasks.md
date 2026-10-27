@@ -31,12 +31,12 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 
 | Paket | Sadržaj | Dana | Vlasnik | Status |
 |---|---|---|---|---|
-| 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | GOTOVO, PR #12 čeka review i merge (merge prvi, ostali paketi ovise o njemu) |
+| 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | GOTOVO, PR #12 mergean, issue zatvoren |
 | 2 Ingest: core and first sources (#4) | INGEST-1 do 4 | 3,3 | Luka | OTVORENO (nakon #3) |
 | 3 Ingest: other sources | INGEST-5 do 9 | 3,1 | | OTVORENO |
 | 4 API | API-1 do 7 | 4,8 | | OTVORENO |
 | 5 AI | AI-1 do 4 | 3,2 | | OTVORENO |
-| 6 Web: foundation, profile, recommendations | WEB-1 do 4 | 3,2 | | OTVORENO |
+| 6 Web: foundation, profile, recommendations (#8) | WEB-1 do 4 | 3,2 | Ivan | U TIJEKU: WEB-1 napravljen na `feature/pkg-6-web` (27.10., nije commitano). Slijedi WEB-2; WEB-3/4 čekaju API-7/API-6 |
 | 7 Web: lists, details, laws, sources | WEB-5 do 9 | 3,9 | | OTVORENO |
 | 8 Quality and delivery | QUALITY-1 do 3, DELIVERY-1 do 5 | 6,2 | | OTVORENO |
 

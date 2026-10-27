@@ -8,15 +8,11 @@ export const api = axios.create({
     },
 });
 
+const UNAVAILABLE_MESSAGE = 'Poslužitelj trenutno nije dostupan. Pokušaj ponovno za nekoliko trenutaka.';
+
 api.interceptors.response.use(
     (response) => response.data,
     (error: ErrorResponseType) => {
-        if (error.response) {
-            return Promise.reject(
-                new Error(error.response.data.message || error.message),
-            );
-        }
-
-        return Promise.reject(new Error('Error while trying to intercept request'));
+        return Promise.reject(new Error(error.response?.data?.message || UNAVAILABLE_MESSAGE));
     },
 );

@@ -83,3 +83,8 @@ Podaci scouta (vidi `context/data.md`) govore:
 - **`glavna_djelatnost` je često prazna** (Infobip, Podravka, Nanobit je nemaju). Posljedica za INGEST-9/API-7: lanac OIB → NKD → natječaji treba fallback (npr. pravni oblik → ciljna skupina, sjedište → županija) i UI mora reći kad NKD nije poznat.
 - `/subjekti?tvrtka_naziv=` traži SQL LIKE uzorak: `KRAŠ%` radi brzo, `%KRAŠ%` zna isteći (timeout), bez `%` traži točan naziv. Odgovor nema naziv, samo OIB/MBS, pa naziv treba iz `detalji_subjekta`.
 - `detalji_subjekta` za javne korisnike: najviše 6 zahtjeva u minuti (Upute v3.0.0). Token traje 6 h. Java klijent (INGEST-9) mora poštovati oboje i keširati odgovore.
+
+## 2026-10-27: Paket 6 (web) ide u dva PR-a (Ivan, issue #8)
+- **PR 1: WEB-1 + WEB-2**, **PR 2: WEB-3 + WEB-4**. Unutar brancha svaki korak je zaseban commit (`WEB-1: ...`), kao u paketu 1.
+- Zašto ne jedan PR za cijeli paket: WEB-3 i WEB-4 čekaju API-7 i API-6 (oko 1.-2.11.). Jedan PR bi držao WEB-1 (layout, rute, komponente) izvan `main`a 5-6 dana, blokirao paket 7 i doveo do velikog mergea neposredno prije zamrzavanja 6.11.
+- Radni naziv aplikacije u UI-ju: "Natječaji i zakoni" (`apps/web/src/constants/app.ts`), tim ga može promijeniti.
