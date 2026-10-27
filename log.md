@@ -39,3 +39,8 @@
 - SETUP-1 otvoren: Sudreg ključ (Luka) je u `apps/api/.env` (gitignored). Token se dobije, ali svi API pozivi vraćaju 401, vjerojatno račun još nije aktiviran. Demo OIB-ovi i fixturei čekaju.
 - Lokalno instaliran JDK 25 (`java-25-openjdk-devel`).
 - SETUP-1 gotov: Sudreg API proradio (prvo je vraćao 401 unatoč tokenu). Izabrani demo OIB-ovi Microblink, Valamar Riviera, Kraš; fixturei spremljeni. Nalaz: `glavna_djelatnost` često prazna (vidi `work/decisions.md`).
+
+## 2026-10-27 (paket 4, API)
+- Razrađen plan `work/api-plan.md` i doneseno 9 od 10 odluka (P4 Sudreg otvoren, treba tek u API-5/API-7). Odluke u `work/decisions.md`.
+- API-1 napisan na branchu `sime/api`: `common/` (ErrorResponse, iznimke preuzete iz `feature/pkg-5-ai`, prošireni `GlobalExceptionHandler` s 502 i porukom "polje: razlog", `PageResponse`, `PageRequests` s limitom 100, `OpenApiConfig`), springdoc path u `application.yaml`. 13 testova u `GlobalExceptionHandlerTest` prolazi bez baze.
+- Nije provjereno: Swagger UI u pregledniku i testovi koji traže Postgres na 5433 (Docker nije dostupan u ovoj sesiji, 5 postojećih testova pada na "Connection refused", ne zbog izmjena).

@@ -77,6 +77,18 @@ Podaci scouta (vidi `context/data.md`) govore:
 - Test jedinstvenosti `source + externalId` radi nad Docker Postgresom (`@DataJpaTest` + `replace = NONE`), bez H2/Testcontainersa, pa testovi traže `docker compose up -d`.
 - Lokalno: `mvnw` nema izvršni bit u gitu (tim radi na Windowsima), na Linuxu pokretati `sh mvnw ...`.
 
+## 2026-10-27: Paket 4 (API), odluke za implementaciju (korisnik)
+Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
+- `common/` iz `feature/pkg-5-ai` se preuzima doslovno i proširuje (izbjegava konflikt; handler dobiva 502, "polje: razlog", specifične hrvatske 404 poruke, ne logira odbijene vrijednosti jer bi to iscurilo OIB).
+- N+1: `hibernate.default_batch_fetch_size`, ne `@EntityGraph` (kolekcije + paginacija = Hibernate paginira u memoriji).
+- Natječaji bez statusa (49 u seedu): default lista samo `OPEN`, filter/facet vrijednost `UNKNOWN` za `status is null`.
+- Županije: normalizacija u kodu (`CountyNames`), baza se ne dira.
+- Pretraga `q` bez dijakritika: Postgres `unaccent` (init skripta u docker-compose + `CREATE EXTENSION IF NOT EXISTS` pri startu).
+- `sort`: `deadline` (asc, prazni na kraju) ili `publishedAt` (desc), bez parametra smjera.
+- Profil za matching: 400 ako nema `type` ili nema nijedne teme (područje, ključna riječ, NKD).
+- Git: jedan branch i jedan PR za cijeli paket, commit po koraku; JSON primjeri u `work/api-examples.md`.
+- OTVORENO: `SUDREG` u `SourceCode`, Sudreg fixturei u `main/resources`, `SudregClient` iz API-7 (preporuka: sve tri da).
+
 ## 2026-10-26: SETUP-1 Sudreg, demo OIB-ovi i nalazi o API-ju (Luka, issue #3)
 - Ključ je registriran na Luku (aplikacija "Nazor", javni korisnik). Drži ga Luka u `apps/api/.env` (gitignored); ostali članovi ga dobivaju preko password managera, ne preko repoa ili chata. Prvih ~sat vremena nakon registracije API je vraćao 401 iako je token izdan, poslije je proradio sam.
 - **Demo OIB-ovi** (javne tvrtke, fixturei u `apps/api/src/test/resources/fixtures/sudreg/`): Microblink d.o.o. 21173725829 (Zagreb, NKD 62.01, IT persona), Valamar Riviera d.d. 36201212847 (Poreč, Istarska, NKD 55.10, turizam), KRAŠ d.d. 94989605030 (Zagreb, NKD 10.82, proizvodnja).
