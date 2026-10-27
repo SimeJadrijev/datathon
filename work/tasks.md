@@ -34,7 +34,7 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 | 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | GOTOVO, PR #12 čeka review i merge (merge prvi, ostali paketi ovise o njemu) |
 | 2 Ingest: core and first sources (#4) | INGEST-1 do 4 | 3,3 | Luka | OTVORENO (nakon #3) |
 | 3 Ingest: other sources | INGEST-5 do 9 | 3,1 | | OTVORENO |
-| 4 API | API-1 do 7 | 4,8 | | U TIJEKU, branch `sime/api`, plan u `work/api-plan.md`. API-1 napisan i testiran (13 testova), čeka provjeru Swagger UI-ja i cijelog `mvnw test` uz Postgres. Jedan PR za cijeli paket. |
+| 4 API | API-1 do 7 | 4,8 | | U TIJEKU, branch `sime/api`, plan u `work/api-plan.md`. API-1 gotov i provjeren (commit 9880799). API-2 napisan, 41 test prolazi, čeka odluku o isteklim rokovima (vidi `work/api-plan.md`). Jedan PR za cijeli paket. |
 | 5 AI | AI-1 do 4 | 3,2 | | OTVORENO |
 | 6 Web: foundation, profile, recommendations | WEB-1 do 4 | 3,2 | | OTVORENO |
 | 7 Web: lists, details, laws, sources | WEB-5 do 9 | 3,9 | | OTVORENO |
