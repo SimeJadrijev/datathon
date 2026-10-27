@@ -1,0 +1,9 @@
+[
+  {"code": "ASSOCIATIONS_OFFICE", "name": "Ured za udruge", "url": "https://udruge.gov.hr"},
+  {"code": "FZOEU", "name": "Fond za zaštitu okoliša i energetsku učinkovitost", "url": "https://www.fzoeu.hr"},
+  {"code": "EU_FUNDS_NPOO", "name": "EU fondovi (NPOO)", "url": "https://fondovieu.gov.hr"},
+  {"code": "HZZ", "name": "Hrvatski zavod za zapošljavanje (mjere)", "url": "https://mjere.hzz.hr"},
+  {"code": "APPRRR", "name": "Agencija za plaćanja u poljoprivredi, ribarstvu i ruralnom razvoju", "url": "https://www.apprrr.hr"},
+  {"code": "MZOM", "name": "Ministarstvo znanosti, obrazovanja i mladih", "url": "https://mzom.gov.hr"},
+  {"code": "NARODNE_NOVINE", "name": "Narodne novine", "url": "https://narodne-novine.nn.hr"}
+]

@@ -9,6 +9,13 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/extensions.sql
 
 springdoc:
   swagger-ui:
