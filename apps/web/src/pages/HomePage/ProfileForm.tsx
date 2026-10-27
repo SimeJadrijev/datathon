@@ -1,5 +1,5 @@
 import {type FormEvent, useRef, useState} from "react";
-import {Button, Card} from "@/components";
+import {Button, Card, Select} from "@/components";
 import {COUNTIES, formatCounty} from "@/constants";
 import type {Profile} from "@/types";
 import {AreaField} from "./AreaField.tsx";
@@ -72,9 +72,8 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
                     <div className={styles.inputRow}>
                         <div className={styles.field}>
                             <label htmlFor="county" className={styles.label}>Županija</label>
-                            <select
+                            <Select
                                 id="county"
-                                className={styles.input}
                                 value={values.county}
                                 onChange={(event) => handleChange({county: event.target.value})}
                             >
@@ -82,8 +81,8 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
                                 {COUNTIES.map((county) => (
                                     <option key={county} value={county}>{formatCounty(county)}</option>
                                 ))}
-                            </select>
-                            <p className={styles.hint}>Natječaji za cijelu Hrvatsku prikazuju se uvijek.</p>
+                            </Select>
+                            <p className={styles.hint}>Uvijek se prikazuju natječaji za cijelu Hrvatsku.</p>
                         </div>
                         <div className={styles.field}>
                             <label htmlFor="keywords" className={styles.label}>Ključne riječi</label>

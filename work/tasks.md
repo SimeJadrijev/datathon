@@ -38,6 +38,12 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 | 5 AI | AI-1 do 4 | 3,2 | | OTVORENO |
 | 6 Web: foundation, profile, recommendations (#8) | WEB-1 do 4 | 3,2 | Ivan | U TIJEKU: WEB-1 i WEB-2 commitani na `feature/pkg-6-web` (27.10., nije pushano). Sljedeće: PR 1 (WEB-1 + WEB-2). WEB-3/4 čekaju API-7/API-6 (PR 2) |
 | 7 Web: lists, details, laws, sources | WEB-5 do 9 | 3,9 | | OTVORENO |
+
+**Pitanja za kolege u PR 1 (paket 6), postaviti kao komentar:**
+1. Naziv aplikacije "Natječaji i zakoni" i logo "NZ" su radni izbor. Mijenja se samo u `apps/web/src/constants/app.ts`.
+2. Kad profil postoji, početna prvo pokazuje sažetak profila, a forma se otvara na "Promijeni profil". Spec (WEB-2) kaže "forma je popunjena i nudi Promijeni profil". Slažemo li se s odstupanjem?
+
+**Otvoreno za web:** provjeriti u Firefoxu (na Ivanovom računalu nije instaliran, testirano samo u Chromiumu).
 | 8 Quality and delivery | QUALITY-1 do 3, DELIVERY-1 do 5 | 6,2 | | OTVORENO |
 
 ### Nice-to-have (tek kad MVP stoji)

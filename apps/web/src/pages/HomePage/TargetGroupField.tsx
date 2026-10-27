@@ -9,11 +9,18 @@ const ERROR_ID = "target-group-error";
 interface TargetGroupFieldProps {
     value: TargetGroup | "";
     error?: string;
-    onChange: (targetGroup: TargetGroup) => void;
+    onChange: (targetGroup: TargetGroup | "") => void;
     ref?: Ref<HTMLFieldSetElement>;
 }
 
 export const TargetGroupField = ({value, error, onChange, ref}: TargetGroupFieldProps) => {
+    // A checked radio fires no change event, so a click on the selected option clears it.
+    const handleClick = (targetGroup: TargetGroup) => {
+        if (value === targetGroup) {
+            onChange("");
+        }
+    };
+
     return (
         <fieldset ref={ref} className={styles.fieldset} tabIndex={-1} aria-describedby={error ? ERROR_ID : undefined}>
             <legend className={styles.legend}>
@@ -32,6 +39,7 @@ export const TargetGroupField = ({value, error, onChange, ref}: TargetGroupField
                             value={targetGroup}
                             checked={value === targetGroup}
                             onChange={() => onChange(targetGroup)}
+                            onClick={() => handleClick(targetGroup)}
                             className="visually-hidden"
                         />
                         <span className={styles.optionLabel}>{TARGET_GROUP_LABELS[targetGroup]}</span>

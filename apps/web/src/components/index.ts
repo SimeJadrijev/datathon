@@ -6,3 +6,4 @@ export * from "./ErrorState.tsx";
 export * from "./ExternalLink.tsx";
 export * from "./LoadingState.tsx";
 export * from "./PageHeader.tsx";
+export * from "./Select.tsx";

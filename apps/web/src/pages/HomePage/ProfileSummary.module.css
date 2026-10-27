@@ -9,15 +9,14 @@
 }
 
 .details {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
 }
 
 .row {
-    display: grid;
-    grid-template-columns: 140px minmax(0, 1fr);
-    gap: var(--space-4);
+    display: contents;
 }
 
 .row dt {
@@ -69,9 +68,13 @@
         padding: var(--space-4);
     }
 
-    .row {
+    .details {
         grid-template-columns: minmax(0, 1fr);
-        gap: var(--space-1);
+        row-gap: var(--space-1);
+    }
+
+    .row dd {
+        margin-bottom: var(--space-2);
     }
 
     .clearButton {
