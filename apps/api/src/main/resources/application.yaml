@@ -10,6 +10,10 @@ spring:
       ddl-auto: update
     open-in-view: false
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
 seed:
   enabled: ${SEED_ENABLED:true}
 
