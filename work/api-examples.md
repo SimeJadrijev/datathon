@@ -106,3 +106,118 @@ Nepoznat id (`/api/funding-calls/999999`): `{"statusCode":404,"message":"Natječ
 Neispravan filter (`?status=XYZ`): `{"statusCode":400,"message":"status: neispravna vrijednost","error":"Bad Request"}`.
 
 Napomene za web: nepoznati `status` filter (`UNKNOWN`) nije enum `FundingCallStatus`, pa tip filtera u TypeScriptu treba imati 4 vrijednosti, a tip `status` u odgovoru 3 (`status` može biti `null`). `counties` može sadržati `ALL` (cijela Hrvatska).
+
+---
+
+## API-3: `GET /api/funding-calls/facets`
+
+Prima iste filtere kao lista (`page`, `size`, `sort` se ignoriraju). Svaki facet ignorira vlastiti filter, ostale primjenjuje. Zadani `status=OPEN` primjenjuje se na sve facete osim `status`. Sortirano po `count` silazno. Prazan status je `value: "UNKNOWN"`, a sve oznake cijele države u `county` spojene su u `ALL`.
+
+Bez filtera (`/api/funding-calls/facets`, skraćeno):
+
+```json
+{
+  "status": [{ "value": "CLOSED", "count": 503 }, { "value": "OPEN", "count": 141 }, { "value": "UNKNOWN", "count": 49 }],
+  "targetGroup": [{ "value": "ASSOCIATION", "count": 98 }, { "value": "LOCAL_GOVERNMENT", "count": 42 }, { "value": "STUDENT", "count": 10 }],
+  "area": [{ "value": "CIVIL_SOCIETY", "count": 37 }, { "value": "CULTURE", "count": 35 }, { "value": "EDUCATION", "count": 24 }],
+  "county": [{ "value": "ALL", "count": 55 }, { "value": "Primorsko-goranska", "count": 8 }, { "value": "Zagrebačka", "count": 1 }],
+  "source": [{ "value": "ASSOCIATIONS_OFFICE", "count": 94 }, { "value": "HZZ", "count": 16 }, { "value": "APPRRR", "count": 5 }],
+  "type": [{ "value": "PUBLIC_CALL", "count": 77 }, { "value": "SUBSIDY", "count": 33 }, { "value": "UNKNOWN", "count": 3 }]
+}
+```
+
+Sa `?targetGroup=STUDENT&status=OPEN`: `targetGroup` i dalje pokazuje sve skupine, a `area`, `county`, `source` i `type` broje samo studentske natječaje.
+
+```json
+{
+  "status": [{ "value": "CLOSED", "count": 36 }, { "value": "OPEN", "count": 10 }, { "value": "UNKNOWN", "count": 4 }],
+  "targetGroup": [{ "value": "ASSOCIATION", "count": 98 }, { "value": "LOCAL_GOVERNMENT", "count": 42 }, { "value": "STUDENT", "count": 10 }],
+  "area": [{ "value": "EDUCATION", "count": 10 }, { "value": "SCIENCE", "count": 7 }, { "value": "YOUTH", "count": 2 }],
+  "county": [{ "value": "ALL", "count": 10 }],
+  "source": [{ "value": "MZOM", "count": 8 }, { "value": "EU_FUNDS_NPOO", "count": 2 }],
+  "type": [{ "value": "SCHOLARSHIP", "count": 6 }, { "value": "PUBLIC_CALL", "count": 4 }]
+}
+```
+
+Napomene za web:
+- Tip: `FacetCount = { value: string; count: number }`, `FundingCallFacets = Record<'status'|'targetGroup'|'area'|'county'|'source'|'type', FacetCount[]>`.
+- `value` je uvijek string. Za `status` i `type` može biti `"UNKNOWN"` (za `status` je to i valjana vrijednost filtera, za `type` nije jer filter `type` nema `UNKNOWN`).
+- Zbroj facetova po kolekcijama (`targetGroup`, `area`, `county`) može biti veći ili manji od ukupnog broja jer natječaj ima više vrijednosti ili nijednu. Za ukupan broj koristi zbroj `status` ili `source`.
+- `county` vrijednosti su kako su u bazi i mogu se slati kao `?county=`.
+
+---
+
+## API-4: Propisi
+
+### `GET /api/regulations?type=LAW&publishedFrom=2026-01-01&size=2`
+
+Filteri: `q`, `type`, `area`, `publishedFrom`, `publishedTo` (oba uključiva), `page`, `size`. Sort je uvijek `publishedAt` silazno (prazni datumi na kraju).
+
+```json
+{
+  "content": [
+    {
+      "id": 2598,
+      "title": "Zakon o izmjenama i dopunama Zakona o zahtjevima za pristupačnost proizvoda i usluga",
+      "type": "LAW",
+      "gazetteNumber": "114/2026",
+      "publishedAt": "2026-10-07",
+      "areas": [],
+      "hasSummary": false
+    },
+    {
+      "id": 2597,
+      "title": "Zakon o izmjenama i dopunama Zakona o obrtu",
+      "type": "LAW",
+      "gazetteNumber": "114/2026",
+      "publishedAt": "2026-10-07",
+      "areas": [],
+      "hasSummary": false
+    }
+  ],
+  "totalElements": 67,
+  "page": 0,
+  "size": 2
+}
+```
+
+### `GET /api/regulations/2598`
+
+```json
+{
+  "id": 2598,
+  "title": "Zakon o izmjenama i dopunama Zakona o zahtjevima za pristupačnost proizvoda i usluga",
+  "type": "LAW",
+  "gazetteNumber": "114/2026",
+  "documentNumber": 1371,
+  "publishedAt": "2026-10-07",
+  "enactedAt": "2026-09-25",
+  "areas": [],
+  "summary": null,
+  "url": "https://narodne-novine.nn.hr/clanci/sluzbeni/2026_10_114_1371.html",
+  "eliUrl": "https://narodne-novine.nn.hr/eli/sluzbeni/2026/114/1371",
+  "pdfUrl": "https://narodne-novine.nn.hr/eli/sluzbeni/2026/114/1371/pdf",
+  "eliMetadata": true,
+  "fetchedAt": "2026-10-26T18:14:24Z"
+}
+```
+
+### `GET /api/regulations/facets`
+
+Isti filteri, isto pravilo (svaki facet ignorira vlastiti filter). Nema zadanog filtera, pa je ovo cijela baza.
+
+```json
+{
+  "type": [{ "value": "DECISION", "count": 1920 }, { "value": "OTHER", "count": 963 }, { "value": "ORDINANCE", "count": 610 }, { "value": "DECREE", "count": 198 }, { "value": "LAW", "count": 169 }],
+  "area": [{ "value": "HEALTH", "count": 178 }, { "value": "ENTREPRENEURSHIP", "count": 152 }, { "value": "AGRICULTURE", "count": 137 }]
+}
+```
+
+Greške:
+- Nepoznat id (`/api/regulations/999999`): `{"statusCode":404,"message":"Propis ne postoji.","error":"Not Found"}`
+- `?publishedFrom=2026-05-01&publishedTo=2026-04-01`: `{"statusCode":400,"message":"publishedFrom: ne smije biti nakon publishedTo","error":"Bad Request"}`
+
+Napomene za web:
+- `summary` je `null` dok AI-3 ne generira sažetak, a `hasSummary` na listi to već kaže.
+- Većina propisa nema `areas` (prazna lista), pa facet `area` ne pokriva sve propise.
+- `RegulationType` ima 5 vrijednosti: `LAW`, `DECREE`, `ORDINANCE`, `DECISION`, `OTHER`.
