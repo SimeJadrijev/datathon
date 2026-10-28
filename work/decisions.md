@@ -77,12 +77,39 @@ Podaci scouta (vidi `context/data.md`) govore:
 - Test jedinstvenosti `source + externalId` radi nad Docker Postgresom (`@DataJpaTest` + `replace = NONE`), bez H2/Testcontainersa, pa testovi traže `docker compose up -d`.
 - Lokalno: `mvnw` nema izvršni bit u gitu (tim radi na Windowsima), na Linuxu pokretati `sh mvnw ...`.
 
+## 2026-10-27: Paket 4 (API), odluke za implementaciju (korisnik)
+Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
+- `common/` iz `feature/pkg-5-ai` se preuzima doslovno i proširuje (izbjegava konflikt; handler dobiva 502, "polje: razlog", specifične hrvatske 404 poruke, ne logira odbijene vrijednosti jer bi to iscurilo OIB).
+- N+1: `hibernate.default_batch_fetch_size`, ne `@EntityGraph` (kolekcije + paginacija = Hibernate paginira u memoriji).
+- Natječaji bez statusa (49 u seedu): default lista samo `OPEN`, filter/facet vrijednost `UNKNOWN` za `status is null`.
+- Županije: normalizacija u kodu (`CountyNames`), baza se ne dira.
+- Pretraga `q` bez dijakritika: Postgres `unaccent` (init skripta u docker-compose + `CREATE EXTENSION IF NOT EXISTS` pri startu).
+- `sort`: `deadline` (asc, prazni na kraju) ili `publishedAt` (desc), bez parametra smjera.
+- Profil za matching: 400 ako nema `type` ili nema nijedne teme (područje, ključna riječ, NKD).
+- Git: jedan branch i jedan PR za cijeli paket, commit po koraku; JSON primjeri u `work/api-examples.md`.
+- OTVORENO: `SUDREG` u `SourceCode`, Sudreg fixturei u `main/resources`, `SudregClient` iz API-7 (preporuka: sve tri da).
+
 ## 2026-10-26: SETUP-1 Sudreg, demo OIB-ovi i nalazi o API-ju (Luka, issue #3)
 - Ključ je registriran na Luku (aplikacija "Nazor", javni korisnik). Drži ga Luka u `apps/api/.env` (gitignored); ostali članovi ga dobivaju preko password managera, ne preko repoa ili chata. Prvih ~sat vremena nakon registracije API je vraćao 401 iako je token izdan, poslije je proradio sam.
 - **Demo OIB-ovi** (javne tvrtke, fixturei u `apps/api/src/test/resources/fixtures/sudreg/`): Microblink d.o.o. 21173725829 (Zagreb, NKD 62.01, IT persona), Valamar Riviera d.d. 36201212847 (Poreč, Istarska, NKD 55.10, turizam), KRAŠ d.d. 94989605030 (Zagreb, NKD 10.82, proizvodnja).
 - **`glavna_djelatnost` je često prazna** (Infobip, Podravka, Nanobit je nemaju). Posljedica za INGEST-9/API-7: lanac OIB → NKD → natječaji treba fallback (npr. pravni oblik → ciljna skupina, sjedište → županija) i UI mora reći kad NKD nije poznat.
 - `/subjekti?tvrtka_naziv=` traži SQL LIKE uzorak: `KRAŠ%` radi brzo, `%KRAŠ%` zna isteći (timeout), bez `%` traži točan naziv. Odgovor nema naziv, samo OIB/MBS, pa naziv treba iz `detalji_subjekta`.
 - `detalji_subjekta` za javne korisnike: najviše 6 zahtjeva u minuti (Upute v3.0.0). Token traje 6 h. Java klijent (INGEST-9) mora poštovati oboje i keširati odgovore.
+
+## 2026-10-28: API-2, istekli rokovi i izvedba (korisnik)
+- **Istekli rokovi u `status=OPEN`:** 10 od 141 vidljivih natječaja ima status OPEN, a rok u prošlosti (npr. id 99, rok 2023-06-13). API ih vraća kako jesu. Rješava se u podacima (QUALITY-1, točka 5), ne u API-ju. Zašto: specifikacija API-2 ne traži filtriranje po roku, a izvor ih još vodi kao otvorene. Alternativa za kasnije: `status=OPEN` isključuje istekle rokove.
+- **`unaccent` se stvara pri startu aplikacije** (`db/extensions.sql` preko `spring.sql.init`), ne init skriptom u docker-compose. Zašto: init skripte rade samo na praznom volumenu, pa bi postojeće baze članova tima ostale bez ekstenzije. Ovako radi svima bez ručnog koraka.
+- **`SourceInfo` i `SourceRef` su u `source/`**, ne u `fundingcall/dto/`, jer ih koristi i API-5. Lista vraća `source` kao `{code, name}`, detalj kao `{code, name, url}`.
+
+## 2026-10-28: P4, Sudreg u paketu 4
+- **Odluka:** `SUDREG` se dodaje u `SourceCode`. Fixturei iz SETUP-1 idu u `apps/api/src/main/resources/sudreg-fixtures/`. `SudregClient` i `CompanyInfo` definira API-7 u `integration/sudreg/`, a vlasnik INGEST-9 koristi isto sučelje.
+- **Zašto:** `/api/sources` mora pokazati Sudreg kao izvor otvorenih podataka (kriterij "Korištenje otvorenih podataka"), a demo profil iz OIB-a ne smije ovisiti o dostupnosti Sudrega.
+- **Posljedica:** javiti vlasniku INGEST-9 da koristi isto sučelje i `CompanyInfo`.
+
+## 2026-10-28: Ispravci nakon code reviewa paketa 4
+- **Ispravljeno:** facet `county` spaja pravopise iste županije, `UNKNOWN` u facetima samo za `status` (jedino se po njemu može filtrirati), `countDistinct` i provjera praznog uvjeta u `FacetCounter`, `recordCount` u `/api/sources` broji samo vidljive pozive, run s `fetched = 0` nije uspješan, `SUDREG` nema `lastSuccessfulFetch`, `SudregClient` fixture bean se bira property-jem `sudreg.fixtures.enabled` (ne `@ConditionalOnMissingBean`), ključne riječi profila imaju najmanje 3 znaka.
+- **Namjerno ostavljeno:** `counts.openFundingCalls` u `/api/meta` i dalje broji istekle OPEN pozive (odluka 28.10., čeka QUALITY-2). Skraćivanje naslova na 80 znakova za duplikate i `ustanova` kao `LOCAL_GOVERNMENT` su ponašanje preuzeto iz POC-a. N+1 u matchingu pokriva `default_batch_fetch_size: 100`.
+- **Za INGEST-9:** kad stigne pravi `SudregClient`, mora postaviti `sudreg.fixtures.enabled: false`, inače će postojati dva beana.
 
 ## 2026-10-26: AI-1 i AI-2 LLM klijent i izvlačenje polja (Nino, issue #7)
 - **Službeni Anthropic Java SDK** (3.3.0, već u `pom.xml` iz DATA-1), ne vlastiti `RestClient`. SDK radi autentifikaciju, retry (429/5xx) i timeoute. Strukturirani izlaz je `outputConfig` s JSON shemom (naša `ResponseSchema`) i `effort: low`, isto kao u POC-u; prvotni prisilni tool use zamijenjen nakon usporedbe s POC-om. SDK interno koristi Jackson 2; odgovor je JSON tekst koji parsiramo svojim Jackson 3 mapperom.

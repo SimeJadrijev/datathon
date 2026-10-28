@@ -7,5 +7,6 @@ public enum SourceCode {
     HZZ,
     APPRRR,
     MZOM,
-    NARODNE_NOVINE
+    NARODNE_NOVINE,
+    SUDREG
 }

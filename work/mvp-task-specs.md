@@ -1005,9 +1005,11 @@ All routes are under `/api`. JSON is camelCase, dates are ISO-8601. List endpoin
 2. `POST /api/admin/review/import` reads the edited CSV, applies the corrections and sets `fieldsReviewed = true` for each processed row. `hide = yes` sets `hidden = true` with the note as `hiddenReason`. `duplicate_of_id` sets `duplicateOf`. Return a report: how many rows were changed, skipped, or had errors (with row numbers).
 3. Both routes are protected by `X-Admin-Key`.
 4. **Automatic duplicate finder:** `POST /api/admin/review/find-duplicates` marks likely duplicates between sources with the rule from `poc/match.py` (`_kljuc`: normalized title, first 80 characters) and returns the groups for human confirmation. It does not change data by itself.
+5. **Expired open calls (found in API-2):** in the seed of 2026-10-26, 10 of the 141 visible calls with `status = OPEN` have a deadline in the past (for example id 99, deadline 2023-06-13, which is the first row of the default list sorted by deadline). The source still shows them as open. The list API (API-2) deliberately returns them as they are. Put them in the export (`status=OPEN` rows with `deadline < today`), so the team sets the right status or hides them. Decision of 2026-10-28: no change in the API for now. Option for later: make `status=OPEN` in the API exclude past deadlines.
 
 **Acceptance criteria:**
 - [ ] Round trip test: export, change two cells, import, and the values are changed and `fieldsReviewed = true`.
+- [ ] After QUALITY-2, no visible call with `status = OPEN` has a deadline in the past.
 - [ ] A bad row (wrong date format) is reported with its row number and does not stop the import.
 - [ ] The list API (API-2) no longer returns hidden and duplicate calls.
 - [ ] The routes return 401 without the key.

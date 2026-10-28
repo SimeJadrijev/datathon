@@ -1,0 +1,417 @@
+{
+ "mbs": 80837659,
+ "status": 1,
+ "sud_nadlezan": {
+  "sifra": 8,
+  "naziv": "Trgovački sud u Zagrebu",
+  "sifra_zupanije": 21,
+  "naziv_zupanije": "Grad Zagreb",
+  "sifra_opcine": 1333,
+  "naziv_opcine": "Zagreb",
+  "sifra_naselja": 72150,
+  "naziv_naselja": "Zagreb",
+  "izdaje_izvatke": 1
+ },
+ "sud_sluzba": {
+  "sifra": 8,
+  "naziv": "Trgovački sud u Zagrebu",
+  "sifra_zupanije": 21,
+  "naziv_zupanije": "Grad Zagreb",
+  "sifra_opcine": 1333,
+  "naziv_opcine": "Zagreb",
+  "sifra_naselja": 72150,
+  "naziv_naselja": "Zagreb",
+  "izdaje_izvatke": 1
+ },
+ "oib": 21173725829,
+ "mb": 4010990,
+ "potpuni_mbs": "080837659",
+ "potpuni_oib": "21173725829",
+ "ino_podruznica": 0,
+ "stecajna_masa": 0,
+ "likvidacijska_masa": 0,
+ "glavna_djelatnost": 6201,
+ "datum_osnivanja": "2013-03-18T00:00:00",
+ "vrijeme_zadnje_izmjene": "2026-10-05T23:00:01",
+ "scn_zadnje_izmjene": 8261754158782,
+ "postupak": {
+  "postupak": {
+   "znacenje": "Bez postupka"
+  }
+ },
+ "tvrtka": {
+  "ime": "Microblink društvo s ograničenom odgovornošću za informacijske tehnologije",
+  "naznaka_imena": "MicroBlink"
+ },
+ "skracena_tvrtka": {
+  "ime": "Microblink d.o.o."
+ },
+ "prijevodi_tvrtki": [
+  {
+   "prijevod_tvrtke_rbr": 1,
+   "ime": "Microblink limited liability company for Information Technologies",
+   "jezik": {
+    "sifra": 25,
+    "naziv": "English"
+   }
+  }
+ ],
+ "prijevodi_skracenih_tvrtki": [
+  {
+   "prijevod_skracene_tvrtke_rbr": 1,
+   "ime": "Microblink Llc",
+   "jezik": {
+    "sifra": 25,
+    "naziv": "English"
+   }
+  }
+ ],
+ "sjediste": {
+  "drzava": {
+   "sifra": 191,
+   "naziv": "Hrvatska",
+   "oznaka_2": "HR",
+   "oznaka_3": "HRV"
+  },
+  "sifra_zupanije": 21,
+  "naziv_zupanije": "Grad Zagreb",
+  "sifra_opcine": 1333,
+  "naziv_opcine": "Zagreb",
+  "sifra_naselja": 72150,
+  "naziv_naselja": "Zagreb",
+  "sifra_ulice": 721501043,
+  "ulica": "Trg Drage Iblera",
+  "kucni_broj": 10
+ },
+ "email_adrese": [
+  {
+   "email_adresa_rbr": 1,
+   "adresa": "legal@microblink.com"
+  }
+ ],
+ "pravni_oblik": {
+  "vrsta_pravnog_oblika": {
+   "sifra": 5,
+   "naziv": "društvo s ograničenom odgovornošću",
+   "kratica": "d.o.o."
+  }
+ },
+ "predmeti_poslovanja": [
+  {
+   "djelatnost_rbr": 1,
+   "djelatnost_tekst": "Računalno programiranje, savjetovanje i djelatnosti povezane s njima"
+  },
+  {
+   "djelatnost_rbr": 2,
+   "djelatnost_tekst": "Usluge informacijskog društva"
+  },
+  {
+   "djelatnost_rbr": 3,
+   "djelatnost_tekst": "Kupnja i prodaja robe"
+  },
+  {
+   "djelatnost_rbr": 4,
+   "djelatnost_tekst": "Obavljanje trgovačkog posredovanja na domaćem i inozemnom tržištu"
+  },
+  {
+   "djelatnost_rbr": 5,
+   "djelatnost_tekst": "Savjetovanje u vezi s poslovanjem i upravljanjem"
+  },
+  {
+   "djelatnost_rbr": 6,
+   "djelatnost_tekst": "Promidžba (reklama i propaganda)"
+  },
+  {
+   "djelatnost_rbr": 7,
+   "djelatnost_tekst": "Zastupanje inozemnih tvrtki"
+  },
+  {
+   "djelatnost_rbr": 8,
+   "djelatnost_tekst": "Istraživanje i razvoj na području informatike, informacijskih tehnologija i financija"
+  }
+ ],
+ "evidencijske_djelatnosti": [
+  {
+   "djelatnost_rbr": 1,
+   "djelatnost_tekst": "poslovi upravljanja nekretninom i održavanje nekretnina"
+  },
+  {
+   "djelatnost_rbr": 2,
+   "djelatnost_tekst": "poslovanje nekretninama"
+  }
+ ],
+ "temeljni_kapitali": [
+  {
+   "temeljni_kapital_rbr": 2,
+   "valuta": {
+    "sifra": 978,
+    "naziv": "euro"
+   },
+   "iznos": 18550
+  }
+ ],
+ "statusni_postupci": [
+  {
+   "statusni_postupak_rbr": 1,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Društveni ugovor od 08.02.2013.godine."
+  },
+  {
+   "statusni_postupak_rbr": 2,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Odlukom osnivača društva od 16.07.2015. godine Društveni ugovor izmjenjen u pogledu naziva i tvrtke društva.\nDruštveni ugovor od 16.07.2015. godine dostavljen sudu i uložen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 3,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Odlukom osnivača/članova društva od 14.09.2016. godine Društveni ugovor od 16.07.2015. godine izmijenjen je u čl. 3 st. 2 i st. 3 i čl. 6 st. 3 u pogledu odredbi o poslovnim udjelima. Društveni ugovor od 14.09.2016. godine dostavljen sudu u zbirku isprava.\n"
+  },
+  {
+   "statusni_postupak_rbr": 4,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Odlukom članova društva od dana 18.09.2017. godine donesen je novi tekst Društvenog ugovora, te je Društveni ugovor od 14.09.2016. godine zamijenjen novim tekstom Društvenog ugovora koji se dostavlja sudu u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 5,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Odlukom članova društva od 17.03.2020. godine izmijenjen je Društveni ugovor od 18.09.2017. godine te je donesen novi tekst Društvenog ugovora od 17.03.2020. godine koji je dostavljen sudu u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 6,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom članova društva od 17.03.2020. godine povećan je temeljni kapital društva sa iznosa od 20.000,00 kuna za iznos od 122.900,00 kuna uplatom u novcu na iznos od 142.900,00 kuna."
+  },
+  {
+   "statusni_postupak_rbr": 7,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Odlukom članova društva od 14.07.2020. godine izmijenjen je Društveni ugovor od 17.03.2020. godine u čl. 3 - odredbe o poslovnim udjelima i članovima društva i čl. 10 - odredbe o uporabi dobiti te je utvrđen potpuni tekst Društvenog ugovora koji se s potvrdom javnog bilježnika dostavlja u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 8,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Društveni ugovor od 14.07.2020. godine izmijnjen je odlukom članova društva na način de je 13.11.2020. godine donesen novi Društveni ugovor koji se prilaže uz prijavu za zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 9,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Odlukom članova društva od 12.04.2023. godine izmijenjen je u cijelosti Društveni ugovor od 13.11.2020. godine i u potpunom tekstu dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 10,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom od 12.04.2023. godine temeljni kapital usklađen je sa eurima."
+  },
+  {
+   "statusni_postupak_rbr": 11,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Odlukom člana društva od 12.04.2023. godine izmijenjen je u cijelosti Društveni ugovor od 12.04.2023. godine te je donesen potpuni tekst Društvenog ugovora od 12.04.2023. godine koji je dostavljen sudu u zbirku isprava."
+  }
+ ],
+ "gfi": [
+  {
+   "gfi_rbr": 1,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2013,
+   "datum_dostave": "2014-06-03T00:00:00",
+   "datum_od": "2013-03-18T00:00:00",
+   "datum_do": "2013-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 2,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2014,
+   "datum_dostave": "2015-06-30T00:00:00",
+   "datum_od": "2014-01-01T00:00:00",
+   "datum_do": "2014-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 3,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2015,
+   "datum_dostave": "2016-06-27T00:00:00",
+   "datum_od": "2015-01-01T00:00:00",
+   "datum_do": "2015-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 4,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2016,
+   "datum_dostave": "2017-06-29T00:00:00",
+   "datum_od": "2016-01-01T00:00:00",
+   "datum_do": "2016-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 5,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2017,
+   "datum_dostave": "2018-04-24T00:00:00",
+   "datum_od": "2017-01-01T00:00:00",
+   "datum_do": "2017-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 6,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2018,
+   "datum_dostave": "2019-04-29T00:00:00",
+   "datum_od": "2018-01-01T00:00:00",
+   "datum_do": "2018-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 7,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2019,
+   "datum_dostave": "2020-09-04T00:00:00",
+   "datum_od": "2019-01-01T00:00:00",
+   "datum_do": "2019-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 8,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2020,
+   "datum_dostave": "2021-08-31T00:00:00",
+   "datum_od": "2020-01-01T00:00:00",
+   "datum_do": "2020-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 9,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2021,
+   "datum_dostave": "2023-02-09T00:00:00",
+   "datum_od": "2021-01-01T00:00:00",
+   "datum_do": "2021-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 10,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2022,
+   "datum_dostave": "2023-09-14T00:00:00",
+   "datum_od": "2022-01-01T00:00:00",
+   "datum_do": "2022-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 11,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2023,
+   "datum_dostave": "2024-07-18T00:00:00",
+   "datum_od": "2023-01-01T00:00:00",
+   "datum_do": "2023-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 12,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2024,
+   "datum_dostave": "2025-06-30T00:00:00",
+   "datum_od": "2024-01-01T00:00:00",
+   "datum_do": "2024-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 13,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2025,
+   "datum_dostave": "2026-06-30T00:00:00",
+   "datum_od": "2025-01-01T00:00:00",
+   "datum_do": "2025-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 14,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2025,
+   "datum_dostave": "2026-10-02T00:00:00",
+   "datum_od": "2025-01-01T00:00:00",
+   "datum_do": "2025-12-31T00:00:00"
+  }
+ ],
+ "promjene": [
+  {
+   "id": 42392673,
+   "vrijeme": "2026-10-05T23:00:01",
+   "scn": 8261754158782
+  }
+ ]
+}
