@@ -23,10 +23,9 @@ public final class RobotsRules {
     public static RobotsRules parse(String content, String agentToken) {
         List<String> forAgent = null;
         List<String> forAll = null;
-        List<String> groupAgents = new ArrayList<>();
         List<String> groupRules = new ArrayList<>();
         boolean readingAgents = false;
-        for (String rawLine : content.split("\\R")) {
+        for (String rawLine : content.replace("\uFEFF", "").split("\\R")) {
             String line = stripComment(rawLine);
             int colon = line.indexOf(':');
             if (colon < 0) {
@@ -36,11 +35,9 @@ public final class RobotsRules {
             String value = line.substring(colon + 1).trim();
             if (field.equals("user-agent")) {
                 if (!readingAgents) {
-                    groupAgents = new ArrayList<>();
                     groupRules = new ArrayList<>();
                     readingAgents = true;
                 }
-                groupAgents.add(value.toLowerCase(Locale.ROOT));
                 if (matchesAgent(value, agentToken) && forAgent == null) {
                     forAgent = groupRules;
                 }

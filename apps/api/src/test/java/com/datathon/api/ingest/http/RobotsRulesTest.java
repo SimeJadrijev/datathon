@@ -53,4 +53,11 @@ class RobotsRulesTest {
 
         assertThat(rules.isAllowed("/anything")).isTrue();
     }
+
+    @Test
+    void ignoresByteOrderMarkAtTheStart() {
+        RobotsRules rules = RobotsRules.parse("\uFEFFUser-agent: *\nDisallow: /docs/kontakti.pdf\n", AGENT);
+
+        assertThat(rules.isAllowed("/docs/kontakti.pdf")).isFalse();
+    }
 }
