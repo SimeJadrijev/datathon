@@ -38,6 +38,10 @@ public class IngestService {
         ingestRunRepository.save(run);
     }
 
+    public void discardRun(Long runId) {
+        ingestRunRepository.deleteById(runId);
+    }
+
     public IngestRun runNow(Optional<SourceCode> source) {
         IngestRun run = createRun(source);
         execute(run.getId());
