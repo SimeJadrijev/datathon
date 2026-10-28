@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /**
@@ -92,6 +93,19 @@ public class GlobalExceptionHandler {
         log.warn("External source {} failed", e.getSource(), e);
         return respond(HttpStatus.BAD_GATEWAY,
                 "Vanjski izvor (" + e.getSource() + ") trenutno nije dostupan. Pokušajte kasnije.");
+    }
+
+    @ExceptionHandler(TooManyRequestsException.class)
+    ResponseEntity<ErrorResponse> handleTooManyRequests(TooManyRequestsException e) {
+        log.warn("Rate limit hit: {}", e.getMessage());
+        return respond(HttpStatus.TOO_MANY_REQUESTS, "Previše zahtjeva. Pokušajte ponovno za minutu.");
+    }
+
+    /** Admin routes are not for end users, so the reason is passed through. */
+    @ExceptionHandler(ResponseStatusException.class)
+    ResponseEntity<ErrorResponse> handleStatus(ResponseStatusException e) {
+        HttpStatus status = HttpStatus.valueOf(e.getStatusCode().value());
+        return respond(status, e.getReason() != null ? e.getReason() : status.getReasonPhrase());
     }
 
     @ExceptionHandler(Exception.class)
