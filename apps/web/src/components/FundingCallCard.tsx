@@ -30,7 +30,10 @@ const DeadlineValue = ({deadline, deadlineNote}: Pick<FundingCallSummary, "deadl
             </>
         );
     }
-    return <>{deadlineNote ?? "nije naveden"}</>;
+    if (deadlineNote) {
+        return <>{deadlineNote}</>;
+    }
+    return <span className={styles.muted}>provjeri na izvoru</span>;
 };
 
 const formatAmounts = ({maxAmount, totalAmount}: Pick<FundingCallSummary, "maxAmount" | "totalAmount">) => {
@@ -65,7 +68,7 @@ export const FundingCallCard = ({fundingCall, children}: FundingCallCardProps) =
                 )}
             </div>
             <h3 className={styles.title}>
-                <Link href={fundingCallDetailPath(fundingCall.id)} className={styles.titleLink}>
+                <Link href={fundingCallDetailPath(fundingCall.id)} className={styles.titleLink} title={fundingCall.title}>
                     {fundingCall.title}
                 </Link>
             </h3>
