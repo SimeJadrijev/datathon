@@ -40,6 +40,20 @@
 - Lokalno instaliran JDK 25 (`java-25-openjdk-devel`).
 - SETUP-1 gotov: Sudreg API proradio (prvo je vraćao 401 unatoč tokenu). Izabrani demo OIB-ovi Microblink, Valamar Riviera, Kraš; fixturei spremljeni. Nalaz: `glavna_djelatnost` često prazna (vidi `work/decisions.md`).
 
+## 2026-10-27 (paket 4, API)
+- Razrađen plan `work/api-plan.md` i doneseno 9 od 10 odluka (P4 Sudreg otvoren, treba tek u API-5/API-7). Odluke u `work/decisions.md`.
+- API-1 napisan na branchu `sime/api`: `common/` (ErrorResponse, iznimke preuzete iz `feature/pkg-5-ai`, prošireni `GlobalExceptionHandler` s 502 i porukom "polje: razlog", `PageResponse`, `PageRequests` s limitom 100, `OpenApiConfig`), springdoc path u `application.yaml`. 13 testova u `GlobalExceptionHandlerTest` prolazi bez baze.
+- Nije provjereno: Swagger UI u pregledniku i testovi koji traže Postgres na 5433 (Docker nije dostupan u ovoj sesiji, 5 postojećih testova pada na "Connection refused", ne zbog izmjena).
+
+## 2026-10-28 (paket 4, API)
+- API-2 gotov: lista i detalj natječaja s filterima, unaccent pretraga, N+1 provjeren (5 upita po listi). Istekli rokovi kod OPEN natječaja ostavljeni kako jesu, zapisano u QUALITY-1.
+- API-3 gotov: `GET /api/funding-calls/facets` (6 `GROUP BY` upita, svaki facet ignorira vlastiti filter). Zajednički `FacetCounter` i `TextSearch` u `common/`.
+- API-4 gotov: `GET /api/regulations`, `/{id}`, `/facets`. Ukupno 63 testa prolazi, provjereno curlom na stvarnim podacima, primjeri u `work/api-examples.md`.
+- Otvoreno: odluka P4 (Sudreg) prije API-5. Provjere (code review, ručne provjere) po dogovoru idu nakon API-4.
+- API-5 gotov: `GET /api/sources` i `GET /api/meta`, `SUDREG` dodan u `SourceCode` (odluka P4), katalog proširen opisom, metodom i licencom.
+- API-6 gotov: `POST /api/profiles/match`, čista funkcija `MatchingService` (port `poc/match.py`, status nepoznat bez kazne), 15 unit testova, provjereno na tri POC profila.
+- API-7 gotov: `POST /api/profiles/from-oib`, `@Oib` validator, `SudregClient` + `FixtureSudregClient` + NKD mapiranje, fixturei kopirani u `main/resources/sudreg-fixtures`. Nalaz: Spring je u WARN logu ispisivao odbijeni OIB (`rejected value`), ugašeno s `spring.mvc.log-resolved-exception: false`.
+
 ## 2026-10-28 (Luka)
 - PR #12 (paket 1) mergan (Nino). Krenut #4 na `feature/pkg-2-ingest-core`.
 - INGEST-1 do 4 gotovi: HTTP klijent (robots.txt s BOM-om, 1 req/s, cache, retry, cp1250), okvir (filtar, pravila za rok/iznose/skupine/područja, upsert po hashu, log po izvoru), udruge.gov.hr i FZOEU s PDF-ovima. 65 testova prolazi.

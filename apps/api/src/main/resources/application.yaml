@@ -5,10 +5,23 @@ spring:
     url: ${DB_URL:jdbc:postgresql://localhost:5433/datathon}
     username: ${DB_USER:datathon}
     password: ${DB_PASSWORD:datathon}
+  mvc:
+    log-resolved-exception: false
   jpa:
     hibernate:
       ddl-auto: update
     open-in-view: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/extensions.sql
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 
 seed:
   enabled: ${SEED_ENABLED:true}
@@ -20,9 +33,21 @@ ingest:
 
 llm:
   api-key: ${ANTHROPIC_API_KEY:}
-  budget-usd: 2.0
+  base-url: ${ANTHROPIC_BASE_URL:https://api.anthropic.com}
+  model: ${LLM_MODEL:claude-haiku-5-5}
+  eligibility-model: ${LLM_ELIGIBILITY_MODEL:claude-sonnet-5-5}
+  budget-usd: ${LLM_BUDGET_USD:2.0}
+  max-tokens: ${LLM_MAX_TOKENS:4000}
+  connect-timeout-seconds: ${LLM_CONNECT_TIMEOUT_SECONDS:5}
+  read-timeout-seconds: ${LLM_READ_TIMEOUT_SECONDS:60}
+  max-attempts: ${LLM_MAX_ATTEMPTS:4}
+  prices:
+    claude-haiku-5-5: { input: 0.10, output: 0.50 }
+    claude-sonnet-5-5: { input: 2.00, output: 10.00 }
 
 sudreg:
+  fixtures:
+    enabled: true
   base-url: https://sudreg-data.gov.hr
   client-id: ${SUDREG_CLIENT_ID:}
   client-secret: ${SUDREG_CLIENT_SECRET:}

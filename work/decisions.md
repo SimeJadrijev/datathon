@@ -77,12 +77,69 @@ Podaci scouta (vidi `context/data.md`) govore:
 - Test jedinstvenosti `source + externalId` radi nad Docker Postgresom (`@DataJpaTest` + `replace = NONE`), bez H2/Testcontainersa, pa testovi traže `docker compose up -d`.
 - Lokalno: `mvnw` nema izvršni bit u gitu (tim radi na Windowsima), na Linuxu pokretati `sh mvnw ...`.
 
+## 2026-10-27: Paket 4 (API), odluke za implementaciju (korisnik)
+Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
+- `common/` iz `feature/pkg-5-ai` se preuzima doslovno i proširuje (izbjegava konflikt; handler dobiva 502, "polje: razlog", specifične hrvatske 404 poruke, ne logira odbijene vrijednosti jer bi to iscurilo OIB).
+- N+1: `hibernate.default_batch_fetch_size`, ne `@EntityGraph` (kolekcije + paginacija = Hibernate paginira u memoriji).
+- Natječaji bez statusa (49 u seedu): default lista samo `OPEN`, filter/facet vrijednost `UNKNOWN` za `status is null`.
+- Županije: normalizacija u kodu (`CountyNames`), baza se ne dira.
+- Pretraga `q` bez dijakritika: Postgres `unaccent` (init skripta u docker-compose + `CREATE EXTENSION IF NOT EXISTS` pri startu).
+- `sort`: `deadline` (asc, prazni na kraju) ili `publishedAt` (desc), bez parametra smjera.
+- Profil za matching: 400 ako nema `type` ili nema nijedne teme (područje, ključna riječ, NKD).
+- Git: jedan branch i jedan PR za cijeli paket, commit po koraku; JSON primjeri u `work/api-examples.md`.
+- OTVORENO: `SUDREG` u `SourceCode`, Sudreg fixturei u `main/resources`, `SudregClient` iz API-7 (preporuka: sve tri da).
+
 ## 2026-10-26: SETUP-1 Sudreg, demo OIB-ovi i nalazi o API-ju (Luka, issue #3)
 - Ključ je registriran na Luku (aplikacija "Nazor", javni korisnik). Drži ga Luka u `apps/api/.env` (gitignored); ostali članovi ga dobivaju preko password managera, ne preko repoa ili chata. Prvih ~sat vremena nakon registracije API je vraćao 401 iako je token izdan, poslije je proradio sam.
 - **Demo OIB-ovi** (javne tvrtke, fixturei u `apps/api/src/test/resources/fixtures/sudreg/`): Microblink d.o.o. 21173725829 (Zagreb, NKD 62.01, IT persona), Valamar Riviera d.d. 36201212847 (Poreč, Istarska, NKD 55.10, turizam), KRAŠ d.d. 94989605030 (Zagreb, NKD 10.82, proizvodnja).
 - **`glavna_djelatnost` je često prazna** (Infobip, Podravka, Nanobit je nemaju). Posljedica za INGEST-9/API-7: lanac OIB → NKD → natječaji treba fallback (npr. pravni oblik → ciljna skupina, sjedište → županija) i UI mora reći kad NKD nije poznat.
 - `/subjekti?tvrtka_naziv=` traži SQL LIKE uzorak: `KRAŠ%` radi brzo, `%KRAŠ%` zna isteći (timeout), bez `%` traži točan naziv. Odgovor nema naziv, samo OIB/MBS, pa naziv treba iz `detalji_subjekta`.
 - `detalji_subjekta` za javne korisnike: najviše 6 zahtjeva u minuti (Upute v3.0.0). Token traje 6 h. Java klijent (INGEST-9) mora poštovati oboje i keširati odgovore.
+
+## 2026-10-28: API-2, istekli rokovi i izvedba (korisnik)
+- **Istekli rokovi u `status=OPEN`:** 10 od 141 vidljivih natječaja ima status OPEN, a rok u prošlosti (npr. id 99, rok 2023-06-13). API ih vraća kako jesu. Rješava se u podacima (QUALITY-1, točka 5), ne u API-ju. Zašto: specifikacija API-2 ne traži filtriranje po roku, a izvor ih još vodi kao otvorene. Alternativa za kasnije: `status=OPEN` isključuje istekle rokove.
+- **`unaccent` se stvara pri startu aplikacije** (`db/extensions.sql` preko `spring.sql.init`), ne init skriptom u docker-compose. Zašto: init skripte rade samo na praznom volumenu, pa bi postojeće baze članova tima ostale bez ekstenzije. Ovako radi svima bez ručnog koraka.
+- **`SourceInfo` i `SourceRef` su u `source/`**, ne u `fundingcall/dto/`, jer ih koristi i API-5. Lista vraća `source` kao `{code, name}`, detalj kao `{code, name, url}`.
+
+## 2026-10-28: P4, Sudreg u paketu 4
+- **Odluka:** `SUDREG` se dodaje u `SourceCode`. Fixturei iz SETUP-1 idu u `apps/api/src/main/resources/sudreg-fixtures/`. `SudregClient` i `CompanyInfo` definira API-7 u `integration/sudreg/`, a vlasnik INGEST-9 koristi isto sučelje.
+- **Zašto:** `/api/sources` mora pokazati Sudreg kao izvor otvorenih podataka (kriterij "Korištenje otvorenih podataka"), a demo profil iz OIB-a ne smije ovisiti o dostupnosti Sudrega.
+- **Posljedica:** javiti vlasniku INGEST-9 da koristi isto sučelje i `CompanyInfo`.
+
+## 2026-10-28: Ispravci nakon code reviewa paketa 4
+- **Ispravljeno:** facet `county` spaja pravopise iste županije, `UNKNOWN` u facetima samo za `status` (jedino se po njemu može filtrirati), `countDistinct` i provjera praznog uvjeta u `FacetCounter`, `recordCount` u `/api/sources` broji samo vidljive pozive, run s `fetched = 0` nije uspješan, `SUDREG` nema `lastSuccessfulFetch`, `SudregClient` fixture bean se bira property-jem `sudreg.fixtures.enabled` (ne `@ConditionalOnMissingBean`), ključne riječi profila imaju najmanje 3 znaka.
+- **Namjerno ostavljeno:** `counts.openFundingCalls` u `/api/meta` i dalje broji istekle OPEN pozive (odluka 28.10., čeka QUALITY-2). Skraćivanje naslova na 80 znakova za duplikate i `ustanova` kao `LOCAL_GOVERNMENT` su ponašanje preuzeto iz POC-a. N+1 u matchingu pokriva `default_batch_fetch_size: 100`.
+- **Za INGEST-9:** kad stigne pravi `SudregClient`, mora postaviti `sudreg.fixtures.enabled: false`, inače će postojati dva beana.
+
+## 2026-10-26: AI-1 i AI-2 LLM klijent i izvlačenje polja (Nino, issue #7)
+- **Službeni Anthropic Java SDK** (3.3.0, već u `pom.xml` iz DATA-1), ne vlastiti `RestClient`. SDK radi autentifikaciju, retry (429/5xx) i timeoute. Strukturirani izlaz je `outputConfig` s JSON shemom (naša `ResponseSchema`) i `effort: low`, isto kao u POC-u; prvotni prisilni tool use zamijenjen nakon usporedbe s POC-om. SDK interno koristi Jackson 2; odgovor je JSON tekst koji parsiramo svojim Jackson 3 mapperom.
+- **Konfiguracija:** sve zadane vrijednosti žive u `application.yaml` (`llm.*`, s placeholderima `${ENV:default}`), `LlmProperties` je obična klasa s `@ConfigurationProperties` i konstruktorskim bindanjem. Zadani budžet je 2 USD (`LLM_BUDGET_USD`), ne 3 iz specifikacije.
+- **Logovi i poruke exceptiona su na engleskom.** Poruke za korisnika prevodi `GlobalExceptionHandler`.
+- **Pravilo spajanja za rok (odstupanje od AI-2 specifikacije):** LLM-ov `null` za `deadline` BRIŠE rok iz pravila. Zašto: pravila uzmu "31. 3. 2028." kao rok, a to je kraj razdoblja nabave (FZOEU električna vozila), pa bi pravilo "null ne briše" zadržalo krivi rok i oborilo kontrolni slučaj iz specifikacije (`deadline = null`). Isto obrazloženje je u POC-u (`merge` u `poc/extract/llm.py`). Za ostala polja vrijedi pravilo iz specifikacije: zamjena samo kad LLM vrati vrijednost.
+- **Mjerenje (21 poziv, Haiku, 0,031 USD ukupno, ~0,0015 USD po pozivu):** prvi prompt je za FZOEU 275 vratio `maxAmount` 62.500 (max cijena vozila iz tablice), ispravljeno u promptu na 9.000 po vozilu. Zatim je promjena prompta pokvarila HZZ (`max` = najniža bruto plaća 1.494,75 umjesto potpore 1.130), pa je pravilo preformulirano (max je potpora, nikad plaća, cijena ili trošak), a iznosi u CHF/USD/kuni su null (MZOM 7990 je imao 2.450 CHF kao EUR). Dodatno: `minAmount` 0 se odbacuje, sažetak kraći od 20 znakova se odbacuje (jednom je model vratio "x"), prompt zabranjuje pogađanje ciljnih skupina. Tablica za ručnu provjeru: `work/ai-2-eval.md`.
+- Poznata slabost: HZZ 4372 (tekst 80.000 znakova, šaljemo prvih 40.000) daje različit min/max od poziva do poziva, a SDK 3.3.0 nema parametar `temperature`. Kratki tekstovi (stotinjak znakova, npr. FZOEU 270) i dalje znaju dobiti pogođenu ciljnu skupinu.
+- Ruta `POST /api/admin/ai/extract` koristi privremeni `AdminKeyGuard` (`X-Admin-Key` naspram `admin.key`). INGEST-2 treba preuzeti isti guard umjesto da pravi drugi.
+
+## 2026-10-26: AI-3 sažeci propisa (Nino, issue #7)
+- **Tekst zakona se dohvaća pri sažimanju s `url`-a (Narodne novine), ne iz baze:** seed propisa nema tekst, a INGEST-8 još ne postoji. `NarodneNovineClient` (Jsoup) čita samo `/clanci/sluzbeni/` (robots.txt zabranjuje `/clanci/oglasi/`), čita `div.sl-content`, najviše 1 zahtjev u sekundi.
+- **Odabir:** zakoni prvi, najnoviji prvi, pa ostali propisi; `limit` (zadano 60). Propisi bez sažetka ostaju u redu i kod sljedećeg pokretanja (nema oznake "pokušano"), pa se jedan nemogući zakon ponovno šalje modelu.
+- **Slanje teksta:** zakon do 25.000 znakova ide cijeli; dulji: prvih 15.000, izvadak ±800 znakova oko zadnjeg "stupa na snagu" i zadnjih 3.000. Prvi pristup (početak + kraj) izgubio je članak o stupanju na snagu kod Prekršajnog zakona.
+- Mjerenje i ručna provjera: `work/ai-3-eval.md`. 10 zakona, 0,012 USD.
+- `BatchRunner` (jedan batch po imenu istodobno) zamijenio je ručni executor u servisu za natječaje; rute `/extract` i `/summarize-regulations` dijele ga.
+
+## 2026-10-26: Usporedba Java implementacije s POC-om (Nino, issue #7)
+- Slaganje Haiku/Sonnet na našem uzorku nije lošije od POC-a (rok 100 %, max iznos 90 %, ukupni 100 %, skupine 82 %, područja 85 %; POC 100/87/100/65/81). Tablica u `work/ai-2-eval.md`.
+- Razlike pronađene u kodu i ispravljene: `max_tokens` 2048 → 4000; odgovor odrezan ili odbijen se odbacuje; tekstovi ≤ 300 znakova se ne šalju; davatelj i datum objave se ne pregaziju; retry 3 puta (`LLM_MAX_ATTEMPTS=4`).
+- **Nije preuzeto iz POC-a:** "hints" (polja koja izvor daje strukturirano imaju prednost pred modelom). Seed ne čuva koji je izvor što dao strukturirano, pa model uvijek pobjeđuje za rok, iznose, skupine i područja. Na uzorku se rok slagao s izvorom svugdje; ako to postane problem, treba u `FundingCall` dodati zapis tih polja iz INGEST-a.
+- **Nije preuzeto:** ravnomjeran odabir po izvorima (POC je uzimao kružno po izvorima). Batch ide po statusu pa po id-u, što je dovoljno dok `limit` pokriva sve otvorene pozive.
+
+## 2026-10-26: AI-4 provjera prihvatljivosti (Nino, issue #7)
+- **Pitanja se generiraju zasebnim batchem** (`POST /api/admin/ai/generate-questions`), ne u AI-2 shemi: radi i za pozive koji su već obrađeni, a ne mijenja AI-2 mjerenje. Pohranjena su u `FundingCall.eligibilityQuestions` kao JSON; ids (`q1`..`q5`) dodjeljuje kod, ne model.
+- **Model za provjeru je Sonnet 5.5** (`LLM_ELIGIBILITY_MODEL`), ostalo ostaje Haiku. Zašto: u 6 demo scenarija Haiku je pogodio 4 verdikta (previše oprezan: UNCLEAR kod prihvatljivih), Sonnet svih 6. Trošak oko 0,035 USD po provjeri. Vidi `work/ai-4-eval.md`.
+- **Svaki razlog mora imati citat koji kod provjerava u tekstu poziva** (ne vjerujemo modelu). Razlog bez valjanog citata se odbacuje; verdikt LIKELY_* bez ijednog razloga postaje UNCLEAR.
+- **Fallback bez modela** (nema ključa, budžet potrošen, API pao ili neispravan odgovor): 200 s verdiktom UNCLEAR i razlozima iz pravila (istekao rok, druga ciljna skupina, drugo područje; zahtjev može nositi `targetGroup` i `county`). Nikad 500.
+- **Ograničenja:** do 10 odgovora, tekst odgovora do 200 znakova, nepoznat id pitanja daje 400, 10 provjera u minuti po IP-u (429, poruka na hrvatskom). Ograničenje je u memoriji jedne instance i koristi `getRemoteAddr()`, pa iza proxyja treba proslijediti pravu IP adresu.
+- **`GlobalExceptionHandler` i `ErrorResponse`** napravljeni su ovdje jer ih treba 429 s hrvatskom porukom (skill traži oblik `{statusCode, message, error}`). Exceptioni imaju engleske poruke, a hrvatski tekst bira handler. API i INGEST paketi trebaju koristiti isti handler, ne praviti drugi.
 
 ## 2026-10-28: Ingest core, ugovor s AI-jem i pravila za rok (Luka, issue #4)
 - **`externalId` je ID na izvoru bez prefiksa**, isto kao u seedu (udruge: `nid`, FZOEU: ID mape iz `/docs/<ID>/`, inače oznaka poziva s `_` umjesto `/`). Java ingest tako ažurira seed zapise umjesto da ih udvostruči. Vrijedi i za izvore u #5.
