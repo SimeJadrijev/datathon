@@ -39,3 +39,9 @@
 - SETUP-1 otvoren: Sudreg ključ (Luka) je u `apps/api/.env` (gitignored). Token se dobije, ali svi API pozivi vraćaju 401, vjerojatno račun još nije aktiviran. Demo OIB-ovi i fixturei čekaju.
 - Lokalno instaliran JDK 25 (`java-25-openjdk-devel`).
 - SETUP-1 gotov: Sudreg API proradio (prvo je vraćao 401 unatoč tokenu). Izabrani demo OIB-ovi Microblink, Valamar Riviera, Kraš; fixturei spremljeni. Nalaz: `glavna_djelatnost` često prazna (vidi `work/decisions.md`).
+
+## 2026-10-28 (Luka)
+- PR #12 (paket 1) mergan (Nino). Krenut #4 na `feature/pkg-2-ingest-core`.
+- INGEST-1 do 4 gotovi: HTTP klijent (robots.txt s BOM-om, 1 req/s, cache, retry, cp1250), okvir (filtar, pravila za rok/iznose/skupine/područja, upsert po hashu, log po izvoru), udruge.gov.hr i FZOEU s PDF-ovima. 65 testova prolazi.
+- Pravi run: udruge 141 zapisa (90 otvorenih, 72 s rokom; ostali nemaju rok na izvoru), FZOEU 29 (9 otvorenih). Prvi run je otkrio da filtar po naslovu izbacuje pravi FZOEU poziv; ispravljeno. Usporedba s POC-om i odluke u `work/decisions.md`.
+- Admin ruta čeka AI PR #13 (`AdminKeyGuard`, `BatchRunner`); do tada `INGEST_ON_STARTUP=true`.
