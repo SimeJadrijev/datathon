@@ -105,3 +105,8 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
 - **Odluka:** `SUDREG` se dodaje u `SourceCode`. Fixturei iz SETUP-1 idu u `apps/api/src/main/resources/sudreg-fixtures/`. `SudregClient` i `CompanyInfo` definira API-7 u `integration/sudreg/`, a vlasnik INGEST-9 koristi isto sučelje.
 - **Zašto:** `/api/sources` mora pokazati Sudreg kao izvor otvorenih podataka (kriterij "Korištenje otvorenih podataka"), a demo profil iz OIB-a ne smije ovisiti o dostupnosti Sudrega.
 - **Posljedica:** javiti vlasniku INGEST-9 da koristi isto sučelje i `CompanyInfo`.
+
+## 2026-10-28: Ispravci nakon code reviewa paketa 4
+- **Ispravljeno:** facet `county` spaja pravopise iste županije, `UNKNOWN` u facetima samo za `status` (jedino se po njemu može filtrirati), `countDistinct` i provjera praznog uvjeta u `FacetCounter`, `recordCount` u `/api/sources` broji samo vidljive pozive, run s `fetched = 0` nije uspješan, `SUDREG` nema `lastSuccessfulFetch`, `SudregClient` fixture bean se bira property-jem `sudreg.fixtures.enabled` (ne `@ConditionalOnMissingBean`), ključne riječi profila imaju najmanje 3 znaka.
+- **Namjerno ostavljeno:** `counts.openFundingCalls` u `/api/meta` i dalje broji istekle OPEN pozive (odluka 28.10., čeka QUALITY-2). Skraćivanje naslova na 80 znakova za duplikate i `ustanova` kao `LOCAL_GOVERNMENT` su ponašanje preuzeto iz POC-a. N+1 u matchingu pokriva `default_batch_fetch_size: 100`.
+- **Za INGEST-9:** kad stigne pravi `SudregClient`, mora postaviti `sudreg.fixtures.enabled: false`, inače će postojati dva beana.

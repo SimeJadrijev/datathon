@@ -1,5 +1,8 @@
 package com.datathon.api.source;
 
+import static com.datathon.api.fundingcall.FundingCallSpecifications.fromSource;
+import static com.datathon.api.fundingcall.FundingCallSpecifications.visible;
+
 import com.datathon.api.fundingcall.FundingCallRepository;
 import com.datathon.api.ingest.SourceRunLogRepository;
 import com.datathon.api.ingest.SourceRunLogRepository.LastSuccessfulRun;
@@ -32,15 +35,22 @@ public class SourceService {
                 .orElse(null);
         return sourceCatalog.entries().stream()
                 .map(entry -> SourceSummary.of(entry, recordCount(entry.code()),
-                        lastSuccessfulRuns.getOrDefault(entry.code(), snapshotInstant)))
+                        lastFetch(entry.code(), lastSuccessfulRuns, snapshotInstant)))
                 .toList();
+    }
+
+    private static Instant lastFetch(SourceCode code, Map<SourceCode, Instant> lastSuccessfulRuns, Instant snapshotInstant) {
+        if (code == SourceCode.SUDREG) {
+            return null;
+        }
+        return lastSuccessfulRuns.getOrDefault(code, snapshotInstant);
     }
 
     private Long recordCount(SourceCode code) {
         return switch (code) {
             case NARODNE_NOVINE -> regulationRepository.count();
             case SUDREG -> null;
-            default -> fundingCallRepository.countBySource(code);
+            default -> fundingCallRepository.count(visible().and(fromSource(code)));
         };
     }
 

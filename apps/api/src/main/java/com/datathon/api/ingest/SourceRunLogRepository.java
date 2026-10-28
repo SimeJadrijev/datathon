@@ -14,7 +14,7 @@ public interface SourceRunLogRepository extends JpaRepository<SourceRunLog, Long
     Optional<SourceRunLog> findFirstBySourceOrderByStartedAtDesc(SourceCode source);
 
     @Query("select log.source as source, max(log.startedAt) as startedAt from SourceRunLog log "
-            + "where log.errors = 0 group by log.source")
+            + "where log.errors = 0 and log.fetched > 0 group by log.source")
     List<LastSuccessfulRun> findLastSuccessfulRunPerSource();
 
     interface LastSuccessfulRun {

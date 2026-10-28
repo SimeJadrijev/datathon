@@ -36,6 +36,8 @@ llm:
   budget-usd: 2.0
 
 sudreg:
+  fixtures:
+    enabled: true
   base-url: https://sudreg-data.gov.hr
   client-id: ${SUDREG_CLIENT_ID:}
   client-secret: ${SUDREG_CLIENT_SECRET:}

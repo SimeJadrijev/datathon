@@ -132,6 +132,22 @@ class RegulationServiceTest {
                 .containsExactlyInAnyOrder(tuple("ENERGY", 1L), tuple("TRANSPORT", 1L));
     }
 
+    @Test
+    void facetsWorkWithoutAnyFilterAndCountARegulationOncePerValue() {
+        Regulation law = save("Zakon", RegulationType.LAW, LocalDate.of(2026, 1, 1));
+        law.getAreas().addAll(List.of(Area.ENERGY, Area.TRANSPORT));
+        save("Uredba", RegulationType.DECREE, LocalDate.of(2026, 1, 2)).getAreas().add(Area.ENERGY);
+        save("Bez vrste", null, LocalDate.of(2026, 1, 3));
+        entityManager.flush();
+
+        var facets = regulationService.facets(filter(null, null, null, null, null));
+
+        assertThat(facets.type()).extracting(FacetCount::value, FacetCount::count)
+                .containsExactlyInAnyOrder(tuple("LAW", 1L), tuple("DECREE", 1L));
+        assertThat(facets.area()).extracting(FacetCount::value, FacetCount::count)
+                .containsExactlyInAnyOrder(tuple("ENERGY", 2L), tuple("TRANSPORT", 1L));
+    }
+
     private Regulation save(String title, RegulationType type, LocalDate publishedAt) {
         var regulation = new Regulation("nn-" + title, title);
         regulation.setType(type);

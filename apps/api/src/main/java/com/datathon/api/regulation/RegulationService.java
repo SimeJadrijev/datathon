@@ -1,6 +1,5 @@
 package com.datathon.api.regulation;
 
-import static com.datathon.api.regulation.RegulationSpecifications.hasId;
 import static com.datathon.api.regulation.RegulationSpecifications.matching;
 import static com.datathon.api.regulation.RegulationSpecifications.matchingExcept;
 
@@ -38,7 +37,7 @@ public class RegulationService {
 
     @Transactional(readOnly = true)
     public RegulationDetail getById(Long id) {
-        return regulationRepository.findOne(hasId(id))
+        return regulationRepository.findById(id)
                 .map(RegulationDetail::from)
                 .orElseThrow(() -> new NotFoundException("Propis ne postoji."));
     }

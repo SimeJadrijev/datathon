@@ -103,7 +103,7 @@ class ProfileControllerTest {
 
     @Test
     void tooManyKeywordsReturnBadRequest() throws Exception {
-        String keywords = String.join(",", Collections.nCopies(11, "\"a\""));
+        String keywords = String.join(",", Collections.nCopies(11, "\"abc\""));
 
         postProfile("{\"type\": \"COMPANY\", \"keywords\": [" + keywords + "]}").andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.message").value("keywords: smije imati najviše 10 stavki"));
@@ -112,7 +112,7 @@ class ProfileControllerTest {
     @Test
     void overlongKeywordReturnsBadRequest() throws Exception {
         postProfile("{\"type\": \"COMPANY\", \"keywords\": [\"" + "a".repeat(51) + "\"]}").andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message").value("keywords[0]: smije imati najviše 50 znakova"));
+                .andExpect(jsonPath("$.message").value("keywords[0]: mora imati od 3 do 50 znakova"));
     }
 
     @Test

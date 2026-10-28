@@ -116,6 +116,28 @@ class MetaAndSourceServiceTest {
         Instant snapshotInstant = LocalDate.of(2026, 10, 26).atStartOfDay(ZoneOffset.UTC).toInstant();
         assertThat(lastFetchOf(sources, SourceCode.MZOM)).isEqualTo(snapshotInstant);
         assertThat(lastFetchOf(sources, SourceCode.FZOEU)).isEqualTo(snapshotInstant);
+        assertThat(lastFetchOf(sources, SourceCode.SUDREG)).isNull();
+    }
+
+    @Test
+    void runThatFetchedNothingIsNotASuccessfulFetch() {
+        IngestRun run = ingestRunRepository.save(finishedRun(FIRST_RUN));
+        SourceRunLog emptyRun = runLog(run, SourceCode.HZZ, SECOND_RUN, 0);
+        emptyRun.setFetched(0);
+        sourceRunLogRepository.save(emptyRun);
+
+        var sources = sourceService.list();
+
+        Instant snapshotInstant = LocalDate.of(2026, 10, 26).atStartOfDay(ZoneOffset.UTC).toInstant();
+        assertThat(lastFetchOf(sources, SourceCode.HZZ)).isEqualTo(snapshotInstant);
+    }
+
+    @Test
+    void sourceRecordCountsIgnoreHiddenCalls() {
+        saveCall(SourceCode.HZZ, "a", FundingCallStatus.OPEN, false);
+        saveCall(SourceCode.HZZ, "b", FundingCallStatus.OPEN, true);
+
+        assertThat(recordCountOf(sourceService.list(), SourceCode.HZZ)).isEqualTo(1L);
     }
 
     private void saveCall(SourceCode source, String externalId, FundingCallStatus status, boolean hidden) {
@@ -134,6 +156,7 @@ class MetaAndSourceServiceTest {
     private static SourceRunLog runLog(IngestRun run, SourceCode source, Instant startedAt, int errors) {
         var log = new SourceRunLog(run, source, startedAt);
         log.setErrors(errors);
+        log.setFetched(10);
         return log;
     }
 

@@ -16,10 +16,12 @@ import com.datathon.api.fundingcall.dto.FundingCallFacets;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
 import com.datathon.api.fundingcall.dto.FundingCallSummary;
 import com.datathon.api.source.SourceCatalog;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -52,10 +54,11 @@ public class FundingCallService {
     public FundingCallFacets facets(FundingCallFilter filter) {
         Set<String> countyValues = countyValuesFor(filter);
         return new FundingCallFacets(
-                facetByColumn(filter, countyValues, FundingCallFacet.STATUS, "status"),
+                facetCounter.countByColumnWithUnknown(FundingCall.class,
+                        specificationIgnoring(filter, countyValues, FundingCallFacet.STATUS), "status"),
                 facetByElement(filter, countyValues, FundingCallFacet.TARGET_GROUP, "targetGroups"),
                 facetByElement(filter, countyValues, FundingCallFacet.AREA, "areas"),
-                wholeCountryAsSingleValue(facetByElement(filter, countyValues, FundingCallFacet.COUNTY, "counties")),
+                mergeCountySpellings(facetByElement(filter, countyValues, FundingCallFacet.COUNTY, "counties")),
                 facetByColumn(filter, countyValues, FundingCallFacet.SOURCE, "source"),
                 facetByColumn(filter, countyValues, FundingCallFacet.TYPE, "type"));
     }
@@ -76,13 +79,17 @@ public class FundingCallService {
         return visible().and(matchingExcept(filter, countyValues, facet));
     }
 
-    private static List<FacetCount> wholeCountryAsSingleValue(List<FacetCount> counties) {
-        Map<String, Long> countsByValue = new HashMap<>();
-        for (FacetCount county : counties) {
-            String value = CountyNames.isWholeCountry(county.value()) ? FundingCall.ALL_COUNTIES : county.value();
-            countsByValue.merge(value, county.count(), Long::sum);
-        }
-        return FacetCount.sortedByCount(countsByValue);
+    private static List<FacetCount> mergeCountySpellings(List<FacetCount> counties) {
+        Map<String, List<FacetCount>> spellingsByName = counties.stream()
+                .collect(Collectors.groupingBy(county -> CountyNames.normalize(county.value())));
+        Map<String, Long> countsByLabel = new HashMap<>();
+        spellingsByName.forEach((name, spellings) -> {
+            String label = FundingCall.ALL_COUNTIES.equals(name)
+                    ? FundingCall.ALL_COUNTIES
+                    : spellings.stream().max(Comparator.comparingLong(FacetCount::count)).orElseThrow().value();
+            countsByLabel.put(label, spellings.stream().mapToLong(FacetCount::count).sum());
+        });
+        return FacetCount.sortedByCount(countsByLabel);
     }
 
     private Set<String> countyValuesFor(FundingCallFilter filter) {

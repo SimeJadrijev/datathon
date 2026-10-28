@@ -27,10 +27,6 @@ public final class RegulationSpecifications {
         return Specification.allOf(parts.stream().filter(part -> part != null).toList());
     }
 
-    public static Specification<Regulation> hasId(Long id) {
-        return (root, query, cb) -> cb.equal(root.get("id"), id);
-    }
-
     private static Specification<Regulation> titleContains(String text) {
         if (text == null || text.isBlank()) {
             return null;

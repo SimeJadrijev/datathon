@@ -243,6 +243,34 @@ class FundingCallServiceTest {
     }
 
     @Test
+    void countyFacetMergesSpellingsOfTheSameCountyAndCountsACallOnce() {
+        save("Prvi", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("Istarska");
+        save("Drugi", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("Istarska županija");
+        save("Treći", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("Istarska županija");
+        FundingCall bothWholeCountrySpellings = save("Cijela", FundingCallStatus.OPEN, TargetGroup.COMPANY);
+        bothWholeCountrySpellings.getCounties().addAll(List.of("ALL", "Područje cijele Hrvatske"));
+        entityManager.flush();
+
+        var facets = fundingCallService.facets(noFilters());
+
+        assertThat(facets.county()).extracting(FacetCount::value, FacetCount::count)
+                .containsExactlyInAnyOrder(tuple("ALL", 2L), tuple("Istarska županija", 3L));
+    }
+
+    @Test
+    void onlyTheStatusFacetReportsCallsWithoutAValue() {
+        save("Bez statusa i tipa", null, TargetGroup.COMPANY);
+        save("S tipom", FundingCallStatus.OPEN, TargetGroup.COMPANY).setType(FundingCallType.GRANT);
+        save("Bez tipa", FundingCallStatus.OPEN, TargetGroup.COMPANY);
+        entityManager.flush();
+
+        var facets = fundingCallService.facets(noFilters());
+
+        assertThat(facets.status()).extracting(FacetCount::value).contains("UNKNOWN");
+        assertThat(facets.type()).extracting(FacetCount::value, FacetCount::count).containsExactly(tuple("GRANT", 1L));
+    }
+
+    @Test
     void facetsAreSortedByCountDescending() {
         save("A", FundingCallStatus.OPEN, TargetGroup.COMPANY);
         save("B", FundingCallStatus.CLOSED, TargetGroup.COMPANY);
