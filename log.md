@@ -50,3 +50,6 @@
 - API-3 gotov: `GET /api/funding-calls/facets` (6 `GROUP BY` upita, svaki facet ignorira vlastiti filter). Zajednički `FacetCounter` i `TextSearch` u `common/`.
 - API-4 gotov: `GET /api/regulations`, `/{id}`, `/facets`. Ukupno 63 testa prolazi, provjereno curlom na stvarnim podacima, primjeri u `work/api-examples.md`.
 - Otvoreno: odluka P4 (Sudreg) prije API-5. Provjere (code review, ručne provjere) po dogovoru idu nakon API-4.
+- API-5 gotov: `GET /api/sources` i `GET /api/meta`, `SUDREG` dodan u `SourceCode` (odluka P4), katalog proširen opisom, metodom i licencom.
+- API-6 gotov: `POST /api/profiles/match`, čista funkcija `MatchingService` (port `poc/match.py`, status nepoznat bez kazne), 15 unit testova, provjereno na tri POC profila.
+- API-7 gotov: `POST /api/profiles/from-oib`, `@Oib` validator, `SudregClient` + `FixtureSudregClient` + NKD mapiranje, fixturei kopirani u `main/resources/sudreg-fixtures`. Nalaz: Spring je u WARN logu ispisivao odbijeni OIB (`rejected value`), ugašeno s `spring.mvc.log-resolved-exception: false`.

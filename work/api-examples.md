@@ -496,3 +496,104 @@ Napomene za web:
 - `reasons` su gotove hrvatske rečenice, prikazuju se doslovno. To su transparentna pravila, ne AI.
 - Ime županije se normalizira (`Istarska`, `Istarska županija` i `istarska` su isto), `Grad Zagreb` i `Zagreb` također.
 - Natječaji sa `ALL` županijom ili bez županija ne ovise o županiji profila.
+
+---
+
+## API-7: `POST /api/profiles/from-oib`
+
+Body `{ "oib": "<11 znamenki>" }`. OIB se provjerava (duljina, samo znamenke, kontrolna znamenka ISO 7064 MOD 11,10), pa se tek onda poziva Sudreg. Dok nema pravog klijenta (INGEST-9) radi `FixtureSudregClient` sa SETUP-1 fixtureima (samo tri demo OIB-a, ostali valjani OIB-ovi daju 404). Odgovor je spreman za izravno slanje na `POST /api/profiles/match` (polje `profile`).
+
+### 21173725829: Microblink d.o.o. (IT, Zagreb)
+
+```json
+{
+  "companyName": "Microblink društvo s ograničenom odgovornošću za informacijske tehnologije",
+  "seat": {
+    "municipality": "Zagreb",
+    "county": "Grad Zagreb"
+  },
+  "activityCode": "62.01",
+  "profile": {
+    "type": "COMPANY",
+    "additionalTypes": [],
+    "areas": [
+      "DIGITALIZATION",
+      "INNOVATION",
+      "EMPLOYMENT"
+    ],
+    "county": "Grad Zagreb",
+    "keywords": [],
+    "activityCodes": [
+      "62.01"
+    ]
+  },
+  "source": "sudreg"
+}
+```
+
+### 36201212847: Valamar Riviera d.d. (turizam, Poreč)
+
+```json
+{
+  "companyName": "Valamar Riviera dioničko društvo za turizam",
+  "seat": {
+    "municipality": "Poreč - Parenzo",
+    "county": "Istarska županija"
+  },
+  "activityCode": "55.10",
+  "profile": {
+    "type": "COMPANY",
+    "additionalTypes": [],
+    "areas": [
+      "TOURISM",
+      "EMPLOYMENT"
+    ],
+    "county": "Istarska županija",
+    "keywords": [],
+    "activityCodes": [
+      "55.10"
+    ]
+  },
+  "source": "sudreg"
+}
+```
+
+### 94989605030: Kraš d.d. (prehrana, Zagreb)
+
+```json
+{
+  "companyName": "KRAŠ prehrambena industrija d.d.",
+  "seat": {
+    "municipality": "Zagreb",
+    "county": "Grad Zagreb"
+  },
+  "activityCode": "10.82",
+  "profile": {
+    "type": "COMPANY",
+    "additionalTypes": [],
+    "areas": [
+      "ENTREPRENEURSHIP",
+      "INNOVATION",
+      "EMPLOYMENT"
+    ],
+    "county": "Grad Zagreb",
+    "keywords": [],
+    "activityCodes": [
+      "10.82"
+    ]
+  },
+  "source": "sudreg"
+}
+```
+
+Greške:
+- Kriva kontrolna znamenka, krivi broj znamenki ili slova: `400 {"statusCode":400,"message":"oib: neispravan OIB","error":"Bad Request"}`
+- Bez `oib`: `400 {"statusCode":400,"message":"oib: obavezno polje","error":"Bad Request"}`
+- Ispravan OIB koji nije u Sudregu: `404 {"statusCode":404,"message":"Tvrtka s ovim OIB-om nije pronađena.","error":"Not Found"}`
+- Sudreg nedostupan: `502 {"statusCode":502,"message":"Vanjski izvor (Sudreg) trenutno nije dostupan. Pokušajte kasnije.","error":"Bad Gateway"}`
+
+Napomene za web:
+- `OibProfileResponse = { companyName: string; seat: { municipality: string; county: string }; activityCode: string | null; profile: ProfileRequest; source: "sudreg" }`.
+- `profile.areas` je prijedlog iz NKD-a, korisnik ga smije promijeniti prije pretrage. `profile.keywords` je prazan, a `activityCodes` ima najviše jednu šifru.
+- `seat.county` je naziv iz Sudrega ("Grad Zagreb", "Istarska županija"), matching ga normalizira.
+- OIB se nigdje ne logira (provjereno na živom API-ju: uspjeh, 400, 404 i neispravan JSON).

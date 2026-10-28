@@ -40,6 +40,9 @@ class ProfileControllerTest {
     @MockitoBean
     private ProfileMatchService profileMatchService;
 
+    @MockitoBean
+    private ProfileFromOibService profileFromOibService;
+
     @Test
     void matchReturnsResultsWithReasons() throws Exception {
         var summary = new FundingCallSummary(7L, "Vaučeri za digitalizaciju", "Ministarstvo",

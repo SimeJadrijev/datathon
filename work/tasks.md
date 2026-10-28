@@ -34,7 +34,7 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 | 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | GOTOVO, PR #12 čeka review i merge (merge prvi, ostali paketi ovise o njemu) |
 | 2 Ingest: core and first sources (#4) | INGEST-1 do 4 | 3,3 | Luka | OTVORENO (nakon #3) |
 | 3 Ingest: other sources | INGEST-5 do 9 | 3,1 | | OTVORENO |
-| 4 API | API-1 do 7 | 4,8 | | U TIJEKU, branch `sime/api`, plan u `work/api-plan.md`. API-1 do API-4 gotovi, 63 testa prolaze, primjeri JSON-a u `work/api-examples.md`. Slijede API-5 (treba odluku P4 Sudreg), API-6, API-7 i provjere. Jedan PR za cijeli paket. |
+| 4 API | API-1 do 7 | 4,8 | | U TIJEKU, branch `sime/api`, plan u `work/api-plan.md`. API-1 do API-7 napisani i testirani (primjeri u `work/api-examples.md`). Slijede provjere (code review, Swagger, ručno) pa jedan PR. Jedan PR za cijeli paket. |
 | 5 AI | AI-1 do 4 | 3,2 | | OTVORENO |
 | 6 Web: foundation, profile, recommendations | WEB-1 do 4 | 3,2 | | OTVORENO |
 | 7 Web: lists, details, laws, sources | WEB-5 do 9 | 3,9 | | OTVORENO |
