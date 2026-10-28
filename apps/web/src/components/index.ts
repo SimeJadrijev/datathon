@@ -4,6 +4,7 @@ export * from "./Card.tsx";
 export * from "./EmptyState.tsx";
 export * from "./ErrorState.tsx";
 export * from "./ExternalLink.tsx";
+export * from "./FundingCallCard.tsx";
 export * from "./LoadingState.tsx";
 export * from "./PageHeader.tsx";
 export * from "./Select.tsx";

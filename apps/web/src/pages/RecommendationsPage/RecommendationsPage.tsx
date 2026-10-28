@@ -1,18 +1,32 @@
 import {ButtonLink, EmptyState, PageHeader} from "@/components";
+import {useProfile} from "@/hooks";
 import {routes} from "@/routes";
+import {RecommendationsResults} from "./RecommendationsResults.tsx";
 
 export const RecommendationsPage = () => {
+    const {profile} = useProfile();
+
+    if (!profile) {
+        return (
+            <>
+                <PageHeader title="Moji natječaji"/>
+                <EmptyState
+                    title="Najprije nam reci tko si"
+                    hint="Ispuni kratak profil (manje od minute) i pokazat ćemo natječaje koji ti odgovaraju."
+                    actions={<ButtonLink href={routes.HOME}>Ispuni profil</ButtonLink>}
+                />
+            </>
+        );
+    }
+
     return (
         <>
             <PageHeader
                 title="Moji natječaji"
-                description="Natječaji koji odgovaraju tvom profilu i zašto ti odgovaraju."
+                description="Natječaji koji odgovaraju tvom profilu, poredani po tome koliko ti odgovaraju."
+                actions={<ButtonLink href={routes.HOME} variant="secondary">Promijeni profil</ButtonLink>}
             />
-            <EmptyState
-                title="Preporuke su u izradi"
-                hint="Uskoro ćeš ovdje vidjeti natječaje prema svom profilu."
-                actions={<ButtonLink href={routes.HOME} variant="secondary">Natrag na početnu</ButtonLink>}
-            />
+            <RecommendationsResults profile={profile}/>
         </>
     );
 };
