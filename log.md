@@ -44,3 +44,9 @@
 - Razrađen plan `work/api-plan.md` i doneseno 9 od 10 odluka (P4 Sudreg otvoren, treba tek u API-5/API-7). Odluke u `work/decisions.md`.
 - API-1 napisan na branchu `sime/api`: `common/` (ErrorResponse, iznimke preuzete iz `feature/pkg-5-ai`, prošireni `GlobalExceptionHandler` s 502 i porukom "polje: razlog", `PageResponse`, `PageRequests` s limitom 100, `OpenApiConfig`), springdoc path u `application.yaml`. 13 testova u `GlobalExceptionHandlerTest` prolazi bez baze.
 - Nije provjereno: Swagger UI u pregledniku i testovi koji traže Postgres na 5433 (Docker nije dostupan u ovoj sesiji, 5 postojećih testova pada na "Connection refused", ne zbog izmjena).
+
+## 2026-10-28 (paket 4, API)
+- API-2 gotov: lista i detalj natječaja s filterima, unaccent pretraga, N+1 provjeren (5 upita po listi). Istekli rokovi kod OPEN natječaja ostavljeni kako jesu, zapisano u QUALITY-1.
+- API-3 gotov: `GET /api/funding-calls/facets` (6 `GROUP BY` upita, svaki facet ignorira vlastiti filter). Zajednički `FacetCounter` i `TextSearch` u `common/`.
+- API-4 gotov: `GET /api/regulations`, `/{id}`, `/facets`. Ukupno 63 testa prolazi, provjereno curlom na stvarnim podacima, primjeri u `work/api-examples.md`.
+- Otvoreno: odluka P4 (Sudreg) prije API-5. Provjere (code review, ručne provjere) po dogovoru idu nakon API-4.
