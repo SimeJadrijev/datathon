@@ -100,3 +100,8 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
 - **Istekli rokovi u `status=OPEN`:** 10 od 141 vidljivih natječaja ima status OPEN, a rok u prošlosti (npr. id 99, rok 2023-06-13). API ih vraća kako jesu. Rješava se u podacima (QUALITY-1, točka 5), ne u API-ju. Zašto: specifikacija API-2 ne traži filtriranje po roku, a izvor ih još vodi kao otvorene. Alternativa za kasnije: `status=OPEN` isključuje istekle rokove.
 - **`unaccent` se stvara pri startu aplikacije** (`db/extensions.sql` preko `spring.sql.init`), ne init skriptom u docker-compose. Zašto: init skripte rade samo na praznom volumenu, pa bi postojeće baze članova tima ostale bez ekstenzije. Ovako radi svima bez ručnog koraka.
 - **`SourceInfo` i `SourceRef` su u `source/`**, ne u `fundingcall/dto/`, jer ih koristi i API-5. Lista vraća `source` kao `{code, name}`, detalj kao `{code, name, url}`.
+
+## 2026-10-28: P4, Sudreg u paketu 4
+- **Odluka:** `SUDREG` se dodaje u `SourceCode`. Fixturei iz SETUP-1 idu u `apps/api/src/main/resources/sudreg-fixtures/`. `SudregClient` i `CompanyInfo` definira API-7 u `integration/sudreg/`, a vlasnik INGEST-9 koristi isto sučelje.
+- **Zašto:** `/api/sources` mora pokazati Sudreg kao izvor otvorenih podataka (kriterij "Korištenje otvorenih podataka"), a demo profil iz OIB-a ne smije ovisiti o dostupnosti Sudrega.
+- **Posljedica:** javiti vlasniku INGEST-9 da koristi isto sučelje i `CompanyInfo`.

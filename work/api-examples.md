@@ -221,3 +221,57 @@ Napomene za web:
 - `summary` je `null` dok AI-3 ne generira sažetak, a `hasSummary` na listi to već kaže.
 - Većina propisa nema `areas` (prazna lista), pa facet `area` ne pokriva sve propise.
 - `RegulationType` ima 5 vrijednosti: `LAW`, `DECREE`, `ORDINANCE`, `DECISION`, `OTHER`.
+
+---
+
+## API-5: Izvori i meta
+
+### `GET /api/meta`
+
+```json
+{"snapshotDate":"2026-10-26","lastIngestAt":null,"counts":{"openFundingCalls":141,"regulations":3860}}
+```
+
+`lastIngestAt` je `null` dok ne postoji završen `IngestRun` (INGEST paket). `snapshotDate` je datum seeda. `openFundingCalls` broji vidljive pozive sa statusom `OPEN`.
+
+### `GET /api/sources` (3 od 8 zapisa, redoslijed kao u `SourceCode`)
+
+```json
+[
+  {
+    "code": "HZZ",
+    "name": "Hrvatski zavod za zapošljavanje (mjere)",
+    "description": "Mjere aktivne politike zapošljavanja, kontinuirane tijekom godine, preko javnog WordPress REST API-ja.",
+    "url": "https://mjere.hzz.hr",
+    "method": "API",
+    "license": "nije provjereno",
+    "recordCount": 97,
+    "lastSuccessfulFetch": "2026-10-26T00:00:00Z"
+  },
+  {
+    "code": "NARODNE_NOVINE",
+    "name": "Narodne novine",
+    "description": "Službeni dio Narodnih novina: zakoni i propisi s ELI identifikatorima i metapodacima.",
+    "url": "https://narodne-novine.nn.hr",
+    "method": "HTML",
+    "license": "nije provjereno",
+    "recordCount": 3860,
+    "lastSuccessfulFetch": "2026-10-26T00:00:00Z"
+  },
+  {
+    "code": "SUDREG",
+    "name": "Sudski registar",
+    "description": "Javni API Sudskog registra (OAuth2). Iz OIB-a tvrtke dohvaća sjedište, pravni oblik i djelatnost za izradu profila.",
+    "url": "https://sudreg-data.gov.hr",
+    "method": "API",
+    "license": "nije provjereno",
+    "recordCount": null,
+    "lastSuccessfulFetch": "2026-10-26T00:00:00Z"
+  }
+]
+```
+
+Napomene za web:
+- `method`: `API` | `HTML` | `PDF`. `license` je za sada svugdje `"nije provjereno"`.
+- `recordCount` je `null` za `SUDREG` (nije izvor zapisa). Za `NARODNE_NOVINE` to je broj propisa, za ostale broj natječaja (uključujući skrivene).
+- `lastSuccessfulFetch`: zadnji uspješan `SourceRunLog` (`errors = 0`), a bez njega datum seeda (ponoć UTC). Može biti `null` samo ako seed nema datum.
