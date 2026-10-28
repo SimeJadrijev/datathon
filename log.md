@@ -85,3 +85,7 @@
 - Nalaz: istekli OPEN natječaji ne ulaze u preporuke (matching ih izbacuje), ali su na listi `/natjecaji` (10 na prvoj stranici), bitno za WEB-5.
 - Nalaz: kartica e-auto poziva (EnU-2/26) pokazuje rok 31. 3. 2028. i 2.500 €, što je pogrešno; AI-2 to ispravlja, ali AI rezultati nisu u seedu.
 - Sudreg ključevi od Luke ne rade ništa dok ne postoji INGEST-9; Spring ne čita `.env` sam.
+
+## 2026-10-29 (Luka)
+- Na `main` mergani PR #13 (AI), #16 (API) i #15 (ingest); svih 208 testova prolazi. Web PR #14 zatvoren bez mergea (kod na `feature/pkg-6-web`).
+- Admin ruta `POST /api/admin/ingest` dodana izravno na `main` (AdminKeyGuard + BatchRunner): 202/401/400/409 provjereni curlom, FZOEU run 29 zapisa. README dopunjen uputom. #4 zatvoren.

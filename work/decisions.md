@@ -169,3 +169,5 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
 - **"Zašto ti odgovara" ne prikazuje razloge "otvoren", "najavljen" i "rok za N dana"** (29.10.): kartica ih već pokazuje kao oznake. Filtrira web (`MatchDetails.tsx`), API vraća sve razloge kao i prije.
 - **Kartica:** naslov najviše 3 retka (cijeli u tooltipu i na detalju), bez roka piše "provjeri na izvoru", izvor je oznaka (`Badge`) koja se na uskim ekranima prelama.
 - **Screenshotovi za PR su u repou** (`work/screenshots/pkg-6/`), jer je repo privatan i slike u opisu PR-a moraju biti dostupne članovima tima. Linkovi u PR-u vežu se na commit, pa rade i nakon brisanja brancha.
+
+- **Admin ruta (29. 10.):** `POST /api/admin/ingest[?source=...]` koristi `AdminKeyGuard` i `BatchRunner` iz AI paketa. Vraća 202 s `runId`; bez ili s krivim `X-Admin-Key` 401, nepoznat izvor 400. Dok ingest radi, novi poziv vraća 409, a run stvoren za taj poziv se briše da u `ingest_run` ne ostaju prazni zapisi. Ruta je `@Hidden` u Swaggeru. Na `main` gurnuto izravno, bez PR-a (odluka korisnika).

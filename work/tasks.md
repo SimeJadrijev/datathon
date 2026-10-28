@@ -32,7 +32,7 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 | Paket | Sadržaj | Dana | Vlasnik | Status |
 |---|---|---|---|---|
 | 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | GOTOVO, PR #12 mergean, issue zatvoren |
-| 2 Ingest: core and first sources (#4) | INGEST-1 do 4 | 3,3 | Luka | PR #15 mergean 28.10.; issue #4 još otvoren (admin ruta `POST /api/admin/ingest`) |
+| 2 Ingest: core and first sources (#4) | INGEST-1 do 4 | 3,3 | Luka | GOTOVO (PR #15 + admin ruta izravno na main) |
 | 3 Ingest: other sources | INGEST-5 do 9 | 3,1 | | OTVORENO |
 | 4 API (#6) | API-1 do 7 | 4,8 | Sime | GOTOVO, PR #16 mergean 28.10., issue zatvoren (primjeri u `work/api-examples.md`) |
 | 5 AI (#7) | AI-1 do 4 | 3,2 | Nino | PR #13 mergean 27.10.; issue #7 još otvoren |
