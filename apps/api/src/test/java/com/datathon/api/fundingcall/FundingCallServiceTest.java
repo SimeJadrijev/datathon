@@ -1,7 +1,10 @@
 package com.datathon.api.fundingcall;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.tuple;
 
+import com.datathon.api.common.FacetCount;
+import com.datathon.api.common.FacetCounter;
 import com.datathon.api.common.NotFoundException;
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
@@ -36,7 +39,8 @@ class FundingCallServiceTest {
     @BeforeEach
     void setUp() {
         entityManager.createNativeQuery("TRUNCATE TABLE funding_call CASCADE").executeUpdate();
-        fundingCallService = new FundingCallService(fundingCallRepository, new SourceCatalog(JsonMapper.builder().build()));
+        fundingCallService = new FundingCallService(fundingCallRepository, new SourceCatalog(JsonMapper.builder().build()),
+                new FacetCounter(entityManager));
     }
 
     @Test
@@ -189,6 +193,69 @@ class FundingCallServiceTest {
 
         assertThat(result.content()).hasSize(15);
         assertThat(statistics.getPrepareStatementCount()).isLessThanOrEqualTo(6);
+    }
+
+    @Test
+    void statusFacetSumsToTheNumberOfVisibleCalls() {
+        save("Otvoren", FundingCallStatus.OPEN, TargetGroup.COMPANY);
+        save("Zatvoren", FundingCallStatus.CLOSED, TargetGroup.STUDENT);
+        save("Bez statusa", null, TargetGroup.COMPANY);
+        FundingCall hidden = save("Skriven", FundingCallStatus.OPEN, TargetGroup.COMPANY);
+        hidden.setHidden(true);
+        FundingCall duplicate = save("Duplikat", FundingCallStatus.OPEN, TargetGroup.COMPANY);
+        duplicate.setDuplicateOf(hidden.getId());
+        entityManager.flush();
+
+        var facets = fundingCallService.facets(noFilters());
+
+        assertThat(facets.status()).extracting(FacetCount::value, FacetCount::count)
+                .containsExactlyInAnyOrder(tuple("OPEN", 1L), tuple("CLOSED", 1L), tuple("UNKNOWN", 1L));
+        assertThat(facets.status()).extracting(FacetCount::count).containsOnly(1L);
+        assertThat(facets.source()).extracting(FacetCount::count).containsExactly(1L);
+    }
+
+    @Test
+    void facetIgnoresItsOwnFilterButRespectsTheOthers() {
+        save("Student energija", FundingCallStatus.OPEN, TargetGroup.STUDENT).getAreas().add(Area.ENERGY);
+        save("Student obrazovanje", FundingCallStatus.OPEN, TargetGroup.STUDENT).getAreas().add(Area.EDUCATION);
+        save("Tvrtka promet", FundingCallStatus.OPEN, TargetGroup.COMPANY).getAreas().add(Area.TRANSPORT);
+        entityManager.flush();
+        var filter = new FundingCallFilter(null, null, TargetGroup.STUDENT, null, null, null, null, null, null, null, null);
+
+        var facets = fundingCallService.facets(filter);
+
+        assertThat(facets.area()).extracting(FacetCount::value).containsExactlyInAnyOrder("ENERGY", "EDUCATION");
+        assertThat(facets.targetGroup()).extracting(FacetCount::value, FacetCount::count)
+                .containsExactlyInAnyOrder(tuple("STUDENT", 2L), tuple("COMPANY", 1L));
+    }
+
+    @Test
+    void countyFacetMergesWholeCountryValuesIntoAll() {
+        save("Istarski", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("Istarska");
+        save("Cijela država", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("ALL");
+        save("Cijela Hrvatska", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("Područje cijele Hrvatske");
+        entityManager.flush();
+
+        var facets = fundingCallService.facets(noFilters());
+
+        assertThat(facets.county()).extracting(FacetCount::value, FacetCount::count)
+                .containsExactly(tuple("ALL", 2L), tuple("Istarska", 1L));
+    }
+
+    @Test
+    void facetsAreSortedByCountDescending() {
+        save("A", FundingCallStatus.OPEN, TargetGroup.COMPANY);
+        save("B", FundingCallStatus.CLOSED, TargetGroup.COMPANY);
+        save("C", FundingCallStatus.CLOSED, TargetGroup.COMPANY);
+        entityManager.flush();
+
+        var facets = fundingCallService.facets(noFilters());
+
+        assertThat(facets.status()).extracting(FacetCount::value).containsExactly("CLOSED", "OPEN");
+    }
+
+    private static FundingCallFilter noFilters() {
+        return new FundingCallFilter(null, null, null, null, null, null, null, null, null, null, null);
     }
 
     private FundingCall save(String title, FundingCallStatus status, TargetGroup targetGroup) {

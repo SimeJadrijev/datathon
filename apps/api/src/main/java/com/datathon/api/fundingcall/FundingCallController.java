@@ -2,6 +2,7 @@ package com.datathon.api.fundingcall;
 
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.dto.FundingCallDetail;
+import com.datathon.api.fundingcall.dto.FundingCallFacets;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
 import com.datathon.api.fundingcall.dto.FundingCallSummary;
 import jakarta.validation.Valid;
@@ -22,6 +23,11 @@ public class FundingCallController {
     @GetMapping
     PageResponse<FundingCallSummary> list(@Valid @ParameterObject FundingCallFilter filter) {
         return fundingCallService.list(filter);
+    }
+
+    @GetMapping("/facets")
+    FundingCallFacets facets(@Valid @ParameterObject FundingCallFilter filter) {
+        return fundingCallService.facets(filter);
     }
 
     @GetMapping("/{id}")

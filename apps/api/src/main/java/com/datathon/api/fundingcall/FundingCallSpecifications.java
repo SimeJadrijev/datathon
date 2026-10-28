@@ -1,10 +1,9 @@
 package com.datathon.api.fundingcall;
 
+import com.datathon.api.common.TextSearch;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
 import com.datathon.api.fundingcall.dto.FundingCallStatusFilter;
 import com.datathon.api.source.SourceCode;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Predicate;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,8 +12,6 @@ import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 
 public final class FundingCallSpecifications {
-
-    private static final char LIKE_ESCAPE = '\\';
 
     private FundingCallSpecifications() {
     }
@@ -28,14 +25,19 @@ public final class FundingCallSpecifications {
     }
 
     public static Specification<FundingCall> matching(FundingCallFilter filter, Collection<String> countyValues) {
+        return matchingExcept(filter, countyValues, null);
+    }
+
+    public static Specification<FundingCall> matchingExcept(FundingCallFilter filter, Collection<String> countyValues,
+                                                            FundingCallFacet ignoredFacet) {
         List<Specification<FundingCall>> parts = new ArrayList<>();
         parts.add(titleOrProviderContains(filter.q()));
-        parts.add(hasStatus(filter.status()));
-        parts.add(hasTargetGroup(filter.targetGroup()));
-        parts.add(hasArea(filter.area()));
-        parts.add(inAnyCounty(filter.county() == null ? null : countyValues));
-        parts.add(fromSource(filter.source()));
-        parts.add(ofType(filter.type()));
+        parts.add(ignoredFacet == FundingCallFacet.STATUS ? null : hasStatus(filter.status()));
+        parts.add(ignoredFacet == FundingCallFacet.TARGET_GROUP ? null : hasTargetGroup(filter.targetGroup()));
+        parts.add(ignoredFacet == FundingCallFacet.AREA ? null : hasArea(filter.area()));
+        parts.add(ignoredFacet == FundingCallFacet.COUNTY || filter.county() == null ? null : inAnyCounty(countyValues));
+        parts.add(ignoredFacet == FundingCallFacet.SOURCE ? null : fromSource(filter.source()));
+        parts.add(ignoredFacet == FundingCallFacet.TYPE ? null : ofType(filter.type()));
         parts.add(deadlineOnOrBefore(filter.deadlineBefore()));
         return Specification.allOf(parts.stream().filter(part -> part != null).toList());
     }
@@ -44,10 +46,10 @@ public final class FundingCallSpecifications {
         if (text == null || text.isBlank()) {
             return null;
         }
-        String pattern = "%" + escapeLike(text.strip()) + "%";
+        String pattern = TextSearch.containsPattern(text);
         return (root, query, cb) -> cb.or(
-                likeIgnoringCaseAndAccents(cb, root.get("title"), pattern),
-                likeIgnoringCaseAndAccents(cb, root.get("provider"), pattern));
+                TextSearch.likeIgnoringCaseAndAccents(cb, root.get("title"), pattern),
+                TextSearch.likeIgnoringCaseAndAccents(cb, root.get("provider"), pattern));
     }
 
     public static Specification<FundingCall> hasStatus(FundingCallStatusFilter status) {
@@ -89,15 +91,5 @@ public final class FundingCallSpecifications {
 
     public static Specification<FundingCall> deadlineOnOrBefore(LocalDate date) {
         return date == null ? null : (root, query, cb) -> cb.lessThanOrEqualTo(root.get("deadline"), date);
-    }
-
-    private static Predicate likeIgnoringCaseAndAccents(CriteriaBuilder cb, Expression<String> column, String pattern) {
-        Expression<String> normalizedColumn = cb.lower(cb.function("unaccent", String.class, column));
-        Expression<String> normalizedPattern = cb.lower(cb.function("unaccent", String.class, cb.literal(pattern)));
-        return cb.like(normalizedColumn, normalizedPattern, LIKE_ESCAPE);
-    }
-
-    private static String escapeLike(String text) {
-        return text.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_");
     }
 }

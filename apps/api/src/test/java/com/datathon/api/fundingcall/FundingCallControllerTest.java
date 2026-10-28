@@ -7,11 +7,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.datathon.api.common.FacetCount;
 import com.datathon.api.common.GlobalExceptionHandler;
 import com.datathon.api.common.NotFoundException;
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.dto.AttachmentResponse;
 import com.datathon.api.fundingcall.dto.FundingCallDetail;
+import com.datathon.api.fundingcall.dto.FundingCallFacets;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
 import com.datathon.api.fundingcall.dto.FundingCallSort;
 import com.datathon.api.fundingcall.dto.FundingCallStatusFilter;
@@ -118,6 +120,40 @@ class FundingCallControllerTest {
                 .andExpect(jsonPath("$.fieldsReviewed").value(false))
                 .andExpect(jsonPath("$.fetchedAt").value("2026-10-24T08:15:00Z"))
                 .andExpect(jsonPath("$.sourceText").doesNotExist());
+    }
+
+    @Test
+    void facetsReturnValueAndCountPairsPerFilter() throws Exception {
+        var facets = new FundingCallFacets(
+                List.of(new FacetCount("OPEN", 141), new FacetCount("UNKNOWN", 3)),
+                List.of(new FacetCount("STUDENT", 23)),
+                List.of(new FacetCount("ENERGY", 8)),
+                List.of(new FacetCount("ALL", 60), new FacetCount("Istarska", 4)),
+                List.of(new FacetCount("FZOEU", 20)),
+                List.of(new FacetCount("SCHOLARSHIP", 12)));
+        when(fundingCallService.facets(any())).thenReturn(facets);
+
+        mockMvc.perform(get("/api/funding-calls/facets").param("targetGroup", "STUDENT"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status[0].value").value("OPEN"))
+                .andExpect(jsonPath("$.status[0].count").value(141))
+                .andExpect(jsonPath("$.status[1].value").value("UNKNOWN"))
+                .andExpect(jsonPath("$.targetGroup[0].value").value("STUDENT"))
+                .andExpect(jsonPath("$.area[0].value").value("ENERGY"))
+                .andExpect(jsonPath("$.county[0].value").value("ALL"))
+                .andExpect(jsonPath("$.source[0].value").value("FZOEU"))
+                .andExpect(jsonPath("$.type[0].value").value("SCHOLARSHIP"));
+
+        ArgumentCaptor<FundingCallFilter> captor = ArgumentCaptor.forClass(FundingCallFilter.class);
+        verify(fundingCallService).facets(captor.capture());
+        org.assertj.core.api.Assertions.assertThat(captor.getValue().targetGroup()).isEqualTo(TargetGroup.STUDENT);
+    }
+
+    @Test
+    void facetsWithInvalidFilterReturnBadRequest() throws Exception {
+        mockMvc.perform(get("/api/funding-calls/facets").param("area", "XYZ"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message").value("area: neispravna vrijednost"));
     }
 
     @Test
