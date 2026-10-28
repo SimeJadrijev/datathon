@@ -6,6 +6,7 @@ import type {OibProfile} from "@/types";
 import {isValidOib} from "@/utils";
 import styles from "./OibLookup.module.css";
 
+const OIB_LENGTH = 11;
 const INVALID_OIB_MESSAGE = "OIB nije valjan. Provjeri je li upisano svih 11 znamenki.";
 const MANUAL_FALLBACK = "Možeš nastaviti i ručno ispuniti obrazac ispod.";
 
@@ -48,7 +49,8 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
     };
 
     const handleChange = (value: string) => {
-        setOib(value.replace(/\D/g, ""));
+        // Cut after removing spaces and dashes, so a pasted "21173 725829" keeps all 11 digits.
+        setOib(value.replace(/\D/g, "").slice(0, OIB_LENGTH));
         setValidationError(undefined);
     };
 
@@ -66,7 +68,6 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
                     type="text"
                     inputMode="numeric"
                     autoComplete="off"
-                    maxLength={11}
                     className={styles.input}
                     value={oib}
                     placeholder="11 znamenki"
