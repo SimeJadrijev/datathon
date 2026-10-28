@@ -53,3 +53,9 @@
 - API-5 gotov: `GET /api/sources` i `GET /api/meta`, `SUDREG` dodan u `SourceCode` (odluka P4), katalog proširen opisom, metodom i licencom.
 - API-6 gotov: `POST /api/profiles/match`, čista funkcija `MatchingService` (port `poc/match.py`, status nepoznat bez kazne), 15 unit testova, provjereno na tri POC profila.
 - API-7 gotov: `POST /api/profiles/from-oib`, `@Oib` validator, `SudregClient` + `FixtureSudregClient` + NKD mapiranje, fixturei kopirani u `main/resources/sudreg-fixtures`. Nalaz: Spring je u WARN logu ispisivao odbijeni OIB (`rejected value`), ugašeno s `spring.mvc.log-resolved-exception: false`.
+
+## 2026-10-28 (Luka)
+- PR #12 (paket 1) mergan (Nino). Krenut #4 na `feature/pkg-2-ingest-core`.
+- INGEST-1 do 4 gotovi: HTTP klijent (robots.txt s BOM-om, 1 req/s, cache, retry, cp1250), okvir (filtar, pravila za rok/iznose/skupine/područja, upsert po hashu, log po izvoru), udruge.gov.hr i FZOEU s PDF-ovima. 65 testova prolazi.
+- Pravi run: udruge 141 zapisa (90 otvorenih, 72 s rokom; ostali nemaju rok na izvoru), FZOEU 29 (9 otvorenih). Prvi run je otkrio da filtar po naslovu izbacuje pravi FZOEU poziv; ispravljeno. Usporedba s POC-om i odluke u `work/decisions.md`.
+- Admin ruta čeka AI PR #13 (`AdminKeyGuard`, `BatchRunner`); do tada `INGEST_ON_STARTUP=true`.
