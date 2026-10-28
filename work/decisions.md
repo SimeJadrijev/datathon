@@ -158,3 +158,11 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
 - Natječaj s "PONIŠTEN", "obustavljen" ili "stavljen izvan snage" u naslovu je `CLOSED` i kad ga izvor vodi kao otvoren.
 - Kad izvor ne da datum objave, prvo se traži rok, a datum objave se pogađa kao prvi datum u zaglavlju koji je prije roka (POC je jedini datum u tekstu proglašavao datumom objave i tako gubio rok).
 - **Usporedba s POC-om (28. 10.):** udruge.gov.hr 141 na popisu (92 otvorena + 5 stranica zatvorenih; POC 244 jer je čitao 15 stranica zatvorenih), 90 otvorenih (2 poništena se vode kao zatvoreni), 72 s rokom (80 %; POC 40 od 94 jer je čitao samo 40 detalja), 89 s iznosom (POC 40). Svih 18 otvorenih bez roka nemaju polje "Datum zatvaranja" na izvoru; dio je iz 2019.-2021. i izvor ih nije zatvorio. Kriterij "≥ 90 % s rokom" nije ispunjiv bez LLM-a ili ručne provjere (QUALITY-2). FZOEU 29 (POC 28), 9 otvorenih (POC 8), 1 s rokom (POC 2, od kojih je 2028. za EnU-2/26 bio pogrešan).
+
+## 2026-10-28: Paket 6, WEB-3 i WEB-4 (Ivan, issue #8)
+- **Paket 6 ide u jedan PR** (`Closes #8`). PR #14 (WEB-1, WEB-2) zatvoren je bez mergea, pa raniji plan s dva PR-a više ne vrijedi.
+- **`/preporuke` bez profila ne preusmjerava** na početnu nego na istoj adresi pokazuje poruku i gumb "Ispuni profil" (odstupanje od WEB-4 specifikacije). Zašto: korisnik vidi zašto nema preporuka, a adresa i gumb "natrag" ostaju ispravni. Lako se promijeni ako tim želi redirect.
+- **`ApiError` nosi HTTP status** (interceptor u `api/base.ts`). Treba ga WEB-3 (400/404/502), a koristit će ga i WEB-6/WEB-8 za 404. Upiti ne ponavljaju zahtjev na 4xx (`App.tsx`), pa se greška pokaže odmah.
+- **Ključne riječi profila moraju imati 3 do 50 znakova** jer ih API inače odbija s 400. Forma to javlja, a stari spremljeni profili odbacuju prekratke riječi pri čitanju.
+- **Županija iz Sudrega** ("Istarska županija") mapira se na kratki oblik iz forme ("Istarska"). `activityCodes` iz OIB-a se čuvaju u profilu i šalju na matching.
+- **`FundingCallCard` je u `components/`** s `children` slotom (razlozi i upozorenje u WEB-4), da ga WEB-5 koristi bez promjene.

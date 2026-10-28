@@ -72,3 +72,9 @@
 - INGEST-1 do 4 gotovi: HTTP klijent (robots.txt s BOM-om, 1 req/s, cache, retry, cp1250), okvir (filtar, pravila za rok/iznose/skupine/područja, upsert po hashu, log po izvoru), udruge.gov.hr i FZOEU s PDF-ovima. 65 testova prolazi.
 - Pravi run: udruge 141 zapisa (90 otvorenih, 72 s rokom; ostali nemaju rok na izvoru), FZOEU 29 (9 otvorenih). Prvi run je otkrio da filtar po naslovu izbacuje pravi FZOEU poziv; ispravljeno. Usporedba s POC-om i odluke u `work/decisions.md`.
 - Admin ruta čeka AI PR #13 (`AdminKeyGuard`, `BatchRunner`); do tada `INGEST_ON_STARTUP=true`.
+
+## 2026-10-28 (Ivan, paket 6)
+- `origin/main` (API #16, AI #13, ingest #15) spojen u `feature/pkg-6-web`; konflikti samo u `work/tasks.md`, `work/decisions.md` i `log.md`. PR #14 je zatvoren bez mergea, paket ide u jedan PR.
+- WEB-3 gotov: OIB polje iznad forme, provjera kontrolne znamenke u pregledniku, poruke za 400/404/502, popunjavanje forme iz Sudrega (tip, područja, županija, NKD). Provjereno na Valamaru (Istarska, turizam), neispravnom OIB-u i valjanom OIB-u koji nije u registru. 502 nije provjeren uživo.
+- WEB-4 gotov: `/preporuke` sa `FundingCallCard`, "Zašto ti odgovara", upozorenjem za nepoznat status i sažetkom. Tri testna profila (student Rijeka 20, građanin e-auto 9 s e-auto pozivom prvim, tvrtka 8) daju smislene liste. Provjerena sva četiri stanja, 1280 px i 375 px. `yarn lint` i `yarn build` prolaze.
+- Nalazi: (1) svježa baza nema nikakve AI rezultate, blocker za WEB-7 i demo bez ključa (u `work/tasks.md`); (2) za studenta je prvi rezultat stipendija za romsku manjinu, matching ne zna za uže uvjete (za QUALITY); (3) `formatDate` daje "03. 11. 2026." s vodećom nulom.
