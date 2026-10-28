@@ -30,6 +30,11 @@ public class AssociationsOfficeFetcher implements SourceFetcher {
     private final IngestProperties properties;
 
     @Override
+    public boolean needsTitleFilter() {
+        return false;
+    }
+
+    @Override
     public SourceCode code() {
         return SourceCode.ASSOCIATIONS_OFFICE;
     }

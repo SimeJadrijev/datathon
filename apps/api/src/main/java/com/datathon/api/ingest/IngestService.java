@@ -70,7 +70,7 @@ public class IngestService {
     }
 
     private void processItem(SourceFetcher fetcher, RawItem item, SourceRunLog runLog) {
-        if (!fundingFilter.isFunding(item.title())) {
+        if (fetcher.needsTitleFilter() && !fundingFilter.isFunding(item.title())) {
             runLog.setSkipped(runLog.getSkipped() + 1);
             return;
         }

@@ -27,6 +27,8 @@ public class RuleExtractor {
     private static final int SHORT_PAGE_CHARS = 500;
     private static final int NKD_WINDOW_CHARS = 300;
     private static final Pattern NKD_KEYWORD = Pattern.compile("\\bNKD\\b");
+    private static final Pattern CANCELLED = Pattern.compile(
+            "poništen|obustavljen|stavljen izvan snage", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
     private static final Pattern NKD_CODE = Pattern.compile("\\b(\\d{2}\\.\\d{1,2})\\b");
 
     private static final List<Map.Entry<String, FundingCallType>> TYPE_KEYWORDS = List.of(
@@ -60,10 +62,8 @@ public class RuleExtractor {
 
     public ExtractedFields extract(RawItem item) {
         String page = item.title() + "\n" + item.text();
-        LocalDate publishedAt = item.publishedAt() != null
-                ? item.publishedAt()
-                : CroatianDates.findFirst(head(item.text())).orElse(null);
-        LocalDate deadline = deadline(item, page, publishedAt);
+        LocalDate deadline = deadline(item, page, item.publishedAt());
+        LocalDate publishedAt = item.publishedAt() != null ? item.publishedAt() : guessPublishedAt(item, deadline);
         Amounts amounts = amounts(item, page);
         String body = item.text().length() > SHORT_PAGE_CHARS ? item.text() : item.text() + "\n" + item.pdfText();
         return new ExtractedFields(
@@ -90,6 +90,14 @@ public class RuleExtractor {
                 .orElse(null);
     }
 
+    private LocalDate guessPublishedAt(RawItem item, LocalDate deadline) {
+        return CroatianDates.findAll(head(item.text())).stream()
+                .map(CroatianDates.DateMatch::date)
+                .filter(date -> deadline == null || date.isBefore(deadline))
+                .findFirst()
+                .orElse(null);
+    }
+
     private Amounts amounts(RawItem item, String page) {
         Amounts found = AmountParser.pick(List.of(page, item.pdfText()));
         return new Amounts(
@@ -111,6 +119,9 @@ public class RuleExtractor {
     }
 
     private FundingCallStatus status(RawItem item, LocalDate deadline) {
+        if (CANCELLED.matcher(item.title()).find()) {
+            return FundingCallStatus.CLOSED;
+        }
         if (item.statusHint() != null) {
             return item.statusHint();
         }

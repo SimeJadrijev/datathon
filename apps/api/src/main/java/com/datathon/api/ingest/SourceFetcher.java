@@ -10,4 +10,8 @@ public interface SourceFetcher {
     List<RawItem> fetchList();
 
     RawItem fetchDetail(RawItem item);
+
+    default boolean needsTitleFilter() {
+        return true;
+    }
 }

@@ -17,6 +17,11 @@ public class FzoeuFetcher implements SourceFetcher {
     private final PdfTextExtractor pdfTextExtractor;
 
     @Override
+    public boolean needsTitleFilter() {
+        return false;
+    }
+
+    @Override
     public SourceCode code() {
         return SourceCode.FZOEU;
     }
