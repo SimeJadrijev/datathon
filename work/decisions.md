@@ -166,3 +166,6 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
 - **Ključne riječi profila moraju imati 3 do 50 znakova** jer ih API inače odbija s 400. Forma to javlja, a stari spremljeni profili odbacuju prekratke riječi pri čitanju.
 - **Županija iz Sudrega** ("Istarska županija") mapira se na kratki oblik iz forme ("Istarska"). `activityCodes` iz OIB-a se čuvaju u profilu i šalju na matching.
 - **`FundingCallCard` je u `components/`** s `children` slotom (razlozi i upozorenje u WEB-4), da ga WEB-5 koristi bez promjene.
+- **"Zašto ti odgovara" ne prikazuje razloge "otvoren", "najavljen" i "rok za N dana"** (29.10.): kartica ih već pokazuje kao oznake. Filtrira web (`MatchDetails.tsx`), API vraća sve razloge kao i prije.
+- **Kartica:** naslov najviše 3 retka (cijeli u tooltipu i na detalju), bez roka piše "provjeri na izvoru", izvor je oznaka (`Badge`) koja se na uskim ekranima prelama.
+- **Screenshotovi za PR su u repou** (`work/screenshots/pkg-6/`), jer je repo privatan i slike u opisu PR-a moraju biti dostupne članovima tima. Linkovi u PR-u vežu se na commit, pa rade i nakon brisanja brancha.

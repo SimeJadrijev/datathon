@@ -78,3 +78,10 @@
 - WEB-3 gotov: OIB polje iznad forme, provjera kontrolne znamenke u pregledniku, poruke za 400/404/502, popunjavanje forme iz Sudrega (tip, područja, županija, NKD). Provjereno na Valamaru (Istarska, turizam), neispravnom OIB-u i valjanom OIB-u koji nije u registru. 502 nije provjeren uživo.
 - WEB-4 gotov: `/preporuke` sa `FundingCallCard`, "Zašto ti odgovara", upozorenjem za nepoznat status i sažetkom. Tri testna profila (student Rijeka 20, građanin e-auto 9 s e-auto pozivom prvim, tvrtka 8) daju smislene liste. Provjerena sva četiri stanja, 1280 px i 375 px. `yarn lint` i `yarn build` prolaze.
 - Nalazi: (1) svježa baza nema nikakve AI rezultate, blocker za WEB-7 i demo bez ključa (u `work/tasks.md`); (2) za studenta je prvi rezultat stipendija za romsku manjinu, matching ne zna za uže uvjete (za QUALITY); (3) `formatDate` daje "03. 11. 2026." s vodećom nulom.
+
+## 2026-10-29 (Ivan, paket 6)
+- Dorade kartica nakon pregleda: naslov u 3 retka, "provjeri na izvoru" bez roka, razlozi bez ponavljanja oznaka, manji naslov na mobitelu, izvor kao oznaka. Županije abecedno. OIB s razmacima više ne gubi znamenku.
+- Provjera svih kriterija paketa 6 iz `work/mvp-task-specs.md`: sve ispunjeno, odstupanja zapisana u PR-u. 502 za OIB provjeren lažnim serverom, forma i preporuke prođene samo tipkovnicom.
+- Nalaz: istekli OPEN natječaji ne ulaze u preporuke (matching ih izbacuje), ali su na listi `/natjecaji` (10 na prvoj stranici), bitno za WEB-5.
+- Nalaz: kartica e-auto poziva (EnU-2/26) pokazuje rok 31. 3. 2028. i 2.500 €, što je pogrešno; AI-2 to ispravlja, ali AI rezultati nisu u seedu.
+- Sudreg ključevi od Luke ne rade ništa dok ne postoji INGEST-9; Spring ne čita `.env` sam.
