@@ -87,7 +87,7 @@ export const FundingCallCard = ({fundingCall, children}: FundingCallCardProps) =
             </dl>
             {children}
             <footer className={styles.footer}>
-                <span>Izvor: {fundingCall.source.name}</span>
+                <Badge className={styles.sourceBadge}>Izvor: {fundingCall.source.name}</Badge>
                 <span className={styles.sourceLink}>
                     <ExternalLink href={fundingCall.url}>Otvori na izvoru</ExternalLink>
                 </span>

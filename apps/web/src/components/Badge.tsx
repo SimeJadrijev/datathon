@@ -8,11 +8,12 @@ interface BadgeProps {
     children: ReactNode;
     tone?: BadgeTone;
     title?: string;
+    className?: string;
 }
 
-export const Badge = ({children, tone = "neutral", title}: BadgeProps) => {
+export const Badge = ({children, tone = "neutral", title, className}: BadgeProps) => {
     return (
-        <span className={classNames(styles.badge, styles[tone])} title={title}>
+        <span className={classNames(styles.badge, styles[tone], className)} title={title}>
             {children}
         </span>
     );
