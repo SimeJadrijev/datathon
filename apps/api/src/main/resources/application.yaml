@@ -14,7 +14,7 @@ seed:
   enabled: ${SEED_ENABLED:true}
 
 ingest:
-  on-startup: false
+  on-startup: ${INGEST_ON_STARTUP:false}
   cache-dir: ${INGEST_CACHE_DIR:data/cache}
   closed-pages: 5
 
