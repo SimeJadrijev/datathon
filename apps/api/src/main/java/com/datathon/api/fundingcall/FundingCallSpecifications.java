@@ -20,6 +20,14 @@ public final class FundingCallSpecifications {
         return (root, query, cb) -> cb.and(cb.isFalse(root.get("hidden")), cb.isNull(root.get("duplicateOf")));
     }
 
+    public static Specification<FundingCall> notClosed() {
+        return (root, query, cb) -> cb.or(cb.isNull(root.get("status")), cb.notEqual(root.get("status"), FundingCallStatus.CLOSED));
+    }
+
+    public static Specification<FundingCall> notExpiredOn(LocalDate date) {
+        return (root, query, cb) -> cb.or(cb.isNull(root.get("deadline")), cb.greaterThanOrEqualTo(root.get("deadline"), date));
+    }
+
     public static Specification<FundingCall> hasId(Long id) {
         return (root, query, cb) -> cb.equal(root.get("id"), id);
     }

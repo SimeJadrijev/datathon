@@ -275,3 +275,224 @@ Napomene za web:
 - `method`: `API` | `HTML` | `PDF`. `license` je za sada svugdje `"nije provjereno"`.
 - `recordCount` je `null` za `SUDREG` (nije izvor zapisa). Za `NARODNE_NOVINE` to je broj propisa, za ostale broj natječaja (uključujući skrivene).
 - `lastSuccessfulFetch`: zadnji uspješan `SourceRunLog` (`errors = 0`), a bez njega datum seeda (ponoć UTC). Može biti `null` samo ako seed nema datum.
+
+---
+
+## API-6: `POST /api/profiles/match`
+
+Body `ProfileRequest`: `type` je obavezan, a barem jedno od `areas` / `keywords` / `activityCodes` mora biti neprazno. `keywords` najviše 10 stavki od po 50 znakova, `activityCodes` oblika `62` ili `62.01`. Odgovor je lista od najviše 20 `MatchResult`, sortirana po `score` silazno, pa po roku uzlazno (prazni rokovi na kraju). `statusUnknown = true` znači da natječaj nema status (UI treba upozoriti), bez kazne u bodovima.
+
+### Student iz Rijeke (okoliš, obrazovanje)
+
+```json
+{
+  "type": "STUDENT",
+  "additionalTypes": [
+    "CITIZEN"
+  ],
+  "areas": [
+    "ENVIRONMENT",
+    "EDUCATION",
+    "SCIENCE"
+  ],
+  "county": "Primorsko-goranska",
+  "keywords": [
+    "stipendij",
+    "okoliš",
+    "klimat"
+  ]
+}
+```
+
+Odgovor (prvi rezultat, ukupno ovisi o profilu):
+
+```json
+// ukupno rezultata: 20
+{
+  "fundingCall": {
+    "id": 449,
+    "title": "Javni natječaj za dodjelu državnih stipendija za studente pripadnike romske nacionalne manjine upisane na sveučilišne i stručne studije na visokim učilištima u Republici Hrvatskoj, za akademsku godinu 2026./2027.",
+    "provider": "Ministarstvo znanosti, obrazovanja i mladih",
+    "source": {
+      "code": "MZOM",
+      "name": "Ministarstvo znanosti, obrazovanja i mladih"
+    },
+    "type": "SCHOLARSHIP",
+    "status": "OPEN",
+    "deadline": "2026-10-31",
+    "deadlineNote": null,
+    "totalAmount": null,
+    "maxAmount": null,
+    "targetGroups": [
+      "CRAFT_BUSINESS",
+      "STUDENT"
+    ],
+    "areas": [
+      "EDUCATION",
+      "SCIENCE",
+      "YOUTH"
+    ],
+    "counties": [
+      "ALL"
+    ],
+    "extractedByLlm": false,
+    "url": "https://mzom.gov.hr/istaknute-teme/natjecaji-196/8068"
+  },
+  "score": 15.5,
+  "reasons": [
+    "ciljna skupina: studenti",
+    "područje: obrazovanje, znanost",
+    "ključne riječi u naslovu: stipendij",
+    "otvoren",
+    "rok za 3 dana"
+  ],
+  "statusUnknown": false
+}
+```
+
+### Građanin koji želi električni automobil
+
+```json
+{
+  "type": "CITIZEN",
+  "areas": [
+    "TRANSPORT",
+    "ENERGY"
+  ],
+  "county": "Grad Zagreb",
+  "keywords": [
+    "vozil",
+    "električn",
+    "e-mobilnost"
+  ]
+}
+```
+
+Odgovor (prvi rezultat, ukupno ovisi o profilu):
+
+```json
+// ukupno rezultata: 2
+{
+  "fundingCall": {
+    "id": 267,
+    "title": "Javni poziv za sufinanciranje energetski učinkovitih vozila za fizičke osobe (EnU-2/26)",
+    "provider": "Fond za zaštitu okoliša i energetsku učinkovitost",
+    "source": {
+      "code": "FZOEU",
+      "name": "Fond za zaštitu okoliša i energetsku učinkovitost"
+    },
+    "type": "SUBSIDY",
+    "status": "OPEN",
+    "deadline": "2028-03-31",
+    "deadlineNote": null,
+    "totalAmount": 20000000.0,
+    "maxAmount": 2500.0,
+    "targetGroups": [
+      "CITIZEN"
+    ],
+    "areas": [
+      "ENERGY",
+      "TRANSPORT"
+    ],
+    "counties": [
+      "ALL"
+    ],
+    "extractedByLlm": false,
+    "url": "https://www.fzoeu.hr/hr/nacionalni-javni-pozivi-i-natjecaji/1367#275"
+  },
+  "score": 15.0,
+  "reasons": [
+    "ciljna skupina: građani",
+    "područje: promet, energetika",
+    "ključne riječi u naslovu: vozil",
+    "otvoren"
+  ],
+  "statusUnknown": false
+}
+```
+
+### Mala IT tvrtka (d.o.o., NKD 62.01)
+
+```json
+{
+  "type": "COMPANY",
+  "additionalTypes": [
+    "CRAFT_BUSINESS"
+  ],
+  "areas": [
+    "DIGITALIZATION",
+    "INNOVATION",
+    "EMPLOYMENT"
+  ],
+  "county": "Zagreb",
+  "keywords": [
+    "digital",
+    "inovac",
+    "vaučer",
+    "startup"
+  ],
+  "activityCodes": [
+    "62.01"
+  ]
+}
+```
+
+Odgovor (prvi rezultat, ukupno ovisi o profilu):
+
+```json
+// ukupno rezultata: 10
+{
+  "fundingCall": {
+    "id": 349,
+    "title": "Potpore za zapošljavanje – zeleno/digitalno",
+    "provider": "Hrvatski zavod za zapošljavanje",
+    "source": {
+      "code": "HZZ",
+      "name": "Hrvatski zavod za zapošljavanje (mjere)"
+    },
+    "type": "SUBSIDY",
+    "status": "OPEN",
+    "deadline": null,
+    "deadlineNote": null,
+    "totalAmount": null,
+    "maxAmount": 2420.0,
+    "targetGroups": [
+      "CITIZEN",
+      "CRAFT_BUSINESS",
+      "COMPANY",
+      "FARMER"
+    ],
+    "areas": [
+      "ENVIRONMENT",
+      "EDUCATION",
+      "EMPLOYMENT",
+      "ENTREPRENEURSHIP",
+      "DIGITALIZATION"
+    ],
+    "counties": [
+      "ALL"
+    ],
+    "extractedByLlm": false,
+    "url": "https://mjere.hzz.hr/mjere/potpore-za-zaposljavanje-zeleno-digitalno-2026/"
+  },
+  "score": 15.0,
+  "reasons": [
+    "ciljna skupina: tvrtke",
+    "područje: digitalizacija, zapošljavanje",
+    "ključne riječi u naslovu: digital",
+    "otvoren"
+  ],
+  "statusUnknown": false
+}
+```
+
+Greške:
+- Profil bez područja, ključnih riječi i djelatnosti: `{"statusCode":400,"message":"Odaberite barem jedno područje, ključnu riječ ili djelatnost.","error":"Bad Request"}`
+- Prazno ili neispravno tijelo (i nepoznat `type`): `{"statusCode":400,"message":"Neispravno tijelo zahtjeva.","error":"Bad Request"}`
+- Bez `type`: `{"statusCode":400,"message":"type: obavezno polje","error":"Bad Request"}`
+
+Napomene za web:
+- `MatchResult = { fundingCall: FundingCallSummary; score: number; reasons: string[]; statusUnknown: boolean }`.
+- `reasons` su gotove hrvatske rečenice, prikazuju se doslovno. To su transparentna pravila, ne AI.
+- Ime županije se normalizira (`Istarska`, `Istarska županija` i `istarska` su isto), `Grad Zagreb` i `Zagreb` također.
+- Natječaji sa `ALL` županijom ili bez županija ne ovise o županiji profila.
