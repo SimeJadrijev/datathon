@@ -1,0 +1,66 @@
+[
+  {
+    "code": "ASSOCIATIONS_OFFICE",
+    "name": "Ured za udruge",
+    "description": "Središnji pregled natječaja za udruge od svih davatelja (ministarstva, JLS, zajednice) sa strukturiranim detaljem: rok, iznosi, županija.",
+    "url": "https://udruge.gov.hr",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "FZOEU",
+    "name": "Fond za zaštitu okoliša i energetsku učinkovitost",
+    "description": "Nacionalni javni pozivi i natječaji Fonda. Popis je statična HTML stranica, a rok i iznosi su u PDF-ovima poziva.",
+    "url": "https://www.fzoeu.hr",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "EU_FUNDS_NPOO",
+    "name": "EU fondovi (NPOO)",
+    "description": "Pozivi iz Nacionalnog plana oporavka i otpornosti na portalu fondovieu.gov.hr, dostupni kao server-side renderirani HTML.",
+    "url": "https://fondovieu.gov.hr",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "HZZ",
+    "name": "Hrvatski zavod za zapošljavanje (mjere)",
+    "description": "Mjere aktivne politike zapošljavanja, kontinuirane tijekom godine, preko javnog WordPress REST API-ja.",
+    "url": "https://mjere.hzz.hr",
+    "method": "API",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "APPRRR",
+    "name": "Agencija za plaćanja u poljoprivredi, ribarstvu i ruralnom razvoju",
+    "description": "Natječaji za intervencije u poljoprivredi i ruralnom razvoju, preko WordPress REST API-ja i RSS-a.",
+    "url": "https://www.apprrr.hr",
+    "method": "API",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "MZOM",
+    "name": "Ministarstvo znanosti, obrazovanja i mladih",
+    "description": "Natječaji i javni pozivi Ministarstva, među njima stipendije. Popis s paginacijom na HTML stranicama.",
+    "url": "https://mzom.gov.hr",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "NARODNE_NOVINE",
+    "name": "Narodne novine",
+    "description": "Službeni dio Narodnih novina: zakoni i propisi s ELI identifikatorima i metapodacima.",
+    "url": "https://narodne-novine.nn.hr",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "SUDREG",
+    "name": "Sudski registar",
+    "description": "Javni API Sudskog registra (OAuth2). Iz OIB-a tvrtke dohvaća sjedište, pravni oblik i djelatnost za izradu profila.",
+    "url": "https://sudreg-data.gov.hr",
+    "method": "API",
+    "license": "nije provjereno"
+  }
+]

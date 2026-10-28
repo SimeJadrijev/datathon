@@ -47,6 +47,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 | `work/decisions.md` | odluke + obrazloženja |
 | `work/tasks.md` | tko radi što, status |
 | `work/mvp-task-specs.md` | 8 radnih paketa (40 koraka s ID-evima) na engleskom, jedan paket = jedan GitHub issue = jedan vlasnik |
+| `work/api-plan.md` | plan implementacije paketa 4 (API-1 do API-7), nalazi iz koda, odluke |
 | `log.md` | kronološki dnevnik |
 | `README.md` | opis projekta i pokretanje |
 

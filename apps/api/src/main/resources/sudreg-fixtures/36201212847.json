@@ -1,0 +1,2538 @@
+{
+ "mbs": 40020883,
+ "status": 1,
+ "sud_nadlezan": {
+  "sifra": 13,
+  "naziv": "Trgovački sud u Pazinu",
+  "sifra_zupanije": 18,
+  "naziv_zupanije": "Istarska županija",
+  "sifra_opcine": 3212,
+  "naziv_opcine": "Pazin",
+  "sifra_naselja": 47163,
+  "naziv_naselja": "Pazin",
+  "izdaje_izvatke": 1
+ },
+ "sud_sluzba": {
+  "sifra": 13,
+  "naziv": "Trgovački sud u Pazinu",
+  "sifra_zupanije": 18,
+  "naziv_zupanije": "Istarska županija",
+  "sifra_opcine": 3212,
+  "naziv_opcine": "Pazin",
+  "sifra_naselja": 47163,
+  "naziv_naselja": "Pazin",
+  "izdaje_izvatke": 1
+ },
+ "oib": 36201212847,
+ "mb": 3474771,
+ "potpuni_mbs": "040020883",
+ "potpuni_oib": "36201212847",
+ "ino_podruznica": 0,
+ "stecajna_masa": 0,
+ "likvidacijska_masa": 0,
+ "glavna_djelatnost": 5510,
+ "datum_osnivanja": "1990-03-20T00:00:00",
+ "vrijeme_zadnje_izmjene": "2026-08-14T20:04:30",
+ "scn_zadnje_izmjene": 8261072951122,
+ "postupak": {
+  "postupak": {
+   "znacenje": "Bez postupka"
+  }
+ },
+ "tvrtka": {
+  "ime": "Valamar Riviera dioničko društvo za turizam",
+  "naznaka_imena": "Valamar Riviera"
+ },
+ "skracena_tvrtka": {
+  "ime": "Valamar Riviera d.d."
+ },
+ "sjediste": {
+  "sifra_zupanije": 18,
+  "naziv_zupanije": "Istarska županija",
+  "sifra_opcine": 3484,
+  "naziv_opcine": "Poreč - Parenzo",
+  "sifra_naselja": 50849,
+  "naziv_naselja": "Poreč - Parenzo",
+  "ulica": "Stancija Kaligari",
+  "kucni_broj": 1
+ },
+ "email_adrese": [
+  {
+   "email_adresa_rbr": 1,
+   "adresa": "e-komunikacija@valamar.com"
+  }
+ ],
+ "pravni_oblik": {
+  "vrsta_pravnog_oblika": {
+   "sifra": 4,
+   "naziv": "dioničko društvo",
+   "kratica": "d.d."
+  }
+ },
+ "predmeti_poslovanja": [
+  {
+   "djelatnost_rbr": 51,
+   "djelatnost_tekst": "Pripremanje hrane i pružanje usluga prehrane"
+  },
+  {
+   "djelatnost_rbr": 52,
+   "djelatnost_tekst": "Pripremanje i usluživanje pića i napitaka"
+  },
+  {
+   "djelatnost_rbr": 53,
+   "djelatnost_tekst": "Pružanje usluga smještaja"
+  },
+  {
+   "djelatnost_rbr": 54,
+   "djelatnost_tekst": "Pripremanje hrane za potrošnju na drugom mjestu sa ili bez usluživanja (u prijevoznom sredstvu, na priredbama i sl.) i opskrba tom hranom (catering)"
+  },
+  {
+   "djelatnost_rbr": 55,
+   "djelatnost_tekst": "Iznajmljivanje kamp prikolica"
+  },
+  {
+   "djelatnost_rbr": 56,
+   "djelatnost_tekst": "Zimsko čuvanje kamp-prikolica"
+  },
+  {
+   "djelatnost_rbr": 57,
+   "djelatnost_tekst": "Proizvodnja hrane i pića"
+  },
+  {
+   "djelatnost_rbr": 58,
+   "djelatnost_tekst": "Proizvodnja kruha, peciva, svježe tjestenine i kolača"
+  },
+  {
+   "djelatnost_rbr": 59,
+   "djelatnost_tekst": "Proizvodnja dvopeka, keksa, trajnog peciva i kolača"
+  },
+  {
+   "djelatnost_rbr": 60,
+   "djelatnost_tekst": "Prerada i konzerviranje mesa i mesnih proizvoda"
+  },
+  {
+   "djelatnost_rbr": 61,
+   "djelatnost_tekst": "Djelatnost turističke agencije:"
+  },
+  {
+   "djelatnost_rbr": 62,
+   "djelatnost_tekst": "- organiziranje paket-aranžmana, sklapanje i provedba ugovora o paket-aranžmanu, organiziranje izleta, sklapanje i provedba ugovora o izletu"
+  },
+  {
+   "djelatnost_rbr": 63,
+   "djelatnost_tekst": "- organiziranje kongresa"
+  },
+  {
+   "djelatnost_rbr": 64,
+   "djelatnost_tekst": "- posredovanje u sklapanju ugovora o organiziranom putovanju (paket-aranžman i izlet)"
+  },
+  {
+   "djelatnost_rbr": 65,
+   "djelatnost_tekst": "- posredovanje ugostiteljskih usluga (prodaja i rezervacija smještaja i drugih ugostiteljskih usluga)"
+  },
+  {
+   "djelatnost_rbr": 66,
+   "djelatnost_tekst": "- posredovanje usluga prijevoza (prodaja putnih karata i rezervacija mjesta za sva prijevozna sredstva)"
+  },
+  {
+   "djelatnost_rbr": 67,
+   "djelatnost_tekst": "- organiziranje prihvata i transfera putnika"
+  },
+  {
+   "djelatnost_rbr": 68,
+   "djelatnost_tekst": "- posredovanje u pružanju usluga u posebnim oblicima turističke i ugostiteljske ponude"
+  },
+  {
+   "djelatnost_rbr": 69,
+   "djelatnost_tekst": "- organiziranje i posredovanje u pružanju usluga turističkih vodiča, turističkih pratitelja i usluga upravljanja plovnim objektima nautičara (skipera)"
+  },
+  {
+   "djelatnost_rbr": 70,
+   "djelatnost_tekst": "- zastupanje domaćih i stranih putničkih agencija"
+  },
+  {
+   "djelatnost_rbr": 71,
+   "djelatnost_tekst": "- davanje turističkih obavijesti i promidžbenog materijala"
+  },
+  {
+   "djelatnost_rbr": 72,
+   "djelatnost_tekst": "- posredovanje u sklapanju ugovora o osiguranju putnika i prtljage"
+  },
+  {
+   "djelatnost_rbr": 73,
+   "djelatnost_tekst": "- pomoć u pribavljanju putnih isprava, viza i drugih isprava potrebnih za prijelaz granice i boravak u inozemstvu, isprava za lov, ribolov, ronjenje, plovidbu nautičara te drugih isprava potrebnih za organizaciju i provođenje različitih oblika turističke ponude"
+  },
+  {
+   "djelatnost_rbr": 74,
+   "djelatnost_tekst": "- rezervacija, nabava i prodaja ulaznica za sve vrste priredbi, muzeja i dr., te prodaja robe vezane za potrebe putovanja (razne putne potrepštine, suveniri, turističke publikacije i sl.)"
+  },
+  {
+   "djelatnost_rbr": 75,
+   "djelatnost_tekst": "- organizacija i pružanje usluga u svezi s poslovanjem karticama i putničkim čekovima, te pružanje mjenjačkih usluga sukladno posebnim propisima"
+  },
+  {
+   "djelatnost_rbr": 76,
+   "djelatnost_tekst": "iznajmljivanje i posredovanje u iznajmljivanju vozila, letjelica i plovnih objekata"
+  },
+  {
+   "djelatnost_rbr": 77,
+   "djelatnost_tekst": "agencijsko-pomorske usluge za prihvat i opremu plovnih objekata u nautičkom turizmu"
+  },
+  {
+   "djelatnost_rbr": 78,
+   "djelatnost_tekst": "Turističke usluge u nautičkom turizmu"
+  },
+  {
+   "djelatnost_rbr": 79,
+   "djelatnost_tekst": "Turističke usluge u ostalim oblicima turističke ponude (seoskom, zdravstvenom, kulturnom, wellness, kongresnom, za mlade, pustolovnom, lovnom, športskom, golf-turizmu, športskom ili rekreacijskom ribolovu na moru, ronilačkom turizmu, športskom ribolovu na slatkim vodama kao dodatna djelatnost u uzgoju morskih i slatkovodnih riba, rakova i školjaka i dr.)"
+  },
+  {
+   "djelatnost_rbr": 80,
+   "djelatnost_tekst": "Ostale turističke usluge (iznajmljivanje pribora i opreme za šport i rekreaciju, kao što su  sandoline, daske za jedrenje, bicikli na vodi, suncobrani, ležaljke i sl.)"
+  },
+  {
+   "djelatnost_rbr": 81,
+   "djelatnost_tekst": "Turističke usluge koje uključuju športsko-rekreativne ili pustolovne aktivnosti"
+  },
+  {
+   "djelatnost_rbr": 82,
+   "djelatnost_tekst": "Iznajmljivanje vezova (plutača), plovila sa i bez posade, bicikla i dr. predmeta i opreme za sport i razonodu, popravak čamaca za razonodu"
+  },
+  {
+   "djelatnost_rbr": 83,
+   "djelatnost_tekst": "Iznajmljivanje motornih vozila"
+  },
+  {
+   "djelatnost_rbr": 84,
+   "djelatnost_tekst": "Iznajmljivanje strojeva i opreme bez rukovatelja"
+  },
+  {
+   "djelatnost_rbr": 85,
+   "djelatnost_tekst": "Turistički poslovi s inozemstvom"
+  },
+  {
+   "djelatnost_rbr": 86,
+   "djelatnost_tekst": "Istraživanje tržišta i ispitivanje javnog mnijenja"
+  },
+  {
+   "djelatnost_rbr": 87,
+   "djelatnost_tekst": "Promidžba (reklama i propaganda)"
+  },
+  {
+   "djelatnost_rbr": 88,
+   "djelatnost_tekst": "Djelatnost organizatora sajmova, izložbi i kongresa"
+  },
+  {
+   "djelatnost_rbr": 89,
+   "djelatnost_tekst": "Pružanje usluga informacijskog društva"
+  },
+  {
+   "djelatnost_rbr": 90,
+   "djelatnost_tekst": "Usluge davanja pristupa internetu"
+  },
+  {
+   "djelatnost_rbr": 91,
+   "djelatnost_tekst": "Mjenjački poslovi"
+  },
+  {
+   "djelatnost_rbr": 92,
+   "djelatnost_tekst": "Kupnja i prodaja robe"
+  },
+  {
+   "djelatnost_rbr": 93,
+   "djelatnost_tekst": "Obavljanje trgovačkog posredovanja na domaćem i inozemnom tržištu"
+  },
+  {
+   "djelatnost_rbr": 94,
+   "djelatnost_tekst": "Zastupanje inozemnih tvrtki u trgovini"
+  },
+  {
+   "djelatnost_rbr": 95,
+   "djelatnost_tekst": "Djelatnost javnog prijevoza putnika i tereta u domaćem i međunarodnom cestovnom prometu"
+  },
+  {
+   "djelatnost_rbr": 96,
+   "djelatnost_tekst": "Prijevoz za vlastite potrebe"
+  },
+  {
+   "djelatnost_rbr": 97,
+   "djelatnost_tekst": "Javni prijevoz u linijskom obalnom pomorskom prometu"
+  },
+  {
+   "djelatnost_rbr": 98,
+   "djelatnost_tekst": "Povremeni prijevoz putnika u obalnom pomorskom prometu"
+  },
+  {
+   "djelatnost_rbr": 99,
+   "djelatnost_tekst": "Poslovanje nekretninama"
+  },
+  {
+   "djelatnost_rbr": 100,
+   "djelatnost_tekst": "Iznajmljivanje zemljišta i vlastitih poslovnih i drugih prostora"
+  },
+  {
+   "djelatnost_rbr": 101,
+   "djelatnost_tekst": "Projektiranje, građenje, uporaba i uklanjanje građevina"
+  },
+  {
+   "djelatnost_rbr": 102,
+   "djelatnost_tekst": "Nadzor nad gradnjom"
+  },
+  {
+   "djelatnost_rbr": 103,
+   "djelatnost_tekst": "Ispitivanje proračuna za građevinske elemente"
+  },
+  {
+   "djelatnost_rbr": 104,
+   "djelatnost_tekst": "Uređenje i dizajniranje eksterijera i interijera te oblikovanje i obrada elemenata za uređenje"
+  },
+  {
+   "djelatnost_rbr": 105,
+   "djelatnost_tekst": "Poslovi državne izmjere i katastra nekretnina:"
+  },
+  {
+   "djelatnost_rbr": 106,
+   "djelatnost_tekst": "- izradba elaborata stalnih geodetskih točaka za potrebe osnovnih geodetskih radova;"
+  },
+  {
+   "djelatnost_rbr": 107,
+   "djelatnost_tekst": "- izradba elaborata katastarske izmjere i tehničke reambulacije;"
+  },
+  {
+   "djelatnost_rbr": 108,
+   "djelatnost_tekst": "- izradba parcelacijskih i drugih geodetskih elaborata katastra zemljišta;"
+  },
+  {
+   "djelatnost_rbr": 109,
+   "djelatnost_tekst": "- izradba parcelacijskih i drugih geodetskih elaborata katastra nekretnina;"
+  },
+  {
+   "djelatnost_rbr": 110,
+   "djelatnost_tekst": "- izradba  elaborata katastra vodova i tehničko vođenje katastra vodova;"
+  },
+  {
+   "djelatnost_rbr": 111,
+   "djelatnost_tekst": "- izradba posebnih geodetskih podloga za prostorno planiranje i graditeljsko projektiranje, izradba geodetskog projekta, izradba elaborata o iskolčenju građevine, kontrolna geodetska mjerenja pri izgradnji i održavanju građevina (praćenje mogućih pomaka);"
+  },
+  {
+   "djelatnost_rbr": 112,
+   "djelatnost_tekst": "- izradba situacijskih nacrta za objekte za koje ne treba izraditi geodetski projekt;"
+  },
+  {
+   "djelatnost_rbr": 113,
+   "djelatnost_tekst": "- iskolčenje građevina;"
+  },
+  {
+   "djelatnost_rbr": 114,
+   "djelatnost_tekst": "- poslovi stručnog nadzora nad radovima: izradbe elaborata katastra vodova i tehničkog vođenja katastra vodova, izradbe posebnih geodetskih podloga za prostorno planiranje i graditeljsko projektiranje, izradbe geodetskog projekta, izradbe elaborata o iskolčenju građevine, kontrolnih geodetskih mjerenja pri izgradnji i održavanju građevina (praćenje mogućih pomaka ) i iskolčenju građevina"
+  },
+  {
+   "djelatnost_rbr": 115,
+   "djelatnost_tekst": "Proizvodnja, uzgoj i prodaja cvijeća, ukrasnog bilja i sadnog materijala"
+  },
+  {
+   "djelatnost_rbr": 116,
+   "djelatnost_tekst": "Uslužne djelatnosti u biljnoj proizvodnji i to: sadnja i održavanje vrtova, parkova i zelenih površina za sportske terene, ugostiteljske objekte i sl."
+  },
+  {
+   "djelatnost_rbr": 117,
+   "djelatnost_tekst": "Djelatnost uzgoja oštriga i dagnji"
+  },
+  {
+   "djelatnost_rbr": 118,
+   "djelatnost_tekst": "Uzgoj maslina za proizvodnju ulja i za neposrednu potrošnju, te proizvodnja maslinovog ulja preradom vlastitih maslina"
+  },
+  {
+   "djelatnost_rbr": 119,
+   "djelatnost_tekst": "Priređivanje igara na sreću - igre u casinima"
+  },
+  {
+   "djelatnost_rbr": 120,
+   "djelatnost_tekst": "Športska priprema"
+  },
+  {
+   "djelatnost_rbr": 121,
+   "djelatnost_tekst": "Športska rekreacija"
+  },
+  {
+   "djelatnost_rbr": 122,
+   "djelatnost_tekst": "Športska poduka"
+  },
+  {
+   "djelatnost_rbr": 123,
+   "djelatnost_tekst": "Iznajmljivanje sportskih objekata (sportskih dvorana, tenis terena i drugih objekata za sport i razonodu)"
+  },
+  {
+   "djelatnost_rbr": 124,
+   "djelatnost_tekst": "Djelatnost za poboljšanje fizičke kondicije"
+  },
+  {
+   "djelatnost_rbr": 125,
+   "djelatnost_tekst": "Frizerski saloni i saloni za uljepšavanje"
+  },
+  {
+   "djelatnost_rbr": 126,
+   "djelatnost_tekst": "Skladištenje robe"
+  },
+  {
+   "djelatnost_rbr": 127,
+   "djelatnost_tekst": "Obrada podataka"
+  },
+  {
+   "djelatnost_rbr": 128,
+   "djelatnost_tekst": "Izrada baze podataka"
+  },
+  {
+   "djelatnost_rbr": 129,
+   "djelatnost_tekst": "Kopiranje, fotokopiranje, skeniranje i slične usluge"
+  },
+  {
+   "djelatnost_rbr": 130,
+   "djelatnost_tekst": "Pranje i kemijsko čišćenje tekstila i sličnih proizvoda"
+  },
+  {
+   "djelatnost_rbr": 131,
+   "djelatnost_tekst": "Računovodstvene i knjigovodstvene usluge"
+  },
+  {
+   "djelatnost_rbr": 132,
+   "djelatnost_tekst": "Popravak vozila, tehnički pregled motornih vozila i poljoprivrednih strojeva, izdavanje certifikata za motorna vozila i povremeno ispitivanje motornih vozila radi sigurnosti na cesti, te čuvanje i pranje motornih vozila"
+  },
+  {
+   "djelatnost_rbr": 133,
+   "djelatnost_tekst": "Korištenje opasnih kemikalija"
+  },
+  {
+   "djelatnost_rbr": 134,
+   "djelatnost_tekst": "proizvodnja električne energije"
+  },
+  {
+   "djelatnost_rbr": 135,
+   "djelatnost_tekst": "održavanje i naplata parkirališnih mjesta"
+  },
+  {
+   "djelatnost_rbr": 136,
+   "djelatnost_tekst": "savjetovanje u vezi s poslovanjem i upravljanjem"
+  },
+  {
+   "djelatnost_rbr": 137,
+   "djelatnost_tekst": "djelatnost upravljanja društvima"
+  },
+  {
+   "djelatnost_rbr": 138,
+   "djelatnost_tekst": "zastupanje stranih tvrtki u okviru registriranih djelatnosti"
+  },
+  {
+   "djelatnost_rbr": 139,
+   "djelatnost_tekst": "iznajmljivanje uredskih strojeva i opreme"
+  },
+  {
+   "djelatnost_rbr": 140,
+   "djelatnost_tekst": "računalne djelatnosti"
+  },
+  {
+   "djelatnost_rbr": 141,
+   "djelatnost_tekst": "izrada i održavanje web stranica"
+  },
+  {
+   "djelatnost_rbr": 142,
+   "djelatnost_tekst": "djelatnost elektroničkih komunikacijskih mreža i usluga"
+  },
+  {
+   "djelatnost_rbr": 143,
+   "djelatnost_tekst": "poslovi upravljanja nekretninom i održavanje nekretnina"
+  },
+  {
+   "djelatnost_rbr": 144,
+   "djelatnost_tekst": "usluge informacijskog društva"
+  },
+  {
+   "djelatnost_rbr": 145,
+   "djelatnost_tekst": "djelatnosti prikazivanja filmova"
+  },
+  {
+   "djelatnost_rbr": 146,
+   "djelatnost_tekst": "djelatnosti privatne zaštite"
+  }
+ ],
+ "temeljni_kapitali": [
+  {
+   "temeljni_kapital_rbr": 2,
+   "valuta": {
+    "sifra": 978,
+    "naziv": "euro"
+   },
+   "iznos": 221915350
+  }
+ ],
+ "podruznice": [
+  {
+   "podruznica_rbr": 1,
+   "naziv_podruznice": {
+    "ime": "Valamar Riviera d.d. Podružnica za turizam RABAC",
+    "postupak": {
+     "znacenje": "Bez postupka"
+    },
+    "glavna_podruznica": 0
+   },
+   "sjediste_podruznice": {
+    "sifra_zupanije": 18,
+    "naziv_zupanije": "Istarska županija",
+    "sifra_opcine": 2224,
+    "naziv_opcine": "Labin",
+    "sifra_naselja": 53163,
+    "naziv_naselja": "Rabac",
+    "sifra_ulice": 531630019,
+    "ulica": "Slobode",
+    "kucni_broj": 80
+   },
+   "djelatnosti_podruznice": [
+    {
+     "djelatnost_rbr": 1,
+     "djelatnost_tekst": "Pripremanje hrane i pružanje usluga prehrane"
+    },
+    {
+     "djelatnost_rbr": 2,
+     "djelatnost_tekst": "Pripremanje i usluživanje pića i napitaka"
+    },
+    {
+     "djelatnost_rbr": 3,
+     "djelatnost_tekst": "Pružanje usluga smještaja"
+    },
+    {
+     "djelatnost_rbr": 4,
+     "djelatnost_tekst": "Pripremanje hrane za potrošnju na drugom mjestu sa ili bez usluživanja (u prijevoznom sredstvu, na priredbama i sl.) i opskrba tom hranom (catering)"
+    },
+    {
+     "djelatnost_rbr": 5,
+     "djelatnost_tekst": "Iznajmljivanje kamp prikolica"
+    },
+    {
+     "djelatnost_rbr": 6,
+     "djelatnost_tekst": "Zimsko čuvanje kamp-prikolica"
+    },
+    {
+     "djelatnost_rbr": 7,
+     "djelatnost_tekst": "Proizvodnja hrane i pića"
+    },
+    {
+     "djelatnost_rbr": 8,
+     "djelatnost_tekst": "Proizvodnja kruha, peciva, svježe tjestenine i kolača"
+    },
+    {
+     "djelatnost_rbr": 9,
+     "djelatnost_tekst": "Proizvodnja dvopeka, keksa, trajnog peciva i kolača"
+    },
+    {
+     "djelatnost_rbr": 10,
+     "djelatnost_tekst": "Prerada i konzerviranje mesa i mesnih proizvoda"
+    },
+    {
+     "djelatnost_rbr": 11,
+     "djelatnost_tekst": "Djelatnost turističke agencije:"
+    },
+    {
+     "djelatnost_rbr": 12,
+     "djelatnost_tekst": "- organiziranje paket-aranžmana, sklapanje i provedba ugovora o paket-aranžmanu, organiziranje izleta, sklapanje i provedba ugovora o izletu"
+    },
+    {
+     "djelatnost_rbr": 13,
+     "djelatnost_tekst": "- organiziranje kongresa"
+    },
+    {
+     "djelatnost_rbr": 14,
+     "djelatnost_tekst": "- posredovanje u sklapanju ugovora o organiziranom putovanju (paket-aranžman i izlet)"
+    },
+    {
+     "djelatnost_rbr": 15,
+     "djelatnost_tekst": "- posredovanje ugostiteljskih usluga (prodaja i rezervacija smještaja i drugih ugostiteljskih usluga)"
+    },
+    {
+     "djelatnost_rbr": 16,
+     "djelatnost_tekst": "- posredovanje usluga prijevoza (prodaja putnih karata i rezervacija mjesta za sva prijevozna sredstva)"
+    },
+    {
+     "djelatnost_rbr": 17,
+     "djelatnost_tekst": "- organiziranje prihvata i transfera putnika"
+    },
+    {
+     "djelatnost_rbr": 18,
+     "djelatnost_tekst": "- posredovanje u pružanju usluga u posebnim oblicima turističke i ugostiteljske ponude"
+    },
+    {
+     "djelatnost_rbr": 19,
+     "djelatnost_tekst": "- organiziranje i posredovanje u pružanju usluga turističkih vodiča, turističkih pratitelja i usluga upravljanja plovnim objektima nautičara (skipera)"
+    },
+    {
+     "djelatnost_rbr": 20,
+     "djelatnost_tekst": "- zastupanje domaćih i stranih putničkih agencija"
+    },
+    {
+     "djelatnost_rbr": 21,
+     "djelatnost_tekst": "- davanje turističkih obavijesti i promidžbenog materijala"
+    },
+    {
+     "djelatnost_rbr": 22,
+     "djelatnost_tekst": "- posredovanje u sklapanju ugovora o osiguranju putnika i prtljage"
+    },
+    {
+     "djelatnost_rbr": 23,
+     "djelatnost_tekst": "- pomoć u pribavljanju putnih isprava, viza i drugih isprava potrebnih za prijelaz granice i boravak u inozemstvu, isprava za lov, ribolov, ronjenje, plovidbu nautičara te drugih isprava potrebnih za organizaciju i provođenje različitih oblika turističke ponude"
+    },
+    {
+     "djelatnost_rbr": 24,
+     "djelatnost_tekst": "- rezervacija, nabava i prodaja ulaznica za sve vrste priredbi, muzeja i dr., te prodaja robe vezane za potrebe putovanja (razne putne potrepštine, suveniri, turističke publikacije i sl.)"
+    },
+    {
+     "djelatnost_rbr": 25,
+     "djelatnost_tekst": "- organizacija i pružanje usluga u svezi s poslovanjem karticama i putničkim čekovima, te pružanje mjenjačkih usluga sukladno posebnim propisima"
+    },
+    {
+     "djelatnost_rbr": 26,
+     "djelatnost_tekst": "- iznajmljivanje i posredovanje u iznajmljivanju vozila, letjelica i plovnih objekata"
+    },
+    {
+     "djelatnost_rbr": 27,
+     "djelatnost_tekst": "- agencijsko-pomorske usluge za prihvat i opremu plovnih objekata u nautičkom turizmu"
+    },
+    {
+     "djelatnost_rbr": 28,
+     "djelatnost_tekst": "Turističke usluge u nautičkom turizmu"
+    },
+    {
+     "djelatnost_rbr": 29,
+     "djelatnost_tekst": "Turističke usluge u ostalim oblicima turističke ponude (seoskom, zdravstvenom, kulturnom, wellness, kongresnom, za mlade, pustolovnom, lovnom, športskom, golf-turizmu, športskom ili rekreacijskom ribolovu na moru, ronilačkom turizmu, športskom ribolovu na slatkim vodama kao dodatna djelatnost u uzgoju morskih i slatkovodnih riba, rakova i školjaka i dr.)"
+    },
+    {
+     "djelatnost_rbr": 30,
+     "djelatnost_tekst": "Ostale turističke usluge (iznajmljivanje pribora i opreme za šport i rekreaciju, kao što su  sandoline, daske za jedrenje, bicikli na vodi, suncobrani, ležaljke i sl.)"
+    },
+    {
+     "djelatnost_rbr": 31,
+     "djelatnost_tekst": "Turističke usluge koje uključuju športsko-rekreativne ili pustolovne aktivnosti"
+    },
+    {
+     "djelatnost_rbr": 32,
+     "djelatnost_tekst": "Iznajmljivanje vezova (plutača), plovila sa i bez posade, bicikla i dr. predmeta i opreme za sport i razonodu, popravak čamaca za razonodu"
+    },
+    {
+     "djelatnost_rbr": 33,
+     "djelatnost_tekst": "Iznajmljivanje motornih vozila"
+    },
+    {
+     "djelatnost_rbr": 34,
+     "djelatnost_tekst": "Iznajmljivanje strojeva i opreme bez rukovatelja"
+    },
+    {
+     "djelatnost_rbr": 35,
+     "djelatnost_tekst": "Turistički poslovi s inozemstvom"
+    },
+    {
+     "djelatnost_rbr": 36,
+     "djelatnost_tekst": "Istraživanje tržišta i ispitivanje javnog mnijenja"
+    },
+    {
+     "djelatnost_rbr": 37,
+     "djelatnost_tekst": "Promidžba (reklama i propaganda)"
+    },
+    {
+     "djelatnost_rbr": 38,
+     "djelatnost_tekst": "Djelatnost organizatora sajmova, izložbi i kongresa"
+    },
+    {
+     "djelatnost_rbr": 39,
+     "djelatnost_tekst": "Pružanje usluga informacijskog društva"
+    },
+    {
+     "djelatnost_rbr": 40,
+     "djelatnost_tekst": "Usluge davanja pristupa internetu"
+    },
+    {
+     "djelatnost_rbr": 41,
+     "djelatnost_tekst": "Mjenjački poslovi"
+    },
+    {
+     "djelatnost_rbr": 42,
+     "djelatnost_tekst": "Kupnja i prodaja robe"
+    },
+    {
+     "djelatnost_rbr": 43,
+     "djelatnost_tekst": "Obavljanje trgovačkog posredovanja na domaćem i inozemnom tržištu"
+    },
+    {
+     "djelatnost_rbr": 44,
+     "djelatnost_tekst": "Zastupanje inozemnih tvrtki u trgovini"
+    },
+    {
+     "djelatnost_rbr": 45,
+     "djelatnost_tekst": "Djelatnost javnog prijevoza putnika i tereta u domaćem i međunarodnom cestovnom prometu"
+    },
+    {
+     "djelatnost_rbr": 46,
+     "djelatnost_tekst": "Prijevoz za vlastite potrebe"
+    },
+    {
+     "djelatnost_rbr": 47,
+     "djelatnost_tekst": "Javni prijevoz u linijskom obalnom pomorskom prometu"
+    },
+    {
+     "djelatnost_rbr": 48,
+     "djelatnost_tekst": "Povremeni prijevoz putnika u obalnom pomorskom prometu"
+    },
+    {
+     "djelatnost_rbr": 49,
+     "djelatnost_tekst": "Poslovanje nekretninama"
+    },
+    {
+     "djelatnost_rbr": 50,
+     "djelatnost_tekst": "Iznajmljivanje zemljišta i vlastitih poslovnih i drugih prostora"
+    },
+    {
+     "djelatnost_rbr": 51,
+     "djelatnost_tekst": "Proizvodnja, uzgoj i prodaja cvijeća, ukrasnog bilja i sadnog materijala"
+    },
+    {
+     "djelatnost_rbr": 52,
+     "djelatnost_tekst": "Uslužne djelatnosti u biljnoj proizvodnji i to: sadnja i održavanje vrtova, parkova i zelenih površina za sportske terene, ugostiteljske objekte i sl."
+    },
+    {
+     "djelatnost_rbr": 53,
+     "djelatnost_tekst": "Priređivanje igara na sreću - igre u casinima"
+    },
+    {
+     "djelatnost_rbr": 54,
+     "djelatnost_tekst": "Športska priprema"
+    },
+    {
+     "djelatnost_rbr": 55,
+     "djelatnost_tekst": "Športska rekreacija"
+    },
+    {
+     "djelatnost_rbr": 56,
+     "djelatnost_tekst": "Športska poduka"
+    },
+    {
+     "djelatnost_rbr": 57,
+     "djelatnost_tekst": "Iznajmljivanje sportskih objekata (sportskih dvorana, tenis terena i drugih objekata za sport i razonodu)"
+    },
+    {
+     "djelatnost_rbr": 58,
+     "djelatnost_tekst": "Djelatnost za poboljšanje fizičke kondicije"
+    },
+    {
+     "djelatnost_rbr": 59,
+     "djelatnost_tekst": "Frizerski saloni i saloni za uljepšavanje"
+    },
+    {
+     "djelatnost_rbr": 60,
+     "djelatnost_tekst": "Skladištenje robe"
+    },
+    {
+     "djelatnost_rbr": 61,
+     "djelatnost_tekst": "Obrada podataka"
+    },
+    {
+     "djelatnost_rbr": 62,
+     "djelatnost_tekst": "Izrada baze podataka"
+    },
+    {
+     "djelatnost_rbr": 63,
+     "djelatnost_tekst": "Kopiranje, fotokopiranje, skeniranje i slične usluge"
+    },
+    {
+     "djelatnost_rbr": 64,
+     "djelatnost_tekst": "Pranje i kemijsko čišćenje tekstila i sličnih proizvoda"
+    },
+    {
+     "djelatnost_rbr": 65,
+     "djelatnost_tekst": "Računovodstvene i knjigovodstvene usluge"
+    },
+    {
+     "djelatnost_rbr": 66,
+     "djelatnost_tekst": "Čuvanje i pranje motornih vozila"
+    },
+    {
+     "djelatnost_rbr": 67,
+     "djelatnost_tekst": "Korištenje opasnih kemikalija"
+    }
+   ]
+  },
+  {
+   "podruznica_rbr": 2,
+   "naziv_podruznice": {
+    "ime": "Valamar Riviera d.d. Podružnica za turizam ZLATNI OTOK",
+    "postupak": {
+     "znacenje": "Bez postupka"
+    },
+    "glavna_podruznica": 0
+   },
+   "sjediste_podruznice": {
+    "sifra_zupanije": 8,
+    "naziv_zupanije": "Primorsko-goranska županija",
+    "sifra_opcine": 2151,
+    "naziv_opcine": "Krk",
+    "sifra_naselja": 32476,
+    "naziv_naselja": "Krk",
+    "sifra_ulice": 324760090,
+    "ulica": "Vršanska",
+    "kucni_broj": 8
+   },
+   "djelatnosti_podruznice": [
+    {
+     "djelatnost_rbr": 1,
+     "djelatnost_tekst": "Pripremanje hrane i pružanje usluga prehrane"
+    },
+    {
+     "djelatnost_rbr": 2,
+     "djelatnost_tekst": "Pripremanje i usluživanje pića i napitaka"
+    },
+    {
+     "djelatnost_rbr": 3,
+     "djelatnost_tekst": "Pružanje usluga smještaja"
+    },
+    {
+     "djelatnost_rbr": 4,
+     "djelatnost_tekst": "Pripremanje hrane za potrošnju na drugom mjestu sa ili bez usluživanja (u prijevoznom sredstvu, na priredbama i sl.) i opskrba tom hranom (catering)"
+    },
+    {
+     "djelatnost_rbr": 5,
+     "djelatnost_tekst": "Iznajmljivanje kamp prikolica"
+    },
+    {
+     "djelatnost_rbr": 6,
+     "djelatnost_tekst": "Zimsko čuvanje kamp-prikolica"
+    },
+    {
+     "djelatnost_rbr": 7,
+     "djelatnost_tekst": "Proizvodnja hrane i pića"
+    },
+    {
+     "djelatnost_rbr": 8,
+     "djelatnost_tekst": "Proizvodnja kruha, peciva, svježe tjestenine i kolača"
+    },
+    {
+     "djelatnost_rbr": 9,
+     "djelatnost_tekst": "Proizvodnja dvopeka, keksa, trajnog peciva i kolača"
+    },
+    {
+     "djelatnost_rbr": 10,
+     "djelatnost_tekst": "Prerada i konzerviranje mesa i mesnih proizvoda"
+    },
+    {
+     "djelatnost_rbr": 11,
+     "djelatnost_tekst": "Djelatnost turističke agencije:"
+    },
+    {
+     "djelatnost_rbr": 12,
+     "djelatnost_tekst": "- organiziranje paket-aranžmana, sklapanje i provedba ugovora o paket-aranžmanu, organiziranje izleta, sklapanje i provedba ugovora o izletu"
+    },
+    {
+     "djelatnost_rbr": 13,
+     "djelatnost_tekst": "- organiziranje kongresa"
+    },
+    {
+     "djelatnost_rbr": 14,
+     "djelatnost_tekst": "- posredovanje u sklapanju ugovora o organiziranom putovanju (paket-aranžman i izlet)"
+    },
+    {
+     "djelatnost_rbr": 15,
+     "djelatnost_tekst": "- posredovanje ugostiteljskih usluga (prodaja i rezervacija smještaja i drugih ugostiteljskih usluga)"
+    },
+    {
+     "djelatnost_rbr": 16,
+     "djelatnost_tekst": "- posredovanje usluga prijevoza (prodaja putnih karata i rezervacija mjesta za sva prijevozna sredstva)"
+    },
+    {
+     "djelatnost_rbr": 17,
+     "djelatnost_tekst": "- organiziranje prihvata i transfera putnika"
+    },
+    {
+     "djelatnost_rbr": 18,
+     "djelatnost_tekst": "- posredovanje u pružanju usluga u posebnim oblicima turističke i ugostiteljske ponude"
+    },
+    {
+     "djelatnost_rbr": 19,
+     "djelatnost_tekst": "- organiziranje i posredovanje u pružanju usluga turističkih vodiča, turističkih pratitelja i usluga upravljanja plovnim objektima nautičara (skipera)"
+    },
+    {
+     "djelatnost_rbr": 20,
+     "djelatnost_tekst": "- zastupanje domaćih i stranih putničkih agencija"
+    },
+    {
+     "djelatnost_rbr": 21,
+     "djelatnost_tekst": "- davanje turističkih obavijesti i promidžbenog materijala"
+    },
+    {
+     "djelatnost_rbr": 22,
+     "djelatnost_tekst": "- posredovanje u sklapanju ugovora o osiguranju putnika i prtljage"
+    },
+    {
+     "djelatnost_rbr": 23,
+     "djelatnost_tekst": "- pomoć u pribavljanju putnih isprava, viza i drugih isprava potrebnih za prijelaz granice i boravak u inozemstvu, isprava za lov, ribolov, ronjenje, plovidbu nautičara te drugih isprava potrebnih za organizaciju i provođenje različitih oblika turističke ponude"
+    },
+    {
+     "djelatnost_rbr": 24,
+     "djelatnost_tekst": "- rezervacija, nabava i prodaja ulaznica za sve vrste priredbi, muzeja i dr., te prodaja robe vezane za potrebe putovanja (razne putne potrepštine, suveniri, turističke publikacije i sl.)"
+    },
+    {
+     "djelatnost_rbr": 25,
+     "djelatnost_tekst": "- organizacija i pružanje usluga u svezi s poslovanjem karticama i putničkim čekovima, te pružanje mjenjačkih usluga sukladno posebnim propisima"
+    },
+    {
+     "djelatnost_rbr": 26,
+     "djelatnost_tekst": "- iznajmljivanje i posredovanje u iznajmljivanju vozila, letjelica i plovnih objekata"
+    },
+    {
+     "djelatnost_rbr": 27,
+     "djelatnost_tekst": "- agencijsko-pomorske usluge za prihvat i opremu plovnih objekata u nautičkom turizmu"
+    },
+    {
+     "djelatnost_rbr": 28,
+     "djelatnost_tekst": "Turističke usluge u nautičkom turizmu"
+    },
+    {
+     "djelatnost_rbr": 29,
+     "djelatnost_tekst": "Turističke usluge u ostalim oblicima turističke ponude (seoskom, zdravstvenom, kulturnom, wellness, kongresnom, za mlade, pustolovnom, lovnom, športskom, golf-turizmu, športskom ili rekreacijskom ribolovu na moru, ronilačkom turizmu, športskom ribolovu na slatkim vodama kao dodatna djelatnost u uzgoju morskih i slatkovodnih riba, rakova i školjaka i dr.)"
+    },
+    {
+     "djelatnost_rbr": 30,
+     "djelatnost_tekst": "Ostale turističke usluge (iznajmljivanje pribora i opreme za šport i rekreaciju, kao što su  sandoline, daske za jedrenje, bicikli na vodi, suncobrani, ležaljke i sl.)"
+    },
+    {
+     "djelatnost_rbr": 31,
+     "djelatnost_tekst": "Turističke usluge koje uključuju športsko-rekreativne ili pustolovne aktivnosti"
+    },
+    {
+     "djelatnost_rbr": 32,
+     "djelatnost_tekst": "Iznajmljivanje vezova (plutača), plovila sa i bez posade, bicikla i dr. predmeta i opreme za sport i razonodu, popravak čamaca za razonodu"
+    },
+    {
+     "djelatnost_rbr": 33,
+     "djelatnost_tekst": "Iznajmljivanje motornih vozila"
+    },
+    {
+     "djelatnost_rbr": 34,
+     "djelatnost_tekst": "Iznajmljivanje strojeva i opreme bez rukovatelja"
+    },
+    {
+     "djelatnost_rbr": 35,
+     "djelatnost_tekst": "Turistički poslovi s inozemstvom"
+    },
+    {
+     "djelatnost_rbr": 36,
+     "djelatnost_tekst": "Istraživanje tržišta i ispitivanje javnog mnijenja"
+    },
+    {
+     "djelatnost_rbr": 37,
+     "djelatnost_tekst": "Promidžba (reklama i propaganda)"
+    },
+    {
+     "djelatnost_rbr": 38,
+     "djelatnost_tekst": "Djelatnost organizatora sajmova, izložbi i kongresa"
+    },
+    {
+     "djelatnost_rbr": 39,
+     "djelatnost_tekst": "Pružanje usluga informacijskog društva"
+    },
+    {
+     "djelatnost_rbr": 40,
+     "djelatnost_tekst": "Usluge davanja pristupa internetu"
+    },
+    {
+     "djelatnost_rbr": 41,
+     "djelatnost_tekst": "Mjenjački poslovi"
+    },
+    {
+     "djelatnost_rbr": 42,
+     "djelatnost_tekst": "Kupnja i prodaja robe"
+    },
+    {
+     "djelatnost_rbr": 43,
+     "djelatnost_tekst": "Obavljanje trgovačkog posredovanja na domaćem i inozemnom tržištu"
+    },
+    {
+     "djelatnost_rbr": 44,
+     "djelatnost_tekst": "Zastupanje inozemnih tvrtki u trgovini"
+    },
+    {
+     "djelatnost_rbr": 45,
+     "djelatnost_tekst": "Djelatnost javnog prijevoza putnika i tereta u domaćem i međunarodnom cestovnom prometu"
+    },
+    {
+     "djelatnost_rbr": 46,
+     "djelatnost_tekst": "Prijevoz za vlastite potrebe"
+    },
+    {
+     "djelatnost_rbr": 47,
+     "djelatnost_tekst": "Javni prijevoz u linijskom obalnom pomorskom prometu"
+    },
+    {
+     "djelatnost_rbr": 48,
+     "djelatnost_tekst": "Povremeni prijevoz putnika u obalnom pomorskom prometu"
+    },
+    {
+     "djelatnost_rbr": 49,
+     "djelatnost_tekst": "Poslovanje nekretninama"
+    },
+    {
+     "djelatnost_rbr": 50,
+     "djelatnost_tekst": "Iznajmljivanje zemljišta i vlastitih poslovnih i drugih prostora"
+    },
+    {
+     "djelatnost_rbr": 51,
+     "djelatnost_tekst": "Proizvodnja, uzgoj i prodaja cvijeća, ukrasnog bilja i sadnog materijala"
+    },
+    {
+     "djelatnost_rbr": 52,
+     "djelatnost_tekst": "Uslužne djelatnosti u biljnoj proizvodnji i to: sadnja i održavanje vrtova, parkova i zelenih površina za sportske terene, ugostiteljske objekte i sl."
+    },
+    {
+     "djelatnost_rbr": 53,
+     "djelatnost_tekst": "Uzgoj maslina za proizvodnju ulja i za neposrednu potrošnju, te proizvodnja maslinovog ulja preradom vlastitih maslina"
+    },
+    {
+     "djelatnost_rbr": 54,
+     "djelatnost_tekst": "Priređivanje igara na sreću - igre u casinima"
+    },
+    {
+     "djelatnost_rbr": 55,
+     "djelatnost_tekst": "Športska priprema"
+    },
+    {
+     "djelatnost_rbr": 56,
+     "djelatnost_tekst": "Športska rekreacija"
+    },
+    {
+     "djelatnost_rbr": 57,
+     "djelatnost_tekst": "Športska poduka"
+    },
+    {
+     "djelatnost_rbr": 58,
+     "djelatnost_tekst": "Iznajmljivanje sportskih objekata (sportskih dvorana, tenis terena i drugih objekata za sport i razonodu)"
+    },
+    {
+     "djelatnost_rbr": 59,
+     "djelatnost_tekst": "Djelatnost za poboljšanje fizičke kondicije"
+    },
+    {
+     "djelatnost_rbr": 60,
+     "djelatnost_tekst": "Frizerski saloni i saloni za uljepšavanje"
+    },
+    {
+     "djelatnost_rbr": 61,
+     "djelatnost_tekst": "Skladištenje robe"
+    },
+    {
+     "djelatnost_rbr": 62,
+     "djelatnost_tekst": "Obrada podataka"
+    },
+    {
+     "djelatnost_rbr": 63,
+     "djelatnost_tekst": "Izrada baze podataka"
+    },
+    {
+     "djelatnost_rbr": 64,
+     "djelatnost_tekst": "Kopiranje, fotokopiranje, skeniranje i slične usluge"
+    },
+    {
+     "djelatnost_rbr": 65,
+     "djelatnost_tekst": "Pranje i kemijsko čišćenje tekstila i sličnih proizvoda"
+    },
+    {
+     "djelatnost_rbr": 66,
+     "djelatnost_tekst": "Računovodstvene i knjigovodstvene usluge"
+    },
+    {
+     "djelatnost_rbr": 67,
+     "djelatnost_tekst": "Čuvanje i pranje motornih vozila"
+    },
+    {
+     "djelatnost_rbr": 68,
+     "djelatnost_tekst": "Korištenje opasnih kemikalija"
+    }
+   ]
+  },
+  {
+   "podruznica_rbr": 3,
+   "naziv_podruznice": {
+    "ime": "Valamar Riviera d.d. Podružnica za turizam DUBROVNIK - BABIN KUK",
+    "postupak": {
+     "znacenje": "Bez postupka"
+    },
+    "glavna_podruznica": 0
+   },
+   "sjediste_podruznice": {
+    "sifra_zupanije": 19,
+    "naziv_zupanije": "Dubrovačko-neretvanska županija",
+    "sifra_opcine": 981,
+    "naziv_opcine": "Dubrovnik",
+    "sifra_naselja": 15709,
+    "naziv_naselja": "Dubrovnik",
+    "sifra_ulice": 157090202,
+    "ulica": "Vatroslava Lisinskog",
+    "kucni_broj": 15,
+    "kucni_podbroj": "A"
+   },
+   "djelatnosti_podruznice": [
+    {
+     "djelatnost_rbr": 1,
+     "djelatnost_tekst": "Pripremanje hrane i pružanje usluga prehrane"
+    },
+    {
+     "djelatnost_rbr": 2,
+     "djelatnost_tekst": "Pripremanje i usluživanje pića i napitaka"
+    },
+    {
+     "djelatnost_rbr": 3,
+     "djelatnost_tekst": "Pružanje usluga smještaja"
+    },
+    {
+     "djelatnost_rbr": 4,
+     "djelatnost_tekst": "Pripremanje hrane za potrošnju na drugom mjestu sa ili bez usluživanja (u prijevoznom sredstvu, na priredbama i sl.) i opskrba tom hranom (catering)"
+    },
+    {
+     "djelatnost_rbr": 5,
+     "djelatnost_tekst": "Iznajmljivanje kamp prikolica"
+    },
+    {
+     "djelatnost_rbr": 6,
+     "djelatnost_tekst": "Zimsko čuvanje kamp-prikolica"
+    },
+    {
+     "djelatnost_rbr": 7,
+     "djelatnost_tekst": "Proizvodnja hrane i pića"
+    },
+    {
+     "djelatnost_rbr": 8,
+     "djelatnost_tekst": "Proizvodnja kruha, peciva, svježe tjestenine i kolača"
+    },
+    {
+     "djelatnost_rbr": 9,
+     "djelatnost_tekst": "Proizvodnja dvopeka, keksa, trajnog peciva i kolača"
+    },
+    {
+     "djelatnost_rbr": 10,
+     "djelatnost_tekst": "Prerada i konzerviranje mesa i mesnih proizvoda"
+    },
+    {
+     "djelatnost_rbr": 11,
+     "djelatnost_tekst": "Djelatnost turističke agencije:"
+    },
+    {
+     "djelatnost_rbr": 12,
+     "djelatnost_tekst": "- organiziranje paket-aranžmana, sklapanje i provedba ugovora o paket-aranžmanu, organiziranje izleta, sklapanje i provedba ugovora o izletu"
+    },
+    {
+     "djelatnost_rbr": 13,
+     "djelatnost_tekst": "- organiziranje kongresa"
+    },
+    {
+     "djelatnost_rbr": 14,
+     "djelatnost_tekst": "- posredovanje u sklapanju ugovora o organiziranom putovanju (paket-aranžman i izlet)"
+    },
+    {
+     "djelatnost_rbr": 15,
+     "djelatnost_tekst": "- posredovanje ugostiteljskih usluga (prodaja i rezervacija smještaja i drugih ugostiteljskih usluga)"
+    },
+    {
+     "djelatnost_rbr": 16,
+     "djelatnost_tekst": "- posredovanje usluga prijevoza (prodaja putnih karata i rezervacija mjesta za sva prijevozna sredstva)"
+    },
+    {
+     "djelatnost_rbr": 17,
+     "djelatnost_tekst": "- organiziranje prihvata i transfera putnika"
+    },
+    {
+     "djelatnost_rbr": 18,
+     "djelatnost_tekst": "- posredovanje u pružanju usluga u posebnim oblicima turističke i ugostiteljske ponude"
+    },
+    {
+     "djelatnost_rbr": 19,
+     "djelatnost_tekst": "- organiziranje i posredovanje u pružanju usluga turističkih vodiča, turističkih pratitelja i usluga upravljanja plovnim objektima nautičara (skipera)"
+    },
+    {
+     "djelatnost_rbr": 20,
+     "djelatnost_tekst": "- zastupanje domaćih i stranih putničkih agencija"
+    },
+    {
+     "djelatnost_rbr": 21,
+     "djelatnost_tekst": "- davanje turističkih obavijesti i promidžbenog materijala"
+    },
+    {
+     "djelatnost_rbr": 22,
+     "djelatnost_tekst": "- posredovanje u sklapanju ugovora o osiguranju putnika i prtljage"
+    },
+    {
+     "djelatnost_rbr": 23,
+     "djelatnost_tekst": "- pomoć u pribavljanju putnih isprava, viza i drugih isprava potrebnih za prijelaz granice i boravak u inozemstvu, isprava za lov, ribolov, ronjenje, plovidbu nautičara te drugih isprava potrebnih za organizaciju i provođenje različitih oblika turističke ponude"
+    },
+    {
+     "djelatnost_rbr": 24,
+     "djelatnost_tekst": "- rezervacija, nabava i prodaja ulaznica za sve vrste priredbi, muzeja i dr., te prodaja robe vezane za potrebe putovanja (razne putne potrepštine, suveniri, turističke publikacije i sl.)"
+    },
+    {
+     "djelatnost_rbr": 25,
+     "djelatnost_tekst": "- organizacija i pružanje usluga u svezi s poslovanjem karticama i putničkim čekovima, te pružanje mjenjačkih usluga sukladno posebnim propisima"
+    },
+    {
+     "djelatnost_rbr": 26,
+     "djelatnost_tekst": "iznajmljivanje i posredovanje u iznajmljivanju vozila, letjelica i plovnih objekata"
+    },
+    {
+     "djelatnost_rbr": 27,
+     "djelatnost_tekst": "agencijsko-pomorske usluge za prihvat i opremu plovnih objekata u nautičkom turizmu"
+    },
+    {
+     "djelatnost_rbr": 28,
+     "djelatnost_tekst": "Turističke usluge u nautičkom turizmu"
+    },
+    {
+     "djelatnost_rbr": 29,
+     "djelatnost_tekst": "Turističke usluge u ostalim oblicima turističke ponude (seoskom, zdravstvenom, kulturnom, wellness, kongresnom, za mlade, pustolovnom, lovnom, športskom, golf-turizmu, športskom ili rekreacijskom ribolovu na moru, ronilačkom turizmu, športskom ribolovu na slatkim vodama kao dodatna djelatnost u uzgoju morskih i slatkovodnih riba, rakova i školjaka i dr.)"
+    },
+    {
+     "djelatnost_rbr": 30,
+     "djelatnost_tekst": "Ostale turističke usluge (iznajmljivanje pribora i opreme za šport i rekreaciju, kao što su  sandoline, daske za jedrenje, bicikli na vodi, suncobrani, ležaljke i sl.)"
+    },
+    {
+     "djelatnost_rbr": 31,
+     "djelatnost_tekst": "Turističke usluge koje uključuju športsko-rekreativne ili pustolovne aktivnosti"
+    },
+    {
+     "djelatnost_rbr": 32,
+     "djelatnost_tekst": "Iznajmljivanje vezova (plutača), plovila sa i bez posade, bicikla i dr. predmeta i opreme za sport i razonodu, popravak čamaca za razonodu"
+    },
+    {
+     "djelatnost_rbr": 33,
+     "djelatnost_tekst": "Iznajmljivanje motornih vozila"
+    },
+    {
+     "djelatnost_rbr": 34,
+     "djelatnost_tekst": "Iznajmljivanje strojeva i opreme bez rukovatelja"
+    },
+    {
+     "djelatnost_rbr": 35,
+     "djelatnost_tekst": "Turistički poslovi s inozemstvom"
+    },
+    {
+     "djelatnost_rbr": 36,
+     "djelatnost_tekst": "Istraživanje tržišta i ispitivanje javnog mnijenja"
+    },
+    {
+     "djelatnost_rbr": 37,
+     "djelatnost_tekst": "Promidžba (reklama i propaganda)"
+    },
+    {
+     "djelatnost_rbr": 38,
+     "djelatnost_tekst": "Djelatnost organizatora sajmova, izložbi i kongresa"
+    },
+    {
+     "djelatnost_rbr": 39,
+     "djelatnost_tekst": "Pružanje usluga informacijskog društva"
+    },
+    {
+     "djelatnost_rbr": 40,
+     "djelatnost_tekst": "Usluge davanja pristupa internetu"
+    },
+    {
+     "djelatnost_rbr": 41,
+     "djelatnost_tekst": "Mjenjački poslovi"
+    },
+    {
+     "djelatnost_rbr": 42,
+     "djelatnost_tekst": "Kupnja i prodaja robe"
+    },
+    {
+     "djelatnost_rbr": 43,
+     "djelatnost_tekst": "Obavljanje trgovačkog posredovanja na domaćem i inozemnom tržištu"
+    },
+    {
+     "djelatnost_rbr": 44,
+     "djelatnost_tekst": "Zastupanje inozemnih tvrtki u trgovini"
+    },
+    {
+     "djelatnost_rbr": 45,
+     "djelatnost_tekst": "Djelatnost javnog prijevoza putnika i tereta u domaćem i međunarodnom cestovnom prometu"
+    },
+    {
+     "djelatnost_rbr": 46,
+     "djelatnost_tekst": "Prijevoz za vlastite potrebe"
+    },
+    {
+     "djelatnost_rbr": 47,
+     "djelatnost_tekst": "Javni prijevoz u linijskom obalnom pomorskom prometu"
+    },
+    {
+     "djelatnost_rbr": 48,
+     "djelatnost_tekst": "Povremeni prijevoz putnika u obalnom pomorskom prometu"
+    },
+    {
+     "djelatnost_rbr": 49,
+     "djelatnost_tekst": "Poslovanje nekretninama"
+    },
+    {
+     "djelatnost_rbr": 50,
+     "djelatnost_tekst": "Iznajmljivanje zemljišta i vlastitih poslovnih i drugih prostora"
+    },
+    {
+     "djelatnost_rbr": 51,
+     "djelatnost_tekst": "Projektiranje, građenje, uporaba i uklanjanje građevina"
+    },
+    {
+     "djelatnost_rbr": 52,
+     "djelatnost_tekst": "Nadzor nad gradnjom"
+    },
+    {
+     "djelatnost_rbr": 53,
+     "djelatnost_tekst": "Ispitivanje proračuna za građevinske elemente"
+    },
+    {
+     "djelatnost_rbr": 54,
+     "djelatnost_tekst": "Uređenje i dizajniranje eksterijera i interijera te oblikovanje i obrada elemenata za uređenje"
+    },
+    {
+     "djelatnost_rbr": 55,
+     "djelatnost_tekst": "Proizvodnja, uzgoj i prodaja cvijeća, ukrasnog bilja i sadnog materijala"
+    },
+    {
+     "djelatnost_rbr": 56,
+     "djelatnost_tekst": "Uslužne djelatnosti u biljnoj proizvodnji i to: sadnja i održavanje vrtova, parkova i zelenih površina za sportske terene, ugostiteljske objekte i sl."
+    },
+    {
+     "djelatnost_rbr": 57,
+     "djelatnost_tekst": "Priređivanje igara na sreću - igre u casinima"
+    },
+    {
+     "djelatnost_rbr": 58,
+     "djelatnost_tekst": "Športska priprema"
+    },
+    {
+     "djelatnost_rbr": 59,
+     "djelatnost_tekst": "Športska rekreacija"
+    },
+    {
+     "djelatnost_rbr": 60,
+     "djelatnost_tekst": "Športska poduka"
+    },
+    {
+     "djelatnost_rbr": 61,
+     "djelatnost_tekst": "Iznajmljivanje sportskih objekata (sportskih dvorana, tenis terena i drugih objekata za sport i razonodu)"
+    },
+    {
+     "djelatnost_rbr": 62,
+     "djelatnost_tekst": "Djelatnost za poboljšanje fizičke kondicije"
+    },
+    {
+     "djelatnost_rbr": 63,
+     "djelatnost_tekst": "Frizerski saloni i saloni za uljepšavanje"
+    },
+    {
+     "djelatnost_rbr": 64,
+     "djelatnost_tekst": "Skladištenje robe"
+    },
+    {
+     "djelatnost_rbr": 65,
+     "djelatnost_tekst": "Obrada podataka"
+    },
+    {
+     "djelatnost_rbr": 66,
+     "djelatnost_tekst": "Izrada baze podataka"
+    },
+    {
+     "djelatnost_rbr": 67,
+     "djelatnost_tekst": "Kopiranje, fotokopiranje, skeniranje i slične usluge"
+    },
+    {
+     "djelatnost_rbr": 68,
+     "djelatnost_tekst": "Pranje i kemijsko čišćenje tekstila i sličnih proizvoda"
+    },
+    {
+     "djelatnost_rbr": 69,
+     "djelatnost_tekst": "Računovodstvene i knjigovodstvene usluge"
+    },
+    {
+     "djelatnost_rbr": 70,
+     "djelatnost_tekst": "Korištenje opasnih kemikalija"
+    },
+    {
+     "djelatnost_rbr": 71,
+     "djelatnost_tekst": "Proizvodnja električne energije"
+    },
+    {
+     "djelatnost_rbr": 72,
+     "djelatnost_tekst": "Održavanje i naplata parkirališnih mjesta"
+    },
+    {
+     "djelatnost_rbr": 73,
+     "djelatnost_tekst": "djelatnosti prikazivanja filmova"
+    }
+   ]
+  },
+  {
+   "podruznica_rbr": 4,
+   "naziv_podruznice": {
+    "ime": "Valamar Riviera d.d., Podružnica za savjetovanje u vezi s poslovanjem i upravljanjem ZAGREB",
+    "naznaka_imena": "VALAMAR RIVIERA d.d., PORUŽNICA ZA SAVJETOVANJE U VEZI S POSLOVANJEM I UPRAVLJANJEM ZAGREB",
+    "postupak": {
+     "znacenje": "Bez postupka"
+    },
+    "glavna_podruznica": 0
+   },
+   "sjediste_podruznice": {
+    "sifra_zupanije": 21,
+    "naziv_zupanije": "Grad Zagreb",
+    "sifra_opcine": 1333,
+    "naziv_opcine": "Zagreb",
+    "sifra_naselja": 72150,
+    "naziv_naselja": "Zagreb",
+    "sifra_ulice": 721502008,
+    "ulica": "Miramarska cesta",
+    "kucni_broj": 24
+   },
+   "djelatnosti_podruznice": [
+    {
+     "djelatnost_rbr": 1,
+     "djelatnost_tekst": "savjetovanje u vezi s poslovanjem i upravljanjem"
+    },
+    {
+     "djelatnost_rbr": 2,
+     "djelatnost_tekst": "djelatnost upravljanja društvima"
+    },
+    {
+     "djelatnost_rbr": 3,
+     "djelatnost_tekst": "zastupanje stranih tvrtki u okviru registriranih djelatnosti"
+    },
+    {
+     "djelatnost_rbr": 4,
+     "djelatnost_tekst": "iznajmljivanje uredskih strojeva i opreme"
+    },
+    {
+     "djelatnost_rbr": 5,
+     "djelatnost_tekst": "računalne djelatnosti"
+    },
+    {
+     "djelatnost_rbr": 6,
+     "djelatnost_tekst": "izrada i održavanje web stranica"
+    },
+    {
+     "djelatnost_rbr": 7,
+     "djelatnost_tekst": "djelatnost elektroničkih komunikacijskih mreža i usluga"
+    },
+    {
+     "djelatnost_rbr": 8,
+     "djelatnost_tekst": "poslovi upravljanja nekretninom i održavanje nekretnina"
+    }
+   ]
+  },
+  {
+   "podruznica_rbr": 5,
+   "naziv_podruznice": {
+    "ime": "Valamar Riviera d.d. Podružnica za turizam BRIONI",
+    "naznaka_imena": "Valamar Riviera d.d. Podružnica za turizam BRIONI",
+    "postupak": {
+     "znacenje": "Bez postupka"
+    },
+    "glavna_podruznica": 0
+   },
+   "sjediste_podruznice": {
+    "sifra_zupanije": 18,
+    "naziv_zupanije": "Istarska županija",
+    "sifra_opcine": 3590,
+    "naziv_opcine": "Pula - Pola",
+    "sifra_naselja": 52825,
+    "naziv_naselja": "Pula",
+    "ulica": "Puntižela",
+    "kucni_broj": 155
+   },
+   "djelatnosti_podruznice": [
+    {
+     "djelatnost_rbr": 1,
+     "djelatnost_tekst": "Pripremanje hrane i pružanje usluga prehrane"
+    },
+    {
+     "djelatnost_rbr": 2,
+     "djelatnost_tekst": "Pripremanje i usluživanje pića i napitaka"
+    },
+    {
+     "djelatnost_rbr": 3,
+     "djelatnost_tekst": "Pružanje usluga smještaja"
+    },
+    {
+     "djelatnost_rbr": 4,
+     "djelatnost_tekst": "Pripremanje hrane za potrošnju na drugom mjestu sa ili bez usluživanja (u prijevoznom sredstvu, na priredbama i sl.) i opskrba tom hranom (catering)"
+    },
+    {
+     "djelatnost_rbr": 5,
+     "djelatnost_tekst": "Iznajmljivanje kamp prikolica"
+    },
+    {
+     "djelatnost_rbr": 6,
+     "djelatnost_tekst": "Zimsko čuvanje kamp-prikolica"
+    },
+    {
+     "djelatnost_rbr": 7,
+     "djelatnost_tekst": "Proizvodnja hrane i pića"
+    },
+    {
+     "djelatnost_rbr": 8,
+     "djelatnost_tekst": "Proizvodnja kruha, peciva, svježe tjestenine i kolača"
+    },
+    {
+     "djelatnost_rbr": 9,
+     "djelatnost_tekst": "Proizvodnja dvopeka, keksa, trajnog peciva i kolača"
+    },
+    {
+     "djelatnost_rbr": 10,
+     "djelatnost_tekst": "Prerada i konzerviranje mesa i mesnih proizvoda"
+    },
+    {
+     "djelatnost_rbr": 11,
+     "djelatnost_tekst": "Djelatnost turističke agencije:"
+    },
+    {
+     "djelatnost_rbr": 12,
+     "djelatnost_tekst": "- organiziranje paket-aranžmana, sklapanje i provedba ugovora o paket-aranžmanu, organiziranje izleta, sklapanje i provedba ugovora o izletu"
+    },
+    {
+     "djelatnost_rbr": 13,
+     "djelatnost_tekst": "- organiziranje kongresa"
+    },
+    {
+     "djelatnost_rbr": 14,
+     "djelatnost_tekst": "- posredovanje u sklapanju ugovora o organiziranom putovanju (paket-aranžman i izlet)"
+    },
+    {
+     "djelatnost_rbr": 15,
+     "djelatnost_tekst": "- posredovanje ugostiteljskih usluga (prodaja i rezervacija smještaja i drugih ugostiteljskih usluga)"
+    },
+    {
+     "djelatnost_rbr": 16,
+     "djelatnost_tekst": "- posredovanje usluga prijevoza (prodaja putnih karata i rezervacija mjesta za sva prijevozna sredstva)"
+    },
+    {
+     "djelatnost_rbr": 17,
+     "djelatnost_tekst": "- organiziranje prihvata i transfera putnika"
+    },
+    {
+     "djelatnost_rbr": 18,
+     "djelatnost_tekst": "- posredovanje u pružanju usluga u posebnim oblicima turističke i ugostiteljske ponude"
+    },
+    {
+     "djelatnost_rbr": 19,
+     "djelatnost_tekst": "- organiziranje i posredovanje u pružanju usluga turističkih vodiča, turističkih pratitelja i usluga upravljanja plovnim objektima nautičara (skipera)"
+    },
+    {
+     "djelatnost_rbr": 20,
+     "djelatnost_tekst": "- zastupanje domaćih i stranih putničkih agencija"
+    },
+    {
+     "djelatnost_rbr": 21,
+     "djelatnost_tekst": "- davanje turističkih obavijesti i promidžbenog materijala"
+    },
+    {
+     "djelatnost_rbr": 22,
+     "djelatnost_tekst": "- posredovanje u sklapanju ugovora o osiguranju putnika i prtljage"
+    },
+    {
+     "djelatnost_rbr": 23,
+     "djelatnost_tekst": "- pomoć u pribavljanju putnih isprava, viza i drugih isprava potrebnih za prijelaz granice i boravak u inozemstvu, isprava za lov, ribolov, ronjenje, plovidbu nautičara te drugih isprava potrebnih za organizaciju i provođenje različitih oblika turističke ponude"
+    },
+    {
+     "djelatnost_rbr": 24,
+     "djelatnost_tekst": "- rezervacija, nabava i prodaja ulaznica za sve vrste priredbi, muzeja i dr., te prodaja robe vezane za potrebe putovanja (razne putne potrepštine, suveniri, turističke publikacije i sl.)"
+    },
+    {
+     "djelatnost_rbr": 25,
+     "djelatnost_tekst": "- organizacija i pružanje usluga u svezi s poslovanjem karticama i putničkim čekovima, te pružanje mjenjačkih usluga sukladno posebnim propisima"
+    },
+    {
+     "djelatnost_rbr": 26,
+     "djelatnost_tekst": "iznajmljivanje i posredovanje u iznajmljivanju vozila, letjelica i plovnih objekata"
+    },
+    {
+     "djelatnost_rbr": 27,
+     "djelatnost_tekst": "agencijsko-pomorske usluge za prihvat i opremu plovnih objekata u nautičkom turizmu"
+    },
+    {
+     "djelatnost_rbr": 28,
+     "djelatnost_tekst": "Turističke usluge u nautičkom turizmu"
+    },
+    {
+     "djelatnost_rbr": 29,
+     "djelatnost_tekst": "Turističke usluge u ostalim oblicima turističke ponude (seoskom, zdravstvenom, kulturnom, wellness, kongresnom, za mlade, pustolovnom, lovnom, športskom, golf-turizmu, športskom ili rekreacijskom ribolovu na moru, ronilačkom turizmu, športskom ribolovu na slatkim vodama kao dodatna djelatnost u uzgoju morskih i slatkovodnih riba, rakova i školjaka i dr.)"
+    },
+    {
+     "djelatnost_rbr": 30,
+     "djelatnost_tekst": "Ostale turističke usluge (iznajmljivanje pribora i opreme za šport i rekreaciju, kao što su  sandoline, daske za jedrenje, bicikli na vodi, suncobrani, ležaljke i sl.)"
+    },
+    {
+     "djelatnost_rbr": 31,
+     "djelatnost_tekst": "Turističke usluge koje uključuju športsko-rekreativne ili pustolovne aktivnosti"
+    },
+    {
+     "djelatnost_rbr": 32,
+     "djelatnost_tekst": "Iznajmljivanje vezova (plutača), plovila sa i bez posade, bicikla i dr. predmeta i opreme za sport i razonodu, popravak čamaca za razonodu"
+    },
+    {
+     "djelatnost_rbr": 33,
+     "djelatnost_tekst": "Iznajmljivanje motornih vozila"
+    },
+    {
+     "djelatnost_rbr": 34,
+     "djelatnost_tekst": "Iznajmljivanje strojeva i opreme bez rukovatelja"
+    },
+    {
+     "djelatnost_rbr": 35,
+     "djelatnost_tekst": "Turistički poslovi s inozemstvom"
+    },
+    {
+     "djelatnost_rbr": 36,
+     "djelatnost_tekst": "Istraživanje tržišta i ispitivanje javnog mnijenja"
+    },
+    {
+     "djelatnost_rbr": 37,
+     "djelatnost_tekst": "Promidžba (reklama i propaganda)"
+    },
+    {
+     "djelatnost_rbr": 38,
+     "djelatnost_tekst": "Djelatnost organizatora sajmova, izložbi i kongresa"
+    },
+    {
+     "djelatnost_rbr": 39,
+     "djelatnost_tekst": "Pružanje usluga informacijskog društva"
+    },
+    {
+     "djelatnost_rbr": 40,
+     "djelatnost_tekst": "Usluge davanja pristupa internetu"
+    },
+    {
+     "djelatnost_rbr": 41,
+     "djelatnost_tekst": "Mjenjački poslovi"
+    },
+    {
+     "djelatnost_rbr": 42,
+     "djelatnost_tekst": "Kupnja i prodaja robe"
+    },
+    {
+     "djelatnost_rbr": 43,
+     "djelatnost_tekst": "Obavljanje trgovačkog posredovanja na domaćem i inozemnom tržištu"
+    },
+    {
+     "djelatnost_rbr": 44,
+     "djelatnost_tekst": "Zastupanje inozemnih tvrtki u trgovini"
+    },
+    {
+     "djelatnost_rbr": 45,
+     "djelatnost_tekst": "Djelatnost javnog prijevoza putnika i tereta u domaćem i međunarodnom cestovnom prometu"
+    },
+    {
+     "djelatnost_rbr": 46,
+     "djelatnost_tekst": "Prijevoz za vlastite potrebe"
+    },
+    {
+     "djelatnost_rbr": 47,
+     "djelatnost_tekst": "Javni prijevoz u linijskom obalnom pomorskom prometu"
+    },
+    {
+     "djelatnost_rbr": 48,
+     "djelatnost_tekst": "Povremeni prijevoz putnika u obalnom pomorskom prometu"
+    },
+    {
+     "djelatnost_rbr": 49,
+     "djelatnost_tekst": "Poslovanje nekretninama"
+    },
+    {
+     "djelatnost_rbr": 50,
+     "djelatnost_tekst": "Iznajmljivanje zemljišta i vlastitih poslovnih i drugih prostora"
+    },
+    {
+     "djelatnost_rbr": 51,
+     "djelatnost_tekst": "Projektiranje, građenje, uporaba i uklanjanje građevina"
+    },
+    {
+     "djelatnost_rbr": 52,
+     "djelatnost_tekst": "Nadzor nad gradnjom"
+    },
+    {
+     "djelatnost_rbr": 53,
+     "djelatnost_tekst": "Ispitivanje proračuna za građevinske elemente"
+    },
+    {
+     "djelatnost_rbr": 54,
+     "djelatnost_tekst": "Uređenje i dizajniranje eksterijera i interijera te oblikovanje i obrada elemenata za uređenje"
+    },
+    {
+     "djelatnost_rbr": 55,
+     "djelatnost_tekst": "Proizvodnja, uzgoj i prodaja cvijeća, ukrasnog bilja i sadnog materijala"
+    },
+    {
+     "djelatnost_rbr": 56,
+     "djelatnost_tekst": "Uslužne djelatnosti u biljnoj proizvodnji i to: sadnja i održavanje vrtova, parkova i zelenih površina za sportske terene, ugostiteljske objekte i sl."
+    },
+    {
+     "djelatnost_rbr": 57,
+     "djelatnost_tekst": "Priređivanje igara na sreću - igre u casinima"
+    },
+    {
+     "djelatnost_rbr": 58,
+     "djelatnost_tekst": "Sportska priprema"
+    },
+    {
+     "djelatnost_rbr": 59,
+     "djelatnost_tekst": "Sportska rekreacija"
+    },
+    {
+     "djelatnost_rbr": 60,
+     "djelatnost_tekst": "Sportska poduka"
+    },
+    {
+     "djelatnost_rbr": 61,
+     "djelatnost_tekst": "Iznajmljivanje sportskih objekata (sportskih dvorana, tenis terena i drugih objekata za sport i razonodu)"
+    },
+    {
+     "djelatnost_rbr": 62,
+     "djelatnost_tekst": "Djelatnost za poboljšanje fizičke kondicije"
+    },
+    {
+     "djelatnost_rbr": 63,
+     "djelatnost_tekst": "Frizerski saloni i saloni za uljepšavanje"
+    },
+    {
+     "djelatnost_rbr": 64,
+     "djelatnost_tekst": "Skladištenje robe"
+    },
+    {
+     "djelatnost_rbr": 65,
+     "djelatnost_tekst": "Obrada podataka"
+    },
+    {
+     "djelatnost_rbr": 66,
+     "djelatnost_tekst": "Izrada baze podataka"
+    },
+    {
+     "djelatnost_rbr": 67,
+     "djelatnost_tekst": "Kopiranje, fotokopiranje, skeniranje i slične usluge"
+    },
+    {
+     "djelatnost_rbr": 68,
+     "djelatnost_tekst": "Pranje i kemijsko čišćenje tekstila i sličnih proizvoda"
+    },
+    {
+     "djelatnost_rbr": 69,
+     "djelatnost_tekst": "Računovodstvene i knjigovodstvene usluge"
+    },
+    {
+     "djelatnost_rbr": 70,
+     "djelatnost_tekst": "Korištenje opasnih kemikalija"
+    },
+    {
+     "djelatnost_rbr": 71,
+     "djelatnost_tekst": "Proizvodnja električne energije"
+    },
+    {
+     "djelatnost_rbr": 72,
+     "djelatnost_tekst": "Održavanje i naplata parkirališnih mjesta"
+    }
+   ]
+  }
+ ],
+ "statusni_postupci": [
+  {
+   "statusni_postupak_rbr": 1,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Statut društva usvojen je dana 23. prosinca 1993. godine. Odlukom Skupštine usvojen je novi tekst Statuta usklađen sa Zakonom o trgovačkim društvima dana 02. prosinca 1995. godine."
+  },
+  {
+   "statusni_postupak_rbr": 2,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 28. rujna 1996. godine izmjenjen je Statut društva članak 11. i članak 12. odredbe o temeljnom kapitalu i dionicama."
+  },
+  {
+   "statusni_postupak_rbr": 3,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom Glavne skupštine o usklađenju temeljnog kapitala sa Zakonom o trgovačkim društvima od 28. rujna 1996. godine, temeljni kapital društva i nominalni iznos dionica izraženi u DEM prenominirani su u kune i iznosi 1.092.581.700,00 kuna."
+  },
+  {
+   "statusni_postupak_rbr": 4,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 27. rujna 1997. godine izmjenjene odredbe Statuta u članku 11. i članku 12. (odredbe o temeljnom kapitalu i dionicama)."
+  },
+  {
+   "statusni_postupak_rbr": 5,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Rješenjem Hrvatskog fonda za privatizaciju Klasa: 943-01/96-01/1818, Ur. broj: 563-04-403/96-6 od 04. prosinca 1996. godine u obnovi postupka procjene društvenog kapitala dodatno se povećava procjenjena vrijednost društvenog kapitala za iznos od 980.760 DEM odnosno protuvrijednost od 3.492.486,00 kuna."
+  },
+  {
+   "statusni_postupak_rbr": 6,
+   "vrsta_statusnog_postupka": {
+    "sifra": 2,
+    "naziv": "Osnivački akt:",
+    "redoslijed": 2
+   },
+   "tekst": "Odlukom Glavne skupštine od dana 27. rujna 1999. godine izmjenjene su odredbe Statuta u dijelu koji se odnosi na skupštinu, nadzorni odbor i upravu društva."
+  },
+  {
+   "statusni_postupak_rbr": 7,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od dana 26. svibnja 2000. godine izmjenjen je čl. 8. (predmet poslovanja - djelatnosti) i čl. 34. st. 1. (članovi Uprave)."
+  },
+  {
+   "statusni_postupak_rbr": 8,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Društvu je pripojeno društvo RIVIERA BORIK d. o. o. sa sjedištem u Poreču, Vladimira Nazora 9, temeljem ugovora o pripajanju od 31. prosinca 1999. godine i odluke Glavne skupštine od 26. svibnja 2000. godine."
+  },
+  {
+   "statusni_postupak_rbr": 9,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Društvu je pripojeno društvo RIVIERA BRULO d. o. o. sa sjedištem u Poreču, Vladmira Nazora 9, temeljem Ugovora o pripajanju od 31. prosinca 1999. godine i odluke Glavne skupštine od dana 26. svibnja 2000. godine."
+  },
+  {
+   "statusni_postupak_rbr": 10,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Društvu je pripojeno društvo RIVIERA DECUMANUS d. o. o. sa sjedištem u Poreču, Vladimira Nazora 9, temeljem Ugovora o pripajanju od 31. prosinca 1999. godine i odluke Glavne skupštine od dana 26. svibnja 2000. godine."
+  },
+  {
+   "statusni_postupak_rbr": 11,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Društvu je pripojeno društvo RIVIERA LANTERNA d. o. o. sa sjedištem u Poreču, Vladimira Nazora 9, temeljem Ugovora o pripajanju od 31. prosinca 1999. godine i odluke Glavne skupštine od dana 26. svibnja 2000. godine."
+  },
+  {
+   "statusni_postupak_rbr": 12,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Društvu je pripojeno društvo RIVIERA VRSAR d. o. o. sa sjedištem u Vrsaru, Rade Končara, 72, temeljem Ugovora o pripajanju od 31. prosinca 1999. godine i odluke Glavne skupštine od dana 26. svibnja 2000. godine."
+  },
+  {
+   "statusni_postupak_rbr": 13,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Društvu je pripojeno društvo RIVIERA INŽENJERING d. o. o. sa sjedištem u Poreču, Vladimira Nazora 9, temeljem Ugovora o pripajanju od 31. prosinca 1999. godine i odluke Glavne skupštine od dana 26. svibnja 2000. godine."
+  },
+  {
+   "statusni_postupak_rbr": 14,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Društvu je pripojeno društvo RIVIERA SERVISI d. o. o. Poreč, Mate Vlašića bb, temeljem Ugovora o pripajanju od 31. prosinca 1999. godine i odluke Glavne skupštine od dana 25. svibnja 2000. godine."
+  },
+  {
+   "statusni_postupak_rbr": 15,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 05. srpnja 2002. godine izmjenjene su odredbe Statuta društva. Pročišćeni tekst Statuta dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 16,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine društva od 31. kolovoza 2004. godine izmjenjene su odredbe Statuta koji je u pročišćenom tekstu dostavljen u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 17,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od dana 13. prosinca 2006. godine izmijenjene su odredbe Statuta u čl. 3. o tvrtki društva. Pročišćeni tekst Statuta dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 18,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od dana 11. srpnja 2007. godine izmijenjene su odredbe Statuta u čl. 8. o predmetu poslovanja - djelatnostima. Pročišćeni tekst Statuta dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 19,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 8. srpnja 2010. godine izmijenjene su odredbe Statuta od 11. srpnja 2007. godine i to: odredbe članka 4. o organu nadležnom za određivanje poslovne adrese u sjedištu društva, te članka 19. i 20. o sazivanju Glavne skupštine i prijavi dioničara radi usklađivanja s odredbama Zakona o izmjenama i dopunama Zakona o trgovačkim društvima, NN 137/09.\nPročišćeni tekst Statuta od 8. srpnja 2010. godine dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 20,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom glavne skupštine od 29.06.2011.g. izmjenjene su odredbe Statuta društva (pročišćenog teksta) od 08.07.2010.g i to: članak 3. (tvrtka društva), članak 8. (djelatnost društva), članak 11. (iznos temeljnog kapitala), članak 12. (broj i nominalni iznos dionica), članak 19. st. 3 (o priopćenju za dioničare) i dodan novi članak 35.a. (o odobrenom temeljnom kapitalu).\nPročišćeni tekst Statuta od 29. lipnja 2011. godine dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 21,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom glavne skupštine od 29.06.2011.g., temeljni kapital društva smanjen je s iznosa od 1.096.055.100,00 kn za iznos od 365.351.700,00 kn na iznos od 730.703.400,00 kn smanjenjem nominalnog iznosa dionica s iznosa od 300,00 kn za iznos od 100,00 kn na iznos od 200,00 kn, koje dionice su podijeljene tako da je 1 (jedna)redovna dionica nominalnog iznosa 200,00 kn podijeljena na 20 (dvadeset) novih redovnih dionica nominalnog iznosa 10,00 (deset) kn svaka.\n\nOdlukom glavne skupštine od 29.06.2011.g. istodobno je, radi pripajanja društva RABAC d.d. i ZLATNI OTOK d.d. društvu RIVIERA POREČ d.d., temeljni kapital povećan s iznosa od 730.703.400,00 kn za iznos od 334.760.000,00 kn na iznos od 1.065.463.400,00 kn. Temeljni kapital povećava se izdavanjem 33.476.000 novih redovnih dionica koje glase na ime nominalnog iznosa 10,00 kn svaka."
+  },
+  {
+   "statusni_postupak_rbr": 22,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Odlukom Glavne skupštine društva od 29.06.2011.g. odobren je Ugovor o pripajanju kojim se društvo RABAC d.d. i ZLATNI OTOK d.d. pripajaju društvu RIVIERA POREČ d.d."
+  },
+  {
+   "statusni_postupak_rbr": 23,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 5. srpnja 2013. g. izmijenjen je čl. 12. Statuta društva (pročišćeni tekst od 29. lipnja 2011. godine) na način da se dosadašnji temeljni kapital Društva koji je podijeljen na 106.546.340 redovnih dionica na ime, nominalnog iznosa 10,00 kuna, sada dijeli na isti broj dionica na ime, bez nominalnog iznosa."
+  },
+  {
+   "statusni_postupak_rbr": 24,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom Glavne skupštine od 5. srpnja 2013. g., 106.546.340 (slovima: stošest milijuna petstočetrdesetišest tisuća tristočetrdeset) redovnih dionica Društva oznake RIVP-R-A i ISIN oznake HRRIVPRA0000 koje glase na ime, nominalnog iznosa 10,00 (slovima: deset) kuna svaka, zamjenjuje se sa 106.546.340 (slovima: stošestmilijuna petstočetrdesetišest tisuća tristočetrdeset) redovnih dionica na ime bez nominalnog iznosa. Jedna redovna dionica Društva, koja glasi na ime, nominalnog iznosa 10,00 (slovima: deset) kuna zamjenjuje se s jednom redovnom dionicom Društva koja glasi na ime, bez nominalnog iznosa.\n"
+  },
+  {
+   "statusni_postupak_rbr": 25,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 24.07.2013. godine dopunjena je odredba članka 8. o djelatnosti društva, izmijenjen je članak 11. o temeljnom kapitalu zbog povećanja temeljnog kapitala i dijelom odredba članka 22. o kvorumu Glavne skupštine a radi usklađenja sa odredbama o dionicama bez nominalnog iznos.\nStatut Riviera Adria d.d. (potpuni tekst) od 24.07.2013. godine dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 26,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom Glavne skupštine od 24.07.2013. godine temeljni kapital društva povećan je s iznosa od 1.065.463.400,00 kuna za iznos od 52.200.000,00 kuna na iznos od 1.117.663.400,00 kuna."
+  },
+  {
+   "statusni_postupak_rbr": 27,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Dana 30.08.2013. godine zaključen je Ugovor o pripajanju kojim se društvo DUBROVNIK - BABIN KUK d.d. pripaja društvu Riviera Adria d.d. Ugovor o pripajanju odobren je na Glavnoj skupštini društva DUBROVNIK - BABIN KUK d.d. održanoj dana 9.10.2013.godine, a društvo Riviera Adria d.d. kao društvo preuzimatelj je jedini dioničar koji drži sve dionice društva DUBROVNIK - BABIN KUK d.d. koje se pripaja."
+  },
+  {
+   "statusni_postupak_rbr": 28,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 21.08.2014.g. izmijenjene su odredbe Statuta društva (pročišćenog teksta od 24.07.2013.g.) i to: članak 3. o tvrtki društva, čl. 8. st. 1. o djelatnosti društva, članak 11. o iznosu temeljnog kapitala, članak 12. o broju dionica, članak 25. st. 1. o broju članova Nadzornog odbora, članak 27. st. 2. o sastavu Nadzornog odbora i članak 32 st. 1. o broju članova uprave društva.\nPotpuni tekst Statuta Valamar Riviera d.d. od 21.08.2014.g. dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 29,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom Glavne skupštine od 21.08.2014.g. radi pripajanja društva VALAMAR ADRIA HOLDING d.d. i VALAMAR GRUPA d.d. društvu RIVIERA ADRIA d.d., temeljni kapital povećan je sa iznosa od 1.117.663.400,00 kuna za iznos od 204.357.810,00 kuna izdavanjem 19.481.202 novih redovnih dionica koje glase na ime bez nominalnog iznosa, te istodobno za iznos od 350.000.000,00 kuna iz sredstava društva pretvorbom rezervi kapitala u temeljni kapital bez izdavanja novih dionica, na iznos od 1.672.021.210,00 kn.\nTemeljni kapital je nakon povećanja razdijeljen na 126.027.542 redovne dionice na ime bez nominalnog iznosa.\n"
+  },
+  {
+   "statusni_postupak_rbr": 30,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Odlukom Glavne skupštine društva od 21.08.2014.g. odobren je Ugovor o pripajanju kojim se društvo VALAMAR ADRIA HOLDING d.d. i VALAMAR GRUPA d.d. pripajaju društvu RIVIERA ADRIA d.d., te je glavna skupština donijela Odluku o povećanju temeljnog kapitala radi provedbe pripajanja."
+  },
+  {
+   "statusni_postupak_rbr": 31,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Ovom društvu pripojeno je društvo LINTEUM SAVJETOVANJE d.o.o., Zagreb, Grad Zagreb, Miramarska cesta 24, upisano u sudski registar Trgovačkog suda u Zagrebu pod MBS: 080615326, OIB: 10558647156, temeljem Ugovora o pripajanju od 16. listopada 2014.godine i Odluke člana Pripojenog društva od 24. studenog 2014.g."
+  },
+  {
+   "statusni_postupak_rbr": 32,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Ovom društvu pripojeno je društvo Valamar hoteli i ljetovališta d.o.o., Zagreb, Miramarska cesta 24, upisano u sudski registar Trgovačkog suda u Zagrebu pod MBS: 080380830, OIB: 24797324530, temeljem Ugovora o pripajanju od 18. prosinca 2014.godine i Odluke člana Pripojenog društva od  23. siječnja 2015. godine."
+  },
+  {
+   "statusni_postupak_rbr": 33,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 8. lipnja 2015. godine izmjenjene su odredbe Statuta Društva (potpuni tekst od 21. kolovoza 2014.) na način da je cjelokupni tekst Statuta zamijenjen novim Statutom Valamar Riviera dioničko za turizam.\nPotpuni tekst Statuta od 8. lipnja 2015. godine dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 34,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Dana 10. veljače 2016. zaključen je Ugovor o pripajanju kojim se društvo HOTELI BAŠKA d.d. pripaja društvu VALAMAR RIVIERA d.d. Ugovor o pripajanju odobren je na Glavnoj skupštini društva HOTELI BAŠKA d.d. održanoj dana 16. veljače 2016. Društvo preuzimatelj VALAMAR RIVIERA d.d. jedini je dioničar društva koje se pripaja i drži sve dionice društva HOTELI BAŠKA d.d."
+  },
+  {
+   "statusni_postupak_rbr": 35,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 27. travnja 2016. izmijenjene su i dopunjene odredbe Statuta i to: članka 4. u kojem je dopunjena djelatnost sa uslugama informacijskog društva i članka 26. stavka 1. kojim je izmijenjen način objavljivanja podataka i priopćenja Društva radi usklađivanja s odredbama Zakona o izmjenama i dopunama Zakona o trgovačkim društvima NN 110/15.\nPotpuni tekst Statuta od 27. travnja 2016. dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 36,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Ovom društvu pripojeno je društvo BASTION UPRAVLJANJE d.o.o., Zagreb, Miramarska cesta 24, upisano u registar Trgovačkog suda u Zagrebu pod brojem MBS 080504230, OIB 81108516717, temeljem Ugovora o pripajanju zaključenog dana 11. svibnja 2016. kojim se društvo BASTION UPRAVLJANJE d.o.o. pripaja društvu Valamar Riviera d.d. \nUgovor o pripajanju odobren je na Glavnoj skupštini društva BASTION UPRAVLJANJE d.o.o. održanoj dana 15. lipnja 2016. \nDruštvo preuzimatelj Valamar Riviera d.d. jedini je član društva koje se pripaja i drži sve udjele u društvu BASTION UPRAVLJANJE d.o.o."
+  },
+  {
+   "statusni_postupak_rbr": 37,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Dana 24. veljače 2017. zaključen je Ugovor o pripajanju kojim se društvo PUNTIŽELA d.o.o., Pula, Puntižela 155, MBS 040026190, OIB 93264433919 pripaja društvu Valamar Riviera d.d. \nUgovor o pripajanju odobren je na Glavnoj skupštini društva PUNTIŽELA d.o.o. održanoj dana 29. ožujka 2017.\nDruštvo preuzimatelj Valamar Riviera d.d. jedini je član društva koje se pripaja i drži sve udjele u društvu PUNTIŽELA d.o.o."
+  },
+  {
+   "statusni_postupak_rbr": 38,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 4. svibnja 2017. dopunjena je odredba Statuta Društva i to članka 4. u kojem je dopunjena djelatnost sa djelatnostima prikazivanja filmova.\nPotpuni tekst Statuta od 4. svibnja 2017. dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 39,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Dana 25. listopada 2017. zaključen je Ugovor o pripajanju kojim se društvo ELAFITI BABIN KUK d.o.o., Dubrovnik, Vatroslava Lisinskog 15 A, OIB: 68496139874, (MBS) 060031725, pripaja društvu Valamar Riviera d.d. \nUgovor o pripajanju odobren je na Glavnoj skupštini društva ELAFITI BABIN KUK d.d. održanoj dana 28. studenog 2017. \nDruštvo preuzimatelj Valamar Riviera d.d. jedini je član društva koje se pripaja i drži sve udjele u društvu ELAFITI BABIN KUK d.o.o."
+  },
+  {
+   "statusni_postupak_rbr": 40,
+   "vrsta_statusnog_postupka": {
+    "sifra": 64,
+    "naziv": "Statusne promjene: prekogranično pripojenje subjektu upisa",
+    "redoslijed": 174
+   },
+   "tekst": "Odlukom Glavne skupštine društva od 8.svibnja 2018. i na temelju Zajedničkog plana pripajanja, subjektu upisa pripojeno je društvo EPIC Hospitality Holding GmbH, Beč, Plößlgasse 8, Austrija, upisano u trgovačkom registru Trgovačkog suda u Beču pod brojem 482446 f."
+  },
+  {
+   "statusni_postupak_rbr": 41,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine društva od 24. rujna 2020. izmijenjene su odredbe Statuta u članku 9. o odobrenom temeljnom kapitalu.\nPotpuni tekst Statuta dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 42,
+   "vrsta_statusnog_postupka": {
+    "sifra": 32,
+    "naziv": "Statusne promjene: subjektu upisa pripojen drugi",
+    "redoslijed": 111
+   },
+   "tekst": "Dana 19. ožujka 2021. zaključen je Ugovor o pripajanju kojim se društvo PALME TURIZAM d.o.o. pripaja društvu Valamar Riviera d.d. \nUgovor o pripajanju odobren je na Glavnoj skupštini društva PALME TURIZAM d.o.o. održanoj dana 23. travnja 2021.\nDruštvo preuzimatelj Valamar Riviera d.d. jedini je član društva koje se pripaja i drži sve udjele u društvu PALME TURIZAM d.o.o."
+  },
+  {
+   "statusni_postupak_rbr": 43,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne Skupštine od 19. svibnja 2022. izmijenjene su i dopunjene odredbe Statuta Društva i to članak 18. i članak 19. koji se odnose na broj članova nadzornog odbora i postupak izbora i imenovanja. \nPotpuni tekst Statuta dostavljen je u zbirku isprava."
+  },
+  {
+   "statusni_postupak_rbr": 44,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne skupštine od 24. travnja 2023. godine izmijenjene su i dopunjene odredbe Statuta Društva i to članak 7. koji se odnosi na iznos temeljnog kapitala i članak 9. koji se odnosi na odobreni temeljni kapital Društva."
+  },
+  {
+   "statusni_postupak_rbr": 45,
+   "vrsta_statusnog_postupka": {
+    "sifra": 5,
+    "naziv": "Promjene temeljnog kapitala:",
+    "redoslijed": 5
+   },
+   "tekst": "Odlukom Glavne skupštine od 24. travnja 2023. godine usklađen je temeljni kapital iz kuna u euro."
+  },
+  {
+   "statusni_postupak_rbr": 46,
+   "vrsta_statusnog_postupka": {
+    "sifra": 3,
+    "naziv": "Statut:",
+    "redoslijed": 3
+   },
+   "tekst": "Odlukom Glavne Skupštine od 23. travnja 2026. izmijenjene su i dopunjene odredbe Statuta Društva i to članak 4. (predmet poslovanja društva), članak 10. (dionice društva), članak 13. (sudjelovanje na Glavnoj skupštini) i članak 23. (uprava društva). \nPročišćeni tekst Statuta od 23. travnja 2026. godine dostavljen je u zbirku isprava."
+  }
+ ],
+ "gfi": [
+  {
+   "gfi_rbr": 1,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2008,
+   "datum_dostave": "2009-06-30T00:00:00",
+   "datum_od": "2008-01-01T00:00:00",
+   "datum_do": "2008-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 2,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2008,
+   "datum_dostave": "2009-09-30T00:00:00",
+   "datum_od": "2008-01-01T00:00:00",
+   "datum_do": "2008-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 3,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2009,
+   "datum_dostave": "2010-06-30T00:00:00",
+   "datum_od": "2009-01-01T00:00:00",
+   "datum_do": "2009-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 4,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2010,
+   "datum_dostave": "2011-06-15T00:00:00",
+   "datum_od": "2010-01-01T00:00:00",
+   "datum_do": "2010-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 5,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2011,
+   "datum_dostave": "2012-06-30T00:00:00",
+   "datum_od": "2011-01-01T00:00:00",
+   "datum_do": "2011-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 6,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2011,
+   "datum_dostave": "2012-06-30T00:00:00",
+   "datum_od": "2011-01-01T00:00:00",
+   "datum_do": "2011-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 7,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2012,
+   "datum_dostave": "2013-06-27T00:00:00",
+   "datum_od": "2012-01-01T00:00:00",
+   "datum_do": "2012-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 8,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2012,
+   "datum_dostave": "2013-06-27T00:00:00",
+   "datum_od": "2012-01-01T00:00:00",
+   "datum_do": "2012-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 9,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2013,
+   "datum_dostave": "2014-06-30T00:00:00",
+   "datum_od": "2013-01-01T00:00:00",
+   "datum_do": "2013-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 10,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2013,
+   "datum_dostave": "2014-06-30T00:00:00",
+   "datum_od": "2013-01-01T00:00:00",
+   "datum_do": "2013-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 11,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2014,
+   "datum_dostave": "2015-06-29T00:00:00",
+   "datum_od": "2014-01-01T00:00:00",
+   "datum_do": "2014-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 12,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2014,
+   "datum_dostave": "2015-06-30T00:00:00",
+   "datum_od": "2014-01-01T00:00:00",
+   "datum_do": "2014-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 13,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2015,
+   "datum_dostave": "2016-06-20T00:00:00",
+   "datum_od": "2015-01-01T00:00:00",
+   "datum_do": "2015-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 14,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2015,
+   "datum_dostave": "2016-06-20T00:00:00",
+   "datum_od": "2015-01-01T00:00:00",
+   "datum_do": "2015-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 15,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2016,
+   "datum_dostave": "2017-06-16T00:00:00",
+   "datum_od": "2016-01-01T00:00:00",
+   "datum_do": "2016-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 16,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2016,
+   "datum_dostave": "2017-06-16T00:00:00",
+   "datum_od": "2016-01-01T00:00:00",
+   "datum_do": "2016-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 17,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2017,
+   "datum_dostave": "2018-06-08T00:00:00",
+   "datum_od": "2017-01-01T00:00:00",
+   "datum_do": "2017-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 18,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2017,
+   "datum_dostave": "2018-06-08T00:00:00",
+   "datum_od": "2017-01-01T00:00:00",
+   "datum_do": "2017-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 19,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2018,
+   "datum_dostave": "2019-06-18T00:00:00",
+   "datum_od": "2018-01-01T00:00:00",
+   "datum_do": "2018-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 20,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2018,
+   "datum_dostave": "2019-04-17T00:00:00",
+   "datum_od": "2018-01-01T00:00:00",
+   "datum_do": "2018-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 21,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2019,
+   "datum_dostave": "2020-08-31T00:00:00",
+   "datum_od": "2019-01-01T00:00:00",
+   "datum_do": "2019-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 22,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2019,
+   "datum_dostave": "2020-08-31T00:00:00",
+   "datum_od": "2019-01-01T00:00:00",
+   "datum_do": "2019-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 23,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2020,
+   "datum_dostave": "2021-08-06T00:00:00",
+   "datum_od": "2020-01-01T00:00:00",
+   "datum_do": "2020-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 24,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2020,
+   "datum_dostave": "2021-08-06T00:00:00",
+   "datum_od": "2020-01-01T00:00:00",
+   "datum_do": "2020-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 25,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2021,
+   "datum_dostave": "2022-06-24T00:00:00",
+   "datum_od": "2021-01-01T00:00:00",
+   "datum_do": "2021-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 26,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2021,
+   "datum_dostave": "2022-06-24T00:00:00",
+   "datum_od": "2021-01-01T00:00:00",
+   "datum_do": "2021-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 27,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2022,
+   "datum_dostave": "2023-04-27T00:00:00",
+   "datum_od": "2022-01-01T00:00:00",
+   "datum_do": "2022-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 28,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2022,
+   "datum_dostave": "2023-04-27T00:00:00",
+   "datum_od": "2022-01-01T00:00:00",
+   "datum_do": "2022-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 29,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2023,
+   "datum_dostave": "2024-04-27T00:00:00",
+   "datum_od": "2023-01-01T00:00:00",
+   "datum_do": "2023-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 30,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2023,
+   "datum_dostave": "2024-04-27T00:00:00",
+   "datum_od": "2023-01-01T00:00:00",
+   "datum_do": "2023-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 31,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2024,
+   "datum_dostave": "2025-06-17T00:00:00",
+   "datum_od": "2024-01-01T00:00:00",
+   "datum_do": "2024-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 32,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2024,
+   "datum_dostave": "2025-06-17T00:00:00",
+   "datum_od": "2024-01-01T00:00:00",
+   "datum_do": "2024-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 33,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 0,
+   "godina_izvjestaja": 2025,
+   "datum_dostave": "2026-04-27T00:00:00",
+   "datum_od": "2025-01-01T00:00:00",
+   "datum_do": "2025-12-31T00:00:00"
+  },
+  {
+   "gfi_rbr": 34,
+   "vrsta_dokumenta": {
+    "znacenje": "GFI-POD izvještaj"
+   },
+   "oznaka_konsolidacije": 1,
+   "godina_izvjestaja": 2025,
+   "datum_dostave": "2026-04-27T00:00:00",
+   "datum_od": "2025-01-01T00:00:00",
+   "datum_do": "2025-12-31T00:00:00"
+  }
+ ],
+ "promjene": [
+  {
+   "id": 41978691,
+   "vrijeme": "2026-08-14T20:04:30",
+   "scn": 8261072951122
+  }
+ ]
+}
