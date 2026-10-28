@@ -29,6 +29,12 @@ export const ProfileSummary = ({profile, onEdit, onClear}: ProfileSummaryProps) 
                     <dt>Županija</dt>
                     <dd>{profile.county ? formatCounty(profile.county) : "Sve županije"}</dd>
                 </div>
+                {profile.activityCodes && (
+                    <div className={styles.row}>
+                        <dt>Djelatnost (NKD)</dt>
+                        <dd>{profile.activityCodes.join(", ")}</dd>
+                    </div>
+                )}
                 {profile.keywords && (
                     <div className={styles.row}>
                         <dt>Ključne riječi</dt>

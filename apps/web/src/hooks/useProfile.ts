@@ -7,6 +7,15 @@ const STORAGE_KEY = "datathon.profile.v1";
 const isStringArray = (value: unknown): value is string[] =>
     Array.isArray(value) && value.every((item) => typeof item === "string");
 
+// Profiles saved before keyword validation may hold keywords the API rejects (3 to 50 characters).
+const parseKeywords = (value: unknown) => {
+    if (!isStringArray(value)) {
+        return undefined;
+    }
+    const keywords = value.filter((keyword) => keyword.length >= 3 && keyword.length <= 50);
+    return keywords.length > 0 ? keywords : undefined;
+};
+
 const parseProfile = (value: unknown): Profile | undefined => {
     if (typeof value !== "object" || value === null) {
         return undefined;
@@ -23,7 +32,7 @@ const parseProfile = (value: unknown): Profile | undefined => {
         areas,
         additionalTypes: Array.isArray(additionalTypes) ? additionalTypes.filter(isTargetGroup) : undefined,
         county: typeof county === "string" && COUNTIES.includes(county) ? county : undefined,
-        keywords: isStringArray(keywords) ? keywords : undefined,
+        keywords: parseKeywords(keywords),
         activityCodes: isStringArray(activityCodes) ? activityCodes : undefined,
     };
 };

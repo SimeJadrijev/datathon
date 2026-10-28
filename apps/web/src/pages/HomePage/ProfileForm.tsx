@@ -1,9 +1,11 @@
 import {type FormEvent, useRef, useState} from "react";
 import {Button, Card, Select} from "@/components";
 import {COUNTIES, formatCounty} from "@/constants";
-import type {Profile} from "@/types";
+import type {OibProfile, Profile} from "@/types";
 import {AreaField} from "./AreaField.tsx";
+import {OibLookup} from "./OibLookup.tsx";
 import {
+    fromOibProfile,
     hasErrors,
     type ProfileFormErrors,
     type ProfileFormValues,
@@ -25,6 +27,7 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
     const [errors, setErrors] = useState<ProfileFormErrors>({});
     const targetGroupRef = useRef<HTMLFieldSetElement>(null);
     const areasRef = useRef<HTMLFieldSetElement>(null);
+    const keywordsRef = useRef<HTMLInputElement>(null);
 
     const handleChange = (changes: Partial<ProfileFormValues>) => {
         const nextValues = {...values, ...changes};
@@ -35,22 +38,39 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
         }
     };
 
+    const handleOibFound = (oibProfile: OibProfile) => {
+        setValues(fromOibProfile(oibProfile, values));
+        setErrors({});
+    };
+
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const nextErrors = validateProfileForm(values);
         setErrors(nextErrors);
 
         if (values.type === "" || hasErrors(nextErrors)) {
-            const firstInvalidField = nextErrors.type ? targetGroupRef : areasRef;
-            firstInvalidField.current?.focus();
+            focusFirstInvalidField(nextErrors);
             return;
         }
 
         onSubmit(toProfile(values.type, values));
     };
 
+    const focusFirstInvalidField = (nextErrors: ProfileFormErrors) => {
+        if (nextErrors.type) {
+            targetGroupRef.current?.focus();
+            return;
+        }
+        if (nextErrors.areas) {
+            areasRef.current?.focus();
+            return;
+        }
+        keywordsRef.current?.focus();
+    };
+
     return (
         <Card as="section" className={styles.card}>
+            <OibLookup onFound={handleOibFound}/>
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
                 <TargetGroupField
                     ref={targetGroupRef}
@@ -88,14 +108,18 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
                             <label htmlFor="keywords" className={styles.label}>Ključne riječi</label>
                             <input
                                 id="keywords"
+                                ref={keywordsRef}
                                 type="text"
                                 className={styles.input}
                                 value={values.keywords}
                                 maxLength={200}
                                 placeholder="npr. solarni paneli, električni automobil"
+                                aria-describedby={errors.keywords ? "keywords-hint keywords-error" : "keywords-hint"}
+                                aria-invalid={Boolean(errors.keywords)}
                                 onChange={(event) => handleChange({keywords: event.target.value})}
                             />
-                            <p className={styles.hint}>Odvoji ih zarezom.</p>
+                            <p id="keywords-hint" className={styles.hint}>Odvoji ih zarezom.</p>
+                            {errors.keywords && <p id="keywords-error" className={styles.error}>{errors.keywords}</p>}
                         </div>
                     </div>
                 </fieldset>

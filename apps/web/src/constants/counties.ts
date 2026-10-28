@@ -25,3 +25,14 @@ export const COUNTIES = [
 
 export const formatCounty = (county: string) =>
     county === "Grad Zagreb" ? county : `${county} županija`;
+
+const COUNTY_SUFFIX = /\s+županija$/i;
+
+// The Court Register gives full names ("Istarska županija"); the form uses the short ones.
+export const findCounty = (name: string | null | undefined) => {
+    if (!name) {
+        return undefined;
+    }
+    const shortName = name.trim().replace(COUNTY_SUFFIX, "").toLocaleLowerCase("hr-HR");
+    return COUNTIES.find((county) => county.toLocaleLowerCase("hr-HR") === shortName);
+};
