@@ -2,6 +2,7 @@ package com.datathon.api.profile;
 
 import com.datathon.api.fundingcall.TargetGroup;
 import com.datathon.api.integration.sudreg.CompanyInfo;
+import com.datathon.api.integration.sudreg.NkdAreaMapper;
 import com.datathon.api.integration.sudreg.SudregClient;
 import java.util.List;
 import java.util.Locale;
@@ -20,7 +21,7 @@ public class ProfileFromOibService {
         var profile = new ProfileRequest(
                 targetGroupFor(company.legalForm()),
                 List.of(),
-                NkdAreas.forActivityCode(company.activityCode()),
+                NkdAreaMapper.forActivityCode(company.activityCode()),
                 county,
                 List.of(),
                 company.activityCode() == null ? List.of() : List.of(company.activityCode()));
