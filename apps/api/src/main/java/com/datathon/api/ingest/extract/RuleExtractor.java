@@ -71,7 +71,7 @@ public class RuleExtractor {
                 status(item, deadline),
                 publishedAt,
                 deadline,
-                deadline == null ? DeadlineFinder.findNote(page + "\n" + item.pdfText()).orElse(null) : null,
+                deadlineNote(item, deadline, page),
                 amounts.total(),
                 amounts.min(),
                 amounts.max(),
@@ -85,9 +85,22 @@ public class RuleExtractor {
         if (item.deadlineHint() != null) {
             return item.deadlineHint();
         }
+        if (item.deadlineNoteHint() != null) {
+            return null;
+        }
         return DeadlineFinder.find(page, publishedAt)
                 .or(() -> DeadlineFinder.find(item.pdfText(), publishedAt))
                 .orElse(null);
+    }
+
+    private static String deadlineNote(RawItem item, LocalDate deadline, String page) {
+        if (deadline != null) {
+            return null;
+        }
+        if (item.deadlineNoteHint() != null) {
+            return item.deadlineNoteHint();
+        }
+        return DeadlineFinder.findNote(page + "\n" + item.pdfText()).orElse(null);
     }
 
     private LocalDate guessPublishedAt(RawItem item, LocalDate deadline) {
