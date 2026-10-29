@@ -1,6 +1,6 @@
 import type {ReactNode} from "react";
 import {classNames} from "@/utils";
-import {Icon, type IconName} from "./Icon.tsx";
+import {Icon, type IconName} from "@/components/Icon";
 import styles from "./Badge.module.css";
 
 export type BadgeTone = "neutral" | "primary" | "success" | "warning" | "danger" | "info" | "ai";

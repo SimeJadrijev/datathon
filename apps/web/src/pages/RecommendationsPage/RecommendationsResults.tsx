@@ -1,5 +1,5 @@
 import {ButtonLink, EmptyState, ErrorState, FundingCallCard, ListSkeleton} from "@/components";
-import {useRecommendations} from "@/hooks";
+import {useGetProfileMatches} from "@/hooks";
 import {routes} from "@/routes";
 import type {Profile} from "@/types";
 import {MatchDetails} from "./MatchDetails.tsx";
@@ -11,7 +11,7 @@ interface RecommendationsResultsProps {
 }
 
 export const RecommendationsResults = ({profile}: RecommendationsResultsProps) => {
-    const {data: results, isPending, isError, error, refetch} = useRecommendations(profile);
+    const {data: results, isPending, isError, error, refetch} = useGetProfileMatches(profile);
 
     if (isPending) {
         return <ListSkeleton label="Tražimo natječaje za tvoj profil..."/>;

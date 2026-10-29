@@ -1,5 +1,4 @@
-import type {Area} from "./Area.type.ts";
-import type {TargetGroup} from "./TargetGroup.type.ts";
+import type {Area, TargetGroup} from "@/types/codeLists";
 
 // Mirrors ProfileRequest from POST /api/profiles/match (API-6).
 export type Profile = {

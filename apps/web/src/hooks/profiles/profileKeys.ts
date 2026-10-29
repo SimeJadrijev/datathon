@@ -2,5 +2,5 @@ import type {Profile} from "@/types";
 
 export const profileKeys = {
     all: ["profiles"] as const,
-    match: (profile: Profile) => [...profileKeys.all, "match", profile] as const,
+    matches: (profile: Profile) => [...profileKeys.all, "matches", profile] as const,
 };

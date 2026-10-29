@@ -1,4 +1,4 @@
-import type {FundingCallSummary} from "./FundingCall.type.ts";
+import type {FundingCallSummary} from "@/types/fundingCalls";
 
 // Mirrors MatchResult from POST /api/profiles/match (API-6).
 export type MatchResult = {

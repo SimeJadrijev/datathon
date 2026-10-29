@@ -1,6 +1,6 @@
 import {classNames} from "@/utils";
-import {Button} from "./Button.tsx";
-import {Icon} from "./Icon.tsx";
+import {Button} from "@/components/Button";
+import {Icon} from "@/components/Icon";
 import styles from "./StatePanel.module.css";
 
 interface ErrorStateProps {

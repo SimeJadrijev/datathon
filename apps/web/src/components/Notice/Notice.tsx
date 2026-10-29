@@ -1,6 +1,6 @@
 import type {ReactNode} from "react";
 import {classNames} from "@/utils";
-import {Icon, type IconName} from "./Icon.tsx";
+import {Icon, type IconName} from "@/components/Icon";
 import styles from "./Notice.module.css";
 
 export type NoticeTone = "info" | "success" | "warning" | "danger";

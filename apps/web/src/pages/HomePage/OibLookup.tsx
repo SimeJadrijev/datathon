@@ -1,7 +1,7 @@
 import {type FormEvent, useState} from "react";
 import {ApiError} from "@/api";
 import {Button, Notice, TextInput} from "@/components";
-import {useProfileFromOib} from "@/hooks";
+import {useGetProfileFromOib} from "@/hooks";
 import type {OibProfile} from "@/types";
 import {isValidOib} from "@/utils";
 import styles from "./OibLookup.module.css";
@@ -34,7 +34,7 @@ interface OibLookupProps {
 export const OibLookup = ({onFound}: OibLookupProps) => {
     const [oib, setOib] = useState("");
     const [validationError, setValidationError] = useState<string>();
-    const lookup = useProfileFromOib();
+    const lookup = useGetProfileFromOib();
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();

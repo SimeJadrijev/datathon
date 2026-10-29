@@ -1,6 +1,5 @@
-import type {Area} from "./Area.type.ts";
-import type {SourceRef} from "./Source.type.ts";
-import type {TargetGroup} from "./TargetGroup.type.ts";
+import type {SourceRef} from "@/types/sources";
+import type {Area, TargetGroup} from "@/types/codeLists";
 
 export type FundingCallType = "GRANT" | "SUBSIDY" | "PUBLIC_CALL" | "SCHOLARSHIP" | "LOAN" | "AWARD";
 

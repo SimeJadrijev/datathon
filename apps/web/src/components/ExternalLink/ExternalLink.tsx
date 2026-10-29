@@ -1,6 +1,6 @@
 import type {ReactNode} from "react";
 import {classNames} from "@/utils";
-import {Icon} from "./Icon.tsx";
+import {Icon} from "@/components/Icon";
 import styles from "./ExternalLink.module.css";
 
 interface ExternalLinkProps {

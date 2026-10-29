@@ -4,9 +4,9 @@ import {FUNDING_CALL_STATUS_LABELS, FUNDING_CALL_TYPE_LABELS} from "@/constants"
 import {fundingCallDetailPath} from "@/routes";
 import type {FundingCallStatus, FundingCallSummary} from "@/types";
 import {formatAmount, formatDate, formatDeadline, getDaysUntil, isDeadlineUrgent} from "@/utils";
-import {Badge, type BadgeTone} from "./Badge.tsx";
-import {ExternalLink} from "./ExternalLink.tsx";
-import {Icon} from "./Icon.tsx";
+import {Badge, type BadgeTone} from "@/components/Badge";
+import {ExternalLink} from "@/components/ExternalLink";
+import {Icon} from "@/components/Icon";
 import styles from "./FundingCallCard.module.css";
 
 const STATUS_TONES: Record<FundingCallStatus, BadgeTone> = {

@@ -1,7 +1,7 @@
 # OtvoreniRadar design system
 
 Single source of truth for the look and the frontend conventions of `apps/web`.
-Everything here exists in code. Token values live in `apps/web/src/global.css`, components in `apps/web/src/components/`.
+Everything here exists in code. Token values live in `apps/web/src/global.css`, components in `apps/web/src/components/` (one folder per component, see section 7).
 If you change a token or a component, update this file in the same change.
 
 Code rules (structure, hooks, API, types) are in the `react-web` skill (`.claude/skills/react-web/SKILL.md`). This file covers how the UI looks and behaves.
@@ -111,11 +111,25 @@ Typical vertical rhythm: `PageHeader` → `--space-5` → content; gap between l
 - Shadows: `--shadow-sm` only on controls (buttons, inputs, selects) to make them feel pressable. `--shadow-popover` only for things that float (mobile menu, select picker). Cards have **no** shadow.
 - Focus: `:focus-visible` gives a 2 px `--color-primary` outline (global). Inputs use border + `--focus-ring` instead.
 - Motion: only colour/border/background transitions, `--duration-fast` (120 ms) with `--easing`. Reduced motion is respected globally.
-- **Icons:** `Icon` component (`components/Icon.tsx`) with Lucide paths, stroke 1.75, 16 px default. Icons are decorative (`aria-hidden`), the text carries meaning. Need a new icon? Copy its path from lucide.dev into `ICON_PATHS`. Do not add an icon library.
+- **Icons:** `Icon` component (`components/Icon/Icon.tsx`) with Lucide paths, stroke 1.75, 16 px default. Icons are decorative (`aria-hidden`), the text carries meaning. Need a new icon? Copy its path from lucide.dev into `ICON_PATHS`. Do not add an icon library.
 
 Available icons: `alert`, `arrowRight`, `calendar`, `check`, `close`, `database`, `document`, `euro`, `externalLink`, `info`, `institution`, `mapPin`, `menu`, `retry`, `search`, `sparkles`.
 
 ## 7. Components (`@/components`)
+
+Folder structure: every component has its own folder with the component, its CSS Module and a barrel.
+```
+components/
+├── Badge/
+│   ├── Badge.tsx
+│   ├── Badge.module.css
+│   └── index.ts          # export * from "./Badge.tsx";
+├── StatePanel/           # EmptyState, ErrorState, LoadingState share StatePanel.module.css
+└── index.ts              # export * from "./Badge"; ... one line per folder
+```
+- Pages import only from the main barrel: `import {Badge} from "@/components";`.
+- Components import each other through the folder barrel, `import {Icon} from "@/components/Icon";`, never through `@/components` (that would be a circular import).
+- New component = new folder + `index.ts` + one line in `components/index.ts`. Components that share one stylesheet share one folder.
 
 | Component | Props | Use |
 |---|---|---|
@@ -135,7 +149,7 @@ Available icons: `alert`, `arrowRight`, `calendar`, `check`, `close`, `database`
 | `ExternalLink` | `href`, `className` | Any link leaving the app. Adds icon + "(otvara se u novoj kartici)" for screen readers |
 | `Icon` | `name`, `size`, `className` | See section 6 |
 
-Patterns that live in a page folder (used by one page), reuse them by moving to `components/` when a second page needs them:
+Patterns that live in a page folder (used by one page), reuse them by moving to their own `components/<Name>/` folder when a second page needs them:
 - **Choice tiles** (`ProfileForm.module.css` `.option`): radio cards with a drawn radio dot, selected = primary border + primary-soft background.
 - **Filter chips** (`.chip`): 6 px radius toggle buttons, selected = primary text/border + primary-soft + check icon. Use the same look for list filters.
 - **Link list** (`HomePage/BrowseLinks`): icon tile + label + description + arrow, full-row hover.

@@ -1,13 +1,13 @@
 import {useQuery} from "@tanstack/react-query";
-import {matchProfile} from "@/api";
+import {getProfileMatches} from "@/api";
 import type {Profile} from "@/types";
 import {profileKeys} from "./profileKeys.ts";
 
 const FIVE_MINUTES = 5 * 60 * 1000;
 
-export const useRecommendations = (profile: Profile) =>
+export const useGetProfileMatches = (profile: Profile) =>
     useQuery({
-        queryKey: profileKeys.match(profile),
-        queryFn: () => matchProfile(profile),
+        queryKey: profileKeys.matches(profile),
+        queryFn: () => getProfileMatches(profile),
         staleTime: FIVE_MINUTES,
     });
