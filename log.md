@@ -63,3 +63,7 @@
 ## 2026-10-29 (Luka)
 - Na `main` mergani PR #13 (AI), #16 (API) i #15 (ingest); svih 208 testova prolazi. Web PR #14 zatvoren bez mergea (kod na `feature/pkg-6-web`).
 - Admin ruta `POST /api/admin/ingest` dodana izravno na `main` (AdminKeyGuard + BatchRunner): 202/401/400/409 provjereni curlom, FZOEU run 29 zapisa. README dopunjen uputom. #4 zatvoren.
+
+
+## 2026-10-29 (Sime)
+- Branch `sime/ingest-other-sources`, paket 3 (ostali izvori). INGEST-5 (fondovieu NPOO) gotov: parser + fetcher, 10 testova na spremljenim stranicama (`fixtures/eu-funds-npoo/`, uključujući pravi `robots.txt`), živi run 142 poziva s rokom za sve, 0 grešaka. Usporedba i odluke u `work/decisions.md`. Sljedeće: INGEST-6 (HZZ i APPRRR).
