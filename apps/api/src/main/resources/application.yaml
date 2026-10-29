@@ -30,6 +30,7 @@ ingest:
   on-startup: ${INGEST_ON_STARTUP:false}
   cache-dir: ${INGEST_CACHE_DIR:data/cache}
   closed-pages: 5
+  mzom-pages: 15
 
 llm:
   api-key: ${ANTHROPIC_API_KEY:}

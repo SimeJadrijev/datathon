@@ -142,7 +142,7 @@ class EuFundsNpooParserTest {
         when(http.getText("https://fondovieu.gov.hr/pozivi?page=1&statusGroup=zatvoreni"))
                 .thenReturn(fixture("list-closed-last.html"));
         when(http.getText("https://fondovieu.gov.hr/pozivi/113")).thenReturn(fixture("detail-open-call.html"));
-        EuFundsNpooFetcher fetcher = new EuFundsNpooFetcher(http, new IngestProperties("target/cache", 5, false));
+        EuFundsNpooFetcher fetcher = new EuFundsNpooFetcher(http, new IngestProperties("target/cache", 5, false, 15));
 
         List<RawItem> items = fetcher.fetchList();
         RawItem detailed = fetcher.fetchDetail(items.getFirst());
