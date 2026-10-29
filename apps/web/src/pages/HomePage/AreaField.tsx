@@ -1,4 +1,5 @@
 import type {Ref} from "react";
+import {Icon} from "@/components";
 import {AREA_LABELS, AREAS} from "@/constants";
 import type {Area} from "@/types";
 import {classNames} from "@/utils";
@@ -38,6 +39,7 @@ export const AreaField = ({value, error, onChange, ref}: AreaFieldProps) => {
                                 onChange={() => onChange(toggleArea(value, area))}
                                 className="visually-hidden"
                             />
+                            {isSelected && <Icon name="check" size={14}/>}
                             {AREA_LABELS[area]}
                         </label>
                     );

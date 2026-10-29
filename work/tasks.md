@@ -41,7 +41,7 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 | 8 Quality and delivery | QUALITY-1 do 3, DELIVERY-1 do 5 | 6,2 | | OTVORENO |
 
 **Pitanja za kolege u PR-u paketa 6, postaviti kao komentar:**
-1. Naziv aplikacije "Natječaji i zakoni" i logo "NZ" su radni izbor. Mijenja se samo u `apps/web/src/constants/app.ts`.
+1. ~~Naziv aplikacije "Natječaji i zakoni" i logo "NZ" su radni izbor.~~ 29.10. promijenjeno u **OtvoreniRadar** na `refactor-ui` (vidi `work/decisions.md`).
 2. Kad profil postoji, početna prvo pokazuje sažetak profila, a forma se otvara na "Promijeni profil". Spec (WEB-2) kaže "forma je popunjena i nudi Promijeni profil". Slažemo li se s odstupanjem?
 
 **Otvoreno za web:** provjeriti u Firefoxu (na Ivanovom računalu nije instaliran, testirano samo u Chromiumu).

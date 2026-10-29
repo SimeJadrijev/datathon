@@ -89,3 +89,10 @@
 ## 2026-10-29 (Luka)
 - Na `main` mergani PR #13 (AI), #16 (API) i #15 (ingest); svih 208 testova prolazi. Web PR #14 zatvoren bez mergea (kod na `feature/pkg-6-web`).
 - Admin ruta `POST /api/admin/ingest` dodana izravno na `main` (AdminKeyGuard + BatchRunner): 202/401/400/409 provjereni curlom, FZOEU run 29 zapisa. README dopunjen uputom. #4 zatvoren.
+
+## 2026-10-29 (Nino, redizajn)
+- `refactor-ui` fast-forwardan na `origin/feature/pkg-6-web` (na `main` je web bio prazan kostur). Redizajn radi na Ivanovom kodu paketa 6, PR za paket 6 još nije mergean, pa redoslijed mergea treba dogovoriti.
+- Novi tokeni (`global.css`), Inter, nove komponente `Icon`, `TextInput`, `Notice`, `ListSkeleton`, prerađeni `Button` (4 varijante, 2 veličine), `Badge` (tonovi `primary`, `info`, `ai`), `Card`, `PageHeader` (eyebrow), state paneli, `FundingCallCard` (fakti desno, izvor u podnožju), layout i navigacija, Početna (+ `BrowseLinks`), Moji natječaji (skeleton, razlozi s kvačicama, `Notice`).
+- `DESIGN_SYSTEM.md` u rootu; pravilo dodano u `CLAUDE.md` i skill `react-web`. Odluke u `work/decisions.md`.
+- Provjera: `yarn lint` i `yarn build` prolaze. Headless Chrome snimke: početna (1280 i 600 px), preporuke s lažnim podacima (mock server izvan repoa), greška kad API ne radi, prazno stanje bez profila. Pravi backend nije provjeren (Docker nije radio).
+

@@ -13,7 +13,10 @@ interface ProfileSummaryProps {
 export const ProfileSummary = ({profile, onEdit, onClear}: ProfileSummaryProps) => {
     return (
         <Card as="section" className={styles.card}>
-            <h2 className={styles.title}>Tvoj profil</h2>
+            <header className={styles.header}>
+                <h2 className={styles.title}>Tvoj profil</h2>
+                <p className={styles.note}>Spremljen samo u ovom pregledniku.</p>
+            </header>
             <dl className={styles.details}>
                 <div className={styles.row}>
                     <dt>Tko si</dt>
@@ -22,7 +25,7 @@ export const ProfileSummary = ({profile, onEdit, onClear}: ProfileSummaryProps) 
                 <div className={styles.row}>
                     <dt>Područja</dt>
                     <dd className={styles.badges}>
-                        {profile.areas.map((area) => <Badge key={area} tone="accent">{AREA_LABELS[area]}</Badge>)}
+                        {profile.areas.map((area) => <Badge key={area} tone="primary">{AREA_LABELS[area]}</Badge>)}
                     </dd>
                 </div>
                 <div className={styles.row}>
@@ -45,9 +48,8 @@ export const ProfileSummary = ({profile, onEdit, onClear}: ProfileSummaryProps) 
             <div className={styles.actions}>
                 <ButtonLink href={routes.RECOMMENDATIONS}>Prikaži moje natječaje</ButtonLink>
                 <Button variant="secondary" onClick={onEdit}>Promijeni profil</Button>
-                <button type="button" className={styles.clearButton} onClick={onClear}>Obriši profil</button>
+                <Button variant="danger" className={styles.clearButton} onClick={onClear}>Obriši profil</Button>
             </div>
-            <p className={styles.note}>Profil je spremljen samo u ovom pregledniku.</p>
         </Card>
     );
 };

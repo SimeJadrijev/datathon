@@ -1,3 +1,3 @@
-export const APP_NAME = "Natječaji i zakoni";
+export const APP_NAME = "OtvoreniRadar";
 
 export const LOCALE = "hr-HR";

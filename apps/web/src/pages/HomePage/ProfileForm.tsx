@@ -1,5 +1,5 @@
 import {type FormEvent, useRef, useState} from "react";
-import {Button, Card, Select} from "@/components";
+import {Button, Card, Select, TextInput} from "@/components";
 import {COUNTIES, formatCounty} from "@/constants";
 import type {OibProfile, Profile} from "@/types";
 import {AreaField} from "./AreaField.tsx";
@@ -69,7 +69,11 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
     };
 
     return (
-        <Card as="section" className={styles.card}>
+        <Card as="section" className={styles.card} aria-labelledby="profile-form-title">
+            <header>
+                <h2 id="profile-form-title" className={styles.title}>Tvoj profil</h2>
+                <p className={styles.intro}>Manje od minute. Profil ostaje samo u ovom pregledniku.</p>
+            </header>
             <OibLookup onFound={handleOibFound}/>
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
                 <TargetGroupField
@@ -106,11 +110,9 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
                         </div>
                         <div className={styles.field}>
                             <label htmlFor="keywords" className={styles.label}>Ključne riječi</label>
-                            <input
+                            <TextInput
                                 id="keywords"
                                 ref={keywordsRef}
-                                type="text"
-                                className={styles.input}
                                 value={values.keywords}
                                 maxLength={200}
                                 placeholder="npr. solarni paneli, električni automobil"

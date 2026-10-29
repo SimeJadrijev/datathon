@@ -25,7 +25,7 @@ export const RecommendationsSummary = ({profile, count}: RecommendationsSummaryP
                 {count >= MAX_RESULTS && ". Prikazujemo one koji ti najviše odgovaraju"}.
             </p>
             <div className={styles.profileBadges}>
-                {profile.areas.map((area) => <Badge key={area} tone="accent">{AREA_LABELS[area]}</Badge>)}
+                {profile.areas.map((area) => <Badge key={area} tone="primary">{AREA_LABELS[area]}</Badge>)}
                 <Badge>{profile.county ? formatCounty(profile.county) : "Sve županije"}</Badge>
                 {profile.keywords?.map((keyword) => <Badge key={keyword}>„{keyword}”</Badge>)}
             </div>

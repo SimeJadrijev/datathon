@@ -1,6 +1,6 @@
 import {type FormEvent, useState} from "react";
 import {ApiError} from "@/api";
-import {Badge, Button} from "@/components";
+import {Button, Notice, TextInput} from "@/components";
 import {useProfileFromOib} from "@/hooks";
 import type {OibProfile} from "@/types";
 import {isValidOib} from "@/utils";
@@ -63,9 +63,8 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
                 Podatke ćemo dohvatiti iz Sudskog registra i popuniti obrazac. OIB ne spremamo.
             </p>
             <div className={styles.row}>
-                <input
+                <TextInput
                     id="oib"
-                    type="text"
                     inputMode="numeric"
                     autoComplete="off"
                     className={styles.input}
@@ -79,22 +78,16 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
                     {lookup.isPending ? "Dohvaćam..." : "Dohvati podatke"}
                 </Button>
             </div>
-            <div aria-live="polite">
+            <div aria-live="polite" className={styles.feedback}>
                 {errorMessage && (
                     <p id="oib-error" className={styles.error}>
                         {errorMessage} {MANUAL_FALLBACK}
                     </p>
                 )}
                 {lookup.data && (
-                    <div className={styles.result}>
-                        <p>
-                            <strong>Pronašli smo:</strong> {describeCompany(lookup.data)}
-                        </p>
-                        <p className={styles.resultNote}>
-                            <Badge tone="accent">Izvor: Sudski registar</Badge>
-                            Obrazac je popunjen, provjeri i promijeni što treba.
-                        </p>
-                    </div>
+                    <Notice tone="success" title={`Pronašli smo: ${describeCompany(lookup.data)}`}>
+                        <p>Izvor: Sudski registar. Obrazac je popunjen, provjeri i promijeni što treba.</p>
+                    </Notice>
                 )}
             </div>
         </form>

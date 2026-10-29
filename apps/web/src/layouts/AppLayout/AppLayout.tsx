@@ -2,6 +2,7 @@ import {type ReactNode, useEffect} from "react";
 import {Link, useLocation} from "wouter";
 import {APP_NAME} from "@/constants";
 import {routes} from "@/routes";
+import {BrandMark} from "./BrandMark.tsx";
 import {Navigation} from "./Navigation.tsx";
 import styles from "./AppLayout.module.css";
 
@@ -26,7 +27,7 @@ export const AppLayout = ({children}: AppLayoutProps) => {
             <header className={styles.header}>
                 <div className={styles.headerInner}>
                     <Link href={routes.HOME} className={styles.brand}>
-                        <span className={styles.brandMark} aria-hidden="true">NZ</span>
+                        <BrandMark/>
                         {APP_NAME}
                     </Link>
                     <Navigation/>
@@ -37,8 +38,15 @@ export const AppLayout = ({children}: AppLayoutProps) => {
             </main>
             <footer className={styles.footer}>
                 <div className={styles.footerInner}>
-                    <p>{APP_NAME} · Datathon Portala otvorenih podataka 2026.</p>
-                    <p>Informativno, nije pravni savjet.</p>
+                    <div className={styles.footerBrand}>
+                        <p className={styles.footerName}>{APP_NAME}</p>
+                        <p>Natječaji, potpore, stipendije i propisi iz službenih izvora na jednom mjestu.</p>
+                    </div>
+                    <ul className={styles.footerLinks}>
+                        <li><Link href={routes.SOURCES}>Izvori podataka</Link></li>
+                        <li>Datathon Portala otvorenih podataka 2026.</li>
+                        <li>Informativno, nije pravni savjet.</li>
+                    </ul>
                 </div>
             </footer>
         </div>

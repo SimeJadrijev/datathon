@@ -1,13 +1,10 @@
 .card {
-    background: var(--color-accent-soft);
-    border-color: transparent;
-    box-shadow: none;
+    padding: var(--space-4) var(--space-5);
 }
 
 .title {
     margin-bottom: var(--space-3);
     font-size: var(--font-size-md);
-    font-weight: 600;
 }
 
 .steps {
@@ -20,30 +17,34 @@
 }
 
 .steps li {
+    position: relative;
     display: flex;
-    gap: var(--space-3);
+    flex-direction: column;
+    padding-left: var(--space-6);
     font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-muted);
     counter-increment: step;
 }
 
 .steps li::before {
     content: counter(step);
+    position: absolute;
+    top: 0;
+    left: 0;
     display: grid;
-    flex-shrink: 0;
     place-items: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--color-primary-border);
+    border-radius: var(--radius-xs);
     font-size: var(--font-size-xs);
-    font-weight: 700;
-    color: #ffffff;
-    background: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
 }
 
-.alternative {
-    margin-top: var(--space-5);
-    padding-top: var(--space-4);
-    border-top: 1px solid rgb(47 91 211 / 0.2);
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
+.steps strong {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
 }

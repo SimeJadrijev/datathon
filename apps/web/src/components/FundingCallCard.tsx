@@ -5,13 +5,13 @@ import {fundingCallDetailPath} from "@/routes";
 import type {FundingCallStatus, FundingCallSummary} from "@/types";
 import {formatAmount, formatDate, formatDeadline, getDaysUntil, isDeadlineUrgent} from "@/utils";
 import {Badge, type BadgeTone} from "./Badge.tsx";
-import {Card} from "./Card.tsx";
 import {ExternalLink} from "./ExternalLink.tsx";
+import {Icon} from "./Icon.tsx";
 import styles from "./FundingCallCard.module.css";
 
 const STATUS_TONES: Record<FundingCallStatus, BadgeTone> = {
     OPEN: "success",
-    ANNOUNCED: "accent",
+    ANNOUNCED: "info",
     CLOSED: "neutral",
 };
 
@@ -26,7 +26,8 @@ const DeadlineValue = ({deadline, deadlineNote}: Pick<FundingCallSummary, "deadl
     if (deadline) {
         return (
             <>
-                {formatDate(deadline)} <Badge tone={getDeadlineTone(deadline)}>{formatDeadline(deadline)}</Badge>
+                <span className="tabular-nums">{formatDate(deadline)}</span>
+                <Badge tone={getDeadlineTone(deadline)}>{formatDeadline(deadline)}</Badge>
             </>
         );
     }
@@ -55,43 +56,57 @@ export const FundingCallCard = ({fundingCall, children}: FundingCallCardProps) =
     const amount = formatAmounts(fundingCall);
 
     return (
-        <Card as="article" className={styles.card}>
-            <div className={styles.badges}>
-                {fundingCall.status && (
-                    <Badge tone={STATUS_TONES[fundingCall.status]}>{FUNDING_CALL_STATUS_LABELS[fundingCall.status]}</Badge>
-                )}
-                {fundingCall.type && <Badge>{FUNDING_CALL_TYPE_LABELS[fundingCall.type]}</Badge>}
-                {fundingCall.extractedByLlm && (
-                    <Badge tone="ai" title="Dio podataka (rok, iznosi, skupine) izvučen je iz teksta pomoću AI-ja">
-                        AI
-                    </Badge>
+        <article className={styles.card}>
+            <div className={styles.main}>
+                <div className={styles.badges}>
+                    {fundingCall.status && (
+                        <Badge tone={STATUS_TONES[fundingCall.status]}>
+                            {FUNDING_CALL_STATUS_LABELS[fundingCall.status]}
+                        </Badge>
+                    )}
+                    {fundingCall.type && <Badge>{FUNDING_CALL_TYPE_LABELS[fundingCall.type]}</Badge>}
+                    {fundingCall.extractedByLlm && (
+                        <Badge
+                            tone="ai"
+                            icon="sparkles"
+                            title="Dio podataka (rok, iznosi, skupine) izvučen je iz teksta pomoću AI-ja. Provjeri na izvoru."
+                        >
+                            AI podaci
+                        </Badge>
+                    )}
+                </div>
+                <h3 className={styles.title}>
+                    <Link href={fundingCallDetailPath(fundingCall.id)} className={styles.titleLink} title={fundingCall.title}>
+                        {fundingCall.title}
+                    </Link>
+                </h3>
+                {fundingCall.provider && (
+                    <p className={styles.provider}>
+                        <Icon name="institution" size={14} className={styles.providerIcon}/>
+                        {fundingCall.provider}
+                    </p>
                 )}
             </div>
-            <h3 className={styles.title}>
-                <Link href={fundingCallDetailPath(fundingCall.id)} className={styles.titleLink} title={fundingCall.title}>
-                    {fundingCall.title}
-                </Link>
-            </h3>
-            {fundingCall.provider && <p className={styles.provider}>{fundingCall.provider}</p>}
             <dl className={styles.facts}>
-                <div>
+                <div className={styles.fact}>
                     <dt>Rok</dt>
                     <dd><DeadlineValue deadline={fundingCall.deadline} deadlineNote={fundingCall.deadlineNote}/></dd>
                 </div>
                 {amount && (
-                    <div>
+                    <div className={styles.fact}>
                         <dt>Iznos</dt>
-                        <dd>{amount}</dd>
+                        <dd className="tabular-nums">{amount}</dd>
                     </div>
                 )}
             </dl>
-            {children}
+            {children && <div className={styles.extra}>{children}</div>}
             <footer className={styles.footer}>
-                <Badge className={styles.sourceBadge}>Izvor: {fundingCall.source.name}</Badge>
-                <span className={styles.sourceLink}>
-                    <ExternalLink href={fundingCall.url}>Otvori na izvoru</ExternalLink>
+                <span className={styles.source}>
+                    <Icon name="database" size={13}/>
+                    Izvor: {fundingCall.source.name}
                 </span>
+                <ExternalLink href={fundingCall.url} className={styles.sourceLink}>Službena objava</ExternalLink>
             </footer>
-        </Card>
+        </article>
     );
 };

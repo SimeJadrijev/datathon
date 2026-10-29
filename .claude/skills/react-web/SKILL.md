@@ -105,7 +105,8 @@ src/
 - Every piece of data coming from open data has a **visible link to its source** and a source label; fields extracted by AI are marked (as in `poc/web/`). This builds trust and points for "Use of open data".
 - Accessibility: semantic HTML (`button` for actions, `a`/`Link` for navigation, `label` for every form field), visible focus, contrast, `alt` on images. Accessibility is explicitly part of challenge A and the jury values it everywhere.
 - Responsive: must look good at 1280 px (video) and be usable on mobile.
-- Styles: until the team decides otherwise, CSS Modules (`Component.module.css` next to the component) and CSS variables for colours/spacing in one global file. No inline `style={{...}}` except for dynamic values.
+- Styles: CSS Modules (`Component.module.css` next to the component) using only the tokens from `src/global.css`. No hex values or raw spacing in components, no inline `style={{...}}` except for dynamic values.
+- **Design system (mandatory):** before creating or changing any page, component or styling, read `DESIGN_SYSTEM.md` (repo root) and follow its tokens, component conventions, layout patterns and visual principles. Reuse existing components from `@/components` (`Button`, `TextInput`, `Select`, `Badge`, `Notice`, `Card`, `PageHeader`, `FundingCallCard`, state components, `Icon`) before introducing new ones. Any deliberate deviation is documented and justified in `DESIGN_SYSTEM.md`. If the design system changes, update `DESIGN_SYSTEM.md` in the same change.
 
 ## Before saying it's done
 1. In `apps/web`: `yarn lint` and `yarn build` pass (rule from CLAUDE.md, mandatory before submission).

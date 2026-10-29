@@ -2,22 +2,30 @@
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    padding: 2px var(--space-2);
-    border-radius: var(--radius-pill);
+    min-height: 22px;
+    padding: 1px var(--space-2);
+    border: 1px solid transparent;
+    border-radius: var(--radius-xs);
     font-size: var(--font-size-xs);
-    font-weight: 600;
-    line-height: 1.5;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
     white-space: nowrap;
+}
+
+.icon {
+    flex-shrink: 0;
 }
 
 .neutral {
     color: var(--color-text-muted);
-    background: var(--color-skeleton);
+    background: var(--color-surface-subtle);
+    border-color: var(--color-border);
 }
 
-.accent {
-    color: var(--color-accent);
-    background: var(--color-accent-soft);
+.primary {
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
+    border-color: var(--color-primary-border);
 }
 
 .success {
@@ -35,7 +43,15 @@
     background: var(--color-danger-soft);
 }
 
+.info {
+    color: var(--color-info);
+    background: var(--color-info-soft);
+}
+
+/* Dashed border marks machine-generated content, so it never looks like an official fact. */
 .ai {
     color: var(--color-ai);
     background: var(--color-ai-soft);
+    border-color: currentColor;
+    border-style: dashed;
 }

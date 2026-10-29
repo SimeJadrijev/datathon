@@ -4,6 +4,7 @@ import {PageHeader} from "@/components";
 import {useProfile} from "@/hooks";
 import {routes} from "@/routes";
 import type {Profile} from "@/types";
+import {BrowseLinks} from "./BrowseLinks.tsx";
 import {HowItWorks} from "./HowItWorks.tsx";
 import {ProfileForm} from "./ProfileForm.tsx";
 import {ProfileSummary} from "./ProfileSummary.tsx";
@@ -40,13 +41,15 @@ export const HomePage = () => {
     return (
         <>
             <PageHeader
-                title="Svi natječaji i novi zakoni na jednom mjestu"
-                description="Natječaji, poticaji i stipendije iz službenih izvora. Reci nam tko si i što te zanima, a mi ćemo izdvojiti ono što ti odgovara."
+                eyebrow="Natječaji, potpore, stipendije i propisi"
+                title="Pronađi natječaje koji ti odgovaraju"
+                description="Prikupljamo natječaje i nove propise iz službenih izvora. Reci nam tko si i što te zanima, a mi izdvajamo ono što ti odgovara i objašnjavamo zašto."
             />
             <div className={styles.layout}>
                 {renderProfile()}
-                <aside className={styles.aside}>
+                <aside className={styles.aside} aria-label="Dodatne informacije">
                     <HowItWorks/>
+                    <BrowseLinks/>
                 </aside>
             </div>
         </>
