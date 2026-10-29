@@ -96,6 +96,10 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
 - `/subjekti?tvrtka_naziv=` traži SQL LIKE uzorak: `KRAŠ%` radi brzo, `%KRAŠ%` zna isteći (timeout), bez `%` traži točan naziv. Odgovor nema naziv, samo OIB/MBS, pa naziv treba iz `detalji_subjekta`.
 - `detalji_subjekta` za javne korisnike: najviše 6 zahtjeva u minuti (Upute v3.0.0). Token traje 6 h. Java klijent (INGEST-9) mora poštovati oboje i keširati odgovore.
 
+## 2026-10-27: Paket 6 (web) ide u dva PR-a (Ivan, issue #8)
+- **PR 1: WEB-1 + WEB-2**, **PR 2: WEB-3 + WEB-4**. Unutar brancha svaki korak je zaseban commit (`WEB-1: ...`), kao u paketu 1.
+- Zašto ne jedan PR za cijeli paket: WEB-3 i WEB-4 čekaju API-7 i API-6 (oko 1.-2.11.). Jedan PR bi držao WEB-1 (layout, rute, komponente) izvan `main`a 5-6 dana, blokirao paket 7 i doveo do velikog mergea neposredno prije zamrzavanja 6.11.
+- Radni naziv aplikacije u UI-ju: "Natječaji i zakoni" (`apps/web/src/constants/app.ts`), tim ga može promijeniti.
 ## 2026-10-28: API-2, istekli rokovi i izvedba (korisnik)
 - **Istekli rokovi u `status=OPEN`:** 10 od 141 vidljivih natječaja ima status OPEN, a rok u prošlosti (npr. id 99, rok 2023-06-13). API ih vraća kako jesu. Rješava se u podacima (QUALITY-1, točka 5), ne u API-ju. Zašto: specifikacija API-2 ne traži filtriranje po roku, a izvor ih još vodi kao otvorene. Alternativa za kasnije: `status=OPEN` isključuje istekle rokove.
 - **`unaccent` se stvara pri startu aplikacije** (`db/extensions.sql` preko `spring.sql.init`), ne init skriptom u docker-compose. Zašto: init skripte rade samo na praznom volumenu, pa bi postojeće baze članova tima ostale bez ekstenzije. Ovako radi svima bez ručnog koraka.
@@ -154,4 +158,16 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
 - Natječaj s "PONIŠTEN", "obustavljen" ili "stavljen izvan snage" u naslovu je `CLOSED` i kad ga izvor vodi kao otvoren.
 - Kad izvor ne da datum objave, prvo se traži rok, a datum objave se pogađa kao prvi datum u zaglavlju koji je prije roka (POC je jedini datum u tekstu proglašavao datumom objave i tako gubio rok).
 - **Usporedba s POC-om (28. 10.):** udruge.gov.hr 141 na popisu (92 otvorena + 5 stranica zatvorenih; POC 244 jer je čitao 15 stranica zatvorenih), 90 otvorenih (2 poništena se vode kao zatvoreni), 72 s rokom (80 %; POC 40 od 94 jer je čitao samo 40 detalja), 89 s iznosom (POC 40). Svih 18 otvorenih bez roka nemaju polje "Datum zatvaranja" na izvoru; dio je iz 2019.-2021. i izvor ih nije zatvorio. Kriterij "≥ 90 % s rokom" nije ispunjiv bez LLM-a ili ručne provjere (QUALITY-2). FZOEU 29 (POC 28), 9 otvorenih (POC 8), 1 s rokom (POC 2, od kojih je 2028. za EnU-2/26 bio pogrešan).
+
+## 2026-10-28: Paket 6, WEB-3 i WEB-4 (Ivan, issue #8)
+- **Paket 6 ide u jedan PR** (`Closes #8`). PR #14 (WEB-1, WEB-2) zatvoren je bez mergea, pa raniji plan s dva PR-a više ne vrijedi.
+- **`/preporuke` bez profila ne preusmjerava** na početnu nego na istoj adresi pokazuje poruku i gumb "Ispuni profil" (odstupanje od WEB-4 specifikacije). Zašto: korisnik vidi zašto nema preporuka, a adresa i gumb "natrag" ostaju ispravni. Lako se promijeni ako tim želi redirect.
+- **`ApiError` nosi HTTP status** (interceptor u `api/base.ts`). Treba ga WEB-3 (400/404/502), a koristit će ga i WEB-6/WEB-8 za 404. Upiti ne ponavljaju zahtjev na 4xx (`App.tsx`), pa se greška pokaže odmah.
+- **Ključne riječi profila moraju imati 3 do 50 znakova** jer ih API inače odbija s 400. Forma to javlja, a stari spremljeni profili odbacuju prekratke riječi pri čitanju.
+- **Županija iz Sudrega** ("Istarska županija") mapira se na kratki oblik iz forme ("Istarska"). `activityCodes` iz OIB-a se čuvaju u profilu i šalju na matching.
+- **`FundingCallCard` je u `components/`** s `children` slotom (razlozi i upozorenje u WEB-4), da ga WEB-5 koristi bez promjene.
+- **"Zašto ti odgovara" ne prikazuje razloge "otvoren", "najavljen" i "rok za N dana"** (29.10.): kartica ih već pokazuje kao oznake. Filtrira web (`MatchDetails.tsx`), API vraća sve razloge kao i prije.
+- **Kartica:** naslov najviše 3 retka (cijeli u tooltipu i na detalju), bez roka piše "provjeri na izvoru", izvor je oznaka (`Badge`) koja se na uskim ekranima prelama.
+- **Screenshotovi za PR su u repou** (`work/screenshots/pkg-6/`), jer je repo privatan i slike u opisu PR-a moraju biti dostupne članovima tima. Linkovi u PR-u vežu se na commit, pa rade i nakon brisanja brancha.
+
 - **Admin ruta (29. 10.):** `POST /api/admin/ingest[?source=...]` koristi `AdminKeyGuard` i `BatchRunner` iz AI paketa. Vraća 202 s `runId`; bez ili s krivim `X-Admin-Key` 401, nepoznat izvor 400. Dok ingest radi, novi poziv vraća 409, a run stvoren za taj poziv se briše da u `ingest_run` ne ostaju prazni zapisi. Ruta je `@Hidden` u Swaggeru. Na `main` gurnuto izravno, bez PR-a (odluka korisnika).

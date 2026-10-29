@@ -40,6 +40,19 @@
 - Lokalno instaliran JDK 25 (`java-25-openjdk-devel`).
 - SETUP-1 gotov: Sudreg API proradio (prvo je vraćao 401 unatoč tokenu). Izabrani demo OIB-ovi Microblink, Valamar Riviera, Kraš; fixturei spremljeni. Nalaz: `glavna_djelatnost` često prazna (vidi `work/decisions.md`).
 
+## 2026-10-27 (Ivan)
+- Ivan preuzeo paket 6 (issue #8). Paketi 3 (#5) i 8 (#10) još nemaju vlasnika; API kolega se treba assignati na #6.
+- WEB-1 napravljen na `feature/pkg-6-web` (nije commitano): Vite proxy `/api` → 8080, `global.css` (CSS varijable, reset), `AppLayout` sa sticky headerom, navigacijom (mobilni izbornik), skip linkom i footerom; rute za sve stranice + placeholder stranice; komponente `Button`/`ButtonLink`, `Card`, `Badge`, `ExternalLink`, `PageHeader`, `LoadingState`, `ErrorState`, `EmptyState`; `utils` (`formatDate`, `formatAmount`, `formatDeadline`, `isDeadlineUrgent`, `classNames`). ErrorPage i NotFoundPage na hrvatskom, axios greške imaju hrvatsku zamjensku poruku. `yarn lint` i `yarn build` prolaze, provjereno u pregledniku na 1280 px i mobitelu.
+- Radni naziv aplikacije "Natječaji i zakoni" (`constants/app.ts`), tim ga može promijeniti na jednom mjestu.
+- Nalaz: projekt traži Node 22.13+ (`@eslint/js`), README ispravljen. Na Ivanovom računalu je Node 22.12, Java 11 (treba JDK 25) i Docker nije pokrenut.
+- WEB-1 commitan (`9a150b3`). Dogovoreno: paket 6 ide u dva PR-a (vidi `work/decisions.md`).
+- WEB-2 gotov: forma profila na početnoj (tip kao kartice, područja kao čipovi, županija, ključne riječi), `useProfile` sprema u `localStorage` (ključ `datathon.profile.v1`) i odbacuje neispravne spremljene podatke, sažetak profila s "Promijeni profil" i "Obriši profil", panel "Kako radi". Tipovi `TargetGroup`, `Area`, `Profile` (= `ProfileRequest` iz API-6). Provjereno u pregledniku: validacija i fokus, spremanje, osvježavanje, uređivanje, brisanje, mobitel, tipkovnica.
+- Nalaz za API/QUALITY: u seedu `counties` miješa `ALL` i "Područje cijele Hrvatske" (8 zapisa); županije su u kratkom obliku ("Primorsko-goranska"), forma šalje isti oblik.
+- Ivanove primjedbe nakon lokalnog pregleda ispravljene: tekst uz županiju, nova komponenta `Select` (strelica s razmakom; u Chromeu/Edgeu 135+ stiliziran popis opcija preko `appearance: base-select`, ostali preglednici imaju nativni popis), odabrani tip se može odznačiti ponovnim klikom, kompaktniji razmak u sažetku profila. Pitanja za kolege u PR 1 zapisana u `work/tasks.md`. Firefox nije instaliran, testirano samo u Chromiumu.
+- Provjereno u specu: više profila ni `additionalTypes` u web koracima nisu traženi, profil ostaje s jednim tipom.
+- Proxy provjeren pravim pozivom: s pokrenutim API-jem `curl.exe -i http://localhost:5173/api/meta` vraća Springov JSON 404. Nalaz za API-1: zbog devtoolsa Spring u grešci vraća cijeli stack trace.
+- Branch `feature/pkg-6-web` pushan. `gh` CLI nije instaliran, pa PR 1 otvara Ivan ručno na GitHubu s pripremljenim opisom (engleski, `Refs #8`, pitanja za kolege i napomene za API i paket 7).
+
 ## 2026-10-27 (paket 4, API)
 - Razrađen plan `work/api-plan.md` i doneseno 9 od 10 odluka (P4 Sudreg otvoren, treba tek u API-5/API-7). Odluke u `work/decisions.md`.
 - API-1 napisan na branchu `sime/api`: `common/` (ErrorResponse, iznimke preuzete iz `feature/pkg-5-ai`, prošireni `GlobalExceptionHandler` s 502 i porukom "polje: razlog", `PageResponse`, `PageRequests` s limitom 100, `OpenApiConfig`), springdoc path u `application.yaml`. 13 testova u `GlobalExceptionHandlerTest` prolazi bez baze.
@@ -59,6 +72,19 @@
 - INGEST-1 do 4 gotovi: HTTP klijent (robots.txt s BOM-om, 1 req/s, cache, retry, cp1250), okvir (filtar, pravila za rok/iznose/skupine/područja, upsert po hashu, log po izvoru), udruge.gov.hr i FZOEU s PDF-ovima. 65 testova prolazi.
 - Pravi run: udruge 141 zapisa (90 otvorenih, 72 s rokom; ostali nemaju rok na izvoru), FZOEU 29 (9 otvorenih). Prvi run je otkrio da filtar po naslovu izbacuje pravi FZOEU poziv; ispravljeno. Usporedba s POC-om i odluke u `work/decisions.md`.
 - Admin ruta čeka AI PR #13 (`AdminKeyGuard`, `BatchRunner`); do tada `INGEST_ON_STARTUP=true`.
+
+## 2026-10-28 (Ivan, paket 6)
+- `origin/main` (API #16, AI #13, ingest #15) spojen u `feature/pkg-6-web`; konflikti samo u `work/tasks.md`, `work/decisions.md` i `log.md`. PR #14 je zatvoren bez mergea, paket ide u jedan PR.
+- WEB-3 gotov: OIB polje iznad forme, provjera kontrolne znamenke u pregledniku, poruke za 400/404/502, popunjavanje forme iz Sudrega (tip, područja, županija, NKD). Provjereno na Valamaru (Istarska, turizam), neispravnom OIB-u i valjanom OIB-u koji nije u registru. 502 nije provjeren uživo.
+- WEB-4 gotov: `/preporuke` sa `FundingCallCard`, "Zašto ti odgovara", upozorenjem za nepoznat status i sažetkom. Tri testna profila (student Rijeka 20, građanin e-auto 9 s e-auto pozivom prvim, tvrtka 8) daju smislene liste. Provjerena sva četiri stanja, 1280 px i 375 px. `yarn lint` i `yarn build` prolaze.
+- Nalazi: (1) svježa baza nema nikakve AI rezultate, blocker za WEB-7 i demo bez ključa (u `work/tasks.md`); (2) za studenta je prvi rezultat stipendija za romsku manjinu, matching ne zna za uže uvjete (za QUALITY); (3) `formatDate` daje "03. 11. 2026." s vodećom nulom.
+
+## 2026-10-29 (Ivan, paket 6)
+- Dorade kartica nakon pregleda: naslov u 3 retka, "provjeri na izvoru" bez roka, razlozi bez ponavljanja oznaka, manji naslov na mobitelu, izvor kao oznaka. Županije abecedno. OIB s razmacima više ne gubi znamenku.
+- Provjera svih kriterija paketa 6 iz `work/mvp-task-specs.md`: sve ispunjeno, odstupanja zapisana u PR-u. 502 za OIB provjeren lažnim serverom, forma i preporuke prođene samo tipkovnicom.
+- Nalaz: istekli OPEN natječaji ne ulaze u preporuke (matching ih izbacuje), ali su na listi `/natjecaji` (10 na prvoj stranici), bitno za WEB-5.
+- Nalaz: kartica e-auto poziva (EnU-2/26) pokazuje rok 31. 3. 2028. i 2.500 €, što je pogrešno; AI-2 to ispravlja, ali AI rezultati nisu u seedu.
+- Sudreg ključevi od Luke ne rade ništa dok ne postoji INGEST-9; Spring ne čita `.env` sam.
 
 ## 2026-10-29 (Luka)
 - Na `main` mergani PR #13 (AI), #16 (API) i #15 (ingest); svih 208 testova prolazi. Web PR #14 zatvoren bez mergea (kod na `feature/pkg-6-web`).

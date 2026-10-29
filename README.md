@@ -12,7 +12,7 @@ Prototip za Datathon Portala otvorenih podataka 2026. Monorepo s web aplikacijom
 
 ## Preduvjeti
 
-- Node 22+ i Yarn 1
+- Node 22.13+ (ili 24+) i Yarn 1. Na starijem Nodeu `yarn install` javlja grešku "engine node is incompatible".
 - JDK 25
 - Docker (za PostgreSQL)
 
@@ -66,4 +66,5 @@ Otvara se na `http://localhost:5173`.
 
 ## Napomene
 
-- Web poziva API na putanji `/api` (axios `baseURL`). Dev proxy prema `localhost:8080` još nije podešen.
+- Web poziva API na putanji `/api` (axios `baseURL`). U `yarn dev` Vite proxy prosljeđuje `/api` na `http://localhost:8080`, pa API mora biti pokrenut. Ako nije, ekrani s podacima pokazuju poruku o grešci.
+- Web stranice bez podataka (layout, navigacija) rade i bez baze i API-ja: dovoljan je samo korak 3.
