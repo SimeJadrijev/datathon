@@ -17,9 +17,12 @@ export const ListSkeleton = ({label, rows = DEFAULT_ROWS}: ListSkeletonProps) =>
             <ul className={styles.list} aria-hidden="true">
                 {rowIds.map((rowId) => (
                     <li key={rowId} className={styles.row}>
-                        <span className={styles.lineShort}/>
-                        <span className={styles.lineTitle}/>
-                        <span className={styles.lineMedium}/>
+                        <span className={styles.dateBlock}/>
+                        <span className={styles.lines}>
+                            <span className={styles.lineShort}/>
+                            <span className={styles.lineTitle}/>
+                            <span className={styles.lineMedium}/>
+                        </span>
                     </li>
                 ))}
             </ul>

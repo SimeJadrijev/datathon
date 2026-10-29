@@ -12,18 +12,17 @@
     --color-border-strong: #c3cbc0;
     --color-skeleton: #e9ece5;
 
-    --color-text: #203b33;
-    --color-text-muted: #56675f;
+    /* Near-neutral ink: green stays the accent, not the tint of every pixel. */
+    --color-text: #1d2420;
+    --color-text-muted: #59625d;
     --color-text-subtle: #7a877f;
     --color-text-inverse: #ffffff;
 
-    /* Brand: deep forest green + sage */
+    /* Brand: deep forest green */
     --color-primary: #244a3d;
     --color-primary-hover: #1b392f;
     --color-primary-soft: #e7eee9;
     --color-primary-border: #b7c9bd;
-    --color-sage: #8aa596;
-    --color-sage-soft: #eef2ec;
 
     /* Semantic */
     --color-success: #2b6a3c;
@@ -34,18 +33,20 @@
     --color-danger-soft: #f8e7e2;
     --color-info: #3b5674;
     --color-info-soft: #e8edf3;
-    /* Machine-generated content (AI). Never used for official, verified data. */
-    --color-ai: #3b5674;
-    --color-ai-soft: #e8edf3;
+    /* Machine-generated content (AI). Own hue, so it never looks like a status or an official fact. */
+    --color-ai: #6b4766;
+    --color-ai-soft: #f4edf3;
 
     /* Typography */
-    --font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.8125rem;
-    --font-size-md: 0.9375rem;
-    --font-size-lg: 1.0625rem;
-    --font-size-xl: 1.375rem;
-    --font-size-2xl: 1.875rem;
+    --font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* Serif for page and section titles: reads like an official gazette, not a SaaS dashboard. */
+    --font-family-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --font-size-xs: 0.8125rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2.125rem;
 
     --font-weight-regular: 400;
     --font-weight-medium: 500;
@@ -55,8 +56,7 @@
     --line-height-snug: 1.4;
     --line-height: 1.55;
 
-    --letter-spacing-tight: -0.015em;
-    --letter-spacing-caps: 0.06em;
+    --letter-spacing-tight: -0.01em;
 
     /* Spacing (4 px grid) */
     --space-1: 0.25rem;
@@ -115,12 +115,13 @@ body {
     min-height: 100vh;
     font-family: var(--font-family);
     font-size: var(--font-size-md);
-    font-feature-settings: "cv11", "ss03";
     line-height: var(--line-height);
     color: var(--color-text);
     background: var(--color-background);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Long official codes ("PK.1.1.20", URLs) wrap instead of overflowing narrow columns. */
+    overflow-wrap: break-word;
 }
 
 h1,
@@ -131,6 +132,11 @@ h4 {
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-tight);
     text-wrap: balance;
+}
+
+h1,
+h2 {
+    font-family: var(--font-family-display);
 }
 
 p {
@@ -153,6 +159,16 @@ textarea {
 
 button {
     cursor: pointer;
+}
+
+/* No double-tap zoom delay on controls; a soft green flash instead of the default grey box on tap. */
+a,
+button,
+label,
+select,
+summary {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgb(36 74 61 / 0.12);
 }
 
 a {

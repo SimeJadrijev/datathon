@@ -13,15 +13,6 @@
     max-width: 68ch;
 }
 
-.eyebrow {
-    margin-bottom: var(--space-2);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: var(--letter-spacing-caps);
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-}
-
 .title {
     font-size: var(--font-size-2xl);
 }
@@ -29,6 +20,12 @@
 .description {
     margin-top: var(--space-2);
     font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+}
+
+.meta {
+    margin-top: var(--space-3);
+    font-size: var(--font-size-sm);
     color: var(--color-text-muted);
 }
 

@@ -3,18 +3,19 @@ import styles from "./PageHeader.module.css";
 
 interface PageHeaderProps {
     title: string;
-    eyebrow?: string;
     description?: string;
+    meta?: ReactNode;
     actions?: ReactNode;
 }
 
-export const PageHeader = ({title, eyebrow, description, actions}: PageHeaderProps) => {
+// meta is a short line of facts under the description (counts, last update), not marketing copy.
+export const PageHeader = ({title, description, meta, actions}: PageHeaderProps) => {
     return (
         <header className={styles.header}>
             <div className={styles.text}>
-                {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
                 <h1 className={styles.title}>{title}</h1>
                 {description && <p className={styles.description}>{description}</p>}
+                {meta && <div className={styles.meta}>{meta}</div>}
             </div>
             {actions && <div className={styles.actions}>{actions}</div>}
         </header>

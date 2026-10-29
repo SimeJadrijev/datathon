@@ -28,3 +28,23 @@ export const getDaysUntil = (value: string, today = new Date()) => {
 };
 
 export const formatDate = (value: string) => dateFormatter.format(parseDate(value));
+
+const monthFormatter = new Intl.DateTimeFormat(LOCALE, {month: "short"});
+
+const timeFormatter = new Intl.DateTimeFormat(LOCALE, {hour: "2-digit", minute: "2-digit"});
+
+// Parts for a calendar-style date block: "2" / "stu" / 2026.
+export const getDateParts = (value: string) => {
+    const date = parseDate(value);
+    return {
+        day: date.getDate(),
+        month: monthFormatter.format(date).replace(".", ""),
+        year: date.getFullYear(),
+    };
+};
+
+// "29. 10. 2026. u 06:00"
+export const formatDateTime = (value: string) => {
+    const date = parseDate(value);
+    return `${dateFormatter.format(date)} u ${timeFormatter.format(date)}`;
+};

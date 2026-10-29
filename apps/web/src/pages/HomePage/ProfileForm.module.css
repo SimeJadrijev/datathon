@@ -15,6 +15,33 @@
     color: var(--color-text-muted);
 }
 
+/* "ili" between the OIB shortcut and the manual form: a line with a green circle in the middle. */
+.or {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.or::before,
+.or::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+}
+
+.orCircle {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-inverse);
+    background: var(--color-primary);
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -48,18 +75,15 @@
     letter-spacing: var(--letter-spacing-tight);
 }
 
+/* Plain number, like a printed form: no badge box. */
 .step {
-    display: grid;
-    place-items: center;
-    width: 22px;
-    height: 22px;
-    border: 1px solid var(--color-primary-border);
-    border-radius: var(--radius-xs);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0;
-    color: var(--color-primary);
-    background: var(--color-primary-soft);
+    min-width: 1.25em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-subtle);
+}
+
+.step::after {
+    content: ".";
 }
 
 .optional {

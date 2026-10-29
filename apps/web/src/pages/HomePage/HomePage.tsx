@@ -1,11 +1,12 @@
 import {useState} from "react";
 import {useLocation} from "wouter";
-import {PageHeader} from "@/components";
-import {useProfile} from "@/hooks";
+import {Button, Notice, PageHeader} from "@/components";
+import {useGetMeta, useProfile} from "@/hooks";
 import {routes} from "@/routes";
 import type {Profile} from "@/types";
-import {BrowseLinks} from "./BrowseLinks.tsx";
+import {HomeFacts} from "./HomeFacts.tsx";
 import {HowItWorks} from "./HowItWorks.tsx";
+import {ProfileDeadlines} from "./ProfileDeadlines.tsx";
 import {ProfileForm} from "./ProfileForm.tsx";
 import {ProfileSummary} from "./ProfileSummary.tsx";
 import styles from "./HomePage.module.css";
@@ -13,16 +14,28 @@ import styles from "./HomePage.module.css";
 export const HomePage = () => {
     const {profile, saveProfile, clearProfile} = useProfile();
     const [isEditing, setIsEditing] = useState(false);
+    // Kept after "Obriši profil" so the delete can be undone instead of asking for confirmation first.
+    const [clearedProfile, setClearedProfile] = useState<Profile>();
     const [, navigate] = useLocation();
+    const meta = useGetMeta();
 
     const handleSubmit = (nextProfile: Profile) => {
         saveProfile(nextProfile);
+        setClearedProfile(undefined);
         navigate(routes.RECOMMENDATIONS);
     };
 
     const handleClear = () => {
+        setClearedProfile(profile);
         clearProfile();
         setIsEditing(false);
+    };
+
+    const handleUndoClear = () => {
+        if (clearedProfile) {
+            saveProfile(clearedProfile);
+        }
+        setClearedProfile(undefined);
     };
 
     const renderProfile = () => {
@@ -41,15 +54,26 @@ export const HomePage = () => {
     return (
         <>
             <PageHeader
-                eyebrow="Natječaji, potpore, stipendije i propisi"
-                title="Pronađi natječaje koji ti odgovaraju"
-                description="Prikupljamo natječaje i nove propise iz službenih izvora. Reci nam tko si i što te zanima, a mi izdvajamo ono što ti odgovara i objašnjavamo zašto."
+                title="Natječaji i potpore za koje se možeš prijaviti"
+                description="Iz službenih izvora, na jednom mjestu. Reci nam tko si i izdvojit ćemo ono što ti odgovara, uz objašnjenje zašto."
+                meta={<HomeFacts meta={meta}/>}
             />
             <div className={styles.layout}>
-                {renderProfile()}
-                <aside className={styles.aside} aria-label="Dodatne informacije">
-                    <HowItWorks/>
-                    <BrowseLinks/>
+                <div className={styles.main}>
+                    <div aria-live="polite">
+                        {clearedProfile && (
+                            <Notice tone="info" className={styles.undo}>
+                                <p className={styles.undoText}>
+                                    Profil je obrisan.
+                                    <Button variant="secondary" size="sm" onClick={handleUndoClear}>Vrati profil</Button>
+                                </p>
+                            </Notice>
+                        )}
+                    </div>
+                    {renderProfile()}
+                </div>
+                <aside className={styles.aside} aria-label={profile ? "Sljedeći rokovi za tebe" : "Kako radi"}>
+                    {profile ? <ProfileDeadlines profile={profile}/> : <HowItWorks/>}
                 </aside>
             </div>
         </>

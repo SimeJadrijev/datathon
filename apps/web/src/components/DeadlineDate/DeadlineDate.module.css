@@ -1,0 +1,85 @@
+/* Calendar-style deadline: the date is the first thing the eye finds in a row. */
+.date {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    width: 56px;
+    padding: var(--space-1) 0 var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    line-height: 1.1;
+    text-align: center;
+}
+
+.month {
+    width: 100%;
+    padding-bottom: var(--space-1);
+    margin-bottom: var(--space-1);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+}
+
+.day {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+}
+
+.year {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.urgent {
+    border-color: var(--color-warning);
+}
+
+.urgent .month {
+    color: var(--color-warning);
+    border-color: var(--color-warning-soft);
+}
+
+.unknown .day {
+    color: var(--color-text-subtle);
+}
+
+/* AI-read deadline: dashed frame in the AI colour, never solid like an official date. */
+.ai {
+    border-style: dashed;
+    border-color: var(--color-ai);
+}
+
+/* Compact (side lists): no frame, just "30" over "lis", read like a printed date. */
+.compact {
+    width: 40px;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+.compact .day {
+    order: -1;
+    font-size: var(--font-size-xl);
+    line-height: 1;
+}
+
+.compact .month {
+    padding: 0;
+    margin: 2px 0 0;
+    border: 0;
+}
+
+.compact.urgent .day {
+    color: var(--color-warning);
+}
+
+.compact.ai .day {
+    text-decoration: underline dashed var(--color-ai);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}

@@ -1,32 +1,14 @@
 .summary {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-2) var(--space-4);
-    margin-bottom: var(--space-4);
-}
-
-.summaryText {
-    font-size: var(--font-size-md);
+    margin-bottom: var(--space-3);
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-snug);
+    letter-spacing: normal;
     color: var(--color-text-muted);
 }
 
-.summaryText strong {
+.summary strong {
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-}
-
-.profileBadges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-1);
-}
-
-.list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    padding: 0;
-    list-style: none;
 }
