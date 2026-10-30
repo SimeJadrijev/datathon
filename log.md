@@ -67,3 +67,7 @@
 
 ## 2026-10-29 (Sime)
 - Branch `sime/ingest-other-sources`, paket 3 (ostali izvori). INGEST-5 (fondovieu NPOO) gotov: parser + fetcher, 10 testova na spremljenim stranicama (`fixtures/eu-funds-npoo/`, uključujući pravi `robots.txt`), živi run 142 poziva s rokom za sve, 0 grešaka. Usporedba i odluke u `work/decisions.md`. Sljedeće: INGEST-6 (HZZ i APPRRR).
+
+
+## 2026-10-30 (Sime)
+- Paket 3: INGEST-6 (HZZ, APPRRR), INGEST-7 (MZOM), INGEST-8 (Narodne novine s ELI) i INGEST-9 (Sudreg klijent, NKD mapper) napisani i commitani po koracima. 288 testova prolazi. Zivi run samo za HZZ (97 mjera). APPRRR, MZOM, NN i pravi Sudreg nisu provjereni zivo; APPRRR zahtijeva povjerenje u interni Infobip CA. Detalji u `work/decisions.md`.
