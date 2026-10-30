@@ -1,0 +1,137 @@
+.panel {
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.heading {
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-lg);
+}
+
+.list {
+    padding: 0;
+    list-style: none;
+}
+
+.item {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+}
+
+.item + .item {
+    border-top: 1px solid var(--color-border);
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-snug);
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.title:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+}
+
+.detail {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.soon {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-warning);
+}
+
+/* "Kako radi": plain numbered steps like a printed leaflet, no boxed numbers. */
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+}
+
+.steps li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-left: var(--space-6);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-muted);
+    counter-increment: step;
+}
+
+.steps li::before {
+    content: counter(step) ".";
+    position: absolute;
+    top: -2px;
+    left: 0;
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+}
+
+.steps strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+.subheading {
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-2);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: 0;
+    list-style: none;
+}
+
+.links li {
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.state {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-2) 0 var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.more {
+    display: inline-block;
+    margin-top: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}

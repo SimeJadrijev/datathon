@@ -171,3 +171,13 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
 - **Screenshotovi za PR su u repou** (`work/screenshots/pkg-6/`), jer je repo privatan i slike u opisu PR-a moraju biti dostupne članovima tima. Linkovi u PR-u vežu se na commit, pa rade i nakon brisanja brancha.
 
 - **Admin ruta (29. 10.):** `POST /api/admin/ingest[?source=...]` koristi `AdminKeyGuard` i `BatchRunner` iz AI paketa. Vraća 202 s `runId`; bez ili s krivim `X-Admin-Key` 401, nepoznat izvor 400. Dok ingest radi, novi poziv vraća 409, a run stvoren za taj poziv se briše da u `ingest_run` ne ostaju prazni zapisi. Ruta je `@Hidden` u Swaggeru. Na `main` gurnuto izravno, bez PR-a (odluka korisnika).
+
+## 2026-10-29: Redizajn weba i design system (Nino, branch `refactor-ui`)
+- **Naziv aplikacije u UI-ju: OtvoreniRadar** (bio radni "Natječaji i zakoni" / "NZ"). Mijenja se u `constants/app.ts`; logo je radar u `layouts/AppLayout/BrandMark.tsx` i `public/favicon.svg`.
+- **Vizualni smjer: europski civic-tech** (uzori Linear, Welcome to the Jungle, GOV.UK Find a grant). Topla bijela pozadina `#F7F7F3`, tamnozelena primarna `#244A3D`, tekst `#203B33`, granice `#DFE4DC`, radijusi do 8 px, bez sjena na karticama. Zašto: plava/ljubičasta SaaS paleta izgledala je generički, a žiri boduje UI/UX (10 b) i video (10 b).
+- **Sve vrijednosti su tokeni u `src/global.css`, pravila u `DESIGN_SYSTEM.md`** (jedini izvor istine; CLAUDE.md i skill `react-web` traže da se pročita prije UI rada).
+- **Font Inter preko Google Fonts linka** u `index.html` (fallback `system-ui`), bez npm ovisnosti. Rizik: Google Fonts prenosi IP posjetitelja (GDPR). Prije stvarne produkcije prebaciti na self-host (`@fontsource-variable/inter`), za demo je prihvatljivo.
+- **Ikone: vlastita `Icon` komponenta s Lucide putanjama** (ISC licenca), bez `lucide-react`, jer skill zabranjuje nove ovisnosti bez dogovora, a treba nam ~16 ikona.
+- **AI podaci imaju vlastiti ton** (`ai`: plavo-siva + iscrtkani rub + ikona iskrice, tekst "AI podaci"), da se nikad ne zamijene sa službenim podatkom.
+- **Paket 7 (WEB-5 do 9) nije dio redizajna.** Placeholderi su samo prestilizirani; obrasci za liste, detalje i propise opisani su u `DESIGN_SYSTEM.md` §8.
+

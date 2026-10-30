@@ -8,6 +8,7 @@ export const RegulationsPage = () => {
                 description="Novi zakoni, uredbe i pravilnici iz Narodnih novina."
             />
             <EmptyState
+                icon="document"
                 title="Popis propisa je u izradi"
                 hint="Uskoro ćeš ovdje moći pretraživati propise po vrsti, razdoblju i području."
             />

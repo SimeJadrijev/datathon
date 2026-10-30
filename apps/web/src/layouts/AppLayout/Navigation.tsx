@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Link, useLocation} from "wouter";
+import {Icon} from "@/components";
 import {classNames} from "@/utils";
 import {isNavigationItemActive, navigationItems} from "./navigationItems.ts";
 import styles from "./Navigation.module.css";
@@ -22,9 +23,7 @@ export const Navigation = () => {
                 aria-controls={NAVIGATION_LIST_ID}
                 onClick={handleToggle}
             >
-                <svg className={styles.toggleIcon} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
+                <Icon name={isOpen ? "close" : "menu"} size={18}/>
                 Izbornik
             </button>
             <ul id={NAVIGATION_LIST_ID} className={classNames(styles.list, isOpen && styles.listOpen)}>

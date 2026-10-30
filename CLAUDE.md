@@ -25,13 +25,15 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - Radni prototip + API podaci + više izvora. Zasebno rješenje po izazovu je obvezno, pa su A i C dva odvojena projekta (asistent savjetuje jedan glavni, drugi samo ako prvi stoji do ~1.11.). Aktivne ideje u `work/ideas.md`: 13-16 (moje) i 19-28 (Gemini, korisniku draže, s mojom ocjenom). Korisnik preferira Geminijeve (konkretan problem + "wow" demo). Najbolji kandidati: 27 DoktorGdje i 25 KrizniŠtab OS, oba uvjetno ovisno o podacima (testovi u `work/tasks.md`).
 - **26.10.: ODLUČENO graditi agregator natječaja + zakona (izazov C), osnova je branch `poc/natjecaji-scraper`.** MVP prvo, plan M0-M8 u `work/tasks.md`, odluke i recenzija POC-a u `work/decisions.md`. Bez logina, Claude API s cacheom, Java backend (prepis scrapera u Javu za 6 izvora čeka potvrdu). A je rezerva. Starije ideje (13-28) više nisu aktivne.
 - Otvoreno: smije li se kod javno na GitHub (sigurnosna politika), vidi `work/decisions.md`.
-- Zadnje ažurirano: 2026-10-26
+- 29.10.: redizajn weba (OtvoreniRadar, zelena paleta) na branchu `refactor-ui` (PR #18, Nino), pravila u `DESIGN_SYSTEM.md`. Prijedlog "manje AI izgleda" (serif naslovi + IBM Plex Sans, lista umjesto kartica, pravi brojevi na početnoj) na branchu `design/ui-polish` (na vrhu `refactor-ui`, PR u `refactor-ui`), uz skill `web-design-guidelines` i popravke po njemu.
+- Zadnje ažurirano: 2026-10-29
 
 ## Tehnički stack i konvencije
 - Monorepo: `apps/web` (React 19, TS, Vite, wouter, TanStack Query, axios), `apps/api` (Spring Boot 4, Java 25, JPA, Postgres u Dockeru). Pokretanje: vidi `README.md`.
 - Web: apsolutni importi preko aliasa `@/` (= `src/`). Svaka mapa u `src/` ima barrel `index.ts` (novu mapu uvijek dodaj s njim). Tipovi u `types/*.type.ts`, jedna mapa po stranici u `pages/`.
 - Rute su wouter (ne React Router). Providere (ErrorBoundary, QueryClient) držimo u `App.tsx`, rute u `Router.tsx`.
 - Prije predaje: `yarn build` i `yarn lint` u `apps/web` moraju proći.
+- **Dizajn (OBAVEZNO):** prije stvaranja ili mijenjanja bilo koje stranice, komponente ili stilova u `apps/web` pročitaj `DESIGN_SYSTEM.md` i drži se njegovih tokena, komponenti, obrazaca rasporeda i vizualnih načela. Prvo iskoristi postojeće komponente iz `@/components`, tek onda uvodi nove. Svako namjerno odstupanje zapiši i obrazloži u `DESIGN_SYSTEM.md`. Ako se design system promijeni, ažuriraj `DESIGN_SYSTEM.md` u istoj promjeni.
 - Pravila pisanja koda: skill `spring-boot-api` (za `apps/api`) i `react-web` (za `apps/web`). Prije pisanja koda u tim mapama učitaj odgovarajući skill.
 
 ## Index
@@ -39,7 +41,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 |---|---|
 | `context/competition.md` | pravila, format, kriteriji ocjenjivanja, nagrade, IP, AI alati |
 | `context/izvori/` | originalni PDF-ovi: `javni-poziv.pdf`, `pravila.pdf` |
-| `.claude/skills/` | `product-brainstorming` (generički, od korisnika), `jury-simulator` (ocjena ideja po rubrici 60 b), `data-scout` (istraživanje data.gov.hr CKAN API-ja), `spring-boot-api` i `react-web` (konvencije koda za `apps/`) |
+| `.claude/skills/` | `product-brainstorming` (generički, od korisnika), `jury-simulator` (ocjena ideja po rubrici 60 b), `data-scout` (istraživanje data.gov.hr CKAN API-ja), `spring-boot-api` i `react-web` (konvencije koda za `apps/`), `web-design-guidelines` (Vercel, UX i pristupačnost, revizija UI-ja) |
 | `context/timeline.md` | rokovi i raspored |
 | `context/data.md` | datasetovi, izvori, ograničenja |
 | `team/team.md` | članovi, uloge, jake strane |
@@ -50,6 +52,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 | `work/api-plan.md` | plan implementacije paketa 4 (API-1 do API-7), nalazi iz koda, odluke |
 | `log.md` | kronološki dnevnik |
 | `README.md` | opis projekta i pokretanje |
+| `DESIGN_SYSTEM.md` | jedini izvor istine za izgled weba: tokeni, tipografija, komponente, obrasci, stanja, pristupačnost, hrvatski tekst, checklista |
 
 ## Sigurnosna pravila organizacije
 Vrijede pravila iz organizacijskog CLAUDE.md-a (npr. ništa se ne objavljuje na javne platforme, ne pristupa se cookiejima). Podatke natjecanja i kod ne dijelimo javno bez provjere.

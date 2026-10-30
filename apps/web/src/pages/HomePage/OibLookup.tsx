@@ -1,7 +1,7 @@
 import {type FormEvent, useState} from "react";
 import {ApiError} from "@/api";
-import {Badge, Button} from "@/components";
-import {useProfileFromOib} from "@/hooks";
+import {Button, Notice, TextInput} from "@/components";
+import {useGetProfileFromOib} from "@/hooks";
 import type {OibProfile} from "@/types";
 import {isValidOib} from "@/utils";
 import styles from "./OibLookup.module.css";
@@ -34,7 +34,7 @@ interface OibLookupProps {
 export const OibLookup = ({onFound}: OibLookupProps) => {
     const [oib, setOib] = useState("");
     const [validationError, setValidationError] = useState<string>();
-    const lookup = useProfileFromOib();
+    const lookup = useGetProfileFromOib();
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -58,43 +58,38 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
 
     return (
         <form className={styles.lookup} onSubmit={handleSubmit} noValidate>
-            <label htmlFor="oib" className={styles.label}>Ili upiši OIB tvrtke</label>
+            <label htmlFor="oib" className={styles.label}>Imaš tvrtku, obrt ili udrugu? Upiši OIB</label>
             <p id="oib-hint" className={styles.hint}>
-                Podatke ćemo dohvatiti iz Sudskog registra i popuniti obrazac. OIB ne spremamo.
+                Obrazac popunjavamo iz Sudskog registra: naziv, sjedište i djelatnost. OIB ne spremamo.
             </p>
             <div className={styles.row}>
-                <input
+                <TextInput
                     id="oib"
-                    type="text"
+                    name="oib"
                     inputMode="numeric"
                     autoComplete="off"
+                    spellCheck={false}
                     className={styles.input}
                     value={oib}
-                    placeholder="11 znamenki"
+                    placeholder="npr. 12345678901"
                     aria-describedby={errorMessage ? "oib-hint oib-error" : "oib-hint"}
                     aria-invalid={Boolean(errorMessage)}
                     onChange={(event) => handleChange(event.target.value)}
                 />
                 <Button type="submit" variant="secondary" disabled={lookup.isPending}>
-                    {lookup.isPending ? "Dohvaćam..." : "Dohvati podatke"}
+                    {lookup.isPending ? "Dohvaćam…" : "Dohvati podatke"}
                 </Button>
             </div>
-            <div aria-live="polite">
+            <div aria-live="polite" className={styles.feedback}>
                 {errorMessage && (
                     <p id="oib-error" className={styles.error}>
                         {errorMessage} {MANUAL_FALLBACK}
                     </p>
                 )}
                 {lookup.data && (
-                    <div className={styles.result}>
-                        <p>
-                            <strong>Pronašli smo:</strong> {describeCompany(lookup.data)}
-                        </p>
-                        <p className={styles.resultNote}>
-                            <Badge tone="accent">Izvor: Sudski registar</Badge>
-                            Obrazac je popunjen, provjeri i promijeni što treba.
-                        </p>
-                    </div>
+                    <Notice tone="success" title={`Pronašli smo: ${describeCompany(lookup.data)}`}>
+                        <p>Izvor: Sudski registar. Obrazac je popunjen, provjeri i promijeni što treba.</p>
+                    </Notice>
                 )}
             </div>
         </form>

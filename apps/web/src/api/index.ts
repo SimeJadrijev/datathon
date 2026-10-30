@@ -1,2 +1,3 @@
 export * from "./base.ts";
-export * from "./profiles.api.ts";
+export * from "./meta";
+export * from "./profiles";
