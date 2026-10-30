@@ -1,4 +1,4 @@
-import {classNames, getDateParts, isDeadlineUrgent} from "@/utils";
+import {classNames, getDateParts, getDaysUntil, isDeadlineUrgent} from "@/utils";
 import styles from "./DeadlineDate.module.css";
 
 interface DeadlineDateProps {
@@ -25,6 +25,7 @@ export const DeadlineDate = ({deadline, isExtractedByAi = false, isCompact = fal
         <span
             className={classNames(
                 styles.date,
+                getDaysUntil(deadline) < 0 && styles.expired,
                 isDeadlineUrgent(deadline) && styles.urgent,
                 isExtractedByAi && styles.ai,
                 isCompact && styles.compact,

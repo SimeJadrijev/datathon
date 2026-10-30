@@ -1,12 +1,15 @@
 package com.datathon.api.fundingcall;
 
 import com.datathon.api.source.SourceCode;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface FundingCallRepository extends JpaRepository<FundingCall, Long>, JpaSpecificationExecutor<FundingCall> {
 
@@ -18,6 +21,15 @@ public interface FundingCallRepository extends JpaRepository<FundingCall, Long>,
 
     @Query("select distinct county from FundingCall fundingCall join fundingCall.counties county")
     List<String> findDistinctCounties();
+
+    /** Sources keep listing a call as open after its deadline, so the stored status is corrected from the deadline. */
+    @Modifying
+    @Query("""
+            update FundingCall c set c.status = com.datathon.api.fundingcall.FundingCallStatus.CLOSED
+            where c.status = com.datathon.api.fundingcall.FundingCallStatus.OPEN and c.deadline < :today
+            """)
+    int closeExpired(@Param("today") LocalDate today);
+
     /** Calls the model has not read yet, open and announced ones first. */
     @Query("""
             select c.id from FundingCall c

@@ -1,11 +1,9 @@
 import {getDaysUntil} from "./date.ts";
+import {pluralize} from "./pluralize.ts";
 
 export const URGENT_DEADLINE_DAYS = 7;
 
-const pluralizeDays = (days: number) => {
-    const isSingular = days % 10 === 1 && days % 100 !== 11;
-    return isSingular ? `${days} dan` : `${days} dana`;
-};
+const pluralizeDays = (days: number) => `${days} ${pluralize(days, {one: "dan", few: "dana", many: "dana"})}`;
 
 export const formatDeadline = (deadline: string, today = new Date()) => {
     const days = getDaysUntil(deadline, today);
