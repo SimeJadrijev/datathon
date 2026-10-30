@@ -2,14 +2,20 @@ import type {ReactNode} from "react";
 import {Link} from "wouter";
 import {FUNDING_CALL_STATUS_LABELS, FUNDING_CALL_TYPE_LABELS} from "@/constants";
 import {fundingCallDetailPath} from "@/routes";
-import type {FundingCallSummary} from "@/types";
+import type {FundingCallStatus, FundingCallSummary} from "@/types";
 import {classNames, formatAmount, formatDate, formatDeadline, getDaysUntil, isDeadlineUrgent} from "@/utils";
-import {Badge} from "@/components/Badge";
+import {Badge, type BadgeTone} from "@/components/Badge";
 import {DeadlineDate} from "@/components/DeadlineDate";
 import {ExternalLink} from "@/components/ExternalLink";
 import styles from "./FundingCallRow.module.css";
 
-const formatAmounts = ({maxAmount, totalAmount}: Pick<FundingCallSummary, "maxAmount" | "totalAmount">) => {
+const STATUS_TONES: Record<FundingCallStatus, BadgeTone> = {
+    OPEN: "success",
+    ANNOUNCED: "info",
+    CLOSED: "neutral",
+};
+
+const formatAmounts =({maxAmount, totalAmount}: Pick<FundingCallSummary, "maxAmount" | "totalAmount">) => {
     if (maxAmount !== null) {
         return {value: `do ${formatAmount(maxAmount)}`, label: "po prijavi"};
     }
@@ -19,7 +25,21 @@ const formatAmounts = ({maxAmount, totalAmount}: Pick<FundingCallSummary, "maxAm
     return undefined;
 };
 
-const getDeadlineClassName = (deadline: string) => {
+// Names only the values this row shows, so the note never talks about an amount that is not there.
+const describeAiValues = (hasDeadline: boolean, hasAmount: boolean) => {
+    if (hasDeadline && hasAmount) {
+        return "rok i iznos pročitao je AI iz teksta objave, provjeri ih na izvoru";
+    }
+    if (hasDeadline) {
+        return "rok je pročitao AI iz teksta objave, provjeri ga na izvoru";
+    }
+    if (hasAmount) {
+        return "iznos je pročitao AI iz teksta objave, provjeri ga na izvoru";
+    }
+    return "dio podataka pročitao je AI iz teksta objave, provjeri ih na izvoru";
+};
+
+const getDeadlineClassName =(deadline: string) => {
     if (getDaysUntil(deadline) < 0) {
         return styles.expired;
     }
@@ -59,7 +79,7 @@ export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => 
             <div className={styles.main}>
                 <p className={styles.meta}>
                     {isNotOpen && fundingCall.status && (
-                        <Badge tone="info">{FUNDING_CALL_STATUS_LABELS[fundingCall.status]}</Badge>
+                        <Badge tone={STATUS_TONES[fundingCall.status]}>{FUNDING_CALL_STATUS_LABELS[fundingCall.status]}</Badge>
                     )}
                     <span className={styles.metaText}>{metaText}</span>
                 </p>
@@ -73,7 +93,7 @@ export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => 
                     Izvor: {fundingCall.source.name}
                     {isAi && (
                         <span className={styles.aiNote}>
-                            {" · "}rok i iznos pročitao je AI iz teksta objave, provjeri ih na izvoru
+                            {" · "}{describeAiValues(fundingCall.deadline !== null, amount !== undefined)}
                         </span>
                     )}
                 </p>

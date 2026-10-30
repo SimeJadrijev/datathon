@@ -1,10 +1,7 @@
 .summary {
     margin-bottom: var(--space-3);
-    font-family: var(--font-family);
     font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-regular);
     line-height: var(--line-height-snug);
-    letter-spacing: normal;
     color: var(--color-text-muted);
 }
 

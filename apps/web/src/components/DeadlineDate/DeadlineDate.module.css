@@ -48,9 +48,28 @@
     color: var(--color-text-subtle);
 }
 
-/* AI-read deadline: dashed frame in the AI colour, never solid like an official date. */
+/* Past deadline: faded, so an old date never reads like a live one. */
+.expired {
+    border-style: dashed;
+}
+
+.expired .month,
+.expired .day,
+.expired .year {
+    color: var(--color-text-subtle);
+}
+
+.expired .day {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+}
+
+/* AI-read deadline: dashed frame, never solid like an official date. Urgency keeps its colour: it matters more. */
 .ai {
     border-style: dashed;
+}
+
+.ai:not(.urgent) {
     border-color: var(--color-ai);
 }
 

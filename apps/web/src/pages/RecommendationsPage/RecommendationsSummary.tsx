@@ -23,11 +23,14 @@ interface RecommendationsSummaryProps {
 
 export const RecommendationsSummary = ({profile, count}: RecommendationsSummaryProps) => {
     return (
-        // h2 so the result rows (h3) sit under a heading; styled as a plain summary line.
-        <h2 className={styles.summary}>
-            <strong>{formatResultCount(count)}</strong> za profil <strong>{TARGET_GROUP_LABELS[profile.type]}</strong>
-            {" "}({describeProfile(profile)})
-            {count >= MAX_RESULTS && ". Prikazujemo one koji ti najviše odgovaraju"}.
-        </h2>
+        // A short hidden h2 so the result rows (h3) sit under a heading; the sentence stays a plain summary line.
+        <>
+            <h2 className="visually-hidden">Natječaji za tvoj profil</h2>
+            <p className={styles.summary}>
+                <strong>{formatResultCount(count)}</strong> za profil <strong>{TARGET_GROUP_LABELS[profile.type]}</strong>
+                {" "}({describeProfile(profile)})
+                {count >= MAX_RESULTS && ". Prikazujemo one koji ti najviše odgovaraju"}.
+            </p>
+        </>
     );
 };

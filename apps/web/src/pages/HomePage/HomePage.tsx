@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useLocation} from "wouter";
 import {Button, Notice, PageHeader} from "@/components";
 import {useGetMeta, useProfile} from "@/hooks";
@@ -11,6 +11,9 @@ import {ProfileForm} from "./ProfileForm.tsx";
 import {ProfileSummary} from "./ProfileSummary.tsx";
 import styles from "./HomePage.module.css";
 
+// Long enough to notice the mistake, short enough that an old notice cannot overwrite a newly filled form.
+const UNDO_TIMEOUT_MS = 10_000;
+
 export const HomePage = () => {
     const {profile, saveProfile, clearProfile} = useProfile();
     const [isEditing, setIsEditing] = useState(false);
@@ -18,6 +21,14 @@ export const HomePage = () => {
     const [clearedProfile, setClearedProfile] = useState<Profile>();
     const [, navigate] = useLocation();
     const meta = useGetMeta();
+
+    useEffect(() => {
+        if (!clearedProfile) {
+            return;
+        }
+        const timeoutId = window.setTimeout(() => setClearedProfile(undefined), UNDO_TIMEOUT_MS);
+        return () => window.clearTimeout(timeoutId);
+    }, [clearedProfile]);
 
     const handleSubmit = (nextProfile: Profile) => {
         saveProfile(nextProfile);
@@ -72,7 +83,8 @@ export const HomePage = () => {
                     </div>
                     {renderProfile()}
                 </div>
-                <aside className={styles.aside} aria-label={profile ? "Sljedeći rokovi za tebe" : "Kako radi"}>
+                {/* No aria-label: the section inside is already named by its heading. */}
+                <aside className={styles.aside}>
                     {profile ? <ProfileDeadlines profile={profile}/> : <HowItWorks/>}
                 </aside>
             </div>

@@ -144,7 +144,7 @@ components/
 | `Card` | `as`: `div` \| `section` \| `article`; `className`; `aria-labelledby` | Plain bordered surface for forms and panels |
 | `FundingCallList` | `children` (`<li>` elements) | Framed list with dividers. Every list of funding calls |
 | `FundingCallRow` | `fundingCall`, `children` (extra lines such as match reasons) | One funding call inside `FundingCallList` |
-| `DeadlineDate` | `deadline`, `isExtractedByAi`, `isCompact` | Calendar-style date block (month / day). Urgent = warning frame, AI = dashed frame. `isCompact`: no frame, day over month, urgent day in warning colour, AI day underlined dashed. Decorative, pair it with the deadline in words |
+| `DeadlineDate` | `deadline`, `isExtractedByAi`, `isCompact` | Calendar-style date block (month / day). Urgent = warning frame, AI = dashed frame (AI colour, or warning colour when also urgent: urgency wins), expired = dashed, greyed out, day struck through. `isCompact`: no frame, day over month, urgent day in warning colour, AI day underlined dashed. Decorative, pair it with the deadline in words |
 | `PageHeader` | `title`, `description`, `meta`, `actions` | Top of every page, exactly one `h1`. `meta` is a line of real facts (counts, last update), never a slogan |
 | `EmptyState` | `title`, `hint`, `icon`, `actions` | No data / not built yet / 404 |
 | `ErrorState` | `title`, `message`, `onRetry` | Failed request. Always pass `onRetry={() => refetch()}` |
@@ -192,7 +192,7 @@ The status badge shows only when the call is **not** open ("Najavljen", "Zatvore
 | Active / selected | `--color-primary` border or bar + `--color-primary-soft` background. Never only colour: add a check icon or radio dot |
 | Focus | Visible 2 px green outline (`:focus-visible`), inputs use `--focus-ring`. Never remove focus without a replacement |
 | Disabled | 55 % opacity, `not-allowed` cursor; busy buttons change their label ("Dohvaćam…") |
-| Destructive | No confirmation dialog: act at once and offer undo ("Profil je obrisan." + "Vrati profil") in an `aria-live` region |
+| Destructive | No confirmation dialog: act at once and offer undo ("Profil je obrisan." + "Vrati profil") in an `aria-live` region. The undo notice disappears after 10 s, so an old notice cannot overwrite a newly filled form |
 | Loading | `ListSkeleton` for lists, `LoadingState` otherwise. Keep the page header visible |
 | Empty | `EmptyState` with a concrete hint how to get results and an action |
 | Error | `ErrorState` with the API `message` and "Pokušaj ponovno"; form errors inline under the field in `--color-danger` |
