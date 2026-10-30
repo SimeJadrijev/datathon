@@ -40,8 +40,8 @@ Defined on `:root` in `global.css`. Never write a hex value in a component; use 
 | `--color-border` | `#DFE4DC` | Default 1 px border, dividers |
 | `--color-border-strong` | `#C3CBC0` | Hover border, radio outline |
 | `--color-skeleton` | `#E9ECE5` | Skeleton bars |
-| `--color-text` | `#203B33` | Body text and headings |
-| `--color-text-muted` | `#56675F` | Secondary text, labels, hints (5.2:1 on canvas) |
+| `--color-text` | `#1D2420` | Body text and headings (near-neutral ink: green is the accent, not a tint on every pixel) |
+| `--color-text-muted` | `#59625D` | Secondary text, labels, hints (5.9:1 on canvas) |
 | `--color-text-subtle` | `#7A877F` | Placeholders and decorative icons only (3.5:1, never for essential text) |
 | `--color-text-inverse` | `#FFFFFF` | Text on primary |
 
@@ -51,9 +51,7 @@ Defined on `:root` in `global.css`. Never write a hex value in a component; use 
 | `--color-primary` | `#244A3D` | Primary buttons, links, active navigation bar, focus outline, selected state border |
 | `--color-primary-hover` | `#1B392F` | Hover of primary |
 | `--color-primary-soft` | `#E7EEE9` | Selected option / chip background, profile badges |
-| `--color-primary-border` | `#B7C9BD` | Border of `primary` badge, step numbers |
-| `--color-sage` | `#8AA596` | Reserved accent (charts, illustrations of data) |
-| `--color-sage-soft` | `#EEF2EC` | "Zašto ti odgovara" panel |
+| `--color-primary-border` | `#B7C9BD` | Border of `primary` badge |
 
 ### Semantic
 | Token pair | Hex (text / background) | Use |
@@ -62,28 +60,31 @@ Defined on `:root` in `global.css`. Never write a hex value in a component; use 
 | `--color-warning` / `-soft` | `#85570A` / `#F8EFDA` | Deadline within 7 days, unconfirmed status |
 | `--color-danger` / `-soft` | `#A3321F` / `#F8E7E2` | Errors, expired deadline, destructive actions |
 | `--color-info` / `-soft` | `#3B5674` / `#E8EDF3` | Status "Najavljen", neutral information notices |
-| `--color-ai` / `-soft` | `#3B5674` / `#E8EDF3` | Machine-generated content. Always with a **dashed** border and the sparkles icon |
+| `--color-ai` / `-soft` | `#6B4766` / `#F4EDF3` | Machine-generated content. Its own hue (never the same as `info`, which is the "Najavljen" status). Marks the **value itself** with a dashed underline or dashed frame, plus one sentence saying to check the source. No sparkles icon |
 
 All text/background pairs above meet WCAG AA (4.5:1) for normal text.
 
 ## 4. Typography
 
-- **Font:** Inter (Google Fonts, weights 400/500/600, loaded in `index.html`), fallback `system-ui`. Croatian diacritics (č ć đ š ž) are covered by the latin-ext subset.
+- **Fonts** (Google Fonts, loaded in `index.html`, both cover č ć đ š ž):
+  - `--font-family-display`: **Source Serif 4** 600 for `h1` and `h2` (set globally) and the day number in `DeadlineDate`. Editorial, like an official gazette. Why: Inter-only UIs are the most common "AI-generated" look.
+  - `--font-family`: **IBM Plex Sans** 400/500/600 for everything else, fallback `system-ui`.
 - **Weights:** `--font-weight-regular` 400, `--font-weight-medium` 500, `--font-weight-semibold` 600. No 700+.
-- **Headings** (`h1`-`h4`) are semibold, `--line-height-tight`, `--letter-spacing-tight` (-0.015em), `text-wrap: balance` (set globally).
+- **Headings** (`h1`-`h4`) are semibold, `--line-height-tight`, `--letter-spacing-tight` (-0.01em), `text-wrap: balance` (set globally). `h3` and smaller stay sans.
 - **Numbers** in amounts and dates use the `.tabular-nums` utility class.
+- **Minimum sizes:** body 16 px, nothing under 13 px. The demo video is recorded at 1280 px and compressed; smaller text is unreadable there.
 
 | Token | Size | Use |
 |---|---|---|
-| `--font-size-xs` | 12 px | Badges, captions, fact labels, eyebrow |
-| `--font-size-sm` | 13 px | Secondary text, buttons, labels, nav, hints |
-| `--font-size-md` | 15 px | Body (default on `body`) |
-| `--font-size-lg` | 17 px | Card titles, form step legends, state-panel titles |
-| `--font-size-xl` | 22 px | Section titles (`h2` in cards), page title on mobile |
-| `--font-size-2xl` | 30 px | Page title (`h1` in `PageHeader`) |
+| `--font-size-xs` | 13 px | Captions, source line, fact labels |
+| `--font-size-sm` | 14 px | Secondary text, buttons, labels, nav, hints |
+| `--font-size-md` | 16 px | Body (default on `body`) |
+| `--font-size-lg` | 18 px | Row titles, form step legends, state-panel titles |
+| `--font-size-xl` | 24 px | Section titles (`h2` in cards), page title on mobile |
+| `--font-size-2xl` | 34 px | Page title (`h1` in `PageHeader`) |
 
 Line heights: `--line-height-tight` 1.25 (headings), `--line-height-snug` 1.4 (dense UI text), `--line-height` 1.55 (body).
-Eyebrow labels: xs, semibold, uppercase, `--letter-spacing-caps`, muted colour.
+No uppercase "eyebrow" labels above titles.
 
 ## 5. Spacing, layout, breakpoints
 
@@ -112,8 +113,9 @@ Typical vertical rhythm: `PageHeader` → `--space-5` → content; gap between l
 - Focus: `:focus-visible` gives a 2 px `--color-primary` outline (global). Inputs use border + `--focus-ring` instead.
 - Motion: only colour/border/background transitions, `--duration-fast` (120 ms) with `--easing`. Reduced motion is respected globally.
 - **Icons:** `Icon` component (`components/Icon/Icon.tsx`) with Lucide paths, stroke 1.75, 16 px default. Icons are decorative (`aria-hidden`), the text carries meaning. Need a new icon? Copy its path from lucide.dev into `ICON_PATHS`. Do not add an icon library.
+- **Use icons sparingly:** only where they carry function (external link, menu, close, retry, alert, check on a selected chip, empty/error state). No icon in front of every label (provider, source, list links) and no icons in bordered square tiles.
 
-Available icons: `alert`, `arrowRight`, `calendar`, `check`, `close`, `database`, `document`, `euro`, `externalLink`, `info`, `institution`, `mapPin`, `menu`, `retry`, `search`, `sparkles`.
+Available icons: `alert`, `arrowRight`, `calendar`, `check`, `close`, `database`, `document`, `euro`, `externalLink`, `info`, `institution`, `mapPin`, `menu`, `retry`, `search`.
 
 ## 7. Components (`@/components`)
 
@@ -140,8 +142,10 @@ components/
 | `Badge` | `tone`: `neutral` \| `primary` \| `success` \| `warning` \| `danger` \| `info` \| `ai`; `icon`; `title` | Short status/category labels. Max ~3 per row |
 | `Notice` | `tone`: `info` \| `success` \| `warning` \| `danger`; `title` | Inline message inside a card or form |
 | `Card` | `as`: `div` \| `section` \| `article`; `className`; `aria-labelledby` | Plain bordered surface for forms and panels |
-| `FundingCallCard` | `fundingCall`, `children` (extra rows such as match reasons) | The funding call list item. Use it in every list of calls |
-| `PageHeader` | `title`, `eyebrow`, `description`, `actions` | Top of every page, exactly one `h1` |
+| `FundingCallList` | `children` (`<li>` elements) | Framed list with dividers. Every list of funding calls |
+| `FundingCallRow` | `fundingCall`, `children` (extra lines such as match reasons) | One funding call inside `FundingCallList` |
+| `DeadlineDate` | `deadline`, `isExtractedByAi`, `isCompact` | Calendar-style date block (month / day). Urgent = warning frame, AI = dashed frame (AI colour, or warning colour when also urgent: urgency wins), expired = dashed, greyed out, day struck through. `isCompact`: no frame, day over month, urgent day in warning colour, AI day underlined dashed. Decorative, pair it with the deadline in words |
+| `PageHeader` | `title`, `description`, `meta`, `actions` | Top of every page, exactly one `h1`. `meta` is a line of real facts (counts, last update), never a slogan |
 | `EmptyState` | `title`, `hint`, `icon`, `actions` | No data / not built yet / 404 |
 | `ErrorState` | `title`, `message`, `onRetry` | Failed request. Always pass `onRetry={() => refetch()}` |
 | `ListSkeleton` | `label`, `rows` | Loading state of lists |
@@ -152,29 +156,31 @@ components/
 Patterns that live in a page folder (used by one page), reuse them by moving to their own `components/<Name>/` folder when a second page needs them:
 - **Choice tiles** (`ProfileForm.module.css` `.option`): radio cards with a drawn radio dot, selected = primary border + primary-soft background.
 - **Filter chips** (`.chip`): 6 px radius toggle buttons, selected = primary text/border + primary-soft + check icon. Use the same look for list filters.
-- **Link list** (`HomePage/BrowseLinks`): icon tile + label + description + arrow, full-row hover.
-- **Match reasons** (`RecommendationsPage/MatchDetails`): sage-soft strip with check icons.
+- **Match reasons** (`RecommendationsPage/MatchDetails`): one line of plain text, "**Odgovara ti:** reason · reason · reason". No coloured box, no check icons.
+- **Side panel** (`HomePage/SidePanel.module.css`), two variants on the home page:
+  - **Kako radi** (`HowItWorks`, no profile yet): three steps with serif numbers "1." in primary green (no boxes), then a divider and "Ili pregledaj bez profila" as plain text links with a muted description (no icon tiles).
+  - **Sljedeći rokovi za tebe** (`ProfileDeadlines`, profile exists): the 3 nearest future deadlines among the profile's own matches (same query as "Moji natječaji"), compact `DeadlineDate` (frameless "30 / lis") + full title + "još N dana · provider". Deadlines within 7 days get a "Rok uskoro" label in `--color-warning` above the title.
+- **Fast path + "ili"** (`HomePage/OibLookup` + `ProfileForm` `.or`): the OIB lookup is an open primary-soft panel at the top of the form, then a divider line with a green "ili" circle, then the manual steps. The circle is the one deliberate use of `--radius-pill` outside spinners and dots.
+- **Titles are never truncated** (no `line-clamp`, no ellipsis) in lists. Official titles carry the details people look for.
 
-### Funding call card anatomy
+### Funding call row anatomy
 ```
-┌──────────────────────────────────────────────┬──────────────────┐
-│ [Otvoren] [Bespovratna sredstva] [✧ AI podaci]│ Rok              │
-│ Title, semibold 17 px, max 2 lines            │ 03. 11. 2026. [još 5 dana] │
-│ 🏛 Provider                                   │ Iznos  do 7.500 € │
-├──────────────────────────────────────────────┴──────────────────┤
-│ extra rows (children): match reasons, notices                    │
-├──────────────────────────────────────────────────────────────────┤
-│ ⛁ Izvor: <source name>                      Službena objava ↗    │
-└──────────────────────────────────────────────────────────────────┘
+┌─────┬──────────────────────────────────────────────────┬──────────────┐
+│ stu │ Bespovratna sredstva · Provider (muted, 1 line)   │   do 7.500 € │
+│  2  │ Title, semibold 18 px, full length                │    po prijavi │
+│     │ Odgovara ti: područje · skupina   (children)      │   još 4 dana │
+│     │ Izvor: FZOEU · AI note if extracted               │ Službena ↗   │
+├─────┴──────────────────────────────────────────────────┴──────────────┤
+│ next row (1 px divider, no gap, no separate card)                     │
 ```
-The whole card is clickable (title link stretched over it); the source link sits above that layer. On mobile the facts move under the title.
+The status badge shows only when the call is **not** open ("Najavljen", "Zatvoren"); "Otvoren" is the default and does not need a label. The whole row is clickable (title link stretched over it); the external link sits above that layer. On mobile the right column moves under the title as one line.
 
 ## 8. Page layouts
 
 - **Shell** (`layouts/AppLayout`): sticky white header (brand left, nav right, active item = 2 px green bar on the bottom border), `main` max 1200 px, white footer with source link and disclaimer. Skip link to `#main-content`.
-- **Discovery / home:** `PageHeader` with eyebrow → two columns (main card + 320 px sticky aside). No hero banners, no illustrations.
-- **Lists** (funding calls, regulations): `PageHeader` (title + result description + actions) → filter row (chips/selects) → result summary line ("Pronašli smo **N natječaja**", active filters as badges) → `ol` of cards with `--space-3` gap. Filters in the URL.
-- **Details:** narrow reading column (`--content-width-narrow`) or main + aside. Deadline, provider and "Službena objava" link visible without scrolling. AI fields marked with the `ai` badge and a sentence that says to check the source.
+- **Discovery / home:** `PageHeader` with a facts line (`meta`: open calls, regulations, last update from `GET /api/meta`) → two columns (profile form + 320 px sticky aside: "Kako radi" without a profile, "Sljedeći rokovi za tebe" with one). No hero banners, no illustrations, no boxed step numbers.
+- **Lists** (funding calls, regulations): `PageHeader` (title + result description + actions) → filter row (chips/selects) → result summary as one plain sentence ("**N natječaja** za profil **Tvrtka** (energetika, cijela Hrvatska)") → `FundingCallList` of `FundingCallRow`. Filters in the URL.
+- **Details:** narrow reading column (`--content-width-narrow`) or main + aside. Deadline, provider and "Službena objava" link visible without scrolling. AI fields get a dashed underline in `--color-ai` and a sentence that says to check the source.
 - **Regulations:** editorial look: title, then publication date and effective date as **two separate facts**, then the link to the official text (Narodne novine) before any summary.
 - **Settings-like screens** (profile summary): `dl` with label column + value column, actions in a bordered footer row, destructive action right-aligned.
 
@@ -185,7 +191,8 @@ The whole card is clickable (title link stretched over it); the source link sits
 | Hover | Border to `--color-border-strong` or background to `--color-surface-hover`. Primary darkens. No lift, no scale |
 | Active / selected | `--color-primary` border or bar + `--color-primary-soft` background. Never only colour: add a check icon or radio dot |
 | Focus | Visible 2 px green outline (`:focus-visible`), inputs use `--focus-ring`. Never remove focus without a replacement |
-| Disabled | 55 % opacity, `not-allowed` cursor; busy buttons change their label ("Dohvaćam...") |
+| Disabled | 55 % opacity, `not-allowed` cursor; busy buttons change their label ("Dohvaćam…") |
+| Destructive | No confirmation dialog: act at once and offer undo ("Profil je obrisan." + "Vrati profil") in an `aria-live` region. The undo notice disappears after 10 s, so an old notice cannot overwrite a newly filled form |
 | Loading | `ListSkeleton` for lists, `LoadingState` otherwise. Keep the page header visible |
 | Empty | `EmptyState` with a concrete hint how to get results and an action |
 | Error | `ErrorState` with the API `message` and "Pokušaj ponovno"; form errors inline under the field in `--color-danger` |
@@ -196,7 +203,10 @@ The whole card is clickable (title link stretched over it); the source link sits
 - Every input has a `<label>`; groups use `fieldset` + `legend`. Hints and errors are linked with `aria-describedby`, invalid fields get `aria-invalid`.
 - Status changes are announced (`aria-live="polite"` on loading and async results, `role="alert"` on errors).
 - Keyboard: everything reachable by Tab, visually hidden native inputs stay focusable (`.visually-hidden`), focus moves to the first invalid field on submit.
-- Touch targets ≥ 42 px under 768 px. Inputs use 16 px text on mobile (no iOS zoom).
+- Headings never skip a level (a list of `h3` rows sits under an `h2`, even if that `h2` is styled as a plain summary line).
+- Inputs have `name`; codes (OIB) get `spellCheck={false}`; non-auth fields `autoComplete="off"`. Placeholders show an example ("npr. …").
+- Touch targets ≥ 42 px under 768 px. Inputs use 16 px text on mobile (no iOS zoom). Controls have `touch-action: manipulation` (global).
+- Brand name and other identifiers get `translate="no"`.
 - Check at 1280 px (video) and 390 px (phone). No horizontal scroll.
 - Language: `<html lang="hr">`.
 
@@ -204,7 +214,8 @@ The whole card is clickable (title link stretched over it); the source link sits
 
 - All visible text is Croatian; code, comments and logs are English.
 - Address the user with **"ti"** (informal), short sentences, verbs first on buttons: "Prikaži moje natječaje", "Dohvati podatke", "Pokušaj ponovno".
-- Sentence case everywhere ("Moji natječaji", not "Moji Natječaji"). Eyebrows are the only uppercase text (via CSS).
+- Sentence case everywhere ("Moji natječaji", not "Moji Natječaji"). This deliberately overrides the Title Case rule in `web-design-guidelines`, which is written for English.
+- Typography: `…` not `...` (loading text ends with it: "Učitavanje…"), Croatian quotes „…”.
 - Dates `03. 11. 2026.` and amounts `7.500 €` via `Intl` with `hr-HR` (`utils/date.ts`, `utils/formatAmount.ts`). Relative deadlines: "još 5 dana", "ističe sutra", "isteklo".
 - Glossary: natječaj (funding call), javni poziv, bespovratna sredstva, potpora, stipendija, propis, zakon, izvor, službena objava, rok, iznos, prihvatljivost (eligibility).
 - Never invent facts. Missing value → "provjeri na izvoru". AI content → "AI podaci" / "AI sažetak" + "provjeri na izvoru".
@@ -214,12 +225,14 @@ The whole card is clickable (title link stretched over it); the source link sits
 
 | Do | Don't |
 |---|---|
-| `<Badge tone="success">Otvoren</Badge>` | Inline `style={{color: "green"}}` or a new hex value |
+| `<Badge tone="info">Najavljen</Badge>` only when it adds information | Inline `style={{color: "green"}}` or a new hex value; a badge row on every item |
 | `border: 1px solid var(--color-border)` on a card | `box-shadow: 0 10px 30px ...` on a card |
 | `border-radius: var(--radius-md)` | `border-radius: 16px` / 24 px "bubbly" cards |
 | Facts in a compact `dl` (Rok, Iznos) | Big KPI tiles for single numbers |
 | `<ExternalLink href={url}>Službena objava</ExternalLink>` | A bare URL or an external link without the icon |
-| `ai` badge with sparkles + dashed border for LLM fields | Showing an AI-extracted deadline exactly like an official one |
+| Dashed underline/frame in `--color-ai` on the AI-read value + "provjeri na izvoru" | Showing an AI-extracted deadline exactly like an official one; a sparkles icon |
+| One framed `FundingCallList` with dividers | A stack of separate cards with gaps, each with its own coloured inner box |
+| A line of real numbers under the title (`PageHeader meta`) | Slogans, eyebrows, step numbers in coloured boxes |
 | `ListSkeleton` while a list loads | A full-screen spinner that hides the page header |
 | `Icon name="check"` from `@/components` | Pasting a new inline SVG into a page |
 
@@ -227,14 +240,17 @@ The whole card is clickable (title link stretched over it); the source link sits
 
 Purple/blue gradients, glowing or blurred backgrounds, decorative orbs, glassmorphism, radii above 8 px, heavy shadows, oversized hero sections, decorative illustrations, KPI cards as decoration, emoji in UI, more than one primary button per section, animations beyond colour transitions, English leftovers in the UI, fake or "example" data without a clear `[TEST]`/mock label.
 
+The "template look" we avoid on purpose (typical of AI-generated UIs): Inter everywhere, uppercase eyebrow above every title, icons in bordered square tiles, an icon before every label, sparkles for AI, step numbers in coloured boxes, a coloured box inside every card, and every item wrapped in its own card.
+
 ## 14. Checklist for a new page or component
 
 1. Read this file and check `@/components` for something to reuse.
 2. Use tokens only: no hex, no raw px for spacing/font sizes (1 px borders and icon sizes are fine).
 3. One `PageHeader` (one `h1`), layout from section 8.
 4. Four states: loading (`ListSkeleton`/`LoadingState`), error (`ErrorState` + retry), empty (`EmptyState` + hint + action), data.
-5. Every open-data fact has a source label and an `ExternalLink`; AI fields use the `ai` badge.
+5. Every open-data fact has a source label and an `ExternalLink`; AI fields use the dashed `--color-ai` marking.
 6. Keyboard, focus, labels, `aria-*` per section 10; check 1280 px and 390 px.
-7. Croatian copy per section 11.
-8. `yarn lint` and `yarn build` pass in `apps/web`.
-9. New token, component or pattern? Add it to this file in the same change. Deliberate deviation? Write it down here with the reason.
+7. Run the `web-design-guidelines` skill on the changed files (UX and accessibility rules, see `.claude/skills/web-design-guidelines/`).
+8. Croatian copy per section 11.
+9. `yarn lint` and `yarn build` pass in `apps/web`.
+10. New token, component or pattern? Add it to this file in the same change. Deliberate deviation? Write it down here with the reason.

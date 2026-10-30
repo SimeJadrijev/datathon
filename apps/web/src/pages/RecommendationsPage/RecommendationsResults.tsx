@@ -1,10 +1,9 @@
-import {ButtonLink, EmptyState, ErrorState, FundingCallCard, ListSkeleton} from "@/components";
+import {ButtonLink, EmptyState, ErrorState, FundingCallList, FundingCallRow, ListSkeleton} from "@/components";
 import {useGetProfileMatches} from "@/hooks";
 import {routes} from "@/routes";
 import type {Profile} from "@/types";
 import {MatchDetails} from "./MatchDetails.tsx";
 import {RecommendationsSummary} from "./RecommendationsSummary.tsx";
-import styles from "./RecommendationsPage.module.css";
 
 interface RecommendationsResultsProps {
     profile: Profile;
@@ -14,7 +13,7 @@ export const RecommendationsResults = ({profile}: RecommendationsResultsProps) =
     const {data: results, isPending, isError, error, refetch} = useGetProfileMatches(profile);
 
     if (isPending) {
-        return <ListSkeleton label="Tražimo natječaje za tvoj profil..."/>;
+        return <ListSkeleton label="Tražimo natječaje za tvoj profil…"/>;
     }
     if (isError) {
         return <ErrorState message={error.message} onRetry={() => refetch()}/>;
@@ -22,7 +21,6 @@ export const RecommendationsResults = ({profile}: RecommendationsResultsProps) =
     if (results.length === 0) {
         return (
             <EmptyState
-                icon="search"
                 title="Nema natječaja za ovaj profil"
                 hint="Probaj dodati još područja, maknuti županiju ili upisati drukčije ključne riječi."
                 actions={<ButtonLink href={routes.HOME}>Promijeni profil</ButtonLink>}
@@ -33,15 +31,15 @@ export const RecommendationsResults = ({profile}: RecommendationsResultsProps) =
     return (
         <>
             <RecommendationsSummary profile={profile} count={results.length}/>
-            <ol className={styles.list}>
+            <FundingCallList>
                 {results.map(({fundingCall, reasons, statusUnknown}) => (
                     <li key={fundingCall.id}>
-                        <FundingCallCard fundingCall={fundingCall}>
+                        <FundingCallRow fundingCall={fundingCall}>
                             <MatchDetails reasons={reasons} statusUnknown={statusUnknown}/>
-                        </FundingCallCard>
+                        </FundingCallRow>
                     </li>
                 ))}
-            </ol>
+            </FundingCallList>
         </>
     );
 };

@@ -1,14 +1,15 @@
+/* The fast path: a soft green panel, so it is the first thing a company sees. */
 .lookup {
     display: flex;
     flex-direction: column;
-    padding: var(--space-4);
-    border: 1px solid var(--color-border);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-primary-soft);
+    border: 1px solid var(--color-primary-border);
     border-radius: var(--radius-sm);
-    background: var(--color-surface-subtle);
 }
 
 .label {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
 }
 
@@ -40,6 +41,10 @@
 }
 
 @media (max-width: 480px) {
+    .lookup {
+        padding: var(--space-4);
+    }
+
     .row {
         flex-direction: column;
     }

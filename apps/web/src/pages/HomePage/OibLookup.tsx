@@ -58,24 +58,26 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
 
     return (
         <form className={styles.lookup} onSubmit={handleSubmit} noValidate>
-            <label htmlFor="oib" className={styles.label}>Ili upiši OIB tvrtke</label>
+            <label htmlFor="oib" className={styles.label}>Imaš tvrtku, obrt ili udrugu? Upiši OIB</label>
             <p id="oib-hint" className={styles.hint}>
-                Podatke ćemo dohvatiti iz Sudskog registra i popuniti obrazac. OIB ne spremamo.
+                Obrazac popunjavamo iz Sudskog registra: naziv, sjedište i djelatnost. OIB ne spremamo.
             </p>
             <div className={styles.row}>
                 <TextInput
                     id="oib"
+                    name="oib"
                     inputMode="numeric"
                     autoComplete="off"
+                    spellCheck={false}
                     className={styles.input}
                     value={oib}
-                    placeholder="11 znamenki"
+                    placeholder="npr. 12345678901"
                     aria-describedby={errorMessage ? "oib-hint oib-error" : "oib-hint"}
                     aria-invalid={Boolean(errorMessage)}
                     onChange={(event) => handleChange(event.target.value)}
                 />
                 <Button type="submit" variant="secondary" disabled={lookup.isPending}>
-                    {lookup.isPending ? "Dohvaćam..." : "Dohvati podatke"}
+                    {lookup.isPending ? "Dohvaćam…" : "Dohvati podatke"}
                 </Button>
             </div>
             <div aria-live="polite" className={styles.feedback}>

@@ -28,7 +28,7 @@ export const AppLayout = ({children}: AppLayoutProps) => {
                 <div className={styles.headerInner}>
                     <Link href={routes.HOME} className={styles.brand}>
                         <BrandMark/>
-                        {APP_NAME}
+                        <span translate="no">{APP_NAME}</span>
                     </Link>
                     <Navigation/>
                 </div>
@@ -39,7 +39,7 @@ export const AppLayout = ({children}: AppLayoutProps) => {
             <footer className={styles.footer}>
                 <div className={styles.footerInner}>
                     <div className={styles.footerBrand}>
-                        <p className={styles.footerName}>{APP_NAME}</p>
+                        <p className={styles.footerName} translate="no">{APP_NAME}</p>
                         <p>Natječaji, potpore, stipendije i propisi iz službenih izvora na jednom mjestu.</p>
                     </div>
                     <ul className={styles.footerLinks}>

@@ -75,6 +75,9 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
                 <p className={styles.intro}>Manje od minute. Profil ostaje samo u ovom pregledniku.</p>
             </header>
             <OibLookup onFound={handleOibFound}/>
+            <div className={styles.or} role="separator" aria-label="ili ispuni ručno">
+                <span className={styles.orCircle} aria-hidden="true">ili</span>
+            </div>
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
                 <TargetGroupField
                     ref={targetGroupRef}
@@ -98,6 +101,7 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
                             <label htmlFor="county" className={styles.label}>Županija</label>
                             <Select
                                 id="county"
+                                name="county"
                                 value={values.county}
                                 onChange={(event) => handleChange({county: event.target.value})}
                             >
@@ -112,10 +116,12 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
                             <label htmlFor="keywords" className={styles.label}>Ključne riječi</label>
                             <TextInput
                                 id="keywords"
+                                name="keywords"
                                 ref={keywordsRef}
+                                autoComplete="off"
                                 value={values.keywords}
                                 maxLength={200}
-                                placeholder="npr. solarni paneli, električni automobil"
+                                placeholder="npr. solarni paneli, električni automobil…"
                                 aria-describedby={errors.keywords ? "keywords-hint keywords-error" : "keywords-hint"}
                                 aria-invalid={Boolean(errors.keywords)}
                                 onChange={(event) => handleChange({keywords: event.target.value})}
