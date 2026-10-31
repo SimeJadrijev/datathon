@@ -38,6 +38,7 @@ class RestSudregClientTest {
     private final List<String> authorizations = new CopyOnWriteArrayList<>();
     private volatile String tokenBody = "{\"access_token\":\"token-1\",\"expires_in\":3600}";
     private volatile int detailsStatus = 200;
+    private final AtomicInteger unauthorizedAnswersLeft = new AtomicInteger();
     private volatile String detailsBody;
     private volatile String tokenBasicAuth;
     private MutableClock clock;
@@ -118,13 +119,40 @@ class RestSudregClientTest {
     }
 
     @Test
-    void unauthorizedAnswerDropsTheTokenSoTheNextCallAsksForANewOne() {
+    void revokedTokenIsReplacedAndTheCallIsRetriedOnce() {
         RestSudregClient client = client();
         client.findByOib(OIB);
+        unauthorizedAnswersLeft.set(1);
+        tokenBody = "{\"access_token\":\"token-2\",\"expires_in\":3600}";
+
+        CompanyInfo company = client.findByOib(OIB);
+
+        assertThat(company.name()).startsWith("Microblink");
+        assertThat(tokenRequests).hasValue(2);
+        assertThat(authorizations).containsExactly("Bearer token-1", "Bearer token-1", "Bearer token-2");
+    }
+
+    @Test
+    void secondUnauthorizedAnswerIsAnExternalSourceFailure() {
         detailsStatus = 401;
 
-        assertThatThrownBy(() -> client.findByOib(OIB)).isInstanceOf(ExternalSourceException.class);
-        detailsStatus = 200;
+        assertThatThrownBy(() -> client().findByOib(OIB)).isInstanceOf(ExternalSourceException.class)
+                .hasMessageContaining("HTTP 401");
+        assertThat(detailRequests).hasSize(2);
+    }
+
+    @Test
+    void shortLivedTokenIsStillReusedWithinItsLifetime() {
+        tokenBody = "{\"access_token\":\"token-1\",\"expires_in\":20}";
+        RestSudregClient client = client();
+
+        client.findByOib(OIB);
+        clock.advance(Duration.ofSeconds(5));
+        client.findByOib(OIB);
+
+        assertThat(tokenRequests).hasValue(1);
+
+        clock.advance(Duration.ofSeconds(10));
         client.findByOib(OIB);
 
         assertThat(tokenRequests).hasValue(2);
@@ -179,7 +207,8 @@ class RestSudregClientTest {
     private void handleDetails(HttpExchange exchange) throws IOException {
         detailRequests.add(exchange.getRequestURI().getRawQuery());
         authorizations.add(exchange.getRequestHeaders().getFirst("Authorization"));
-        respond(exchange, detailsStatus, detailsStatus == 200 ? detailsBody : "{}");
+        int status = unauthorizedAnswersLeft.getAndUpdate(left -> Math.max(0, left - 1)) > 0 ? 401 : detailsStatus;
+        respond(exchange, status, status == 200 ? detailsBody : "{}");
     }
 
     private static void respond(HttpExchange exchange, int status, String body) throws IOException {

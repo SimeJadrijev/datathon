@@ -7,6 +7,7 @@ import com.datathon.api.source.SourceCode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.JsonNode;
@@ -16,7 +17,6 @@ import tools.jackson.databind.JsonNode;
 public class HzzFetcher implements SourceFetcher {
 
     private static final String API = "https://mjere.hzz.hr/wp-json/wp/v2";
-    private static final int PAGE_SIZE = 100;
     private static final int MAX_PAGES = 5;
 
     private final PoliteHttpClient http;
@@ -37,9 +37,13 @@ public class HzzFetcher implements SourceFetcher {
         Map<Integer, String> categories = HzzParser.termNames(http.getJson(API + "/measures_category?per_page=100"));
         List<RawItem> items = new ArrayList<>();
         for (int page = 1; page <= MAX_PAGES; page++) {
-            JsonNode measures = http.getJson(API + "/measures?per_page=" + PAGE_SIZE + "&page=" + page);
-            items.addAll(HzzParser.parseMeasures(measures, years, categories));
-            if (measures.size() < PAGE_SIZE) {
+            Optional<JsonNode> measures = WordPressPaging.readPage(page, number -> http.getJson(
+                    API + "/measures?per_page=" + WordPressPaging.PAGE_SIZE + "&page=" + number));
+            if (measures.isEmpty()) {
+                break;
+            }
+            items.addAll(HzzParser.parseMeasures(measures.get(), years, categories));
+            if (measures.get().size() < WordPressPaging.PAGE_SIZE) {
                 break;
             }
         }

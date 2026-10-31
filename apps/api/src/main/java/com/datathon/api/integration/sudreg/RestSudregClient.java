@@ -60,17 +60,23 @@ public class RestSudregClient implements SudregClient {
     }
 
     private String fetchDetails(String oib) {
-        String token = token();
         try {
-            return restClient.get()
-                    .uri(uri -> uri.path(DETAILS_PATH)
-                            .queryParam("tip_identifikatora", "oib")
-                            .queryParam("identifikator", oib)
-                            .queryParam("expand_relations", "true")
-                            .build())
-                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
-                    .retrieve()
-                    .body(String.class);
+            return requestDetails(oib, token());
+        } catch (HttpStatusCodeException e) {
+            if (e.getStatusCode().value() != 401) {
+                throw detailsFailure(e.getStatusCode());
+            }
+            forgetToken();
+        } catch (RestClientException e) {
+            throw new ExternalSourceException(SOURCE, "the register is unreachable");
+        }
+        return retryWithNewToken(oib);
+    }
+
+    /** A token can be revoked before it expires, so one 401 gets a single retry with a fresh token. */
+    private String retryWithNewToken(String oib) {
+        try {
+            return requestDetails(oib, token());
         } catch (HttpStatusCodeException e) {
             throw detailsFailure(e.getStatusCode());
         } catch (RestClientException e) {
@@ -78,12 +84,21 @@ public class RestSudregClient implements SudregClient {
         }
     }
 
+    private String requestDetails(String oib, String token) {
+        return restClient.get()
+                .uri(uri -> uri.path(DETAILS_PATH)
+                        .queryParam("tip_identifikatora", "oib")
+                        .queryParam("identifikator", oib)
+                        .queryParam("expand_relations", "true")
+                        .build())
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                .retrieve()
+                .body(String.class);
+    }
+
     private RuntimeException detailsFailure(HttpStatusCode status) {
         if (status.value() == 404) {
             return new NotFoundException("Tvrtka s ovim OIB-om nije pronađena.");
-        }
-        if (status.value() == 401) {
-            forgetToken();
         }
         return new ExternalSourceException(SOURCE, "the register answered HTTP " + status.value());
     }
@@ -94,6 +109,14 @@ public class RestSudregClient implements SudregClient {
         } catch (JacksonException e) {
             throw new ExternalSourceException(SOURCE, "the register answer cannot be read");
         }
+    }
+
+    /** Keeps a safety margin, but never more than half of a short lifetime, so a 30 s token is still reused. */
+    private static Duration usableLifetime(Duration lifetime) {
+        Duration margin = TOKEN_EXPIRY_MARGIN.compareTo(lifetime.dividedBy(2)) < 0
+                ? TOKEN_EXPIRY_MARGIN
+                : lifetime.dividedBy(2);
+        return lifetime.minus(margin);
     }
 
     private synchronized String token() {
@@ -130,6 +153,6 @@ public class RestSudregClient implements SudregClient {
         JsonNode lifetime = answer.path("expires_in");
         long seconds = lifetime.isNumber() ? lifetime.longValue() : DEFAULT_TOKEN_SECONDS;
         accessToken = token;
-        accessTokenExpiresAt = clock.instant().plusSeconds(seconds).minus(TOKEN_EXPIRY_MARGIN);
+        accessTokenExpiresAt = clock.instant().plus(usableLifetime(Duration.ofSeconds(seconds)));
     }
 }

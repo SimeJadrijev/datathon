@@ -66,15 +66,41 @@ class HzzParserTest {
     }
 
     @Test
-    void everyMeasureIsContinuousAndNoDeadlineIsInvented() {
-        RuleExtractor extractor = new RuleExtractor();
+    void activeMeasureIsContinuousAndNoDeadlineIsInvented() {
+        ExtractedFields fields = new RuleExtractor().extract(items.getFirst());
 
-        for (RawItem item : items) {
-            ExtractedFields fields = extractor.extract(item);
+        assertThat(fields.deadline()).isNull();
+        assertThat(fields.deadlineNote()).isEqualTo("kontinuirano, bez roka");
+    }
 
-            assertThat(item.deadlineNoteHint()).isEqualTo("continuous");
-            assertThat(fields.deadline()).as(item.title()).isNull();
-            assertThat(fields.deadlineNote()).isEqualTo("continuous");
+    @Test
+    void closedMeasureDoesNotClaimToBeContinuous() {
+        for (RawItem closed : items.subList(1, items.size())) {
+            ExtractedFields fields = new RuleExtractor().extract(closed);
+
+            assertThat(fields.deadline()).as(closed.title()).isNull();
+            assertThat(fields.deadlineNote()).isEqualTo("mjera više nije aktivna");
+        }
+    }
+
+    @Test
+    void noteIsInCroatianLikeTheOtherSources() {
+        assertThat(items).extracting(RawItem::deadlineNoteHint).doesNotContain("continuous");
+    }
+
+    @Test
+    void measureWithMissingOrBrokenDateIsKeptWithoutPublicationDate() {
+        var measures = SourceFixtures.json("hzz/measures.json");
+        var json = SourceFixtures.text("hzz/measures.json").replace(measures.get(0).path("date").asString(), "");
+        var broken = SourceFixtures.text("hzz/measures.json").replace(measures.get(0).path("date").asString(), "2026-13-45T10:00:00");
+
+        for (String body : List.of(json, broken)) {
+            var parsed = HzzParser.parseMeasures(tools.jackson.databind.json.JsonMapper.builder().build().readTree(body),
+                    HzzParser.termNames(SourceFixtures.json("hzz/years.json")),
+                    HzzParser.termNames(SourceFixtures.json("hzz/categories.json")));
+
+            assertThat(parsed).hasSize(3);
+            assertThat(parsed.getFirst().publishedAt()).isNull();
         }
     }
 }

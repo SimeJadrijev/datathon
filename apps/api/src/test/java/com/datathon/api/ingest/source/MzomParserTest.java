@@ -86,6 +86,19 @@ class MzomParserTest {
     }
 
     @Test
+    void documentsInTheHeaderAndFooterAreNotAttachments() {
+        String html = text("mzom/detail.html")
+                .replace("<body>", "<body><a href='/header/navigacija.pdf'>Navigacija</a>")
+                .replace("</body>", "<div class='footer'><a href='/footer/pravila.pdf'>Pravila</a></div></body>");
+
+        RawItem detailed = MzomParser.applyDetail(byId("8114"), html);
+
+        assertThat(detailed.attachments()).hasSize(6)
+                .extracting(attachment -> attachment.url())
+                .noneMatch(url -> url.contains("/header/") || url.contains("/footer/"));
+    }
+
+    @Test
     void detailFillsDeadlineWhenTheListHadNone() {
         RawItem withoutDeadline = byId("8114").toBuilder().deadlineHint(null).build();
 

@@ -70,6 +70,18 @@ class ApprrrParserTest {
     }
 
     @Test
+    void postWithEmptyDateIsKeptWithoutPublicationDate() {
+        String body = text("apprrr/posts.json").replaceFirst("\"date\": \"[^\"]*\"", "\"date\": \"\"");
+
+        List<RawItem> parsed = ApprrrParser.parsePosts(
+                tools.jackson.databind.json.JsonMapper.builder().build().readTree(body));
+
+        assertThat(parsed).hasSize(4);
+        assertThat(parsed.getFirst().publishedAt()).isNull();
+        assertThat(parsed.get(1).publishedAt()).isNotNull();
+    }
+
+    @Test
     void feedHoldsOnlyTheLatestPostsAndTheirIds() {
         List<FeedEntry> entries = ApprrrParser.parseFeed(text("apprrr/feed.xml"));
 

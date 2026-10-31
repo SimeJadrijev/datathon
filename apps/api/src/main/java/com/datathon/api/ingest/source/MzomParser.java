@@ -46,12 +46,13 @@ public final class MzomParser {
     public static RawItem applyDetail(RawItem item, String html) {
         Document document = Jsoup.parse(html, BASE_URL);
         Element content = document.selectFirst(".page_content");
-        if (content == null) {
+        Element article = document.selectFirst(".article_content");
+        if (content == null || article == null) {
             return item;
         }
         RawItem.RawItemBuilder builder = item.toBuilder()
                 .text(HtmlText.lines(content))
-                .attachments(DocumentLinks.in(document.body()));
+                .attachments(DocumentLinks.in(article));
         if (item.deadlineHint() == null) {
             Element heading = content.selectFirst("h3");
             String deadlineText = heading == null ? "" : heading.text().replace('\u00a0', ' ').strip();

@@ -87,6 +87,42 @@ class NarodneNoviniIngestTest {
     }
 
     @Test
+    void lawWithABrokenEliPageDoesNotStopTheOthersFromGettingEli() {
+        when(http.getText(LIST_2026)).thenReturn(lawPage(3));
+        when(http.getText(lawUrl(3))).thenReturn(text("narodne-novine/act-law.html")
+                .replace("content=\"2026-10-21\"", "content=\"not-a-date\""));
+        when(http.getText(lawUrl(2))).thenReturn(text("narodne-novine/act-law.html"));
+        when(http.getText(lawUrl(1))).thenReturn(text("narodne-novine/act-law.html"));
+
+        ingest.ingest();
+
+        assertThat(savedWithEli()).extracting(ParsedRegulation::documentNumber).containsExactlyInAnyOrder(1, 2, 3);
+    }
+
+    @Test
+    void pageThatFailsMidYearKeepsTheEarlierPagesAndTheirEli() {
+        String fullPage = lawPage(NarodneNoviniIngest.PAGE_SIZE);
+        when(http.getText(LIST_2026)).thenReturn(fullPage);
+        when(http.getText(LIST_2026.replace("str=0", "str=1"))).thenThrow(new HttpFetchException("HTTP 500"));
+        when(http.getText(anyString())).thenAnswer(invocation -> {
+            String url = invocation.getArgument(0);
+            if (url.equals(LIST_2026)) {
+                return fullPage;
+            }
+            if (url.contains("str=1")) {
+                throw new HttpFetchException("HTTP 500");
+            }
+            return url.contains("/clanci/sluzbeni/") ? text("narodne-novine/act-law.html") : "";
+        });
+
+        Outcome outcome = ingest.ingest();
+
+        assertThat(outcome.fetched()).isEqualTo(NarodneNoviniIngest.PAGE_SIZE);
+        assertThat(outcome.errors()).isEqualTo(1);
+        assertThat(savedWithEli()).hasSize(NarodneNoviniIngest.NEWEST_LAWS_WITH_ELI);
+    }
+
+    @Test
     void failingYearIsCountedAsErrorWhileTheOtherYearIsKept() {
         when(http.getText(LIST_2026)).thenReturn(text("narodne-novine/list.html"));
         when(http.getText(LIST_2025)).thenThrow(new HttpFetchException("HTTP 500"));
@@ -118,6 +154,10 @@ class NarodneNoviniIngestTest {
         List<ParsedRegulation> withEli = new ArrayList<>();
         saved.getAllValues().forEach(batch -> batch.stream().filter(ParsedRegulation::eliMetadata).forEach(withEli::add));
         return withEli;
+    }
+
+    private static String lawUrl(int document) {
+        return "https://narodne-novine.nn.hr/clanci/sluzbeni/2026_10_1_" + document + ".html";
     }
 
     private static String lawPage(int count) {

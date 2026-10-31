@@ -58,7 +58,7 @@ public class NarodneNoviniIngest implements RegulationIngest {
         String errorMessage = null;
         for (int year : new int[] {currentYear, currentYear - 1}) {
             try {
-                all.addAll(fetchYear(year));
+                fetchYear(year, all);
             } catch (RuntimeException e) {
                 errors++;
                 errorMessage = "NN " + year + ": " + e.getClass().getSimpleName() + ": " + e.getMessage();
@@ -71,20 +71,19 @@ public class NarodneNoviniIngest implements RegulationIngest {
         return new Outcome(all.size(), errors, errorMessage);
     }
 
-    private List<ParsedRegulation> fetchYear(int year) {
+    /** Adds each page to {@code collected} as soon as it is saved, so a failing later page loses nothing. */
+    private void fetchYear(int year, List<ParsedRegulation> collected) {
         Set<String> seen = new HashSet<>();
-        List<ParsedRegulation> regulations = new ArrayList<>();
         for (int page = 0; page < MAX_PAGES_PER_YEAR; page++) {
             List<ParsedRegulation> pageItems = NarodneNoviniParser.parseListPage(
                     http.getText(LIST_URL.formatted(year, page)));
             List<ParsedRegulation> fresh = pageItems.stream().filter(item -> seen.add(item.externalId())).toList();
             upserter.upsertAll(fresh);
-            regulations.addAll(fresh);
+            collected.addAll(fresh);
             if (fresh.isEmpty() || pageItems.size() < PAGE_SIZE) {
                 break;
             }
         }
-        return regulations;
     }
 
     private void addEliMetadataToNewestLaws(List<ParsedRegulation> all) {

@@ -83,6 +83,17 @@ class NarodneNoviniParserTest {
     }
 
     @Test
+    void malformedEliDateIsIgnoredWhileTheRestOfTheMetadataIsKept() {
+        String html = text("narodne-novine/act-law.html").replace("content=\"2026-10-21\"", "content=\"21.10.2026\"");
+
+        EliMetadata eli = NarodneNoviniParser.parseEli(html).orElseThrow();
+
+        assertThat(eli.enactedAt()).isNull();
+        assertThat(eli.publishedAt()).isEqualTo(LocalDate.of(2026, 10, 28));
+        assertThat(eli.type()).isEqualTo(RegulationType.LAW);
+    }
+
+    @Test
     void pageWithoutEliMetadataGivesNothing() {
         assertThat(NarodneNoviniParser.parseEli("<html><head></head><body>Nema ELI</body></html>")).isEmpty();
     }

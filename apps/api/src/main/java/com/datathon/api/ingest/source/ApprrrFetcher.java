@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -29,7 +30,6 @@ public class ApprrrFetcher implements SourceFetcher {
             + FIELDS;
     private static final String POST_URL = BASE_URL + "/wp-json/wp/v2/posts/%s?_fields=" + FIELDS;
     private static final String FEED_URL = BASE_URL + "/feed/";
-    private static final int PAGE_SIZE = 100;
     private static final int MAX_PAGES = 5;
 
     private final PoliteHttpClient http;
@@ -49,9 +49,12 @@ public class ApprrrFetcher implements SourceFetcher {
     public List<RawItem> fetchList() {
         Map<String, RawItem> items = new LinkedHashMap<>();
         for (int page = 1; page <= MAX_PAGES; page++) {
-            JsonNode posts = http.getJson(CALLS_URL.formatted(page));
-            ApprrrParser.parsePosts(posts).forEach(item -> items.putIfAbsent(item.externalId(), item));
-            if (posts.size() < PAGE_SIZE) {
+            Optional<JsonNode> posts = WordPressPaging.readPage(page, number -> http.getJson(CALLS_URL.formatted(number)));
+            if (posts.isEmpty()) {
+                break;
+            }
+            ApprrrParser.parsePosts(posts.get()).forEach(item -> items.putIfAbsent(item.externalId(), item));
+            if (posts.get().size() < WordPressPaging.PAGE_SIZE) {
                 break;
             }
         }
@@ -62,7 +65,7 @@ public class ApprrrFetcher implements SourceFetcher {
     @Override
     public RawItem fetchDetail(RawItem item) {
         String page = ApprrrParser.interventionPage(item).orElse(null);
-        if (page == null) {
+        if (page == null || !item.attachments().isEmpty()) {
             return item;
         }
         try {
@@ -75,15 +78,26 @@ public class ApprrrFetcher implements SourceFetcher {
 
     /** The feed holds only the 10 newest posts but includes announcements filed outside the calls category. */
     private void addFreshFromFeed(Map<String, RawItem> items) {
+        List<FeedEntry> entries;
         try {
-            for (FeedEntry entry : ApprrrParser.parseFeed(http.getText(FEED_URL))) {
-                if (!items.containsKey(entry.id()) && fundingFilter.isFunding(entry.title())) {
-                    RawItem fresh = ApprrrParser.parsePost(http.getJson(POST_URL.formatted(entry.id())));
-                    items.putIfAbsent(fresh.externalId(), fresh);
-                }
-            }
+            entries = ApprrrParser.parseFeed(http.getText(FEED_URL));
         } catch (HttpFetchException | RobotsBlockedException e) {
             log.warn("APPRRR: feed not read: {}", e.getMessage());
+            return;
+        }
+        for (FeedEntry entry : entries) {
+            if (!items.containsKey(entry.id()) && fundingFilter.isFunding(entry.title())) {
+                readFeedPost(entry).ifPresent(post -> items.putIfAbsent(post.externalId(), post));
+            }
+        }
+    }
+
+    private Optional<RawItem> readFeedPost(FeedEntry entry) {
+        try {
+            return Optional.of(ApprrrParser.parsePost(http.getJson(POST_URL.formatted(entry.id()))));
+        } catch (HttpFetchException | RobotsBlockedException e) {
+            log.warn("APPRRR: feed post {} not read: {}", entry.id(), e.getMessage());
+            return Optional.empty();
         }
     }
 }

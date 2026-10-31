@@ -10,7 +10,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HexFormat;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -29,7 +28,6 @@ public final class FzoeuParser {
     private static final Pattern DOCS_FOLDER = Pattern.compile("/docs/(\\d+)/");
     private static final Pattern CALL_CODE = Pattern.compile("\\(([A-Za-z]+-?\\d+/\\d+[^)]*)\\)");
     private static final Pattern OPENED = Pattern.compile("Otvoren:\\s*([\\d.\\s]+)");
-    private static final Pattern DOCUMENT = Pattern.compile("\\.(pdf|docx?|xlsx?|odt|zip)(\\?|$)", Pattern.CASE_INSENSITIVE);
 
     private FzoeuParser() {
     }
@@ -50,7 +48,7 @@ public final class FzoeuParser {
     private static RawItem item(Element header, Element body) {
         String statusText = header.select(".status span").text().strip().toLowerCase(Locale.ROOT);
         String title = title(header, statusText);
-        List<RawAttachment> attachments = attachments(body);
+        List<RawAttachment> attachments = DocumentLinks.in(body);
         String externalId = externalId(title, attachments);
         String text = body.wholeText().lines().map(String::strip).filter(line -> !line.isEmpty())
                 .reduce((first, second) -> first + "\n" + second).orElse("");
@@ -79,20 +77,6 @@ public final class FzoeuParser {
         return !statusText.isEmpty() && title.toLowerCase(Locale.ROOT).startsWith(statusText)
                 ? title.substring(statusText.length()).strip()
                 : title;
-    }
-
-    private static List<RawAttachment> attachments(Element body) {
-        Set<String> seen = new LinkedHashSet<>();
-        List<RawAttachment> attachments = new ArrayList<>();
-        for (Element link : body.select("a[href]")) {
-            String url = link.absUrl("href");
-            if (!DOCUMENT.matcher(url).find() || !seen.add(url)) {
-                continue;
-            }
-            String name = link.text().isBlank() ? url.substring(url.lastIndexOf('/') + 1) : link.text().strip();
-            attachments.add(new RawAttachment(name, url));
-        }
-        return attachments;
     }
 
     private static String externalId(String title, List<RawAttachment> attachments) {

@@ -176,3 +176,14 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
 - **Narodne novine su propisi, ne natjecaji, pa imaju zaseban put:** sucelje `RegulationIngest` uz `SourceFetcher`, a `IngestService` oba zapisuje u isti `source_run_log`. `RegulationUpserter` ne brise podrucja koja je dodao AI sazetak. Tekuca i proslu godinu citamo stranicama po 200, ELI metapodaci (datum donosenja, vrsta) za 60 najnovijih zakona. Vanjski id je `godina-broj-dokument` kao u seedu, pa nema duplikata.
 - **Sudreg:** pravi `RestSudregClient` (OAuth2 client credentials, token u memoriji do isteka minus 30 s, timeouti 5 s i 30 s). Klijent se bira prema kljucevima: pravi kad su postavljena oba (`SUDREG_CLIENT_ID`, `SUDREG_CLIENT_SECRET`), inace fixture. Zato je uklonjen prekidac `sudreg.fixtures.enabled` (zamjenjuje raniju biljesku za INGEST-9). Poruke gresaka nikad ne nose OIB, kljuceve ni URL. `NkdAreas` je premjesten u paket i preimenovan u `NkdAreaMapper`.
 - **Ovisnost o okolini:** test paket je jednom pao s "too many clients already" jer stari API procesi na 8080-8086 drze oko 70 konekcija prema Postgresu (max 100). Nije regresija koda; ponovljeno je prolazilo.
+
+
+## 2026-10-31: ispravci nakon recenzije PR-a, paket 3 (Sime)
+- **Paginacija WordPressa (HZZ, APPRRR):** izvor sa tocno 100 ili 200 stavki vraca HTTP 400 za iducu stranicu. `WordPressPaging.readPage` to tretira kao kraj popisa, ali samo za stranicu > 1; 400 na prvoj stranici i svaki drugi status ostaju greska. `HttpFetchException` sada nosi `statusCode()`.
+- **Datumi:** prazan ili neispravan datum objave (HZZ, APPRRR) daje `publishedAt = null` umjesto pada cijelog izvora (`IsoDates.leading`). Neispravan ELI datum se preskace, ostatak ELI metapodataka se zadrzava.
+- **APPRRR:** pogreska na jednom postu iz RSS-a vise ne preskace ostale (try/catch je u petlji), stranica intervencije se ne skida kad objava vec ima privitke.
+- **Narodne novine:** lista vise ne gazi `type` i `publishedAt` koje je ispravio ELI (zastavica `eliMetadata` je vec postavljena), pa se podaci ne mijenjaju naprijed-natrag izmedu pokretanja. Stranice upisane prije greske usred godine se broje i njihovi najnoviji zakoni dobivaju ELI.
+- **HZZ napomena o roku je hrvatska:** "kontinuirano, bez roka" za aktivne mjere, "mjera vise nije aktivna" za ostale (zatvorene mjere vise ne tvrde da su kontinuirane).
+- **MZOM:** privitci samo iz `.article_content`, ne iz cijelog `body`, da PDF-ovi iz headera i footera ne zavrse na svakom pozivu.
+- **Sudreg:** na 401 se token odbaci i poziv se ponovi jednom s novim tokenom. Margina isteka tokena je najvise pola njegova trajanja, pa se token s `expires_in` do 30 s ne trazi pri svakom pozivu.
+- **FZOEU** koristi zajednicke `DocumentLinks` i `HtmlText`, bez dupliciranog koda.

@@ -19,7 +19,8 @@ import tools.jackson.databind.JsonNode;
 public final class HzzParser {
 
     static final String PROVIDER = "Hrvatski zavod za zapošljavanje";
-    static final String CONTINUOUS = "continuous";
+    static final String CONTINUOUS = "kontinuirano, bez roka";
+    static final String NOT_ACTIVE = "mjera više nije aktivna";
 
     private static final String ACTIVE_YEAR_TAG = "Aktivne mjere";
     private static final Map<String, Set<TargetGroup>> GROUPS_BY_CATEGORY = Map.of(
@@ -58,9 +59,9 @@ public final class HzzParser {
                 .url(link)
                 .title(Jsoup.parse(measure.path("title").path("rendered").asString()).text().strip())
                 .provider(PROVIDER)
-                .publishedAt(LocalDate.parse(measure.path("date").asString().substring(0, 10)))
+                .publishedAt(IsoDates.leading(measure.path("date").asString("")))
                 .statusHint(isActive ? FundingCallStatus.OPEN : FundingCallStatus.CLOSED)
-                .deadlineNoteHint(CONTINUOUS)
+                .deadlineNoteHint(isActive ? CONTINUOUS : NOT_ACTIVE)
                 .typeHint(FundingCallType.SUBSIDY)
                 .categories(categoryNames)
                 .countiesHint(Set.of(FundingCall.ALL_COUNTIES))

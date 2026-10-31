@@ -51,7 +51,7 @@ public final class ApprrrParser {
                 .url(link)
                 .title(Jsoup.parse(post.path("title").path("rendered").asString()).text().strip())
                 .provider(PROVIDER)
-                .publishedAt(LocalDate.parse(post.path("date").asString().substring(0, 10)))
+                .publishedAt(IsoDates.leading(post.path("date").asString("")))
                 .categories(List.of(CALLS_CATEGORY))
                 .countiesHint(Set.of(FundingCall.ALL_COUNTIES))
                 .targetGroupsHint(Set.of(TargetGroup.FARMER))

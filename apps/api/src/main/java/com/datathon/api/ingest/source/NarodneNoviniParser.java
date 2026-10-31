@@ -4,6 +4,7 @@ import com.datathon.api.ingest.extract.CroatianDates;
 import com.datathon.api.ingest.extract.KeywordClassifier;
 import com.datathon.api.regulation.RegulationType;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -93,7 +94,11 @@ public final class NarodneNoviniParser {
         if (meta == null || meta.attr("content").isBlank()) {
             return null;
         }
-        return LocalDate.parse(meta.attr("content").strip());
+        try {
+            return LocalDate.parse(meta.attr("content").strip());
+        } catch (DateTimeParseException e) {
+            return null;
+        }
     }
 
     private static RegulationType documentType(Document document) {
