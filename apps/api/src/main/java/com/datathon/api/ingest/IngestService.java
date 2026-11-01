@@ -1,5 +1,6 @@
 package com.datathon.api.ingest;
 
+import com.datathon.api.fundingcall.ExpiredFundingCallCloser;
 import com.datathon.api.ingest.extract.FundingFilter;
 import com.datathon.api.ingest.extract.RuleExtractor;
 import com.datathon.api.source.SourceCode;
@@ -24,6 +25,7 @@ public class IngestService {
     private final FundingCallUpserter upserter;
     private final IngestRunRepository ingestRunRepository;
     private final SourceRunLogRepository sourceRunLogRepository;
+    private final ExpiredFundingCallCloser expiredFundingCallCloser;
 
     public IngestRun createRun(Optional<SourceCode> source) {
         return ingestRunRepository.save(new IngestRun(Instant.now(), source.orElse(null)));
@@ -38,6 +40,7 @@ public class IngestService {
         for (RegulationIngest regulationIngest : selectedRegulationIngests(run.getRequestedSource())) {
             sourceRunLogRepository.save(runRegulations(run, regulationIngest));
         }
+        expiredFundingCallCloser.closeExpired();
         run.setFinishedAt(Instant.now());
         ingestRunRepository.save(run);
     }

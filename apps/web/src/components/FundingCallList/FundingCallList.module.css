@@ -1,0 +1,13 @@
+/* One framed list with dividers instead of a stack of separate cards: denser and easier to compare. */
+.list {
+    overflow: hidden;
+    padding: 0;
+    list-style: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.list > li + li {
+    border-top: 1px solid var(--color-border);
+}

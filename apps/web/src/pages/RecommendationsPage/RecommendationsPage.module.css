@@ -1,0 +1,11 @@
+.summary {
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-muted);
+}
+
+.summary strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}

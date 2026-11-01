@@ -1,0 +1,50 @@
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--aside-width);
+    align-items: start;
+    gap: var(--space-5);
+}
+
+.main {
+    min-width: 0;
+}
+
+/* One row as tall as its button: centre the icon on the row instead of the first text line. */
+.undo {
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.undo > svg {
+    margin-top: 0;
+}
+
+.undoText {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+}
+
+.aside {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-5));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.facts strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+@media (max-width: 960px) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .aside {
+        position: static;
+    }
+}

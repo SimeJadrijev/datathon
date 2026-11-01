@@ -31,14 +31,22 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 
 | Paket | Sadržaj | Dana | Vlasnik | Status |
 |---|---|---|---|---|
-| 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | GOTOVO, PR #12 čeka review i merge (merge prvi, ostali paketi ovise o njemu) |
+| 1 Foundations (#3) | SETUP-1, DATA-1, DATA-2 | 2,2 | Luka | GOTOVO, PR #12 mergean, issue zatvoren |
 | 2 Ingest: core and first sources (#4) | INGEST-1 do 4 | 3,3 | Luka | GOTOVO (PR #15 + admin ruta izravno na main) |
 | 3 Ingest: other sources | INGEST-5 do 9 | 3,1 | | OTVORENO |
-| 4 API | API-1 do 7 | 4,8 | | U TIJEKU, branch `sime/api`, plan u `work/api-plan.md`. API-1 do API-7 napisani i testirani (primjeri u `work/api-examples.md`). Slijede provjere (code review, Swagger, ručno) pa jedan PR. Jedan PR za cijeli paket. |
-| 5 AI | AI-1 do 4 | 3,2 | | OTVORENO |
-| 6 Web: foundation, profile, recommendations | WEB-1 do 4 | 3,2 | | OTVORENO |
-| 7 Web: lists, details, laws, sources | WEB-5 do 9 | 3,9 | | OTVORENO |
+| 4 API (#6) | API-1 do 7 | 4,8 | Sime | GOTOVO, PR #16 mergean 28.10., issue zatvoren (primjeri u `work/api-examples.md`) |
+| 5 AI (#7) | AI-1 do 4 | 3,2 | Nino | PR #13 mergean 27.10.; issue #7 još otvoren |
+| 6 Web: foundation, profile, recommendations (#8) | WEB-1 do 4 | 3,2 | Ivan | GOTOVO 29.10.: svi kriteriji WEB-1 do 4 provjereni, PR za `feature/pkg-6-web` otvoren (`Closes #8`), čeka review. Screenshotovi u `work/screenshots/pkg-6/` |
+| 7 Web: lists, details, laws, sources (#9) | WEB-5 do 9 | 3,9 | | OTVORENO. Spremno za start čim se #8 mergea (treba `FundingCallCard`, `ApiError`). Backend za sve korake je u mainu; WEB-7 i dio WEB-8 trebaju AI podatke u bazi (vidi blocker ispod) |
 | 8 Quality and delivery | QUALITY-1 do 3, DELIVERY-1 do 5 | 6,2 | | OTVORENO |
+
+**Pitanja za kolege u PR-u paketa 6, postaviti kao komentar:**
+1. ~~Naziv aplikacije "Natječaji i zakoni" i logo "NZ" su radni izbor.~~ 29.10. promijenjeno u **OtvoreniRadar** na `refactor-ui` (vidi `work/decisions.md`).
+2. Kad profil postoji, početna prvo pokazuje sažetak profila, a forma se otvara na "Promijeni profil". Spec (WEB-2) kaže "forma je popunjena i nudi Promijeni profil". Slažemo li se s odstupanjem?
+
+**Otvoreno za web:** provjeriti u Firefoxu (na Ivanovom računalu nije instaliran, testirano samo u Chromiumu).
+
+**Blocker za WEB-7, WEB-8 i demo bez ključa (28.10.):** AI rezultati (polja iz AI-2, sažeci AI-3, pitanja AI-4) nisu u seedu. Svježa baza ima 0 pitanja za prihvatljivost, 0 sažetaka propisa i 0 natječaja s `extractedByLlm`. Tko nema `ANTHROPIC_API_KEY` i ne pokrene admin batcheve, ne vidi panel "Ispunjavam li uvjete?" ni AI sažetke. Odluka AI paketa kaže "demo radi bez ključa", pa treba izvoz AI rezultata u seed (ili zaseban seed file). Vlasnik: AI paket (#7) ili DELIVERY. Javiti Ninu.
 
 ### Nice-to-have (tek kad MVP stoji)
 - Scheduler s pravom razlikom dvaju dohvata + stvarne obavijesti (mail).

@@ -1,0 +1,160 @@
+.row {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) 168px;
+    grid-template-areas: "date main side";
+    gap: var(--space-5);
+    padding: var(--space-4) var(--space-5);
+    transition: background-color var(--duration-fast) var(--easing);
+}
+
+.row:hover {
+    background: var(--color-surface-hover);
+}
+
+.row:has(.titleLink:focus-visible) {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+}
+
+.date {
+    grid-area: date;
+}
+
+.main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.metaText {
+    min-width: 0;
+}
+
+/* Full title, never clamped: official titles carry the details people search for. */
+.title {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-snug);
+}
+
+.titleLink {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.titleLink:focus-visible {
+    outline: none;
+}
+
+/* The whole row opens the detail page; links inside it sit above this layer. */
+.titleLink::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.row:hover .titleLink {
+    text-decoration: underline;
+    text-decoration-color: var(--color-border-strong);
+}
+
+.source {
+    margin-top: var(--space-1);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.aiNote {
+    color: var(--color-ai);
+}
+
+.side {
+    grid-area: side;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-1);
+    text-align: right;
+}
+
+.amount {
+    display: flex;
+    flex-direction: column;
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+}
+
+.amountLabel {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-muted);
+}
+
+/* AI-read value: dashed underline in the AI colour instead of a badge on the whole row. */
+.aiValue {
+    text-decoration: underline dashed var(--color-ai);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+.deadline {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.urgent {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-warning);
+}
+
+.expired {
+    color: var(--color-danger);
+}
+
+.sourceLink {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding-top: var(--space-2);
+    font-size: var(--font-size-sm);
+}
+
+@media (max-width: 768px) {
+    .row {
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas:
+            "date main"
+            "date side";
+        gap: var(--space-3) var(--space-4);
+        padding: var(--space-4);
+    }
+
+    .side {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: var(--space-1) var(--space-4);
+        text-align: left;
+    }
+
+    .amount {
+        flex-direction: row;
+        gap: var(--space-1);
+    }
+
+    .sourceLink {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}

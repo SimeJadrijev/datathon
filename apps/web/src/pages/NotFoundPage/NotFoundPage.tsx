@@ -1,16 +1,13 @@
-import {useLocation} from "wouter";
+import {ButtonLink, EmptyState} from "@/components";
 import {routes} from "@/routes";
 
-
 export const NotFoundPage = () => {
-    const [, navigate] = useLocation();
-
     return (
-        <div>
-            <p>Stranica koju tražiš ne postoji.</p>
-            <button onClick={() => navigate(routes.HOME)}>
-                Natrag na početnu
-            </button>
-        </div>
+        <EmptyState
+            icon="alert"
+            title="Stranica ne postoji"
+            hint="Poveznica je možda zastarjela ili je adresa krivo upisana."
+            actions={<ButtonLink href={routes.HOME}>Natrag na početnu</ButtonLink>}
+        />
     );
 };

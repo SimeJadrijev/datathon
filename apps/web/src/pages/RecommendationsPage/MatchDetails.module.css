@@ -1,0 +1,15 @@
+.reasons {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    color: var(--color-text);
+}
+
+.reasonsTitle {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+}
+
+.warning {
+    font-size: var(--font-size-sm);
+    color: var(--color-warning);
+}

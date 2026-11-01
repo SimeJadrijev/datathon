@@ -44,6 +44,23 @@ class FundingCallServiceTest {
     }
 
     @Test
+    void closeExpiredClosesOnlyOpenCallsWhoseDeadlineHasPassed() {
+        LocalDate today = LocalDate.of(2026, 10, 30);
+        save("Istekao", FundingCallStatus.OPEN, TargetGroup.COMPANY).setDeadline(today.minusDays(1));
+        save("Ističe danas", FundingCallStatus.OPEN, TargetGroup.COMPANY).setDeadline(today);
+        save("Bez roka", FundingCallStatus.OPEN, TargetGroup.COMPANY);
+        save("Najavljen", FundingCallStatus.ANNOUNCED, TargetGroup.COMPANY).setDeadline(today.minusDays(1));
+        entityManager.flush();
+
+        int closed = fundingCallRepository.closeExpired(today);
+        entityManager.clear();
+
+        assertThat(closed).isEqualTo(1);
+        assertThat(fundingCallRepository.findByStatus(FundingCallStatus.CLOSED))
+                .extracting(FundingCall::getTitle).containsExactly("Istekao");
+    }
+
+    @Test
     void returnsOnlyOpenCallsForTheRequestedTargetGroup() {
         save("Otvoren za tvrtke", FundingCallStatus.OPEN, TargetGroup.COMPANY);
         save("Otvoren za studente", FundingCallStatus.OPEN, TargetGroup.STUDENT);
