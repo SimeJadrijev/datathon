@@ -1,10 +1,10 @@
-package com.datathon.api.profile;
+package com.datathon.api.integration.sudreg;
 
 import com.datathon.api.fundingcall.Area;
 import java.util.ArrayList;
 import java.util.List;
 
-final class NkdAreas {
+public final class NkdAreaMapper {
 
     private static final List<Area> WITHOUT_ACTIVITY_CODE = List.of(Area.ENTREPRENEURSHIP, Area.EMPLOYMENT);
 
@@ -36,11 +36,11 @@ final class NkdAreas {
             new Division(93, 93, List.of(Area.SPORT)),
             new Division(94, 94, List.of(Area.CIVIL_SOCIETY)));
 
-    private NkdAreas() {
+    private NkdAreaMapper() {
     }
 
     /** Employment is always added, because every company can apply for hiring subsidies. */
-    static List<Area> forActivityCode(String activityCode) {
+    public static List<Area> forActivityCode(String activityCode) {
         if (activityCode == null) {
             return WITHOUT_ACTIVITY_CODE;
         }

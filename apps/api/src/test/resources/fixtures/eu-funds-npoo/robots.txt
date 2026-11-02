@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /administracija
+Disallow: /institucije
+Disallow: /institucije
+Disallow: /potvrda-emaila
+Disallow: /prijavitelj
+Disallow: /korisnik
+Disallow: /promjena-emaila
+Disallow: /prijavitelj
+Disallow: /registracija
+Disallow: /download
+Sitemap: https://fondovieu.gov.hr/sitemap.xml

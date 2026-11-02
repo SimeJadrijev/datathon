@@ -30,6 +30,7 @@ ingest:
   on-startup: ${INGEST_ON_STARTUP:false}
   cache-dir: ${INGEST_CACHE_DIR:data/cache}
   closed-pages: 5
+  mzom-pages: 15
 
 llm:
   api-key: ${ANTHROPIC_API_KEY:}
@@ -46,8 +47,6 @@ llm:
     claude-sonnet-5-5: { input: 2.00, output: 10.00 }
 
 sudreg:
-  fixtures:
-    enabled: true
   base-url: https://sudreg-data.gov.hr
   client-id: ${SUDREG_CLIENT_ID:}
   client-secret: ${SUDREG_CLIENT_SECRET:}

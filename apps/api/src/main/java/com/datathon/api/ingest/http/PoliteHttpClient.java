@@ -116,7 +116,7 @@ public class PoliteHttpClient {
 
     private byte[] requireSuccess(URI uri, HttpResponse<byte[]> response) {
         if (response.statusCode() >= 400) {
-            throw new HttpFetchException("HTTP " + response.statusCode() + ": " + uri);
+            throw new HttpFetchException("HTTP " + response.statusCode() + ": " + uri, response.statusCode());
         }
         return response.body();
     }

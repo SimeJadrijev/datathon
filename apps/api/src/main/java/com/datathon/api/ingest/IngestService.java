@@ -19,6 +19,7 @@ public class IngestService {
     private static final int MAX_ERROR_MESSAGE_CHARS = 2000;
 
     private final List<SourceFetcher> fetchers;
+    private final List<RegulationIngest> regulationIngests;
     private final FundingFilter fundingFilter;
     private final RuleExtractor ruleExtractor;
     private final FundingCallUpserter upserter;
@@ -35,6 +36,9 @@ public class IngestService {
                 .orElseThrow(() -> new IllegalArgumentException("Ingest run " + runId + " does not exist"));
         for (SourceFetcher fetcher : selectedFetchers(run.getRequestedSource())) {
             sourceRunLogRepository.save(runSource(run, fetcher));
+        }
+        for (RegulationIngest regulationIngest : selectedRegulationIngests(run.getRequestedSource())) {
+            sourceRunLogRepository.save(runRegulations(run, regulationIngest));
         }
         expiredFundingCallCloser.closeExpired();
         run.setFinishedAt(Instant.now());
@@ -55,6 +59,30 @@ public class IngestService {
         return fetchers.stream()
                 .filter(fetcher -> requested == null || fetcher.code() == requested)
                 .toList();
+    }
+
+    private List<RegulationIngest> selectedRegulationIngests(SourceCode requested) {
+        return regulationIngests.stream()
+                .filter(regulationIngest -> requested == null || regulationIngest.code() == requested)
+                .toList();
+    }
+
+    private SourceRunLog runRegulations(IngestRun run, RegulationIngest regulationIngest) {
+        long startNanos = System.nanoTime();
+        SourceRunLog runLog = new SourceRunLog(run, regulationIngest.code(), Instant.now());
+        try {
+            RegulationIngest.Outcome outcome = regulationIngest.ingest();
+            runLog.setFetched(outcome.fetched());
+            runLog.setErrors(outcome.errors());
+            runLog.setErrorMessage(outcome.errorMessage());
+        } catch (RuntimeException e) {
+            recordError(runLog, "regulations", e);
+            log.error("{}: source failed", regulationIngest.code(), e);
+        }
+        runLog.setDurationMs((System.nanoTime() - startNanos) / 1_000_000);
+        log.info("{}: {} fetched, {} errors in {} ms", regulationIngest.code(), runLog.getFetched(),
+                runLog.getErrors(), runLog.getDurationMs());
+        return runLog;
     }
 
     private SourceRunLog runSource(IngestRun run, SourceFetcher fetcher) {

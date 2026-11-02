@@ -90,6 +90,14 @@
 - Na `main` mergani PR #13 (AI), #16 (API) i #15 (ingest); svih 208 testova prolazi. Web PR #14 zatvoren bez mergea (kod na `feature/pkg-6-web`).
 - Admin ruta `POST /api/admin/ingest` dodana izravno na `main` (AdminKeyGuard + BatchRunner): 202/401/400/409 provjereni curlom, FZOEU run 29 zapisa. README dopunjen uputom. #4 zatvoren.
 
+
+## 2026-10-29 (Sime)
+- Branch `sime/ingest-other-sources`, paket 3 (ostali izvori). INGEST-5 (fondovieu NPOO) gotov: parser + fetcher, 10 testova na spremljenim stranicama (`fixtures/eu-funds-npoo/`, uključujući pravi `robots.txt`), živi run 142 poziva s rokom za sve, 0 grešaka. Usporedba i odluke u `work/decisions.md`. Sljedeće: INGEST-6 (HZZ i APPRRR).
+
+
+## 2026-10-30 (Sime)
+- Paket 3: INGEST-6 (HZZ, APPRRR), INGEST-7 (MZOM), INGEST-8 (Narodne novine s ELI) i INGEST-9 (Sudreg klijent, NKD mapper) napisani i commitani po koracima. 288 testova prolazi. Zivi run samo za HZZ (97 mjera). APPRRR, MZOM, NN i pravi Sudreg nisu provjereni zivo; APPRRR zahtijeva povjerenje u interni Infobip CA. Detalji u `work/decisions.md`.
+
 ## 2026-10-29 (Nino, redizajn)
 - `refactor-ui` fast-forwardan na `origin/feature/pkg-6-web` (na `main` je web bio prazan kostur). Redizajn radi na Ivanovom kodu paketa 6, PR za paket 6 još nije mergean, pa redoslijed mergea treba dogovoriti.
 - Novi tokeni (`global.css`), Inter, nove komponente `Icon`, `TextInput`, `Notice`, `ListSkeleton`, prerađeni `Button` (4 varijante, 2 veličine), `Badge` (tonovi `primary`, `info`, `ai`), `Card`, `PageHeader` (eyebrow), state paneli, `FundingCallCard` (fakti desno, izvor u podnožju), layout i navigacija, Početna (+ `BrowseLinks`), Moji natječaji (skeleton, razlozi s kvačicama, `Notice`).

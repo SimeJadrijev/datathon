@@ -19,6 +19,7 @@ public record RawItem(
         LocalDate publishedAt,
         FundingCallStatus statusHint,
         LocalDate deadlineHint,
+        String deadlineNoteHint,
         FundingCallType typeHint,
         List<String> categories,
         Set<String> countiesHint,
