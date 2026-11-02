@@ -29,6 +29,18 @@ export const getDaysUntil = (value: string, today = new Date()) => {
 
 export const formatDate = (value: string) => dateFormatter.format(parseDate(value));
 
+// True for today and the given number of days before it (a "new" regulation, for example).
+export const isWithinLastDays = (value: string, days: number, today = new Date()) => {
+    const daysUntil = getDaysUntil(value, today);
+    return daysUntil <= 0 && daysUntil >= -days;
+};
+
+const padTwoDigits = (value: number) => String(value).padStart(2, "0");
+
+// Local calendar date as the API expects it: "2026-11-02".
+export const toIsoDate = (date: Date) =>
+    `${date.getFullYear()}-${padTwoDigits(date.getMonth() + 1)}-${padTwoDigits(date.getDate())}`;
+
 const monthFormatter = new Intl.DateTimeFormat(LOCALE, {month: "short"});
 
 const timeFormatter = new Intl.DateTimeFormat(LOCALE, {hour: "2-digit", minute: "2-digit"});

@@ -9,6 +9,12 @@ const ICON_PATHS = {
             <path d="M12 17h.01"/>
         </>
     ),
+    arrowLeft: (
+        <>
+            <path d="m12 19-7-7 7-7"/>
+            <path d="M19 12H5"/>
+        </>
+    ),
     arrowRight: (
         <>
             <path d="M5 12h14"/>
@@ -24,6 +30,8 @@ const ICON_PATHS = {
         </>
     ),
     check: <path d="M20 6 9 17l-5-5"/>,
+    chevronLeft: <path d="m15 18-6-6 6-6"/>,
+    chevronRight: <path d="m9 18 6-6-6-6"/>,
     close: (
         <>
             <path d="M18 6 6 18"/>
@@ -57,6 +65,20 @@ const ICON_PATHS = {
             <path d="M15 3h6v6"/>
             <path d="M10 14 21 3"/>
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        </>
+    ),
+    filter: (
+        <>
+            <path d="M3 6h18"/>
+            <path d="M7 12h10"/>
+            <path d="M10 18h4"/>
+        </>
+    ),
+    help: (
+        <>
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <path d="M12 17h.01"/>
         </>
     ),
     info: (

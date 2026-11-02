@@ -26,7 +26,8 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - **26.10.: ODLUČENO graditi agregator natječaja + zakona (izazov C), osnova je branch `poc/natjecaji-scraper`.** MVP prvo, plan M0-M8 u `work/tasks.md`, odluke i recenzija POC-a u `work/decisions.md`. Bez logina, Claude API s cacheom, Java backend (prepis scrapera u Javu za 6 izvora čeka potvrdu). A je rezerva. Starije ideje (13-28) više nisu aktivne.
 - Otvoreno: smije li se kod javno na GitHub (sigurnosna politika), vidi `work/decisions.md`.
 - 29.10.: redizajn weba (OtvoreniRadar, zelena paleta) na branchu `refactor-ui` (PR #18, Nino), pravila u `DESIGN_SYSTEM.md`. Prijedlog "manje AI izgleda" (serif naslovi + IBM Plex Sans, lista umjesto kartica, pravi brojevi na početnoj) na branchu `design/ui-polish` (na vrhu `refactor-ui`, PR u `refactor-ui`), uz skill `web-design-guidelines` i popravke po njemu.
-- Zadnje ažurirano: 2026-10-29
+- 2.11.: paket 7 (issue #9, liste, detalji, zakoni, izvori, WEB-5 do 9) gotov na branchu `feature/pkg-7-web-browse`, PR prema `main` otvoren 2.11. Otvoreno: screenshotovi za kriterije i provjera WEB-7 s pravim AI-4 podacima. Detalji u `log.md`.
+- Zadnje ažurirano: 2026-11-02
 
 ## Tehnički stack i konvencije
 - Monorepo: `apps/web` (React 19, TS, Vite, wouter, TanStack Query, axios), `apps/api` (Spring Boot 4, Java 25, JPA, Postgres u Dockeru). Pokretanje: vidi `README.md`.

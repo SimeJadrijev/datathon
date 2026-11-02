@@ -3,6 +3,7 @@ import {Link, useLocation} from "wouter";
 import {APP_NAME} from "@/constants";
 import {routes} from "@/routes";
 import {BrandMark} from "./BrandMark.tsx";
+import {DataDateNote} from "./DataDateNote.tsx";
 import {Navigation} from "./Navigation.tsx";
 import styles from "./AppLayout.module.css";
 
@@ -44,8 +45,9 @@ export const AppLayout = ({children}: AppLayoutProps) => {
                     </div>
                     <ul className={styles.footerLinks}>
                         <li><Link href={routes.SOURCES}>Izvori podataka</Link></li>
-                        <li>Datathon Portala otvorenih podataka 2026.</li>
+                        <DataDateNote/>
                         <li>Informativno, nije pravni savjet.</li>
+                        <li>Datathon Portala otvorenih podataka 2026.</li>
                     </ul>
                 </div>
             </footer>

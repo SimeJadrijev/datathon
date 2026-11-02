@@ -1,6 +1,7 @@
 import type {ButtonHTMLAttributes, ReactNode} from "react";
 import {Link} from "wouter";
 import {classNames} from "@/utils";
+import {Icon} from "@/components/Icon";
 import styles from "./Button.module.css";
 
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
@@ -35,5 +36,21 @@ export const ButtonLink = ({href, children, variant = "primary", size = "md", cl
         <Link href={href} className={classNames(styles.button, styles[variant], styles[size], className)}>
             {children}
         </Link>
+    );
+};
+
+// A link that leaves the app but carries the weight of a button (the official call on a detail page).
+export const ExternalButtonLink = ({href, children, variant = "primary", size = "md", className}: ButtonLinkProps) => {
+    return (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classNames(styles.button, styles[variant], styles[size], className)}
+        >
+            {children}
+            <Icon name="externalLink" size={14}/>
+            <span className="visually-hidden">(otvara se u novoj kartici)</span>
+        </a>
     );
 };

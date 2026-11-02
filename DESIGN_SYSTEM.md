@@ -115,7 +115,7 @@ Typical vertical rhythm: `PageHeader` → `--space-5` → content; gap between l
 - **Icons:** `Icon` component (`components/Icon/Icon.tsx`) with Lucide paths, stroke 1.75, 16 px default. Icons are decorative (`aria-hidden`), the text carries meaning. Need a new icon? Copy its path from lucide.dev into `ICON_PATHS`. Do not add an icon library.
 - **Use icons sparingly:** only where they carry function (external link, menu, close, retry, alert, check on a selected chip, empty/error state). No icon in front of every label (provider, source, list links) and no icons in bordered square tiles.
 
-Available icons: `alert`, `arrowRight`, `calendar`, `check`, `close`, `database`, `document`, `euro`, `externalLink`, `info`, `institution`, `mapPin`, `menu`, `retry`, `search`.
+Available icons: `alert`, `arrowLeft`, `arrowRight`, `calendar`, `check`, `chevronLeft`, `chevronRight`, `close`, `database`, `document`, `euro`, `externalLink`, `filter`, `help`, `info`, `institution`, `mapPin`, `menu`, `retry`, `search`.
 
 ## 7. Components (`@/components`)
 
@@ -142,7 +142,7 @@ components/
 | `Badge` | `tone`: `neutral` \| `primary` \| `success` \| `warning` \| `danger` \| `info` \| `ai`; `icon`; `title` | Short status/category labels. Max ~3 per row |
 | `Notice` | `tone`: `info` \| `success` \| `warning` \| `danger`; `title` | Inline message inside a card or form |
 | `Card` | `as`: `div` \| `section` \| `article`; `className`; `aria-labelledby` | Plain bordered surface for forms and panels |
-| `FundingCallList` | `children` (`<li>` elements) | Framed list with dividers. Every list of funding calls |
+| `FundingCallList` | `children` (`<li>` elements) | Framed list with dividers. Every list of funding calls, and the regulations list (same frame, own `RegulationRow`) |
 | `FundingCallRow` | `fundingCall`, `children` (extra lines such as match reasons) | One funding call inside `FundingCallList` |
 | `DeadlineDate` | `deadline`, `isExtractedByAi`, `isCompact` | Calendar-style date block (month / day). Urgent = warning frame, AI = dashed frame (AI colour, or warning colour when also urgent: urgency wins), expired = dashed, greyed out, day struck through. `isCompact`: no frame, day over month, urgent day in warning colour, AI day underlined dashed. Decorative, pair it with the deadline in words |
 | `PageHeader` | `title`, `description`, `meta`, `actions` | Top of every page, exactly one `h1`. `meta` is a line of real facts (counts, last update), never a slogan |
@@ -151,11 +151,20 @@ components/
 | `ListSkeleton` | `label`, `rows` | Loading state of lists |
 | `LoadingState` | `message` | Loading state of non-list content (spinner) |
 | `ExternalLink` | `href`, `className` | Any link leaving the app. Adds icon + "(otvara se u novoj kartici)" for screen readers |
+| `ExternalButtonLink` | same as `ButtonLink` | External link with button weight: the one main action of a detail page ("Otvori službenu objavu") |
+| `ChoiceChip` | `type` (`checkbox` \| `radio`), `name`, `value`, `isChecked`, `onChange`, `count` | Toggle chip over a hidden native input (profile areas, status filter, eligibility answers). Selected = primary border + soft background + check |
+| `SearchField` | `label`, `value`, `placeholder`, `onChange` | Search box in a `role="search"` form. Reports text after 300 ms or on Enter; follows outside changes of `value` |
+| `FilterPanel` | `activeCount`, `search`, `children` | Frame for list filters. Under 768 px the filters fold behind "Filtri (N)"; `search` stays visible |
+| `FilterSelect`, `FilterGrid` | `label`, `name`, `value`, `allLabel`, `options` | Select with "all" first and counts ("Udruga (79)"). Build options with `toFilterOptions` (only values with results, alphabetical, falls back to the full code list when facets fail) |
+| `Pagination` | `page`, `pageSize`, `totalElements`, `getPageHref` | "Prethodna · Stranica 2 od 6 · Sljedeća" as links (each page has its own URL). Hidden for one page |
+| `BackLink` | `href`, `children` | "← Natrag na popis natječaja" above a detail page |
+| `FactList`, `UnknownValue` | `facts: {label, value, isAi}` | Label/value `dl` with dividers on detail pages. `isAi` = dashed AI underline. Missing value = muted "provjeri na izvoru" |
+| `AiBlock` | `label`, `note`, `children` | Dashed AI frame for model-written text (conditions summary, regulation summary) with its label and a "check the source" sentence |
 | `Icon` | `name`, `size`, `className` | See section 6 |
 
 Patterns that live in a page folder (used by one page), reuse them by moving to their own `components/<Name>/` folder when a second page needs them:
 - **Choice tiles** (`ProfileForm.module.css` `.option`): radio cards with a drawn radio dot, selected = primary border + primary-soft background.
-- **Filter chips** (`.chip`): 6 px radius toggle buttons, selected = primary text/border + primary-soft + check icon. Use the same look for list filters.
+- **Filter chips**: now the `ChoiceChip` component (moved out of `ProfileForm.module.css` when the list page needed it).
 - **Match reasons** (`RecommendationsPage/MatchDetails`): one line of plain text, "**Odgovara ti:** reason · reason · reason". No coloured box, no check icons.
 - **Side panel** (`HomePage/SidePanel.module.css`), two variants on the home page:
   - **Kako radi** (`HowItWorks`, no profile yet): three steps with serif numbers "1." in primary green (no boxes), then a divider and "Ili pregledaj bez profila" as plain text links with a muted description (no icon tiles).
@@ -179,9 +188,13 @@ The status badge shows only when the call is **not** open ("Najavljen", "Zatvore
 
 - **Shell** (`layouts/AppLayout`): sticky white header (brand left, nav right, active item = 2 px green bar on the bottom border), `main` max 1200 px, white footer with source link and disclaimer. Skip link to `#main-content`.
 - **Discovery / home:** `PageHeader` with a facts line (`meta`: open calls, regulations, last update from `GET /api/meta`) → two columns (profile form + 320 px sticky aside: "Kako radi" without a profile, "Sljedeći rokovi za tebe" with one). No hero banners, no illustrations, no boxed step numbers.
-- **Lists** (funding calls, regulations): `PageHeader` (title + result description + actions) → filter row (chips/selects) → result summary as one plain sentence ("**N natječaja** za profil **Tvrtka** (energetika, cijela Hrvatska)") → `FundingCallList` of `FundingCallRow`. Filters in the URL.
+- **Lists** (funding calls, regulations): `PageHeader` (title + result description + actions) → `FilterPanel` (search, status chips, `FilterGrid` of selects with counts) → result summary as one plain sentence (an `h2` styled as text: "**18** otvorenih natječaja za „kultur” uz odabrane filtre"), with "Poništi filtre" and sorting on the same line → `FundingCallList` → `Pagination`. Filters live in the URL (`?targetGroup=ASSOCIATION&page=2`, pages counted from 1, defaults left out); typing replaces the history entry, every other change pushes one. While new results load, the old list stays, dimmed (`keepPreviousData`).
+- **Back to the list:** list rows pass their URL in `history.state` (`createReturnState`), so the detail's `BackLink` returns to the same filtered list. A shared link falls back to the plain list.
+- **Funding call detail:** `PageHeader` (title, type · provider, status badge, publish date) → main column (one status `Notice` if the deadline passed, the call is closed, announced or its status is unknown; "Osnovni podaci" `FactList`; "Sažetak uvjeta"; "Ispunjavam li uvjete?"; documents and attachments only when they exist) + 320 px sticky aside (deadline block, amount, primary "Otvori službenu objavu", "Izvor" with fetch date). Under 960 px the deadline panel goes first and the source block last.
+- **Eligibility check:** numbered questions (serif green numbers) answered with `ChoiceChip`s; every question has "Ne znam" (preselected) so nobody guesses. The verdict is words + icon + colour ("Vjerojatno ispunjavaš uvjete" / "…ne ispunjavaš…" / "Ne može se pouzdano procijeniti"), each reason quotes the call text („…” with "iz teksta poziva"), then "Što još trebaš provjeriti", then the disclaimer and the official link, always. Dashed AI frame only when the reasons carry quotes; the rule-based fallback is labelled "Procjena prema osnovnim podacima poziva" in a solid frame. Changing an answer clears the old result. 429 gets its own calm message.
 - **Details:** narrow reading column (`--content-width-narrow`) or main + aside. Deadline, provider and "Službena objava" link visible without scrolling. AI fields get a dashed underline in `--color-ai` and a sentence that says to check the source.
-- **Regulations:** editorial look: title, then publication date and effective date as **two separate facts**, then the link to the official text (Narodne novine) before any summary.
+- **Regulations:** editorial look: title, then publication date and effective date as **two separate facts**, then the link to the official text (Narodne novine) before any summary. List rows put the publication date first in serif, like a dateline; regulations from the last 30 days get a small green "novo" under the date (not a badge: on the first page almost every row is new). The detail is one narrow column: facts, a primary-soft "Službeni tekst" panel (Narodne novine, PDF, ELI), then the `AiBlock` summary with "nije pravni savjet".
+- **Sources:** three plain-language method notes (API, čitanje web stranica, snimka stanja) with a green top rule, then a real `<table>` of sources that turns into labelled blocks under 768 px. The footer shows "Stanje podataka na dan …" from `GET /api/meta` and shows nothing when that request fails.
 - **Settings-like screens** (profile summary): `dl` with label column + value column, actions in a bordered footer row, destructive action right-aligned.
 
 ## 9. Interaction states

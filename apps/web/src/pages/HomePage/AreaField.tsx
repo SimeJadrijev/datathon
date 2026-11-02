@@ -1,8 +1,7 @@
 import type {Ref} from "react";
-import {Icon} from "@/components";
+import {ChoiceChip} from "@/components";
 import {AREA_LABELS, AREAS} from "@/constants";
 import type {Area} from "@/types";
-import {classNames} from "@/utils";
 import styles from "./ProfileForm.module.css";
 
 const ERROR_ID = "areas-error";
@@ -26,24 +25,18 @@ export const AreaField = ({value, error, onChange, ref}: AreaFieldProps) => {
             </legend>
             <p className={styles.hint}>Odaberi jedno ili više područja.</p>
             <div className={styles.chipList}>
-                {AREAS.map((area) => {
-                    const isSelected = value.includes(area);
-
-                    return (
-                        <label key={area} className={classNames(styles.chip, isSelected && styles.chipSelected)}>
-                            <input
-                                type="checkbox"
-                                name="areas"
-                                value={area}
-                                checked={isSelected}
-                                onChange={() => onChange(toggleArea(value, area))}
-                                className="visually-hidden"
-                            />
-                            {isSelected && <Icon name="check" size={14}/>}
-                            {AREA_LABELS[area]}
-                        </label>
-                    );
-                })}
+                {AREAS.map((area) => (
+                    <ChoiceChip
+                        key={area}
+                        type="checkbox"
+                        name="areas"
+                        value={area}
+                        isChecked={value.includes(area)}
+                        onChange={() => onChange(toggleArea(value, area))}
+                    >
+                        {AREA_LABELS[area]}
+                    </ChoiceChip>
+                ))}
             </div>
             {error && <p id={ERROR_ID} className={styles.error}>{error}</p>}
         </fieldset>

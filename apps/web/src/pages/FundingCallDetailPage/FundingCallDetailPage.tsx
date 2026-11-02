@@ -1,18 +1,67 @@
 import {useParams} from "wouter";
-import {ButtonLink, EmptyState, PageHeader} from "@/components";
+import {ApiError} from "@/api";
+import {BackLink, ButtonLink, EmptyState, ErrorState, LoadingState} from "@/components";
+import {useGetFundingCall, useReturnPath} from "@/hooks";
 import {routes} from "@/routes";
+import {FundingCallDetail} from "./FundingCallDetail.tsx";
+
+const parseId = (value: string | undefined) => {
+    const id = Number(value);
+    return Number.isInteger(id) && id > 0 ? id : undefined;
+};
+
+// Leads back to the list the user came from, with its filters; a shared link falls back to all calls.
+const useBackLink = () => {
+    const returnTo = useReturnPath();
+    if (returnTo?.startsWith(routes.RECOMMENDATIONS)) {
+        return {href: returnTo, label: "Natrag na moje natječaje"};
+    }
+    if (returnTo?.startsWith(routes.FUNDING_CALLS)) {
+        return {href: returnTo, label: "Natrag na popis natječaja"};
+    }
+    if (returnTo === routes.HOME) {
+        return {href: returnTo, label: "Natrag na početnu"};
+    }
+    return {href: routes.FUNDING_CALLS, label: "Svi natječaji"};
+};
+
+const FundingCallNotFound = () => (
+    <EmptyState
+        icon="alert"
+        title="Ovaj natječaj ne postoji"
+        hint="Možda je uklonjen iz izvora ili je poveznica krivo prepisana. Potraži ga među svim natječajima."
+        actions={<ButtonLink href={routes.FUNDING_CALLS}>Svi natječaji</ButtonLink>}
+    />
+);
+
+interface FundingCallDetailContentProps {
+    id: number;
+}
+
+const FundingCallDetailContent = ({id}: FundingCallDetailContentProps) => {
+    const {data, isPending, isError, error, refetch} = useGetFundingCall(id);
+
+    if (isPending) {
+        return <LoadingState message="Učitavamo natječaj…"/>;
+    }
+    if (isError && error instanceof ApiError && error.status === 404) {
+        return <FundingCallNotFound/>;
+    }
+    if (isError) {
+        return <ErrorState message={error.message} onRetry={() => refetch()}/>;
+    }
+    return <FundingCallDetail fundingCall={data}/>;
+};
 
 export const FundingCallDetailPage = () => {
-    const {id} = useParams<{id: string}>();
+    const params = useParams<{id: string}>();
+    const id = parseId(params.id);
+    const backLink = useBackLink();
 
     return (
         <>
-            <PageHeader title={`Natječaj #${id}`}/>
-            <EmptyState
-                title="Detalji natječaja su u izradi"
-                hint="Uskoro ćeš ovdje vidjeti uvjete, rokove, iznose i poveznicu na izvor."
-                actions={<ButtonLink href={routes.FUNDING_CALLS} variant="secondary">Svi natječaji</ButtonLink>}
-            />
+            <BackLink href={backLink.href}>{backLink.label}</BackLink>
+            {id ? <FundingCallDetailContent id={id}/> : <FundingCallNotFound/>}
         </>
     );
 };

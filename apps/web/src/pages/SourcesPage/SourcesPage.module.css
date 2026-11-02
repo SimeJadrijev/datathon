@@ -1,0 +1,152 @@
+.facts {
+    font-size: var(--font-size-sm);
+}
+
+.heading {
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-lg);
+}
+
+.explainer {
+    margin-bottom: var(--space-6);
+}
+
+.methods {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+}
+
+.method {
+    padding-top: var(--space-3);
+    border-top: 2px solid var(--color-primary);
+}
+
+.methodTerm {
+    margin-bottom: var(--space-1);
+    font-weight: var(--font-weight-semibold);
+}
+
+.methodDescription {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-muted);
+}
+
+.tableFrame {
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+}
+
+.table th,
+.table td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    vertical-align: top;
+}
+
+.table thead th {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    background: var(--color-surface-subtle);
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+}
+
+.table tbody tr + tr {
+    border-top: 1px solid var(--color-border);
+}
+
+.sourceCell {
+    min-width: 200px;
+    font-weight: var(--font-weight-regular);
+}
+
+.sourceName {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-weight: var(--font-weight-semibold);
+}
+
+.sourceLink {
+    font-size: var(--font-size-xs);
+}
+
+.description {
+    max-width: 44ch;
+    color: var(--color-text-muted);
+}
+
+.table .numeric {
+    text-align: right;
+}
+
+.muted {
+    color: var(--color-text-muted);
+}
+
+.noWrap {
+    white-space: nowrap;
+}
+
+@media (max-width: 960px) {
+    .methods {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-4);
+    }
+}
+
+/* Phone: every source becomes a block of labelled lines instead of a table that scrolls sideways. */
+@media (max-width: 768px) {
+    .table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+    }
+
+    .table,
+    .table tbody,
+    .table tr,
+    .table th,
+    .table td {
+        display: block;
+    }
+
+    .table tbody tr {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .table th,
+    .table td {
+        padding: var(--space-1) 0;
+    }
+
+    .table td[data-label] {
+        display: grid;
+        grid-template-columns: 110px minmax(0, 1fr);
+        gap: var(--space-3);
+        max-width: none;
+    }
+
+    .table td[data-label]::before {
+        content: attr(data-label);
+        font-size: var(--font-size-xs);
+        color: var(--color-text-muted);
+    }
+
+    .table .numeric {
+        text-align: left;
+    }
+}
