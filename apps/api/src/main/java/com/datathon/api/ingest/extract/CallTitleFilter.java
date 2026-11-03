@@ -23,7 +23,7 @@ public class CallTitleFilter {
                     + "imenovanj|savjetovanj|mrtvozor|intervju|rješenje o|služb[eu] (na|za)|domaćic|"
                     + "dodjel\\w* lokacij|površin\\w* javne|javn\\w* površin|natje[čc]aj\\w* za zapošljav|pokojnik|prijevoz|"
                     + "radn\\w* mjest|referent|savjetnik|suradnik|tehničar|zapovjednik|pomoćnik\\w* u nastavi|član(a|ova)\\b|"
-                    + "priznanj|^odluk|^pravilnik|ishod|reklamn",
+                    + "priznanj|^odluk\\w*\\s+o\\s+(?!raspisivanj)|^pravilnik|ishod|reklamn",
             FLAGS);
 
     private static final Pattern CALL_WORDING = Pattern.compile(
@@ -41,6 +41,16 @@ public class CallTitleFilter {
                     + "izmjen\\w* (i dopun\\w* )?(\\p{L}+ )?(poziv|natje[čc]aj)",
             FLAGS);
 
+    private static final Pattern STUDENT_CALL = Pattern.compile(
+            "mobilnost|erasmus|smještaj|stanovanj|fellowship|scholarship|call for|studentsk\\w* (projekt|program|aktivnost)",
+            FLAGS);
+
+    private static final Pattern NOT_A_STUDENT_CALL = Pattern.compile(
+            "zvanj|asistent|docent|izbor\\w* (na|u|pristupnik|studentsk)|dobitni|odluk\\w* o (izboru|odabiru|dodjeli|raspodjeli)|"
+                    + "prijedlog o raspodjeli|p r i j e d l o g|bodn\\w* granic|info[ -]?dan|podsjeća|voditelj|odbor|domsk\\w* odbor|"
+                    + "izvješ|pravilnik|održan",
+            FLAGS);
+
     private final FundingFilter fundingFilter;
 
     public boolean isCall(String title) {
@@ -49,6 +59,13 @@ public class CallTitleFilter {
         }
         boolean isFunding = fundingFilter.isFunding(title) || ALSO_FUNDING.matcher(title).find();
         return isFunding && !NOT_A_CALL.matcher(title).find();
+    }
+
+    public boolean isStudentCall(String title) {
+        if (title == null || NOT_A_STUDENT_CALL.matcher(title).find()) {
+            return false;
+        }
+        return isCall(title) || STUDENT_CALL.matcher(title).find() && !NOT_A_CALL.matcher(title).find();
     }
 
     public boolean isCallInNews(String title) {

@@ -109,13 +109,15 @@ public class LocalHtmlListFetcher implements SourceFetcher {
             if (link == null || items.size() >= MAX_ITEMS_PER_SITE) {
                 continue;
             }
-            String url = link.absUrl("href");
+            String url = link.absUrl("href").replaceFirst("#.*$", "");
             Element titleElement = listSite.titleSelector() == null ? link : entry.selectFirst(listSite.titleSelector());
-            String title = cleanTitle(titleElement == null ? link.text() : titleElement.text());
-            if (title.isEmpty() || items.stream().anyMatch(item -> item.url().equals(url))) {
+            String title = cleanTitle(titleElement == null || titleElement.text().isBlank() ? link.attr("title") : titleElement.text());
+            boolean isListPage = url.equals(listSite.site().url());
+            String id = isListPage ? title : idOf(url);
+            if (title.isEmpty() || isDuplicate(items, url, title, isListPage)) {
                 continue;
             }
-            RawItem.RawItemBuilder item = listSite.site().item(idOf(url))
+            RawItem.RawItemBuilder item = listSite.site().item(id)
                     .url(url)
                     .title(title)
                     .publishedAt(publishedAt(entry.text()))
@@ -126,6 +128,10 @@ public class LocalHtmlListFetcher implements SourceFetcher {
             items.add(item.build());
         }
         return items;
+    }
+
+    private static boolean isDuplicate(List<RawItem> items, String url, String title, boolean isListPage) {
+        return items.stream().anyMatch(item -> item.title().equals(title) || (!isListPage && item.url().equals(url)));
     }
 
     private static String cleanTitle(String text) {
@@ -142,6 +148,10 @@ public class LocalHtmlListFetcher implements SourceFetcher {
     }
 
     private static String idOf(String url) {
+        int query = url.indexOf('?');
+        if (query >= 0) {
+            return url.substring(url.lastIndexOf('/', query) + 1);
+        }
         Matcher matcher = ID.matcher(url);
         if (!matcher.find()) {
             return url;

@@ -6,6 +6,7 @@ export type SourceCode =
     | "GOV_HR_NEWS"
     | "LOCAL_GOVERNMENT"
     | "AGENCIES"
+    | "UNIVERSITIES"
     | "HZZ"
     | "APPRRR"
     | "MZOM"

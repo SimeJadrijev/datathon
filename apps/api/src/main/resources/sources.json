@@ -56,6 +56,14 @@
     "license": "nije provjereno"
   },
   {
+    "code": "UNIVERSITIES",
+    "name": "Sveučilišta i studentski centri",
+    "description": "Natječaji za studente i studentske organizacije: Erasmus+ i druga mobilnost, stipendije, Rektorove nagrade, financiranje studentskih projekata i udruga (studentski zborovi) te smještaj u studentskim domovima. Sveučilišta u Zagrebu, Splitu, Rijeci, Osijeku, Zadru, Dubrovniku, Puli, Slavonskom Brodu, Sjever, HKS, studentski centri i TVZ. Natječaje za radna mjesta i izbore u zvanje izbacujemo.",
+    "url": "https://www.unizg.hr",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
     "code": "HZZ",
     "name": "Hrvatski zavod za zapošljavanje (mjere)",
     "description": "Mjere aktivne politike zapošljavanja, kontinuirane tijekom godine, preko javnog WordPress REST API-ja.",
