@@ -7,6 +7,7 @@ public enum SourceCode {
     EU_FUNDS_COHESION,
     GOV_HR_NEWS,
     LOCAL_GOVERNMENT,
+    AGENCIES,
     HZZ,
     APPRRR,
     MZOM,

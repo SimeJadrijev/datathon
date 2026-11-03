@@ -23,7 +23,7 @@ public class CallTitleFilter {
                     + "imenovanj|savjetovanj|mrtvozor|intervju|rješenje o|služb[eu] (na|za)|domaćic|"
                     + "dodjel\\w* lokacij|površin\\w* javne|javn\\w* površin|natje[čc]aj\\w* za zapošljav|pokojnik|prijevoz|"
                     + "radn\\w* mjest|referent|savjetnik|suradnik|tehničar|zapovjednik|pomoćnik\\w* u nastavi|član(a|ova)\\b|"
-                    + "priznanj|^odluk",
+                    + "priznanj|^odluk|^pravilnik|ishod|reklamn",
             FLAGS);
 
     private static final Pattern CALL_WORDING = Pattern.compile(

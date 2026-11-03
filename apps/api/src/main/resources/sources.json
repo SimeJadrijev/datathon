@@ -42,8 +42,16 @@
   {
     "code": "LOCAL_GOVERNMENT",
     "name": "Gradovi i županije",
-    "description": "Natječaji, javni pozivi, stipendije i potpore gradova i županija: Grad Zagreb, Split, Osijek, Bjelovar, Karlovac, Velika Gorica, Čakovec, Slavonski Brod, Vukovar i drugi te 9 županija. Čitamo WordPress REST API-je, RSS feedove i HTML liste, a oglase za posao, prodaju i zakup izbacujemo po naslovu.",
+    "description": "Natječaji, javni pozivi, stipendije i potpore gradova i županija: Grad Zagreb, Split, Osijek, Dubrovnik, Zadar, Bjelovar, Karlovac, Koprivnica, Čakovec, Slavonski Brod, Vukovar i drugi te 17 županija. Čitamo WordPress REST API-je, RSS feedove i HTML liste, a oglase za posao, prodaju i zakup izbacujemo po naslovu.",
     "url": "https://www.zagreb.hr/natjecaji/860",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "AGENCIES",
+    "name": "Agencije i zaklade",
+    "description": "Hrvatska zaklada za znanost (istraživački projekti i doktorandi), Agencija za mobilnost i programe EU (Erasmus+, stipendije za studij u inozemstvu) i Program za ribarstvo (euribarstvo.hr).",
+    "url": "https://www.ampeu.hr/natjecaji",
     "method": "HTML",
     "license": "nije provjereno"
   },

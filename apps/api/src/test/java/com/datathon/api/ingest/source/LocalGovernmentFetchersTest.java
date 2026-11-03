@@ -158,4 +158,45 @@ class LocalGovernmentFetchersTest {
 
         assertThat(items).extracting(RawItem::provider).containsOnly("Grad Čakovec");
     }
+
+    @Test
+    void htmlListUsesTheSiteSelectorsAndDropsDatesFromTitles() {
+        var dubrovnik = new LocalHtmlListFetcher.HtmlListSite(
+                new LocalSite("https://www.dubrovnik.hr/natjecaji", "Grad Dubrovnik", "Dubrovačko-neretvanska"),
+                "div.news-item.post-item", "a[href]", null);
+
+        List<RawItem> items = LocalHtmlListFetcher.parseList(text("local-gov/html-dubrovnik-list.html"), dubrovnik);
+
+        assertThat(items).isNotEmpty().allMatch(item -> item.externalId().startsWith("dubrovnik.hr:"));
+        assertThat(items).extracting(RawItem::title).noneMatch(title -> title.matches("^\\d.*"));
+        assertThat(items).extracting(RawItem::title).filteredOn(CALLS::isCall)
+                .noneMatch(title -> title.contains("zakup") || title.startsWith("Obavijest o ishodu"));
+    }
+
+    @Test
+    void htmlListKeepsCountyGrantCallsAndDropsSalesAndDecisions() {
+        var bjelovarBilogora = new LocalHtmlListFetcher.HtmlListSite(new LocalSite(
+                "https://www.bbz.hr/javni-pozivi-natjecaji/javni-pozivi", "Bjelovarsko-bilogorska županija", "Bjelovarsko-bilogorska"),
+                "article.post", "h4 a[href]", null);
+
+        List<String> calls = LocalHtmlListFetcher.parseList(text("local-gov/html-bbz-list.html"), bjelovarBilogora).stream()
+                .map(RawItem::title).filter(CALLS::isCall).toList();
+
+        assertThat(calls).hasSizeLessThanOrEqualTo(LocalHtmlListFetcher.MAX_ITEMS_PER_SITE)
+                .anyMatch(title -> title.startsWith("JAVNI POZIV za dodjelu novčanih potpora"))
+                .noneMatch(title -> title.contains("kupnju nekretnina") || title.startsWith("ODLUKA"));
+    }
+
+    @Test
+    void ampeuItemsHaveTheTitleWithoutCategoryAndTheDeadlineInTheText() {
+        List<RawItem> items = LocalHtmlListFetcher.parseList(text("local-gov/html-ampeu-list.html"), AgencyFetcher.AMPEU);
+
+        RawItem fulbright = items.stream().filter(item -> item.title().startsWith("Program „Fulbright Specialist“"))
+                .findFirst().orElseThrow();
+        assertThat(fulbright.publishedAt()).isEqualTo(LocalDate.of(2026, 11, 2));
+        assertThat(new RuleExtractor().extract(fulbright).deadline()).isEqualTo(LocalDate.of(2027, 1, 31));
+        assertThat(fulbright.countiesHint()).containsExactly("ALL");
+        assertThat(items).extracting(RawItem::title).filteredOn(CALLS::isCall)
+                .noneMatch(title -> title.startsWith("Javni natječaj za zapošljavanje"));
+    }
 }
