@@ -15,4 +15,9 @@ public record EligibilityContext(
         Set<TargetGroup> targetGroups,
         Set<String> counties,
         List<EligibilityQuestion> questions) {
+
+    /** The model only reads the conditions and does not know today's date, so an expired call is caught here. */
+    public boolean isDeadlinePassed(LocalDate today) {
+        return deadline != null && deadline.isBefore(today);
+    }
 }

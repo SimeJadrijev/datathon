@@ -49,7 +49,7 @@ public class AdminAiController {
 
     private ResponseEntity<Void> startBatch(int limit, Runnable start) {
         if (limit < 1) {
-            throw new InvalidRequestException("limit must be at least 1");
+            throw new InvalidRequestException("limit must be at least 1", "limit: mora biti najmanje 1");
         }
         try {
             start.run();

@@ -6,6 +6,7 @@ import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallRepository;
 import com.datathon.api.integration.llm.LlmResponseException;
 import com.datathon.api.integration.llm.LlmUnavailableException;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,6 +33,9 @@ public class EligibilityCheckService {
     public EligibilityCheckResponse check(Long fundingCallId, EligibilityCheckRequest request) {
         EligibilityContext context = loadContext(fundingCallId);
         Map<String, Object> answers = validatedAnswers(context.questions(), request.answers());
+        if (context.isDeadlinePassed(LocalDate.now())) {
+            return ruleChecker.expired(context);
+        }
         if (!answers.isEmpty()) {
             try {
                 return judge.judge(context, answers);
@@ -45,7 +49,8 @@ public class EligibilityCheckService {
     private EligibilityContext loadContext(Long id) {
         return transactionTemplate.execute(status -> {
             FundingCall call = fundingCallRepository.findById(id)
-                    .orElseThrow(() -> new NotFoundException("Funding call " + id + " does not exist"));
+                    .orElseThrow(() -> new NotFoundException("Funding call " + id + " does not exist",
+                            NotFoundException.FUNDING_CALL_MESSAGE));
             return new EligibilityContext(call.getId(), call.getTitle(), call.getUrl(),
                     call.getSourceText() != null ? call.getSourceText() : "",
                     call.getDeadline(),
@@ -61,7 +66,8 @@ public class EligibilityCheckService {
         for (Map.Entry<String, Object> entry : answers.entrySet()) {
             boolean isKnown = questions.stream().anyMatch(question -> question.id().equals(entry.getKey()));
             if (!isKnown || !isAcceptableValue(entry.getValue())) {
-                throw new InvalidRequestException("Unknown question id or invalid answer: " + entry.getKey());
+                throw new InvalidRequestException("Unknown question id or invalid answer: " + entry.getKey(),
+                        "Odgovor na pitanje " + entry.getKey() + " nije ispravan. Osvježite stranicu i pokušajte ponovno.");
             }
             valid.put(entry.getKey(), entry.getValue());
         }
