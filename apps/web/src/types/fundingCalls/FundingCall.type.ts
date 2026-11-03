@@ -22,4 +22,5 @@ export type FundingCallSummary = {
     counties: string[];
     extractedByLlm: boolean;
     url: string;
+    firstSeenAt: string | null;
 };

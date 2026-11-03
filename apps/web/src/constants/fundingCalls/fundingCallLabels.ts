@@ -29,13 +29,14 @@ export const FUNDING_CALL_STATUS_FILTER_LABELS: Record<FundingCallStatusFilter, 
     UNKNOWN: "Status nepoznat",
 };
 
-export const FUNDING_CALL_SORTS: FundingCallSort[] = ["deadline", "publishedAt"];
+export const FUNDING_CALL_SORTS: FundingCallSort[] = ["deadline", "publishedAt", "newest"];
 
 export const DEFAULT_FUNDING_CALL_SORT: FundingCallSort = "deadline";
 
 export const FUNDING_CALL_SORT_LABELS: Record<FundingCallSort, string> = {
     deadline: "roku prijave",
     publishedAt: "datumu objave",
+    newest: "datumu dodavanja",
 };
 
 export const isFundingCallType = (value: unknown): value is FundingCallType =>
@@ -46,3 +47,5 @@ export const isFundingCallStatusFilter = (value: unknown): value is FundingCallS
 
 export const isFundingCallSort = (value: unknown): value is FundingCallSort =>
     FUNDING_CALL_SORTS.some((sort) => sort === value);
+
+export const NEW_FUNDING_CALL_DAYS = 7;

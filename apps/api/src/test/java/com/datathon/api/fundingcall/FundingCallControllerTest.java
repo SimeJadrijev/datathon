@@ -4,8 +4,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
 import com.datathon.api.common.FacetCount;
 import com.datathon.api.common.GlobalExceptionHandler;
@@ -35,8 +37,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(FundingCallController.class)
-@Import(GlobalExceptionHandler.class)
+@WebMvcTest(controllers = FundingCallController.class, properties = "app.public-url=https://radar.example")
+@Import({GlobalExceptionHandler.class, AtomFeedWriter.class})
 class FundingCallControllerTest {
 
     private static final SourceInfo SOURCE = new SourceInfo(SourceCode.FZOEU, "Fond za zaštitu okoliša", "https://www.fzoeu.hr");
@@ -51,7 +53,7 @@ class FundingCallControllerTest {
     void listReturnsOurPageShape() throws Exception {
         var summary = new FundingCallSummary(7L, "Poziv za vozila", "Fond", SourceRef.from(SOURCE), FundingCallType.PUBLIC_CALL,
                 FundingCallStatus.OPEN, LocalDate.of(2026, 12, 1), null, null, new BigDecimal("9000.00"),
-                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY, Area.TRANSPORT), List.of("ALL"), false, "https://example.org/7");
+                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY, Area.TRANSPORT), List.of("ALL"), false, "https://example.org/7", null);
         when(fundingCallService.list(any())).thenReturn(new PageResponse<>(List.of(summary), 1, 0, 20));
 
         mockMvc.perform(get("/api/funding-calls").param("status", "OPEN").param("targetGroup", "COMPANY"))
@@ -216,5 +218,25 @@ class FundingCallControllerTest {
                 .andExpect(jsonPath("$.conformsTo").value("/api/standard/funding-call.schema.json"))
                 .andExpect(jsonPath("$.count").value(0))
                 .andExpect(jsonPath("$.records").isArray());
+    }
+
+    @Test
+    void feedIsAtomWithLinksToOurDetailPages() throws Exception {
+        var summary = new FundingCallSummary(7L, "Poziv za vozila & bicikle", "Fond", SourceRef.from(SOURCE), FundingCallType.PUBLIC_CALL,
+                FundingCallStatus.OPEN, LocalDate.of(2026, 12, 1), null, null, new BigDecimal("9000.00"),
+                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY), List.of("ALL"), false, "https://example.org/7",
+                Instant.parse("2026-11-02T08:00:00Z"));
+        when(fundingCallService.newest(any())).thenReturn(List.of(summary));
+
+        mockMvc.perform(get("/api/funding-calls/feed.atom").param("targetGroup", "CITIZEN"))
+                .andExpect(status().isOk())
+                .andExpect(content()
+                        .contentTypeCompatibleWith("application/atom+xml"))
+                .andExpect(xpath(
+                        "/*[local-name()='feed']/*[local-name()='entry']/*[local-name()='id']")
+                        .string("https://radar.example/natjecaji/7"))
+                .andExpect(xpath(
+                        "/*[local-name()='feed']/*[local-name()='entry']/*[local-name()='title']")
+                        .string("Poziv za vozila & bicikle"));
     }
 }

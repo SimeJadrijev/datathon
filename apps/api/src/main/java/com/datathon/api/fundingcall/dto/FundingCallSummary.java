@@ -8,6 +8,7 @@ import com.datathon.api.fundingcall.TargetGroup;
 import com.datathon.api.source.SourceInfo;
 import com.datathon.api.source.SourceRef;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
@@ -27,7 +28,8 @@ public record FundingCallSummary(
         List<Area> areas,
         List<String> counties,
         boolean extractedByLlm,
-        String url) {
+        String url,
+        Instant firstSeenAt) {
 
     public static FundingCallSummary from(FundingCall fundingCall, SourceInfo source) {
         return new FundingCallSummary(
@@ -45,7 +47,8 @@ public record FundingCallSummary(
                 sorted(fundingCall.getAreas()),
                 sorted(fundingCall.getCounties()),
                 fundingCall.isExtractedByLlm(),
-                fundingCall.getUrl());
+                fundingCall.getUrl(),
+                fundingCall.getFirstSeenAt());
     }
 
     static <T extends Comparable<T>> List<T> sorted(Collection<T> values) {

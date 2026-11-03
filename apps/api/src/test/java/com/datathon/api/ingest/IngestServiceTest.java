@@ -1,6 +1,7 @@
 package com.datathon.api.ingest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.tuple;
 
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallRepository;
@@ -55,13 +56,18 @@ class IngestServiceTest {
     void secondRunCreatesNoDuplicates() {
         long before = fundingCallRepository.count();
 
-        ingestService.runNow(Optional.of(SourceCode.FZOEU));
-        ingestService.runNow(Optional.of(SourceCode.FZOEU));
+        IngestRun first = ingestService.runNow(Optional.of(SourceCode.FZOEU));
+        IngestRun second = ingestService.runNow(Optional.of(SourceCode.FZOEU));
 
         assertThat(fundingCallRepository.count()).isEqualTo(before + 2);
+        assertThat(sourceRunLogRepository.findByRunId(first.getId()))
+                .extracting(SourceRunLog::getCreated, SourceRunLog::getUpdated).containsExactly(tuple(2, 0));
+        assertThat(sourceRunLogRepository.findByRunId(second.getId()))
+                .extracting(SourceRunLog::getCreated, SourceRunLog::getUpdated).containsExactly(tuple(0, 0));
         FundingCall saved = fundingCallRepository.findBySourceAndExternalId(SourceCode.FZOEU, "ingest-test-1").orElseThrow();
         assertThat(saved.getDeadline()).isEqualTo(LocalDate.of(2026, 11, 30));
         assertThat(saved.getRawTextHash()).hasSize(64);
+        assertThat(saved.getFirstSeenAt()).isNotNull();
     }
 
     @Test

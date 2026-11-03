@@ -14,13 +14,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE + 2)
 @RequiredArgsConstructor
-public class LegalReferenceBackfill implements ApplicationRunner {
+public class FundingCallBackfill implements ApplicationRunner {
 
     private final FundingCallRepository fundingCallRepository;
 
     @Override
     @Transactional
     public void run(ApplicationArguments args) {
+        int dated = fundingCallRepository.fillMissingFirstSeenAt();
+        if (dated > 0) {
+            log.info("Set first seen time for {} funding calls", dated);
+        }
+        fillLegalReferences();
+    }
+
+    private void fillLegalReferences() {
         List<Long> ids = fundingCallRepository.findIdsWithGazetteTextAndNoLegalReferences();
         int filled = 0;
         for (FundingCall fundingCall : fundingCallRepository.findAllById(ids)) {

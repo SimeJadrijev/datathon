@@ -1,7 +1,8 @@
-import {PageHeader} from "@/components";
+import {ExternalButtonLink, PageHeader} from "@/components";
 import {useFundingCallFilter, useGetFundingCallFacets, useGetFundingCalls} from "@/hooks";
 import {FundingCallFilters} from "./FundingCallFilters.tsx";
 import {FundingCallResults} from "./FundingCallResults.tsx";
+import {getFeedHref} from "./feedHref.ts";
 
 export const FundingCallsPage = () => {
     const {filter, facetFilter, activeCount, updateFilter, clearFilters, getPageHref} = useFundingCallFilter();
@@ -12,7 +13,12 @@ export const FundingCallsPage = () => {
         <>
             <PageHeader
                 title="Svi natječaji"
-                description="Natječaji, potpore i stipendije iz šest službenih izvora na jednom mjestu. Suzi popis filtrima, a poveznicu na pretragu možeš poslati i drugima."
+                description="Natječaji, potpore i stipendije iz službenih izvora na jednom mjestu. Suzi popis filtrima, a poveznicu na pretragu možeš poslati i drugima ili je pratiti u RSS čitaču."
+                actions={
+                    <ExternalButtonLink href={getFeedHref(filter)} variant="secondary" size="sm">
+                        Prati nove (RSS)
+                    </ExternalButtonLink>
+                }
             />
             <FundingCallFilters
                 filter={filter}

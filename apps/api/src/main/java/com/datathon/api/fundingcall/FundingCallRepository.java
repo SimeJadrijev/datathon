@@ -71,4 +71,12 @@ public interface FundingCallRepository extends JpaRepository<FundingCall, Long>,
 
     @Query("select distinct reference from FundingCall c join c.legalReferences reference where reference.citedTitle is not null")
     List<LegalReference> findDistinctTitledLegalReferences();
+
+    @Modifying
+    @Query(value = """
+            update funding_call
+            set first_seen_at = coalesce(published_at::timestamp at time zone 'Europe/Zagreb', fetched_at, now())
+            where first_seen_at is null
+            """, nativeQuery = true)
+    int fillMissingFirstSeenAt();
 }

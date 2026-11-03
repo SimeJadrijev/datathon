@@ -148,6 +148,10 @@ public class FundingCall {
 
     private Instant fetchedAt;
 
+    private Instant firstSeenAt;
+
+    private Instant contentChangedAt;
+
     @Column(columnDefinition = "TEXT")
     private String sourceText;
 

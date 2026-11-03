@@ -34,6 +34,7 @@ public class FundingCallUpserter {
         Optional<FundingCall> existing = fundingCallRepository.findBySourceAndExternalId(source, item.externalId());
         if (existing.isEmpty()) {
             FundingCall fundingCall = new FundingCall(source, item.externalId(), item.title());
+            fundingCall.setFirstSeenAt(Instant.now());
             applyContent(fundingCall, item, fields, sourceText, hash);
             fundingCallRepository.save(fundingCall);
             return Result.CREATED;
@@ -71,6 +72,7 @@ public class FundingCallUpserter {
         fundingCall.setSourceText(sourceText);
         fundingCall.setRawTextHash(hash);
         fundingCall.setFetchedAt(Instant.now());
+        fundingCall.setContentChangedAt(fundingCall.getFetchedAt());
     }
 
     private void applyExtractedValues(FundingCall fundingCall, ExtractedFields fields) {

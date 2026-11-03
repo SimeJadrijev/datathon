@@ -17,6 +17,7 @@ import com.datathon.api.fundingcall.dto.FundingCallExport;
 import com.datathon.api.fundingcall.dto.FundingCallFacets;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
 import com.datathon.api.fundingcall.dto.FundingCallRecord;
+import com.datathon.api.fundingcall.dto.FundingCallSort;
 import com.datathon.api.fundingcall.dto.FundingCallSummary;
 import com.datathon.api.legalbasis.LegalBasisService;
 import com.datathon.api.source.SourceCatalog;
@@ -39,6 +40,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class FundingCallService {
 
     static final int MAX_EXPORT_RECORDS = 2000;
+    static final int FEED_SIZE = 50;
 
     private final FundingCallRepository fundingCallRepository;
     private final SourceCatalog sourceCatalog;
@@ -58,6 +60,13 @@ public class FundingCallService {
                 .orElseThrow(() -> new NotFoundException("Natječaj ne postoji."));
         return FundingCallDetail.from(fundingCall, sourceCatalog.get(fundingCall.getSource()),
                 legalBasisService.forFundingCall(fundingCall));
+    }
+
+    @Transactional(readOnly = true)
+    public List<FundingCallSummary> newest(FundingCallFilter filter) {
+        var specification = visible().and(matching(filter, countyValuesFor(filter)));
+        Pageable newest = PageRequest.of(0, FEED_SIZE, FundingCallSort.NEWEST.toSort());
+        return fundingCallRepository.findAll(specification, newest).map(this::toSummary).getContent();
     }
 
     @Transactional(readOnly = true)

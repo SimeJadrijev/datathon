@@ -88,6 +88,8 @@ public class IngestService {
     private SourceRunLog runSource(IngestRun run, SourceFetcher fetcher) {
         long startNanos = System.nanoTime();
         SourceRunLog runLog = new SourceRunLog(run, fetcher.code(), Instant.now());
+        runLog.setCreated(0);
+        runLog.setUpdated(0);
         try {
             List<RawItem> items = fetcher.fetchList();
             log.info("{}: {} items on the list", fetcher.code(), items.size());
@@ -99,8 +101,9 @@ public class IngestService {
             log.error("{}: source failed", fetcher.code(), e);
         }
         runLog.setDurationMs((System.nanoTime() - startNanos) / 1_000_000);
-        log.info("{}: {} fetched, {} skipped, {} errors in {} ms", fetcher.code(), runLog.getFetched(),
-                runLog.getSkipped(), runLog.getErrors(), runLog.getDurationMs());
+        log.info("{}: {} fetched ({} new, {} changed), {} skipped, {} errors in {} ms", fetcher.code(),
+                runLog.getFetched(), runLog.getCreated(), runLog.getUpdated(), runLog.getSkipped(), runLog.getErrors(),
+                runLog.getDurationMs());
         return runLog;
     }
 
@@ -111,11 +114,20 @@ public class IngestService {
         }
         try {
             RawItem detailed = fetcher.fetchDetail(item);
-            upserter.upsert(fetcher.code(), detailed, ruleExtractor.extract(detailed));
+            FundingCallUpserter.Result result = upserter.upsert(fetcher.code(), detailed, ruleExtractor.extract(detailed));
             runLog.setFetched(runLog.getFetched() + 1);
+            count(runLog, result);
         } catch (RuntimeException e) {
             recordError(runLog, item.externalId(), e);
             log.warn("{}: item {} failed: {}", fetcher.code(), item.externalId(), e.getMessage());
+        }
+    }
+
+    private static void count(SourceRunLog runLog, FundingCallUpserter.Result result) {
+        switch (result) {
+            case CREATED -> runLog.setCreated(runLog.getCreated() + 1);
+            case UPDATED -> runLog.setUpdated(runLog.getUpdated() + 1);
+            case UNCHANGED -> { }
         }
     }
 
