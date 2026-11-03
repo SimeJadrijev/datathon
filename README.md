@@ -46,6 +46,25 @@ curl -X POST -H "X-Admin-Key: $ADMIN_KEY" "http://localhost:8080/api/admin/inges
 
 Ruta odmah vraća `202` s `runId`, a ingest radi u pozadini (prvi put nekoliko minuta, poslije iz cachea u `data/cache/`). Rezultat po izvoru je u tablici `source_run_log`. Ingest se može pokrenuti i pri startu sa `INGEST_ON_STARTUP=true`.
 
+#### AI rezultati i osvježavanje seeda
+
+AI koraci trebaju `ANTHROPIC_API_KEY` (bez ključa se preskaču). Rezultati se spremaju u bazu, a izvozom u seed dobiva ih svatko i bez ključa. Batchevi rade u pozadini, jedan po jedan (dok jedan radi, drugi vraća `409`):
+
+```bash
+curl -X POST -H "X-Admin-Key: $ADMIN_KEY" "http://localhost:8080/api/admin/ai/extract?limit=300"              # AI-2, otvoreni prvi
+curl -X POST -H "X-Admin-Key: $ADMIN_KEY" "http://localhost:8080/api/admin/ai/generate-questions?limit=300"   # AI-4, samo otvoreni
+curl -X POST -H "X-Admin-Key: $ADMIN_KEY" "http://localhost:8080/api/admin/ai/summarize-regulations?limit=60" # AI-3
+```
+
+Kad završe, izvezi bazu u seed i commitaj oba filea:
+
+```bash
+curl -H "X-Admin-Key: $ADMIN_KEY" http://localhost:8080/api/admin/seed/funding-calls > src/main/resources/seed/funding-calls.json
+curl -H "X-Admin-Key: $ADMIN_KEY" http://localhost:8080/api/admin/seed/regulations   > src/main/resources/seed/regulations.json
+```
+
+Seed se učitava samo u praznu bazu. Postojeću lokalnu bazu za novi seed obriši s `docker compose down -v` pa `docker compose up -d`.
+
 ### 3. Web
 
 ```bash

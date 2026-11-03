@@ -6,11 +6,13 @@ import com.datathon.api.ai.LlmUsageRepository;
 import com.datathon.api.common.NotFoundException;
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallRepository;
+import com.datathon.api.fundingcall.FundingCallStatus;
 import com.datathon.api.integration.llm.LlmClient;
 import com.datathon.api.integration.llm.LlmRequest;
 import com.datathon.api.integration.llm.LlmResponseException;
 import com.datathon.api.integration.llm.LlmUnavailableException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -42,8 +44,18 @@ public class EligibilityQuestionService {
     @Transactional(readOnly = true)
     public List<EligibilityQuestion> findQuestions(Long fundingCallId) {
         FundingCall call = fundingCallRepository.findById(fundingCallId)
-                .orElseThrow(() -> new NotFoundException("Funding call " + fundingCallId + " does not exist"));
+                .orElseThrow(() -> new NotFoundException("Funding call " + fundingCallId + " does not exist",
+                        NotFoundException.FUNDING_CALL_MESSAGE));
+        if (isClosedForApplications(call)) {
+            return List.of();
+        }
         return questionStore.read(call.getEligibilityQuestions());
+    }
+
+    /** An empty list hides the eligibility panel; the detail page already says the deadline has passed. */
+    private boolean isClosedForApplications(FundingCall call) {
+        boolean isExpired = call.getDeadline() != null && call.getDeadline().isBefore(LocalDate.now());
+        return isExpired || call.getStatus() == FundingCallStatus.CLOSED;
     }
 
     /** Starts a batch in the background. Throws when a batch is already running. */
@@ -52,7 +64,7 @@ public class EligibilityQuestionService {
     }
 
     public ExtractionRunResult run(int limit) {
-        List<Long> ids = fundingCallRepository.findIdsForQuestions(PageRequest.of(0, Math.min(limit, MAX_BATCH)));
+        List<Long> ids = fundingCallRepository.findIdsForQuestions(LocalDate.now(), PageRequest.of(0, Math.min(limit, MAX_BATCH)));
         BigDecimal costBefore = llmUsageRepository.sumCostUsd();
         int done = 0;
         int failed = 0;

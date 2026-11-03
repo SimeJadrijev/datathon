@@ -61,11 +61,11 @@ class SeedServiceTest {
         return new SeedFundingCall(SourceCode.ASSOCIATIONS_OFFICE, externalId, null, "Natječaj za udruge",
                 "Grad Rijeka", FundingCallType.GRANT, FundingCallStatus.OPEN, SNAPSHOT_DATE, null,
                 null, null, null, Set.of(), Set.of(), Set.of("ALL"), Set.of(), null,
-                List.of(), List.of(), null, false, Set.of(), null, null);
+                List.of(), List.of(), null, false, Set.of(), null, null, null, null, false, false, null);
     }
 
     private static SeedRegulation regulation() {
         return new SeedRegulation("9999-1-1", "Zakon o testiranju", RegulationType.LAW, "1/9999", 1,
-                SNAPSHOT_DATE, null, null, null, null, Set.of(), false, null);
+                SNAPSHOT_DATE, null, null, null, null, Set.of(), false, null, null);
     }
 }

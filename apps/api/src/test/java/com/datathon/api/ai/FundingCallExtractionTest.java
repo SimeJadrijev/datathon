@@ -92,4 +92,24 @@ class FundingCallExtractionTest {
 
         assertThat(call.getStatus()).isEqualTo(FundingCallStatus.CLOSED);
     }
+
+    @Test
+    void reviewedCallKeepsHandCheckedFieldsAndGetsOnlyTheTexts() {
+        FundingCall call = ruleBasedCall();
+        call.setFieldsReviewed(true);
+        LocalDate reviewedDeadline = call.getDeadline();
+
+        merger.apply(call, parse("""
+                {"deadline":null,"maxAmount":1,"targetGroups":["CITIZEN"],
+                 "conditionsSummary":"Mogu se prijaviti trgovačka društva sa sjedištem u Hrvatskoj.",
+                 "requiredDocuments":["Prijavni obrazac"]}"""));
+
+        assertThat(call.getDeadline()).isEqualTo(reviewedDeadline);
+        assertThat(call.getMaxAmount()).isNotEqualByComparingTo("1");
+        assertThat(call.getTargetGroups()).containsExactly(TargetGroup.COMPANY);
+        assertThat(call.getConditionsSummary()).startsWith("Mogu se prijaviti");
+        assertThat(call.getRequiredDocuments()).containsExactly("Prijavni obrazac");
+        assertThat(call.getAiFields()).containsExactlyInAnyOrder("conditionsSummary", "requiredDocuments");
+        assertThat(call.isExtractedByLlm()).isTrue();
+    }
 }

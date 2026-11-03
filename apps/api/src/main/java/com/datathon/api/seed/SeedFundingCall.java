@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public record SeedFundingCall(
         SourceCode source,
@@ -37,7 +38,26 @@ public record SeedFundingCall(
         boolean extractedByLlm,
         Set<String> aiFields,
         Instant fetchedAt,
-        String sourceText) {
+        String sourceText,
+        String deadlineNote,
+        String eligibilityQuestions,
+        Boolean fieldsReviewed,
+        Boolean hidden,
+        String hiddenReason) {
+
+    /** The export side of the seed: what the database holds now, including the AI results, so a fresh clone has them. */
+    static SeedFundingCall from(FundingCall call) {
+        return new SeedFundingCall(call.getSource(), call.getExternalId(), call.getUrl(), call.getTitle(),
+                call.getProvider(), call.getType(), call.getStatus(), call.getPublishedAt(), call.getDeadline(),
+                call.getTotalAmount(), call.getMinAmount(), call.getMaxAmount(),
+                new TreeSet<>(call.getTargetGroups()), new TreeSet<>(call.getAreas()),
+                new TreeSet<>(call.getCounties()), new TreeSet<>(call.getActivityCodes()),
+                call.getConditionsSummary(), List.copyOf(call.getRequiredDocuments()),
+                call.getAttachments().stream().map(SeedAttachment::from).toList(),
+                call.getRawTextHash(), call.isExtractedByLlm(), new TreeSet<>(call.getAiFields()),
+                call.getFetchedAt(), call.getSourceText(), call.getDeadlineNote(), call.getEligibilityQuestions(),
+                call.isFieldsReviewed(), call.isHidden(), call.getHiddenReason());
+    }
 
     FundingCall toNewEntity() {
         FundingCall fundingCall = new FundingCall(source, externalId, title);
@@ -69,6 +89,12 @@ public record SeedFundingCall(
         replace(fundingCall.getAiFields(), aiFields);
         fundingCall.setFetchedAt(fetchedAt);
         fundingCall.setSourceText(sourceText);
+        fundingCall.setDeadlineNote(deadlineNote);
+        fundingCall.setEligibilityQuestions(eligibilityQuestions);
+        // Boxed because older seed files do not have these fields, and Jackson 3 does not map a missing value to false.
+        fundingCall.setFieldsReviewed(Boolean.TRUE.equals(fieldsReviewed));
+        fundingCall.setHidden(Boolean.TRUE.equals(hidden));
+        fundingCall.setHiddenReason(hiddenReason);
     }
 
     static <T> void replace(Collection<T> target, Collection<T> values) {

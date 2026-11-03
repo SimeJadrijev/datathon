@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     ResponseEntity<ErrorResponse> handleNotFound(NotFoundException e) {
-        return respond(HttpStatus.NOT_FOUND, e.getMessage());
+        return respond(HttpStatus.NOT_FOUND, e.getUserMessage());
     }
 
     @ExceptionHandler(NoResourceFoundException.class)
@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InvalidRequestException.class)
     ResponseEntity<ErrorResponse> handleInvalidRequest(InvalidRequestException e) {
-        return badRequest(e.getMessage());
+        return badRequest(e.getUserMessage());
     }
 
     /** Covers {@code @Valid} on a body and on a {@code @ModelAttribute}; the former extends this exception. */

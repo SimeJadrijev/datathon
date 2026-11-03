@@ -26,9 +26,22 @@ public class EligibilityRuleChecker {
                 EligibilityCheckResponse.DISCLAIMER, context.url());
     }
 
+    /**
+     * Whatever the answers are, nobody can apply after the deadline, so the model is not asked and the answer
+     * is never LIKELY_ELIGIBLE (it would contradict the "deadline passed" notice on the detail page).
+     */
+    public EligibilityCheckResponse expired(EligibilityContext context) {
+        List<EligibilityReason> reasons = new ArrayList<>();
+        addDeadlineReason(context, reasons);
+        return new EligibilityCheckResponse(EligibilityVerdict.LIKELY_NOT_ELIGIBLE, reasons,
+                List.of("Provjerite kod davatelja hoće li poziv biti ponovno raspisan."),
+                EligibilityCheckResponse.DISCLAIMER, context.url());
+    }
+
     private void addDeadlineReason(EligibilityContext context, List<EligibilityReason> reasons) {
-        if (context.deadline() != null && context.deadline().isBefore(LocalDate.now())) {
-            reasons.add(new EligibilityReason("Rok prijave (" + context.deadline().format(DATE) + ") je istekao.", null));
+        if (context.isDeadlinePassed(LocalDate.now())) {
+            reasons.add(new EligibilityReason("Rok prijave (" + context.deadline().format(DATE)
+                    + ") je istekao, prijava više nije moguća.", null));
         }
     }
 

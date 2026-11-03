@@ -143,3 +143,16 @@
 - Konvencije: `*FilterPatch`, `RegulationPeriod`, `RegulationFacets` u zasebnim `types/` datotekama, `*_PAGE_SIZE` u `constants/`, `useCurrentPath` i `returnState` odvojeni od `useReturnPath`.
 - Provjera: `yarn build`, `yarn lint`, `mvnw test-compile` prolaze. `FundingCallServiceTest` nije pokrenut (Docker nije radio), preglednik nije provjeren s pravim API-jem.
 - Nije u ovom PR-u (napomene iz recenzije): ton "vi" u backend poruci, presude VUS-a na prvoj stranici zakona, WEB-7 s pravim ključem.
+
+## 2026-11-03 (Nino, AI follow-up iz recenzije PR-a #13, issue #7)
+- Riješene sve 4 točke recenzije (odluke u `work/decisions.md`, 3.11.):
+  1. **AI rezultati u seedu.** Nove admin rute `GET /api/admin/seed/funding-calls|regulations` izvoze bazu u seed format; seed proširen s `eligibilityQuestions`, `deadlineNote`, `fieldsReviewed`, `hidden`, `hiddenReason` i `Regulation.summary`. Upute u `README.md` ("AI rezultati i osvježavanje seeda").
+  2. **Istekao rok:** provjera ne zove model i vraća `LIKELY_NOT_ELIGIBLE` s razlogom o roku; pitanja se ne generiraju za zatvorene/istekle pozive, a GET pitanja za njih vraća praznu listu.
+  3. **Ručno provjereni pozivi:** AI-2 im mijenja samo sažetak uvjeta i dokumente.
+  4. **Hrvatske poruke:** `NotFoundException`/`InvalidRequestException` imaju `userMessage`; exception poruke ostaju engleske, handler šalje hrvatsku.
+- Batchevi pokrenuti s ključem (Haiku): AI-2 110 poziva (0,092 USD, 0 grešaka), AI-4 pitanja 87 poziva (67 s pitanjima), AI-3 60 propisa (0,057 USD). Ukupno u `llm_usage` 0,28 USD od budžeta 3 USD. Kontrolni slučaj FZOEU 275: 9.000 EUR, rok null.
+- Seed (`resources/seed/*.json`) prepisan izvozom: 693 natječaja (113 s AI poljima, 67 s pitanjima), 3.860 propisa (62 sa sažetkom). Provjereno na praznoj bazi bez `ANTHROPIC_API_KEY`: AI polja, pitanja, sažeci i rezervna provjera (UNCLEAR + napomena) rade.
+- `mvnw test`: 322 testa prolaze (novi: istekao rok, hrvatske poruke, pregledani poziv u mergeru, seed round-trip).
+- Otvoreno: 54 otvorena poziva s udruge.gov.hr nemaju AI polja jer u seedu imaju < 300 znakova teksta (POC je spremio samo isječak s popisa). Rješenje: ingest `ASSOCIATIONS_OFFICE` pa ponovno AI-2 + izvoz seeda. Postojeće lokalne baze ne dobivaju novi seed bez `docker compose down -v`.
+- Napomena: lokalni `datathon-postgres` je usred batcha netko zaustavio (`docker stop`); ponovno pokrenut, podaci nisu izgubljeni.
+- Nije commitano.

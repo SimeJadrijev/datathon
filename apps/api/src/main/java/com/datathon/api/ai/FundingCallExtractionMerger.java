@@ -16,6 +16,10 @@ public class FundingCallExtractionMerger {
 
     public void apply(FundingCall call, FundingCallExtraction extraction) {
         call.getAiFields().clear();
+        if (call.isFieldsReviewed()) {
+            applyTextOnly(call, extraction);
+            return;
+        }
         setIfMissing(call, "provider", call.getProvider(), extraction.provider(), call::setProvider);
         set(call, "type", extraction.type(), call::setType);
         setIfMissing(call, "publishedAt", call.getPublishedAt(), extraction.publishedAt(), call::setPublishedAt);
@@ -30,6 +34,16 @@ public class FundingCallExtractionMerger {
         replace(call, "counties", extraction.counties(), call.getCounties());
         replace(call, "requiredDocuments", extraction.requiredDocuments(), call.getRequiredDocuments());
         refreshStatus(call, extraction);
+        call.setExtractedByLlm(true);
+    }
+
+    /**
+     * A person checked the deadline, amounts and groups of this call by hand, so the model must not overwrite them.
+     * It still writes the texts nobody reviews: the conditions summary and the required documents.
+     */
+    private void applyTextOnly(FundingCall call, FundingCallExtraction extraction) {
+        set(call, "conditionsSummary", extraction.conditionsSummary(), call::setConditionsSummary);
+        replace(call, "requiredDocuments", extraction.requiredDocuments(), call.getRequiredDocuments());
         call.setExtractedByLlm(true);
     }
 
