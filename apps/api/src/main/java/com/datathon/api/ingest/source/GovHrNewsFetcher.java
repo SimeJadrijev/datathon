@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,13 +101,17 @@ public class GovHrNewsFetcher implements SourceFetcher {
             for (int page = 1; page <= MAX_PAGES_PER_TERM; page++) {
                 String html = http.getText(searchUrl(site, term, since, page));
                 GovHrNewsParser.parseSearchPage(html, site).stream()
-                        .filter(item -> callTitleFilter.isCall(item.title()))
-                        .forEach(item -> calls.putIfAbsent(item.externalId(), item));
+                        .filter(item -> callTitleFilter.isCallInNews(item.title()))
+                        .forEach(item -> calls.putIfAbsent(titleKey(item), item));
                 if (!GovHrNewsParser.hasNextPage(html, page)) {
                     break;
                 }
             }
         }
+    }
+
+    private static String titleKey(RawItem item) {
+        return item.provider() + "|" + item.title().toLowerCase(Locale.ROOT).replaceAll("\\s+", " ").strip();
     }
 
     static String searchUrl(Site site, String term, String since, int page) {

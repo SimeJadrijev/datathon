@@ -62,6 +62,17 @@ class GovHrNewsParserTest {
     }
 
     @Test
+    void sameNewsFoundUnderSeveralTermsOrIdsIsKeptOnce() {
+        PoliteHttpClient http = mock(PoliteHttpClient.class);
+        when(http.getText(anyString())).thenReturn(text("gov-hr/news-search.html"));
+
+        List<RawItem> calls = new GovHrNewsFetcher(http, new CallTitleFilter(new FundingFilter()), List.of(MPUDT, MPUDT),
+                NOVEMBER_2026).fetchList();
+
+        assertThat(calls).extracting(RawItem::title).doesNotHaveDuplicates();
+    }
+
+    @Test
     void searchAsksForRecentNewsWithTheTerm() {
         assertThat(GovHrNewsFetcher.searchUrl(MPUDT, "natječaj", "05.07.2026.", 2))
                 .isEqualTo("https://mpudt.gov.hr/rezultati-pretrazivanja/49?trazi=1&tag=&datumod=05.07.2026.&datumdo="
