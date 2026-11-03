@@ -14,7 +14,8 @@ export const FundingCallStatusNotice = ({fundingCall}: FundingCallStatusNoticePr
         return (
             <Notice tone="warning" title="Rok za prijavu je istekao">
                 <p>
-                    Rok je bio {formatDate(deadline)}. Na izvoru provjeri je li poziv produljen ili ponovno raspisan.
+                    {/* formatDate already ends with a period ("08. 02. 2021."), which also closes the sentence. */}
+                    Rok je bio {formatDate(deadline)} Na izvoru provjeri je li poziv produljen ili ponovno raspisan.
                 </p>
             </Notice>
         );

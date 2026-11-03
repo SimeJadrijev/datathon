@@ -37,7 +37,7 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 | 4 API (#6) | API-1 do 7 | 4,8 | Sime | GOTOVO, PR #16 mergean 28.10., issue zatvoren (primjeri u `work/api-examples.md`) |
 | 5 AI (#7) | AI-1 do 4 | 3,2 | Nino | PR #13 mergean 27.10. Follow-up iz recenzije (seed s AI rezultatima, istekao rok, ručno provjereni pozivi, hrvatske poruke) gotov 3.11., nije commitan |
 | 6 Web: foundation, profile, recommendations (#8) | WEB-1 do 4 | 3,2 | Ivan | GOTOVO 29.10.: svi kriteriji WEB-1 do 4 provjereni, PR za `feature/pkg-6-web` otvoren (`Closes #8`), čeka review. Screenshotovi u `work/screenshots/pkg-6/` |
-| 7 Web: lists, details, laws, sources (#9) | WEB-5 do 9 | 3,9 | Ivan | PR #22 mergean 3.11. WEB-7 provjeren 3.11. s pravim ključem na seedu iz PR-a #23 (natječaj 78: ispunjavaš / ne ispunjavaš / nejasno, sve s citatima). Za zatvaranje #9 fale još screenshotovi |
+| 7 Web: lists, details, laws, sources (#9) | WEB-5 do 9 | 3,9 | Ivan | GOTOVO 3.11.: PR #22 mergean, WEB-7 provjeren s pravim ključem (natječaj 78: ispunjavaš / ne ispunjavaš / nejasno, sve s citatima), screenshotovi u `work/screenshots/pkg-7/`, PR #24 zatvara #9 |
 | 8 Quality and delivery | QUALITY-1 do 3, DELIVERY-1 do 5 | 6,2 | | OTVORENO |
 
 **Pitanja za kolege u PR-u paketa 6, postaviti kao komentar:**
