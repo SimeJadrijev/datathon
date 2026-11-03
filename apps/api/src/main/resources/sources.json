@@ -24,6 +24,14 @@
     "license": "nije provjereno"
   },
   {
+    "code": "EU_FUNDS_COHESION",
+    "name": "EU fondovi 2021.-2027. (eKohezija)",
+    "description": "Svi pozivi iz programa Konkurentnost i kohezija, Integrirani teritorijalni program i Učinkoviti ljudski potencijali 2021.-2027., preko javnog JSON API-ja sustava eKohezija koji koristi eufondovi.gov.hr. Uzimamo samo otvorene i ograničene pozive, bez izravnih dodjela.",
+    "url": "https://eufondovi.gov.hr",
+    "method": "API",
+    "license": "nije provjereno"
+  },
+  {
     "code": "HZZ",
     "name": "Hrvatski zavod za zapošljavanje (mjere)",
     "description": "Mjere aktivne politike zapošljavanja, kontinuirane tijekom godine, preko javnog WordPress REST API-ja.",

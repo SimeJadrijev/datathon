@@ -2,6 +2,7 @@ export type SourceCode =
     | "ASSOCIATIONS_OFFICE"
     | "FZOEU"
     | "EU_FUNDS_NPOO"
+    | "EU_FUNDS_COHESION"
     | "HZZ"
     | "APPRRR"
     | "MZOM"
