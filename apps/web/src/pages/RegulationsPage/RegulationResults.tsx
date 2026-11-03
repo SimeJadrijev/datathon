@@ -1,5 +1,6 @@
 import type {UseQueryResult} from "@tanstack/react-query";
-import {Button, EmptyState, ErrorState, FundingCallList, ListSkeleton, Pagination} from "@/components";
+import {Button, EmptyState, ErrorState, FundingCallList, ListSkeleton, PageNotFoundState, Pagination} from "@/components";
+import {useSettledValue} from "@/hooks";
 import type {Page, RegulationFilter, RegulationSummary, RegulationType} from "@/types";
 import {classNames, formatCount, pluralize} from "@/utils";
 import {RegulationRow} from "./RegulationRow.tsx";
@@ -24,6 +25,7 @@ interface RegulationResultsProps {
 
 export const RegulationResults = ({regulations, filter, hasFilters, onClear, getPageHref}: RegulationResultsProps) => {
     const {data, isPending, isError, error, refetch, isPlaceholderData} = regulations;
+    const summaryFilter = useSettledValue(filter, data, isPlaceholderData);
 
     if (isPending) {
         return <ListSkeleton label="Učitavamo propise…"/>;
@@ -31,14 +33,17 @@ export const RegulationResults = ({regulations, filter, hasFilters, onClear, get
     if (isError) {
         return <ErrorState message={error.message} onRetry={() => refetch()}/>;
     }
+    if (data.content.length === 0 && data.page > 0) {
+        return <PageNotFoundState firstPageHref={getPageHref(0)}/>;
+    }
 
     return (
         <>
             <div className={styles.summaryRow}>
                 <h2 className={styles.summary} aria-live="polite">
                     <strong className="tabular-nums">{formatCount(data.totalElements)}</strong>{" "}
-                    {pluralize(data.totalElements, TYPE_PHRASES[filter.type ?? "ALL"])}
-                    {filter.q ? ` za „${filter.q}”` : ""}, najnoviji prvi
+                    {pluralize(data.totalElements, TYPE_PHRASES[summaryFilter.type ?? "ALL"])}
+                    {summaryFilter.q ? ` za „${summaryFilter.q}”` : ""}, najnoviji prvi
                 </h2>
                 {hasFilters && <Button variant="ghost" size="sm" onClick={onClear}>Poništi filtre</Button>}
             </div>

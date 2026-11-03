@@ -126,7 +126,7 @@ components/
 │   ├── Badge.tsx
 │   ├── Badge.module.css
 │   └── index.ts          # export * from "./Badge.tsx";
-├── StatePanel/           # EmptyState, ErrorState, LoadingState share StatePanel.module.css
+├── StatePanel/           # EmptyState, ErrorState, LoadingState, PageNotFoundState share StatePanel.module.css
 └── index.ts              # export * from "./Badge"; ... one line per folder
 ```
 - Pages import only from the main barrel: `import {Badge} from "@/components";`.
@@ -147,6 +147,7 @@ components/
 | `DeadlineDate` | `deadline`, `isExtractedByAi`, `isCompact` | Calendar-style date block (month / day). Urgent = warning frame, AI = dashed frame (AI colour, or warning colour when also urgent: urgency wins), expired = dashed, greyed out, day struck through. `isCompact`: no frame, day over month, urgent day in warning colour, AI day underlined dashed. Decorative, pair it with the deadline in words |
 | `PageHeader` | `title`, `description`, `meta`, `actions` | Top of every page, exactly one `h1`. `meta` is a line of real facts (counts, last update), never a slogan |
 | `EmptyState` | `title`, `hint`, `icon`, `actions` | No data / not built yet / 404 |
+| `PageNotFoundState` | `firstPageHref` | List link past the last page (`?page=99`): replaces the count and the "no results" state, links to page 1 |
 | `ErrorState` | `title`, `message`, `onRetry` | Failed request. Always pass `onRetry={() => refetch()}` |
 | `ListSkeleton` | `label`, `rows` | Loading state of lists |
 | `LoadingState` | `message` | Loading state of non-list content (spinner) |

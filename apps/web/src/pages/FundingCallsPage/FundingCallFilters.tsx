@@ -27,8 +27,8 @@ import {
     TARGET_GROUP_LABELS,
     TARGET_GROUPS,
 } from "@/constants";
-import type {FundingCallFilterPatch} from "@/hooks";
-import type {FundingCallFacets, FundingCallFilter} from "@/types";
+import type {FundingCallFacets, FundingCallFilter, FundingCallFilterPatch} from "@/types";
+import {toCountyCounts} from "./countyCounts.ts";
 import styles from "./FundingCallsPage.module.css";
 
 const FUNDING_SOURCES = SOURCE_CODES.filter((code) => code !== "NARODNE_NOVINE" && code !== "SUDREG");
@@ -119,7 +119,7 @@ export const FundingCallFilters = ({filter, facets, activeCount, onChange}: Fund
                     value={filter.county}
                     options={withWholeCountryFirst(toFilterOptions({
                         values: [ALL_COUNTIES, ...COUNTIES],
-                        counts: facets?.county,
+                        counts: toCountyCounts(facets?.county),
                         getLabel: formatCounty,
                         selected: filter.county,
                     }))}

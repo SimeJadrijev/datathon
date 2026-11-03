@@ -10,7 +10,9 @@ const getOptions = (question: EligibilityQuestion) => {
     if (question.type === "YES_NO") {
         return [{value: YES, label: "Da"}, {value: NO, label: "Ne"}];
     }
-    return (question.options ?? []).map((option) => ({value: option, label: option}));
+    // The options come from the AI: drop blanks (they would clash with "Ne znam") and repeats (duplicate keys).
+    const options = new Set((question.options ?? []).filter((option) => option.trim()));
+    return [...options].map((option) => ({value: option, label: option}));
 };
 
 interface EligibilityQuestionFieldProps {
@@ -56,9 +58,9 @@ export const EligibilityQuestionField = ({question, number, value, isInvalid, on
                 {question.text}
             </legend>
             <div className={styles.choices}>
-                {[...getOptions(question), {value: UNKNOWN, label: "Ne znam"}].map((option) => (
+                {getOptions(question).map((option) => (
                     <ChoiceChip
-                        key={option.value || "unknown"}
+                        key={option.value}
                         type="radio"
                         name={question.id}
                         value={option.value}
@@ -68,6 +70,15 @@ export const EligibilityQuestionField = ({question, number, value, isInvalid, on
                         {option.label}
                     </ChoiceChip>
                 ))}
+                <ChoiceChip
+                    type="radio"
+                    name={question.id}
+                    value={UNKNOWN}
+                    isChecked={value === UNKNOWN}
+                    onChange={() => onChange(UNKNOWN)}
+                >
+                    Ne znam
+                </ChoiceChip>
             </div>
         </fieldset>
     );

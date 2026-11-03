@@ -9,8 +9,7 @@ import {
     REGULATION_TYPE_LABELS,
     REGULATION_TYPES,
 } from "@/constants";
-import type {RegulationFilterPatch} from "@/hooks";
-import type {RegulationFacets, RegulationFilter, RegulationPeriod} from "@/types";
+import type {RegulationFacets, RegulationFilter, RegulationFilterPatch, RegulationPeriod} from "@/types";
 
 const getTypeLabel = (value: string) => (isRegulationType(value) ? REGULATION_TYPE_LABELS[value] : undefined);
 const getAreaLabel = (value: string) => (isArea(value) ? AREA_LABELS[value] : undefined);

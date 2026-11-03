@@ -2,6 +2,8 @@ import {useSearchParams} from "wouter";
 import {
     DEFAULT_FUNDING_CALL_SORT,
     DEFAULT_FUNDING_CALL_STATUS,
+    findCounty,
+    FUNDING_CALL_PAGE_SIZE,
     isArea,
     isFundingCallSort,
     isFundingCallStatusFilter,
@@ -10,7 +12,7 @@ import {
     isTargetGroup,
 } from "@/constants";
 import {routes} from "@/routes";
-import type {FundingCallFilter} from "@/types";
+import type {FundingCallFilter, FundingCallFilterPatch} from "@/types";
 import {
     patchSearchParams,
     readPageParam,
@@ -21,20 +23,20 @@ import {
     toPageParam,
 } from "@/utils";
 
-export const FUNDING_CALL_PAGE_SIZE = 20;
-
 const MAX_QUERY_LENGTH = 200;
 
-type FundingCallFilterKey = "q" | "status" | "targetGroup" | "area" | "county" | "source" | "type" | "sort";
-
-export type FundingCallFilterPatch = Partial<Record<FundingCallFilterKey, string>>;
+// "Istarska županija" in a hand-written link means the same as the short name the filter uses.
+const readCountyParam = (params: URLSearchParams) => {
+    const county = readTextParam(params, "county", MAX_QUERY_LENGTH);
+    return county && (findCounty(county) ?? county);
+};
 
 const parseFilter = (params: URLSearchParams): FundingCallFilter => ({
     q: readTextParam(params, "q", MAX_QUERY_LENGTH),
     status: readSearchParam(params, "status", isFundingCallStatusFilter),
     targetGroup: readSearchParam(params, "targetGroup", isTargetGroup),
     area: readSearchParam(params, "area", isArea),
-    county: readTextParam(params, "county", MAX_QUERY_LENGTH),
+    county: readCountyParam(params),
     source: readSearchParam(params, "source", isSourceCode),
     type: readSearchParam(params, "type", isFundingCallType),
     sort: readSearchParam(params, "sort", isFundingCallSort),

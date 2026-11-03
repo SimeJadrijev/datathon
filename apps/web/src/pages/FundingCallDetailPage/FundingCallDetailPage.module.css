@@ -72,6 +72,13 @@
     display: inline;
 }
 
+/* The global reset makes svg a block, which would push the icon onto its own line inside an inline link. */
+.attachmentList a svg {
+    display: inline-block;
+    margin-left: var(--space-1);
+    vertical-align: -0.125em;
+}
+
 .aside {
     position: sticky;
     top: calc(var(--header-height) + var(--space-5));

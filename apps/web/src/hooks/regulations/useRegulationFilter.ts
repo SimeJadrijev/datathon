@@ -1,16 +1,10 @@
 import {useSearchParams} from "wouter";
-import {isArea, isRegulationPeriod, isRegulationType} from "@/constants";
+import {isArea, isRegulationPeriod, isRegulationType, REGULATION_PAGE_SIZE} from "@/constants";
 import {routes} from "@/routes";
-import type {RegulationFilter, RegulationPeriod} from "@/types";
+import type {RegulationFilter, RegulationFilterPatch, RegulationPeriod} from "@/types";
 import {patchSearchParams, readPageParam, readSearchParam, readTextParam, toHref, toIsoDate, toPageParam} from "@/utils";
 
-export const REGULATION_PAGE_SIZE = 20;
-
 const MAX_QUERY_LENGTH = 200;
-
-type RegulationFilterKey = "q" | "type" | "area" | "period";
-
-export type RegulationFilterPatch = Partial<Record<RegulationFilterKey, string>>;
 
 const daysAgo = (days: number, today: Date) =>
     new Date(today.getFullYear(), today.getMonth(), today.getDate() - days);

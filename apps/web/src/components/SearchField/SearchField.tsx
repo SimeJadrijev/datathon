@@ -37,6 +37,14 @@ export const SearchField = ({label, value, placeholder, onChange}: SearchFieldPr
         onChange(text.trim());
     };
 
+    // Leaving the field commits the text at once. Otherwise a click on "Poništi filtre" within the debounce
+    // would clear the URL, and the pending timer would then put the old search back.
+    const handleBlur = () => {
+        if (text.trim() !== value) {
+            onChange(text.trim());
+        }
+    };
+
     return (
         <form role="search" className={styles.form} onSubmit={handleSubmit}>
             <label htmlFor={inputId} className="visually-hidden">{label}</label>
@@ -53,6 +61,7 @@ export const SearchField = ({label, value, placeholder, onChange}: SearchFieldPr
                 enterKeyHint="search"
                 className={styles.input}
                 onChange={(event) => setText(event.target.value)}
+                onBlur={handleBlur}
             />
         </form>
     );

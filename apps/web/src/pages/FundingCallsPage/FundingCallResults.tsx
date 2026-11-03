@@ -1,5 +1,15 @@
 import type {UseQueryResult} from "@tanstack/react-query";
-import {Button, EmptyState, ErrorState, FundingCallList, FundingCallRow, ListSkeleton, Pagination} from "@/components";
+import {
+    Button,
+    EmptyState,
+    ErrorState,
+    FundingCallList,
+    FundingCallRow,
+    ListSkeleton,
+    PageNotFoundState,
+    Pagination,
+} from "@/components";
+import {useSettledValue} from "@/hooks";
 import type {FundingCallFilter, FundingCallSummary, Page} from "@/types";
 import {classNames} from "@/utils";
 import {FundingCallsSummary} from "./FundingCallsSummary.tsx";
@@ -23,6 +33,7 @@ export const FundingCallResults = ({
     getPageHref,
 }: FundingCallResultsProps) => {
     const {data, isPending, isError, error, refetch, isPlaceholderData} = fundingCalls;
+    const summaryFilter = useSettledValue(filter, data, isPlaceholderData);
 
     if (isPending) {
         return <ListSkeleton label="Učitavamo natječaje…"/>;
@@ -30,11 +41,15 @@ export const FundingCallResults = ({
     if (isError) {
         return <ErrorState message={error.message} onRetry={() => refetch()}/>;
     }
+    // A link past the last page (?page=99): the count above an empty list would contradict itself.
+    if (data.content.length === 0 && data.page > 0) {
+        return <PageNotFoundState firstPageHref={getPageHref(0)}/>;
+    }
 
     return (
         <>
             <FundingCallsSummary
-                filter={filter}
+                filter={summaryFilter}
                 totalElements={data.totalElements}
                 hasFilters={hasFilters}
                 onSortChange={onSortChange}
