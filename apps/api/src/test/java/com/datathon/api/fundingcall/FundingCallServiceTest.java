@@ -256,7 +256,23 @@ class FundingCallServiceTest {
         var facets = fundingCallService.facets(noFilters());
 
         assertThat(facets.county()).extracting(FacetCount::value, FacetCount::count)
-                .containsExactly(tuple("ALL", 2L), tuple("Istarska", 1L));
+                .containsExactly(tuple("Istarska", 3L), tuple("ALL", 2L));
+    }
+
+    @Test
+    void countyFacetCountsWholeCountryCallsLikeTheCountyFilterDoes() {
+        save("Istarski", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("Istarska");
+        save("Cijela država", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("ALL");
+        save("Istra i država", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().addAll(List.of("Istarska", "ALL"));
+        save("Primorski", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("Primorsko-goranska");
+        entityManager.flush();
+
+        var facets = fundingCallService.facets(noFilters());
+        long istrianCalls = fundingCallService.list(filter(null, null, "Istarska", null, null)).totalElements();
+
+        assertThat(facets.county()).extracting(FacetCount::value, FacetCount::count)
+                .containsExactlyInAnyOrder(tuple("Istarska", 3L), tuple("ALL", 2L), tuple("Primorsko-goranska", 3L));
+        assertThat(istrianCalls).isEqualTo(3L);
     }
 
     @Test
@@ -271,7 +287,7 @@ class FundingCallServiceTest {
         var facets = fundingCallService.facets(noFilters());
 
         assertThat(facets.county()).extracting(FacetCount::value, FacetCount::count)
-                .containsExactlyInAnyOrder(tuple("ALL", 2L), tuple("Istarska županija", 3L));
+                .containsExactlyInAnyOrder(tuple("ALL", 1L), tuple("Istarska županija", 4L));
     }
 
     @Test

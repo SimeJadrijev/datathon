@@ -1,0 +1,133 @@
+.summaryRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-4);
+    margin-bottom: var(--space-3);
+}
+
+/* An h2 for the heading order (rows are h3), styled as a plain summary sentence. */
+.summary {
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-snug);
+    letter-spacing: normal;
+    color: var(--color-text-muted);
+}
+
+.summary strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+.stale {
+    opacity: 0.6;
+    transition: opacity var(--duration-fast) var(--easing);
+}
+
+.row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: var(--space-5);
+    padding: var(--space-4) var(--space-5);
+    transition: background-color var(--duration-fast) var(--easing);
+}
+
+.row:hover {
+    background: var(--color-surface-hover);
+}
+
+.row:has(.titleLink:focus-visible) {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+}
+
+/* Publication date as a printed dateline: serif, like the gazette itself. */
+.date {
+    padding-top: 2px;
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-muted);
+}
+
+.newLabel {
+    display: block;
+    font-family: var(--font-family);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+/* Full title, never clamped: the official title is the content. */
+.title {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-snug);
+}
+
+.titleLink {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.titleLink:focus-visible {
+    outline: none;
+}
+
+.titleLink::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.row:hover .titleLink {
+    text-decoration: underline;
+    text-decoration-color: var(--color-border-strong);
+}
+
+.details {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.aiNote {
+    color: var(--color-ai);
+}
+
+@media (max-width: 768px) {
+    .row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-1);
+        padding: var(--space-4);
+    }
+
+    .date {
+        padding-top: 0;
+        font-size: var(--font-size-sm);
+    }
+
+    .newLabel {
+        display: inline;
+        margin-left: var(--space-2);
+    }
+}

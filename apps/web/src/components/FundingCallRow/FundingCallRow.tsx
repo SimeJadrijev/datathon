@@ -1,6 +1,7 @@
 import type {ReactNode} from "react";
 import {Link} from "wouter";
 import {FUNDING_CALL_STATUS_LABELS, FUNDING_CALL_TYPE_LABELS} from "@/constants";
+import {createReturnState, useCurrentPath} from "@/hooks";
 import {fundingCallDetailPath} from "@/routes";
 import type {FundingCallStatus, FundingCallSummary} from "@/types";
 import {classNames, formatAmount, formatDate, formatDeadline, getDaysUntil, isDeadlineUrgent} from "@/utils";
@@ -65,6 +66,7 @@ interface FundingCallRowProps {
 
 // One funding call in a list. Goes inside FundingCallList, which draws the frame and the dividers.
 export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => {
+    const returnTo = useCurrentPath();
     const amount = formatAmounts(fundingCall);
     const isAi = fundingCall.extractedByLlm;
     const typeLabel = fundingCall.type ? FUNDING_CALL_TYPE_LABELS[fundingCall.type] : undefined;
@@ -84,7 +86,11 @@ export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => 
                     <span className={styles.metaText}>{metaText}</span>
                 </p>
                 <h3 className={styles.title}>
-                    <Link href={fundingCallDetailPath(fundingCall.id)} className={styles.titleLink}>
+                    <Link
+                        href={fundingCallDetailPath(fundingCall.id)}
+                        state={createReturnState(returnTo)}
+                        className={styles.titleLink}
+                    >
                         {fundingCall.title}
                     </Link>
                 </h3>

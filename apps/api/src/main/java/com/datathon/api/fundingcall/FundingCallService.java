@@ -1,6 +1,7 @@
 package com.datathon.api.fundingcall;
 
 import static com.datathon.api.fundingcall.FundingCallSpecifications.hasId;
+import static com.datathon.api.fundingcall.FundingCallSpecifications.inAnyCounty;
 import static com.datathon.api.fundingcall.FundingCallSpecifications.matching;
 import static com.datathon.api.fundingcall.FundingCallSpecifications.matchingExcept;
 import static com.datathon.api.fundingcall.FundingCallSpecifications.visible;
@@ -58,7 +59,7 @@ public class FundingCallService {
                         specificationIgnoring(filter, countyValues, FundingCallFacet.STATUS), "status"),
                 facetByElement(filter, countyValues, FundingCallFacet.TARGET_GROUP, "targetGroups"),
                 facetByElement(filter, countyValues, FundingCallFacet.AREA, "areas"),
-                mergeCountySpellings(facetByElement(filter, countyValues, FundingCallFacet.COUNTY, "counties")),
+                countyFacet(filter, countyValues),
                 facetByColumn(filter, countyValues, FundingCallFacet.SOURCE, "source"),
                 facetByColumn(filter, countyValues, FundingCallFacet.TYPE, "type"));
     }
@@ -77,6 +78,38 @@ public class FundingCallService {
     private static Specification<FundingCall> specificationIgnoring(FundingCallFilter filter, Set<String> countyValues,
                                                                     FundingCallFacet facet) {
         return visible().and(matchingExcept(filter, countyValues, facet));
+    }
+
+    // Filtering by a county also returns the calls for the whole country, so its count includes them too;
+    // otherwise "Istarska županija (1)" would open a list of 43 calls.
+    private List<FacetCount> countyFacet(FundingCallFilter filter, Set<String> countyValues) {
+        Specification<FundingCall> specification = specificationIgnoring(filter, countyValues, FundingCallFacet.COUNTY);
+        List<FacetCount> counties = mergeCountySpellings(
+                facetCounter.countByElement(FundingCall.class, specification, "counties"));
+        Set<String> wholeCountryValues = CountyNames.storedValuesMatching(
+                FundingCall.ALL_COUNTIES, fundingCallRepository.findDistinctCounties());
+        if (wholeCountryValues.isEmpty()) {
+            return counties;
+        }
+        Specification<FundingCall> wholeCountry = specification.and(inAnyCounty(wholeCountryValues));
+        long wholeCountryCount = fundingCallRepository.count(wholeCountry);
+        Map<String, Long> alsoWholeCountry = countsByName(
+                facetCounter.countByElement(FundingCall.class, wholeCountry, "counties"));
+
+        Map<String, Long> countsByLabel = new HashMap<>();
+        for (FacetCount county : counties) {
+            String name = CountyNames.normalize(county.value());
+            long count = FundingCall.ALL_COUNTIES.equals(name)
+                    ? wholeCountryCount
+                    : county.count() + wholeCountryCount - alsoWholeCountry.getOrDefault(name, 0L);
+            countsByLabel.put(county.value(), count);
+        }
+        return FacetCount.sortedByCount(countsByLabel);
+    }
+
+    private static Map<String, Long> countsByName(List<FacetCount> counties) {
+        return counties.stream().collect(Collectors.groupingBy(
+                county -> CountyNames.normalize(county.value()), Collectors.summingLong(FacetCount::count)));
     }
 
     private static List<FacetCount> mergeCountySpellings(List<FacetCount> counties) {

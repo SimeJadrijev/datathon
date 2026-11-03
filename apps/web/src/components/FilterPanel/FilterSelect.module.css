@@ -1,0 +1,23 @@
+.field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.label {
+    margin-bottom: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: var(--space-3) var(--space-4);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

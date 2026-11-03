@@ -1,0 +1,188 @@
+.headerMeta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--aside-width);
+    align-items: start;
+    gap: var(--space-5);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+}
+
+.sectionTitle {
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-lg);
+}
+
+.muted {
+    color: var(--color-text-muted);
+}
+
+.preLine {
+    white-space: pre-line;
+}
+
+.aiNote {
+    margin-top: var(--space-4);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.aiValue {
+    text-decoration: underline dashed var(--color-ai);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-left: var(--space-5);
+    line-height: var(--line-height-snug);
+}
+
+/* AI-extracted list: the dashed AI line runs along the items instead of marking each one. */
+.aiList {
+    padding-left: var(--space-5);
+    border-left: 1px dashed var(--color-ai);
+}
+
+.attachmentList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: 0;
+    list-style: none;
+    line-height: var(--line-height-snug);
+}
+
+/* Long official file names: the icon stays next to the last word instead of floating on its own line. */
+.attachmentList a {
+    display: inline;
+}
+
+/* The global reset makes svg a block, which would push the icon onto its own line inside an inline link. */
+.attachmentList a svg {
+    display: inline-block;
+    margin-left: var(--space-1);
+    vertical-align: -0.125em;
+}
+
+.aside {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-5));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.panelLabel,
+.panelTitle {
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: normal;
+    color: var(--color-text-muted);
+}
+
+.deadlineRow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.deadlineText {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-muted);
+}
+
+.deadlineDate {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+.urgent {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-warning);
+}
+
+.expired {
+    color: var(--color-danger);
+}
+
+.amountLine {
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.amountLine > span:first-child {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+.primaryAction {
+    width: 100%;
+    margin-top: var(--space-1);
+}
+
+.sourceName {
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-snug);
+}
+
+.sourceLink {
+    font-size: var(--font-size-sm);
+}
+
+.sourceMeta {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+@media (max-width: 960px) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* One column: the deadline and the official link come first, the source block after the content. */
+    .aside {
+        display: contents;
+    }
+
+    .aside > :first-child {
+        order: -1;
+    }
+
+    .aside > :last-child {
+        order: 1;
+    }
+}

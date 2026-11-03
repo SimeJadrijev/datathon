@@ -23,10 +23,21 @@ export const COUNTIES = [
     "Zagrebačka",
 ];
 
-export const formatCounty = (county: string) =>
-    county === "Grad Zagreb" ? county : `${county} županija`;
+// FundingCall.counties holds "ALL" for calls open to the whole country.
+export const ALL_COUNTIES = "ALL";
 
 const COUNTY_SUFFIX = /\s+županija$/i;
+
+// Short names get "županija"; full names ("Istarska županija"), Zagreb and places abroad stay as they are.
+export const formatCounty = (county: string) => {
+    if (county === ALL_COUNTIES) {
+        return "Cijela Hrvatska";
+    }
+    if (!COUNTIES.includes(county) || county === "Grad Zagreb") {
+        return county;
+    }
+    return `${county} županija`;
+};
 
 // The Court Register gives full names ("Istarska županija"); the form uses the short ones.
 export const findCounty = (name: string | null | undefined) => {
