@@ -10,6 +10,8 @@ import com.datathon.api.common.InvalidRequestException;
 import com.datathon.api.common.NotFoundException;
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.Area;
+import com.datathon.api.fundingcall.FundingCallRepository;
+import com.datathon.api.legalbasis.LegalBasisService;
 import com.datathon.api.regulation.dto.RegulationFilter;
 import com.datathon.api.regulation.dto.RegulationSummary;
 import jakarta.persistence.EntityManager;
@@ -29,6 +31,9 @@ class RegulationServiceTest {
     private RegulationRepository regulationRepository;
 
     @Autowired
+    private FundingCallRepository fundingCallRepository;
+
+    @Autowired
     private EntityManager entityManager;
 
     private RegulationService regulationService;
@@ -36,7 +41,8 @@ class RegulationServiceTest {
     @BeforeEach
     void setUp() {
         entityManager.createNativeQuery("TRUNCATE TABLE regulation CASCADE").executeUpdate();
-        regulationService = new RegulationService(regulationRepository, new FacetCounter(entityManager));
+        regulationService = new RegulationService(regulationRepository, new FacetCounter(entityManager),
+                new LegalBasisService(regulationRepository, fundingCallRepository));
     }
 
     @Test

@@ -1,3 +1,4 @@
+export * from "./CitingFundingCall.type.ts";
 export * from "./Regulation.type.ts";
 export * from "./RegulationFacets.type.ts";
 export * from "./RegulationFilter.type.ts";

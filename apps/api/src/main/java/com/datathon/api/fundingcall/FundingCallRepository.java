@@ -55,4 +55,20 @@ public interface FundingCallRepository extends JpaRepository<FundingCall, Long>,
                           then 0 else 1 end, c.id
             """)
     List<Long> findIdsForQuestions(@Param("today") LocalDate today, Pageable pageable);
+
+    @Query("""
+            select c.id from FundingCall c
+            where c.legalReferences is empty and c.sourceText is not null
+              and (c.sourceText like '%Narodn%' or c.sourceText like '%NN %')
+            """)
+    List<Long> findIdsWithGazetteTextAndNoLegalReferences();
+
+    @Query("""
+            select distinct c from FundingCall c join c.legalReferences reference
+            where reference.gazetteNumber = :gazetteNumber and c.hidden = false and c.duplicateOf is null
+            """)
+    List<FundingCall> findVisibleCitingGazetteNumber(@Param("gazetteNumber") String gazetteNumber);
+
+    @Query("select distinct reference from FundingCall c join c.legalReferences reference where reference.citedTitle is not null")
+    List<LegalReference> findDistinctTitledLegalReferences();
 }

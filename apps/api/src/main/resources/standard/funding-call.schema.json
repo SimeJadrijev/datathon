@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/standard/funding-call.schema.json",
+  "title": "Otvoreni podaci o natječajima",
+  "description": "Prijedlog zajedničkog JSON formata u kojem bi tijela javne vlasti objavljivala natječaje, javne pozive, potpore i stipendije na data.gov.hr. Svaki zapis nosi trajni identifikator, davatelja s OIB-om, rokove u ISO 8601, iznose u eurima, kontrolirane rječnike i poveznice na pravnu osnovu u Narodnim novinama (ELI).",
+  "type": "object",
+  "required": ["conformsTo", "issued", "count", "records"],
+  "properties": {
+    "conformsTo": {"type": "string"},
+    "title": {"type": "string"},
+    "publisher": {"type": "string"},
+    "license": {"type": "string"},
+    "issued": {"type": "string", "format": "date-time"},
+    "count": {"type": "integer", "minimum": 0},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/fundingCall"}}
+  },
+  "$defs": {
+    "nullableDate": {"type": ["string", "null"], "format": "date"},
+    "nullableAmount": {"type": ["number", "null"], "minimum": 0},
+    "fundingCall": {
+      "type": "object",
+      "required": ["id", "title", "provider", "status", "deadline", "amounts", "targetGroups", "areas", "origin", "updatedAt"],
+      "properties": {
+        "id": {"type": "string", "description": "Trajni URI poziva kod davatelja."},
+        "title": {"type": "string"},
+        "provider": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": {"type": ["string", "null"]},
+            "oib": {"type": ["string", "null"], "pattern": "^[0-9]{11}$", "description": "OIB davatelja iz Popisa javnopravnih tijela."}
+          }
+        },
+        "type": {"enum": ["GRANT", "SUBSIDY", "PUBLIC_CALL", "SCHOLARSHIP", "LOAN", "AWARD", null]},
+        "status": {"enum": ["ANNOUNCED", "OPEN", "CLOSED", null]},
+        "publishedAt": {"$ref": "#/$defs/nullableDate"},
+        "deadline": {"$ref": "#/$defs/nullableDate"},
+        "deadlineNote": {"type": ["string", "null"], "description": "Kad roka nema, npr. \"do utroška sredstava\"."},
+        "amounts": {
+          "type": "object",
+          "required": ["currency"],
+          "properties": {
+            "total": {"$ref": "#/$defs/nullableAmount"},
+            "minPerApplicant": {"$ref": "#/$defs/nullableAmount"},
+            "maxPerApplicant": {"$ref": "#/$defs/nullableAmount"},
+            "currency": {"const": "EUR"}
+          }
+        },
+        "targetGroups": {
+          "type": "array",
+          "items": {"enum": ["CITIZEN", "CRAFT_BUSINESS", "COMPANY", "ASSOCIATION", "LOCAL_GOVERNMENT", "STUDENT", "FARMER"]}
+        },
+        "areas": {
+          "type": "array",
+          "items": {"enum": ["ENVIRONMENT", "ENERGY", "TRANSPORT", "AGRICULTURE", "EDUCATION", "SCIENCE", "CULTURE", "SPORT", "SOCIAL", "HEALTH", "EMPLOYMENT", "ENTREPRENEURSHIP", "INNOVATION", "DIGITALIZATION", "TOURISM", "YOUTH", "CIVIL_SOCIETY"]}
+        },
+        "activityCodes": {"type": "array", "items": {"type": "string"}, "description": "Šifre djelatnosti po NKD-u."},
+        "counties": {"type": "array", "items": {"type": "string"}, "description": "\"ALL\" za cijelu Hrvatsku."},
+        "conditionsSummary": {"type": ["string", "null"]},
+        "legalBasis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["gazetteNumber", "gazetteIssueUri"],
+            "properties": {
+              "citedTitle": {"type": ["string", "null"]},
+              "gazetteNumber": {"type": "string", "pattern": "^[0-9]{1,3}/[0-9]{4}$"},
+              "gazetteIssueUri": {"type": "string"},
+              "eli": {"type": ["string", "null"], "description": "ELI identifikator propisa, kad je propis prepoznat."}
+            }
+          }
+        },
+        "attachments": {
+          "type": "array",
+          "items": {"type": "object", "required": ["url"], "properties": {"name": {"type": ["string", "null"]}, "url": {"type": "string"}}}
+        },
+        "origin": {
+          "type": "object",
+          "required": ["sourceCode", "sourceUrl"],
+          "properties": {
+            "sourceCode": {"type": "string"},
+            "sourceName": {"type": "string"},
+            "sourceUrl": {"type": "string"},
+            "url": {"type": ["string", "null"]}
+          }
+        },
+        "updatedAt": {"type": ["string", "null"], "format": "date-time"}
+      }
+    }
+  }
+}

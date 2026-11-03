@@ -47,3 +47,27 @@
         padding: var(--space-4);
     }
 }
+
+.citingList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: 0;
+    list-style: none;
+    line-height: var(--line-height-snug);
+}
+
+.citingList li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.citingMeta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}

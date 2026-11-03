@@ -7,6 +7,7 @@ import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallStatus;
 import com.datathon.api.fundingcall.FundingCallType;
 import com.datathon.api.fundingcall.TargetGroup;
+import com.datathon.api.legalbasis.LegalBasis;
 import com.datathon.api.source.SourceInfo;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -32,13 +33,14 @@ public record FundingCallDetail(
         String conditionsSummary,
         List<String> requiredDocuments,
         List<AttachmentResponse> attachments,
+        List<LegalBasis> legalBasis,
         boolean extractedByLlm,
         List<String> aiFields,
         boolean fieldsReviewed,
         Instant fetchedAt,
         String url) {
 
-    public static FundingCallDetail from(FundingCall fundingCall, SourceInfo source) {
+    public static FundingCallDetail from(FundingCall fundingCall, SourceInfo source, List<LegalBasis> legalBasis) {
         return new FundingCallDetail(
                 fundingCall.getId(),
                 fundingCall.getTitle(),
@@ -58,6 +60,7 @@ public record FundingCallDetail(
                 fundingCall.getConditionsSummary(),
                 List.copyOf(fundingCall.getRequiredDocuments()),
                 fundingCall.getAttachments().stream().map(AttachmentResponse::from).toList(),
+                legalBasis,
                 fundingCall.isExtractedByLlm(),
                 sorted(fundingCall.getAiFields()),
                 fundingCall.isFieldsReviewed(),

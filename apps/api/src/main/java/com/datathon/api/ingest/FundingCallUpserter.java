@@ -3,6 +3,7 @@ package com.datathon.api.ingest;
 import com.datathon.api.fundingcall.Attachment;
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallRepository;
+import com.datathon.api.fundingcall.LegalReference;
 import com.datathon.api.ingest.extract.ExtractedFields;
 import com.datathon.api.source.SourceCode;
 import java.nio.charset.StandardCharsets;
@@ -66,6 +67,7 @@ public class FundingCallUpserter {
             applyExtractedValues(fundingCall, fields);
         }
         resetAiResults(fundingCall);
+        replace(fundingCall.getLegalReferences(), LegalReference.fromText(sourceText));
         fundingCall.setSourceText(sourceText);
         fundingCall.setRawTextHash(hash);
         fundingCall.setFetchedAt(Instant.now());

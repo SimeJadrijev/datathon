@@ -2,6 +2,7 @@ package com.datathon.api.fundingcall;
 
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.dto.FundingCallDetail;
+import com.datathon.api.fundingcall.dto.FundingCallExport;
 import com.datathon.api.fundingcall.dto.FundingCallFacets;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
 import com.datathon.api.fundingcall.dto.FundingCallSummary;
@@ -28,6 +29,11 @@ public class FundingCallController {
     @GetMapping("/facets")
     FundingCallFacets facets(@Valid @ParameterObject FundingCallFilter filter) {
         return fundingCallService.facets(filter);
+    }
+
+    @GetMapping("/export")
+    FundingCallExport export(@Valid @ParameterObject FundingCallFilter filter) {
+        return fundingCallService.export(filter);
     }
 
     @GetMapping("/{id}")

@@ -13,11 +13,13 @@ import com.datathon.api.common.NotFoundException;
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.dto.AttachmentResponse;
 import com.datathon.api.fundingcall.dto.FundingCallDetail;
+import com.datathon.api.fundingcall.dto.FundingCallExport;
 import com.datathon.api.fundingcall.dto.FundingCallFacets;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
 import com.datathon.api.fundingcall.dto.FundingCallSort;
 import com.datathon.api.fundingcall.dto.FundingCallStatusFilter;
 import com.datathon.api.fundingcall.dto.FundingCallSummary;
+import com.datathon.api.legalbasis.LegalBasis;
 import com.datathon.api.source.SourceCode;
 import com.datathon.api.source.SourceInfo;
 import com.datathon.api.source.SourceRef;
@@ -105,7 +107,9 @@ class FundingCallControllerTest {
         var detail = new FundingCallDetail(7L, "Poziv za vozila", "Fond", SOURCE, FundingCallType.PUBLIC_CALL, FundingCallStatus.OPEN,
                 LocalDate.of(2026, 3, 2), null, "do iskorištenja sredstava", null, null, new BigDecimal("9000.00"),
                 List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY), List.of("ALL"), "Uvjeti", List.of("Zahtjev"),
-                List.of(new AttachmentResponse("Poziv", "https://example.org/poziv.pdf")), true, List.of("deadline"), false,
+                List.of(new AttachmentResponse("Poziv", "https://example.org/poziv.pdf")),
+                List.of(new LegalBasis("Zakona o Fondu", "107/2003", "https://narodne-novine.nn.hr/eli/sluzbeni/2003/107",
+                        null, null, null)), true, List.of("deadline"), false,
                 Instant.parse("2026-10-24T08:15:00Z"), "https://example.org/7");
         when(fundingCallService.getById(7L)).thenReturn(detail);
 
@@ -116,6 +120,7 @@ class FundingCallControllerTest {
                 .andExpect(jsonPath("$.conditionsSummary").value("Uvjeti"))
                 .andExpect(jsonPath("$.requiredDocuments[0]").value("Zahtjev"))
                 .andExpect(jsonPath("$.attachments[0].name").value("Poziv"))
+                .andExpect(jsonPath("$.legalBasis[0].gazetteNumber").value("107/2003"))
                 .andExpect(jsonPath("$.aiFields[0]").value("deadline"))
                 .andExpect(jsonPath("$.fieldsReviewed").value(false))
                 .andExpect(jsonPath("$.fetchedAt").value("2026-10-24T08:15:00Z"))
@@ -200,5 +205,16 @@ class FundingCallControllerTest {
         mockMvc.perform(get("/api/funding-calls").param("q", "a".repeat(201)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.message").value("q: smije imati najviše 200 znakova"));
+    }
+
+    @Test
+    void exportIsNotMistakenForAnIdAndPointsToTheSchema() throws Exception {
+        when(fundingCallService.export(any())).thenReturn(FundingCallExport.of(List.of(), Instant.parse("2026-11-03T10:00:00Z")));
+
+        mockMvc.perform(get("/api/funding-calls/export").param("status", "OPEN"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.conformsTo").value("/api/standard/funding-call.schema.json"))
+                .andExpect(jsonPath("$.count").value(0))
+                .andExpect(jsonPath("$.records").isArray());
     }
 }

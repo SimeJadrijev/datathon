@@ -2,6 +2,7 @@ import {AiBlock, Badge, Card, ExternalButtonLink, ExternalLink, FactList, PageHe
 import {AREA_LABELS, NEW_REGULATION_DAYS, REGULATION_TYPE_LABELS} from "@/constants";
 import type {RegulationDetail as RegulationDetailType} from "@/types";
 import {formatDate, formatDateTime, isWithinLastDays} from "@/utils";
+import {CitingFundingCalls} from "./CitingFundingCalls.tsx";
 import styles from "./RegulationDetailPage.module.css";
 
 const formatGazette = ({gazetteNumber, documentNumber}: RegulationDetailType) => {
@@ -30,7 +31,7 @@ interface RegulationDetailProps {
 
 // Editorial order: the facts, then the official text, and only then our summary of it.
 export const RegulationDetail = ({regulation}: RegulationDetailProps) => {
-    const {title, type, gazetteNumber, publishedAt, summary, url, eliUrl, pdfUrl, eliMetadata, fetchedAt} = regulation;
+    const {title, type, gazetteNumber, publishedAt, summary, url, eliUrl, pdfUrl, eliMetadata, fetchedAt, citingFundingCalls} = regulation;
     const description = [type && REGULATION_TYPE_LABELS[type], gazetteNumber && `Narodne novine ${gazetteNumber}`]
         .filter(Boolean)
         .join(" · ");
@@ -75,6 +76,8 @@ export const RegulationDetail = ({regulation}: RegulationDetailProps) => {
                         <p className={styles.muted}>Za ovaj propis još nemamo sažetak. Pročitaj službeni tekst u Narodnim novinama.</p>
                     )}
                 </Card>
+
+                {citingFundingCalls.length > 0 && <CitingFundingCalls fundingCalls={citingFundingCalls}/>}
 
                 <p className={styles.source}>
                     Izvor: Narodne novine{eliMetadata ? " (ELI metapodaci)" : ""}.

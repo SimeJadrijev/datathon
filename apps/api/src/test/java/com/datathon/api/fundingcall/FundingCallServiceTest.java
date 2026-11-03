@@ -8,9 +8,12 @@ import com.datathon.api.common.FacetCounter;
 import com.datathon.api.common.NotFoundException;
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
+import com.datathon.api.fundingcall.dto.FundingCallRecord;
 import com.datathon.api.fundingcall.dto.FundingCallSort;
 import com.datathon.api.fundingcall.dto.FundingCallStatusFilter;
 import com.datathon.api.fundingcall.dto.FundingCallSummary;
+import com.datathon.api.legalbasis.LegalBasisService;
+import com.datathon.api.regulation.RegulationRepository;
 import com.datathon.api.source.SourceCatalog;
 import com.datathon.api.source.SourceCode;
 import jakarta.persistence.EntityManager;
@@ -32,6 +35,9 @@ class FundingCallServiceTest {
     private FundingCallRepository fundingCallRepository;
 
     @Autowired
+    private RegulationRepository regulationRepository;
+
+    @Autowired
     private EntityManager entityManager;
 
     private FundingCallService fundingCallService;
@@ -40,7 +46,7 @@ class FundingCallServiceTest {
     void setUp() {
         entityManager.createNativeQuery("TRUNCATE TABLE funding_call CASCADE").executeUpdate();
         fundingCallService = new FundingCallService(fundingCallRepository, new SourceCatalog(JsonMapper.builder().build()),
-                new FacetCounter(entityManager));
+                new FacetCounter(entityManager), new LegalBasisService(regulationRepository, fundingCallRepository));
     }
 
     @Test
@@ -317,6 +323,26 @@ class FundingCallServiceTest {
 
     private static FundingCallFilter noFilters() {
         return new FundingCallFilter(null, null, null, null, null, null, null, null, null, null, null);
+    }
+
+    @Test
+    void exportHasOnlyVisibleMatchingCallsWithTheirOriginAndLegalBasis() {
+        FundingCall open = save("Otvoreni", FundingCallStatus.OPEN, TargetGroup.COMPANY);
+        open.setUrl("https://www.fzoeu.hr/poziv/1");
+        open.getLegalReferences().addAll(LegalReference.fromText("Zakona o udrugama (Narodne novine, broj 74/14)"));
+        save("Skriveni", FundingCallStatus.OPEN, TargetGroup.COMPANY).setHidden(true);
+        save("Zatvoreni", FundingCallStatus.CLOSED, TargetGroup.COMPANY);
+        entityManager.flush();
+
+        var export = fundingCallService.export(filter(FundingCallStatusFilter.OPEN, null, null, null, null));
+
+        assertThat(export.count()).isEqualTo(1);
+        var record = export.records().getFirst();
+        assertThat(record.id()).isEqualTo("https://www.fzoeu.hr/poziv/1");
+        assertThat(record.origin().sourceCode()).isEqualTo("FZOEU");
+        assertThat(record.amounts().currency()).isEqualTo("EUR");
+        assertThat(record.legalBasis()).extracting(FundingCallRecord.LegalAct::gazetteIssueUri)
+                .containsExactly("https://narodne-novine.nn.hr/eli/sluzbeni/2014/74");
     }
 
     private FundingCall save(String title, FundingCallStatus status, TargetGroup targetGroup) {
