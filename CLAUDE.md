@@ -27,7 +27,8 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - Otvoreno: smije li se kod javno na GitHub (sigurnosna politika), vidi `work/decisions.md`.
 - 29.10.: redizajn weba (OtvoreniRadar, zelena paleta) na branchu `refactor-ui` (PR #18, Nino), pravila u `DESIGN_SYSTEM.md`. Prijedlog "manje AI izgleda" (serif naslovi + IBM Plex Sans, lista umjesto kartica, pravi brojevi na početnoj) na branchu `design/ui-polish` (na vrhu `refactor-ui`, PR u `refactor-ui`), uz skill `web-design-guidelines` i popravke po njemu.
 - 2.11.: paket 7 (issue #9, liste, detalji, zakoni, izvori, WEB-5 do 9) gotov na branchu `feature/pkg-7-web-browse`, PR prema `main` otvoren 2.11. Otvoreno: screenshotovi za kriterije i provjera WEB-7 s pravim AI-4 podacima. Detalji u `log.md`.
-- 3.11.: AI follow-up (issue #7) gotov lokalno, nije commitan: seed sad nosi AI rezultate (demo radi bez ključa), istekao rok, ručno provjereni pozivi, hrvatske poruke. Detalji u `log.md`.
+- 3.11.: AI follow-up (issue #7) mergean (PR #23): seed sad nosi AI rezultate (demo radi bez ključa), istekao rok, ručno provjereni pozivi, hrvatske poruke. Detalji u `log.md`.
+- 3.11.: paket 7 gotov: WEB-7 provjeren s pravim AI-jem (natječaj 78 za video), screenshotovi u `work/screenshots/pkg-7/`, PR #24 zatvara issue #9.
 - Zadnje ažurirano: 2026-11-03
 
 ## Tehnički stack i konvencije

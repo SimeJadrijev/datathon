@@ -156,3 +156,12 @@
 - Otvoreno: 54 otvorena poziva s udruge.gov.hr nemaju AI polja jer u seedu imaju < 300 znakova teksta (POC je spremio samo isječak s popisa). Rješenje: ingest `ASSOCIATIONS_OFFICE` pa ponovno AI-2 + izvoz seeda. Postojeće lokalne baze ne dobivaju novi seed bez `docker compose down -v`.
 - Napomena: lokalni `datathon-postgres` je usred batcha netko zaustavio (`docker stop`); ponovno pokrenut, podaci nisu izgubljeni.
 - Nije commitano.
+
+## 2026-11-03 (Ivan, lokalno pokretanje za test WEB-7 nakon Ninovog PR-a #23)
+- Na Ivanovom Macu (macOS 14) nema Dockera, JDK 25 ni Nodea 22, a Homebrew sve kompajlira iz izvora (sporo). Zato su u `~/tools` gotovi binarni paketi: Temurin JDK 25, Node 22, Postgres 17 (EDB, `pg_ctl` na portu 5433, baza/korisnik/lozinka `datathon`). `mvnw` nema execute bit, pa se pokreće sa `sh ./mvnw`.
+- Svježa baza iz novog seeda: 693 natječaja, 3.860 propisa; 33 otvorena natječaja s rokom u budućnosti imaju pitanja (npr. id 61, 78, 255).
+- WEB-7 radi kraj-do-kraja bez ključa: panel se prikazuje, provjera vraća rezervni UNCLEAR s napomenom i linkom. `yarn lint` i `yarn build` prolaze. Prave presude s citatima i dalje traže `ANTHROPIC_API_KEY`.
+- Uočeno (backend/AI, nije web): pitanja i rezervne poruke su na "vi" ("Ugovorili ste…", "Odgovorite na sva pitanja"), a web na "ti"; rezervna poruka traži "sva pitanja" i kad su sva odgovorena.
+- Isti dan, s pravim ključem (API pokrenut s `LLM_BUDGET_USD=0.50`, `LLM_MAX_ATTEMPTS=1`, bez batcheva): 4 provjere kroz web, ukupno 0,084 USD (Sonnet, oko 14k ulaznih tokena po provjeri). Natječaj 78 (obnova poljoprivrednog potencijala): svi "Da" daju "Vjerojatno ispunjavaš" sa 4 citata; "Ne" na uvjet od 30 % daje "Vjerojatno ne ispunjavaš" s citatom tog uvjeta. Natječaj 61 (osiguranje): u oba scenarija UNCLEAR s citatima, jer je tekst poziva na izvoru kratak. Za video koristiti 78, ne 61.
+- Screenshotovi za #9 (33 snimke, WEB-5 do WEB-9, 1280 px i 375 px) u `work/screenshots/pkg-7/`, snimljeni Playwright skriptom. Stanja učitavanja i greške izazvana presretanjem zahtjeva u pregledniku (lažni 503 i 429), presude su pravi odgovori modela. Ukupna potrošnja na ključu u lokalnoj bazi: 0,255 USD za 9 provjera (5 ručnih, 4 iz skripte, od toga 1 nepotrebna jer je zadržani zahtjev pušten pri zatvaranju preglednika).
+- Popravak na webu: obavijest o isteklom roku imala je dvije točke ("Rok je bio 08. 02. 2021.."), jer `formatDate` već završava točkom.
