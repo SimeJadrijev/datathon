@@ -3,6 +3,8 @@ export type SourceCode =
     | "FZOEU"
     | "EU_FUNDS_NPOO"
     | "EU_FUNDS_COHESION"
+    | "GOV_HR_NEWS"
+    | "LOCAL_GOVERNMENT"
     | "HZZ"
     | "APPRRR"
     | "MZOM"

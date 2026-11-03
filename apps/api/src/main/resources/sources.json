@@ -32,6 +32,22 @@
     "license": "nije provjereno"
   },
   {
+    "code": "GOV_HR_NEWS",
+    "name": "Ministarstva i državni uredi (vijesti)",
+    "description": "Javni pozivi, natječaji i nagradni natječaji koje ministarstva objavljuju kao vijesti na zajedničkom Vladinom sustavu (*.gov.hr). Čitamo njihovu pretragu vijesti za zadnjih 120 dana i zadržavamo samo objave koje izgledaju kao poziv.",
+    "url": "https://vlada.gov.hr",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "LOCAL_GOVERNMENT",
+    "name": "Gradovi i županije",
+    "description": "Natječaji, javni pozivi, stipendije i potpore gradova i županija: Grad Zagreb, Split, Osijek, Bjelovar, Karlovac, Velika Gorica, Čakovec, Slavonski Brod, Vukovar i drugi te 9 županija. Čitamo WordPress REST API-je, RSS feedove i HTML liste, a oglase za posao, prodaju i zakup izbacujemo po naslovu.",
+    "url": "https://www.zagreb.hr/natjecaji/860",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
     "code": "HZZ",
     "name": "Hrvatski zavod za zapošljavanje (mjere)",
     "description": "Mjere aktivne politike zapošljavanja, kontinuirane tijekom godine, preko javnog WordPress REST API-ja.",

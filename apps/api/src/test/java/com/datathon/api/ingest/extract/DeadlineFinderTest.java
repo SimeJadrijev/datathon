@@ -38,4 +38,22 @@ class DeadlineFinderTest {
         assertThat(DeadlineFinder.find(text, PUBLISHED)).isEmpty();
         assertThat(DeadlineFinder.findNote(text)).contains("do iskorištenja sredstava");
     }
+
+    @Test
+    void dateInFrontOfApplicationDeadlineWinsOverTheNextLine() {
+        String text = """
+                Važni datumi
+                - do 30.10.2026. rok za prijavu timova
+                9. studenoga 2026. - rok za dostavu rješenja
+                """;
+
+        assertThat(DeadlineFinder.find(text, PUBLISHED)).contains(LocalDate.of(2026, 10, 30));
+    }
+
+    @Test
+    void publicationDateInFrontOfTheKeywordIsNotTheDeadline() {
+        String text = "Objavljeno 2.3.2026. Rok za podnošenje prijava je 15. svibnja 2026.";
+
+        assertThat(DeadlineFinder.find(text, PUBLISHED)).contains(LocalDate.of(2026, 5, 15));
+    }
 }
