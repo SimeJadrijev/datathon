@@ -23,6 +23,8 @@ public final class GazetteCitationParser {
     private static final int MAX_TITLE_CHARS = 300;
     private static final int SUBJECT_CHARS = 80;
     private static final int MIN_SUBJECT_CHARS = 4;
+    private static final int KIND_CHARS = 5;
+    private static final Set<String> STRICT_KINDS = Set.of("zakon", "uredb", "pravi", "odluk", "nared");
 
     private static final Pattern MARKER = Pattern.compile(
             "[„“\"»”']?\\s*(?:Narodn(?:e|ih|im)\\s+novin(?:e|a|ama)|\\bNN\\b)\\s*[“”\"«']?", FLAGS);
@@ -57,8 +59,13 @@ public final class GazetteCitationParser {
 
     public static boolean refersTo(String citedTitle, String regulationTitle) {
         String subject = subjectOf(citedTitle);
-        return subject != null && regulationTitle != null
+        return subject != null && regulationTitle != null && isSameKindOfAct(citedTitle, regulationTitle)
                 && (" " + normalize(regulationTitle) + " ").contains(" " + subject);
+    }
+
+    private static boolean isSameKindOfAct(String citedTitle, String regulationTitle) {
+        String kind = normalize(citedTitle).substring(0, Math.min(KIND_CHARS, citedTitle.length()));
+        return !STRICT_KINDS.contains(kind) || normalize(regulationTitle).startsWith(kind);
     }
 
     public static String issueUrl(String gazetteNumber) {

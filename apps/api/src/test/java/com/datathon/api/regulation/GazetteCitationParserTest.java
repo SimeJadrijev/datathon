@@ -81,6 +81,13 @@ class GazetteCitationParserTest {
     }
 
     @Test
+    void lawIsNotLinkedToADecisionAboutIt() {
+        assertThat(GazetteCitationParser.refersTo("Zakonu o radu",
+                "Odluka o nedavanju vjerodostojnog tumačenja članka 77. stavka 1. Zakona o radu")).isFalse();
+        assertThat(GazetteCitationParser.refersTo("Zakonu o radu", "Zakon o izmjenama i dopunama Zakona o radu")).isTrue();
+    }
+
+    @Test
     void planWithoutTheWordOStillHasASubject() {
         assertThat(GazetteCitationParser.refersTo("Strateškog plana Zajedničke poljoprivredne politike Republike Hrvatske",
                 "Strateški plan Zajedničke poljoprivredne politike Republike Hrvatske 2023. – 2027.")).isTrue();
