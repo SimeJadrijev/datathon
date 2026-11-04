@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.TestConfiguration;
+import com.datathon.api.fundingcall.DuplicateMarker;
 import com.datathon.api.fundingcall.ExpiredFundingCallCloser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -24,7 +25,7 @@ import org.springframework.context.annotation.Import;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import({IngestService.class, FundingFilter.class, CallTitleFilter.class, RuleExtractor.class, FundingCallUpserter.class,
-        ExpiredFundingCallCloser.class, IngestServiceTest.Fetchers.class})
+        ExpiredFundingCallCloser.class, DuplicateMarker.class, IngestServiceTest.Fetchers.class})
 class IngestServiceTest {
 
     @TestConfiguration
