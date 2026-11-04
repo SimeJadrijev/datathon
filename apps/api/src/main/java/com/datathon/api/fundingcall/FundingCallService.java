@@ -13,10 +13,15 @@ import com.datathon.api.common.NotFoundException;
 import com.datathon.api.common.PageRequests;
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.dto.FundingCallDetail;
+import com.datathon.api.fundingcall.dto.FundingCallExport;
 import com.datathon.api.fundingcall.dto.FundingCallFacets;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
+import com.datathon.api.fundingcall.dto.FundingCallRecord;
+import com.datathon.api.fundingcall.dto.FundingCallSort;
 import com.datathon.api.fundingcall.dto.FundingCallSummary;
+import com.datathon.api.legalbasis.LegalBasisService;
 import com.datathon.api.source.SourceCatalog;
+import java.time.Instant;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +29,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -33,9 +39,13 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class FundingCallService {
 
+    static final int MAX_EXPORT_RECORDS = 2000;
+    static final int FEED_SIZE = 50;
+
     private final FundingCallRepository fundingCallRepository;
     private final SourceCatalog sourceCatalog;
     private final FacetCounter facetCounter;
+    private final LegalBasisService legalBasisService;
 
     @Transactional(readOnly = true)
     public PageResponse<FundingCallSummary> list(FundingCallFilter filter) {
@@ -48,7 +58,26 @@ public class FundingCallService {
     public FundingCallDetail getById(Long id) {
         FundingCall fundingCall = fundingCallRepository.findOne(visible().and(hasId(id)))
                 .orElseThrow(() -> new NotFoundException("Natječaj ne postoji."));
-        return FundingCallDetail.from(fundingCall, sourceCatalog.get(fundingCall.getSource()));
+        return FundingCallDetail.from(fundingCall, sourceCatalog.get(fundingCall.getSource()),
+                legalBasisService.forFundingCall(fundingCall));
+    }
+
+    @Transactional(readOnly = true)
+    public List<FundingCallSummary> newest(FundingCallFilter filter) {
+        var specification = visible().and(matching(filter, countyValuesFor(filter)));
+        Pageable newest = PageRequest.of(0, FEED_SIZE, FundingCallSort.NEWEST.toSort());
+        return fundingCallRepository.findAll(specification, newest).map(this::toSummary).getContent();
+    }
+
+    @Transactional(readOnly = true)
+    public FundingCallExport export(FundingCallFilter filter) {
+        var specification = visible().and(matching(filter, countyValuesFor(filter)));
+        Pageable firstRecords = PageRequest.of(0, MAX_EXPORT_RECORDS, filter.sort().toSort());
+        List<FundingCallRecord> records = fundingCallRepository.findAll(specification, firstRecords).stream()
+                .map(fundingCall -> FundingCallRecord.from(fundingCall, sourceCatalog.get(fundingCall.getSource()),
+                        legalBasisService.forFundingCall(fundingCall)))
+                .toList();
+        return FundingCallExport.of(records, Instant.now());
     }
 
     @Transactional(readOnly = true)

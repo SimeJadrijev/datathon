@@ -3,6 +3,7 @@ import {AiBlock, Card, ExternalLink} from "@/components";
 import type {FundingCallDetail} from "@/types";
 import {classNames} from "@/utils";
 import {getAttachmentName, isAiField} from "./detailFormatting.ts";
+import {LegalBasisList} from "./LegalBasisList.tsx";
 import styles from "./FundingCallDetailPage.module.css";
 
 interface SectionProps {
@@ -49,7 +50,7 @@ interface FundingCallSectionsProps {
 
 // Documents and attachments show only when the source lists them; an empty block would only add noise.
 export const FundingCallSections = ({fundingCall, children}: FundingCallSectionsProps) => {
-    const {requiredDocuments, attachments} = fundingCall;
+    const {requiredDocuments, attachments, legalBasis} = fundingCall;
     const areDocumentsAi = isAiField(fundingCall, "requiredDocuments");
 
     return (
@@ -77,6 +78,11 @@ export const FundingCallSections = ({fundingCall, children}: FundingCallSections
                             </li>
                         ))}
                     </ul>
+                </Section>
+            )}
+            {legalBasis.length > 0 && (
+                <Section id="legal-basis-title" title="Pravna osnova">
+                    <LegalBasisList legalBasis={legalBasis}/>
                 </Section>
             )}
         </>

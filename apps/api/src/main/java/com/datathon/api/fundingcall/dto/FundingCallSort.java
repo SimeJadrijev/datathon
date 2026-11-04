@@ -6,7 +6,8 @@ import org.springframework.data.domain.Sort;
 
 public enum FundingCallSort {
     DEADLINE("deadline", Sort.by(Sort.Order.asc("deadline").nullsLast(), Sort.Order.asc("id"))),
-    PUBLISHED_AT("publishedAt", Sort.by(Sort.Order.desc("publishedAt").nullsLast(), Sort.Order.desc("id")));
+    PUBLISHED_AT("publishedAt", Sort.by(Sort.Order.desc("publishedAt").nullsLast(), Sort.Order.desc("id"))),
+    NEWEST("newest", Sort.by(Sort.Order.desc("firstSeenAt").nullsLast(), Sort.Order.desc("id")));
 
     private final String parameterValue;
     private final Sort sort;

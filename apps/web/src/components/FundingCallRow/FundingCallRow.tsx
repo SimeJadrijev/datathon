@@ -1,10 +1,10 @@
 import type {ReactNode} from "react";
 import {Link} from "wouter";
-import {FUNDING_CALL_STATUS_LABELS, FUNDING_CALL_TYPE_LABELS} from "@/constants";
+import {FUNDING_CALL_STATUS_LABELS, FUNDING_CALL_TYPE_LABELS, NEW_FUNDING_CALL_DAYS} from "@/constants";
 import {createReturnState, useCurrentPath} from "@/hooks";
 import {fundingCallDetailPath} from "@/routes";
 import type {FundingCallStatus, FundingCallSummary} from "@/types";
-import {classNames, formatAmount, formatDate, formatDeadline, getDaysUntil, isDeadlineUrgent} from "@/utils";
+import {classNames, formatAmount, formatDate, formatDeadline, getDaysUntil, isDeadlineUrgent, isWithinLastDays} from "@/utils";
 import {Badge, type BadgeTone} from "@/components/Badge";
 import {DeadlineDate} from "@/components/DeadlineDate";
 import {ExternalLink} from "@/components/ExternalLink";
@@ -72,6 +72,7 @@ export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => 
     const typeLabel = fundingCall.type ? FUNDING_CALL_TYPE_LABELS[fundingCall.type] : undefined;
     const metaText = [typeLabel, fundingCall.provider].filter(Boolean).join(" · ");
     const isNotOpen = fundingCall.status !== null && fundingCall.status !== "OPEN";
+    const isNew = fundingCall.firstSeenAt !== null && isWithinLastDays(fundingCall.firstSeenAt, NEW_FUNDING_CALL_DAYS);
 
     return (
         <article className={styles.row}>
@@ -83,6 +84,7 @@ export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => 
                     {isNotOpen && fundingCall.status && (
                         <Badge tone={STATUS_TONES[fundingCall.status]}>{FUNDING_CALL_STATUS_LABELS[fundingCall.status]}</Badge>
                     )}
+                    {isNew && <span className={styles.newLabel}>novo</span>}
                     <span className={styles.metaText}>{metaText}</span>
                 </p>
                 <h3 className={styles.title}>

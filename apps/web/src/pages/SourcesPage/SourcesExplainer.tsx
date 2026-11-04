@@ -3,7 +3,7 @@ import styles from "./SourcesPage.module.css";
 const METHODS = [
     {
         term: "API",
-        description: "Sučelje koje izvor nudi računalima. Podatke čitamo izravno i u strukturiranom obliku, bez pogađanja: Narodne novine (ELI), Sudski registar, mjere HZZ-a.",
+        description: "Sučelje koje izvor nudi računalima. Podatke čitamo izravno i u strukturiranom obliku, bez pogađanja: Narodne novine (ELI), Sudski registar, EU fondovi (eKohezija), mjere HZZ-a.",
     },
     {
         term: "Čitanje web stranica",

@@ -1,0 +1,2462 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!--  Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!--  CSS  -->    
+    <link href="https://www.ampeu.hr/css/vendor.bb476f76ed1c8b2e7f4a.min.css" rel="stylesheet">
+    <link href="https://www.ampeu.hr/css/main.20250512.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+	
+	
+	
+	<!-- 2026 cookies styles start -->
+	<style>
+
+#cconsent-bar.ccb--hidden::before {
+  display:none;
+}
+.cookie-categ-table {
+  margin-top:15px;
+}
+.cookie-categ-table table {
+  width:100%;
+}
+.cookie-categ-table thead th {
+  padding: 5px;
+  vertical-align: middle;
+  font-size: 12px;
+  background-color: #eee;
+}
+.cookie-categ-table tbody td {
+  padding: 5px;
+  vertical-align: middle;
+  font-size: 12px;
+  background-color: #fff;
+}
+.ccm__list {
+  display:none;
+}
+#cookie-title {
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:16px;
+  margin-bottom:10px;
+}
+#cconsent-bar,
+#cconsent-bar * {
+  box-sizing:border-box
+}
+#cconsent-bar .visually-hide,
+#cconsent-modal .visually-hide {
+  position: absolute !important;
+  overflow: hidden !important;
+  clip: rect(1px 1px 1px 1px) !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  width: 1px !important;
+  height: 1px !important;
+}
+#cconsent-bar {
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  background-color:#fff;
+  color:#000;
+  padding:15px;
+  text-align:right;
+  font-family:sans-serif;
+  font-size:14px;
+  line-height:18px;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  z-index:9998;
+  transform: translateY(0);
+  transition: transform .6s ease-in-out;
+  transition-delay: .3s;
+  display: none;
+}
+#cconsent-bar.ccb--hidden {
+  transform: translateY(100%);
+  display:block;
+  visible:hidden;
+}
+@media all and (max-width:756px){
+	#cconsent-bar {
+		padding-top: 50px;
+	}
+}
+#cconsent-bar .ccb__wrapper {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  max-width:1200px;
+  margin:0 auto;
+  position: relative;
+}
+
+#cconsent-bar .ccb__heading__close {
+	appearance: none;
+	padding: 0;
+	border: 0;
+	font-weight: 600;
+	color: #111;
+	cursor: pointer;
+	font-size: 26px;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	width: 26px;
+	height: 26px;
+	background: none;
+	text-align: center;
+}
+#cconsent-bar .ccb__heading__close:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+#cconsent-bar .ccb__left {
+  flex: 0 0 60%;
+  align-self:center;
+  text-align:left;
+  margin: 15px 0;
+}
+#cconsent-bar .ccb__right {
+  align-self:center;
+  white-space: nowrap;
+}
+
+#cconsent-bar button {
+  line-height:normal;
+  font-size:14px;
+  border:0;
+  padding:10px 10px;
+  color:#fff;
+  background-color:#000;
+  margin-left: 7px;
+}
+
+#cconsent-bar .ccb__button {
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
+}
+@media all and (max-width:756px){
+	#cconsent-bar .ccb__right {
+	  width: 100%;
+	}
+	#cconsent-bar .ccb__button {
+		flex-flow: column;
+		flex-wrap: wrap;
+	}
+
+	#cconsent-bar .ccb__button button {
+		margin-bottom: 7px;
+		width: 100%;
+	}
+}
+
+#cconsent-bar .ccb__button button:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+
+#cconsent-bar button.consent-give {
+
+}
+#cconsent-bar button.consent-decline {
+
+}
+#cconsent-bar button.ccb__edit {
+
+}
+#cconsent-bar a:hover,
+#cconsent-bar button:hover {
+  cursor:pointer;
+}
+
+#cconsent-bar a:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+#cconsent-modal {
+  display:none;
+  font-size:14px;
+  line-height:18px;
+  color:#333;
+  width: 100vw;
+  height: 100vh;
+  position:fixed;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+  font-family:sans-serif;
+  background-color:rgba(0,0,0,0.6);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+}
+@media (max-width: 756px) {
+  #cconsent-modal {
+    height: 100%;
+	margin: 0;
+    padding: 0;
+  }
+  #cconsent-bar .ccb__left {
+    flex:0 0 100%;
+  }
+}
+
+#cconsent-modal button {
+  border: 0
+}
+
+#cconsent-modal button:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+#cconsent-modal h2,
+#cconsent-modal h3 {
+  color:#333;
+  font-size: 16.38px;
+  line-height: 18px;
+}
+
+#cconsent-modal.ccm--visible {
+  display:flex
+}
+#cconsent-modal .ccm__content {
+  max-width:700px;
+  min-height:500px;
+  max-height:600px;
+  overflow-Y:auto;
+  background-color:#EFEFEF;
+}
+@media (max-width: 600px) {
+  #cconsent-modal .ccm__content {
+    max-width:100vw;
+    height:100%;
+    max-height:initial;
+  }
+}
+#cconsent-modal .ccm__content > .ccm__content__heading {
+  border-bottom:1px solid #D8D8D8;
+  padding:35px 35px 20px;
+  background-color:#EFEFEF;
+  position:relative;
+}
+#cconsent-modal .ccm__content > .ccm__content__heading h2 {
+  font-size:21px;
+  font-weight:600;
+  color:#333;
+  margin:0;
+}
+#cconsent-modal .ccm__content > .ccm__content__heading .ccm__cheading__close {
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  appearance:none;
+  padding:0;
+  border:0;
+  font-weight:600;
+  color: #111;
+  cursor:pointer;
+  font-size:26px;
+  position:absolute;
+  right:15px;
+  top:15px;
+  width:26px;
+  height:26px;
+  background:none;
+  text-align:center;
+}
+#cconsent-modal .ccm__content > .ccm__content__heading .ccm__cheading__close:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+#cconsent-modal .ccm__content > .ccm__content__heading .ccm__cheading__close:focus-visible {
+  box-shadow: 0 0 0 0.25rem rgb(40 168 52 / 75%);
+}
+#cconsent-modal h2,
+#cconsent-modal h3 {
+  margin-top:0
+}
+#cconsent-modal .ccm__content > .ccm__content__body {
+  background-color:#FFF;
+}
+
+#cconsent-modal .ccm__footer {
+  padding:35px;
+  background-color:#EFEFEF;
+  text-align:center;
+  display: flex;
+  align-items:center;
+  justify-content:flex-end;
+}
+#cconsent-modal .ccm__footer button {
+  line-height:normal;
+  font-size:14px;
+  transition: background-color .5s ease-out;
+  background-color:#000;
+  color:#fff;
+  border:2px solid #000;
+  padding:13px;
+  min-width:110px;
+  border-radius: 2px;
+  cursor:pointer;
+}
+#cconsent-modal .ccm__footer button:hover {
+  background-color:#0;
+}
+#cconsent-modal .ccm__footer button:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+#cconsent-modal .ccm__footer button + button {
+  margin-left: 10px;
+}
+@media all and (max-width:756px){
+	#cconsent-modal .ccm__footer {
+		flex-flow: column;
+	}
+	#cconsent-modal .ccm__footer button {
+		width: 100%;
+		margin-bottom: 10px;
+		margin-left: 0px !important;
+	}
+
+}
+#cconsent-modal  .ccm__switch-component {
+  display:flex;
+  margin-right:35px;
+  align-items:center;
+}
+#cconsent-modal  .ccm__switch__status {
+  font-weight:600;
+}
+#cconsent-modal  .ccm__switch-group {
+  background:none;
+  width:40px;
+  height:20px;
+  margin:0 10px;
+  position:relative;
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+#cconsent-modal .ccm__switch__slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius:10px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  pointer-events: none;
+}
+
+#cconsent-modal .ccm__switch__slider:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+
+#cconsent-modal .ccm__switch__slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius:50%;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+#cconsent-modal .ccm__switch-group[aria-checked="true"] .ccm__switch__slider {
+  background-color: #28A834;
+}
+#cconsent-modal .ccm__switch-group:focus-visible {
+  box-shadow: 0 0 0 2pxrgb(40 168 52 / 75%);
+}
+#cconsent-modal .ccm__switch-group[aria-checked="true"] .ccm__switch__slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+#cconsent-modal .ccm__switch-group.disabled  .ccm__switch__slider {
+
+	/*background-color: #ccc;*/
+	opacity: 0.4;
+}
+
+
+
+#cconsent-modal .ccm__cookie_category_row {
+	display: flex;
+	flex-direction: row;
+	padding: 25px 35px;
+}
+
+</style>
+	<!-- 2026 cookies styles end -->
+	
+		
+	
+<!-- 2026 cookie start -->
+<script>
+/*
+    Overview: Consent mode parameters
+
+    Setting Name            Used by Google    Description
+    ad_storage              Yes               Enables storage (such as cookies) related to advertising
+    analytics_storage       Yes               Enables storage (such as cookies) related to analytics e.g. visit duration
+    ad_user_data            Yes               Whether Google’s services can use user data for building advertising audiences
+    ad_personalization      Yes               Whether Google’s services can use the data for remarketing
+    functionality_storage   No                Enables storage that supports the functionality of the website or app e.g. language settings
+    personalization_storage No                Enables storage related to personalization e.g. video recommendations
+    security_storage        No                Enables storage related to security such as authentication functionality, fraud prevention, and other user protection
+*/
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+
+
+
+window.onload = function() {
+
+/*
+mapping: 
+technical ->
+storage -> functionality_storage personalization_storage security_storage
+analytics -> analytics_storage
+advertising -> ad_user_data ad_storage ad_personalization
+*/
+var useCookie = true;
+var cookieName = 'ampeu_cookieConsent';
+var consentSettings = {
+	'functionality_storage': 'denied', // storage
+	'security_storage': 'denied', // storage
+	'ad_storage': 'denied', // advertising
+	'ad_user_data': 'denied', // advertising
+	'ad_personalization': 'denied', // advertising
+	'analytics_storage': 'denied', // analytics
+	'personalization_storage': 'denied', // storage
+};
+
+var ccLang__not_checked = 'nije odobreno';
+var ccLang__checked = 'odobreno';
+
+const cookie_consent_banner = document.querySelector('#cconsent-bar');
+const cookie_consent_modal = document.querySelector('#cconsent-modal');
+
+var modalOpen = false;
+
+window.cookieconsent = {
+    show: showBanner,
+    hide: hideBanner,
+	consentMode: {
+		'technical': false,
+		'storage': false,
+		'analytics': false,
+		'advertising': false
+	}
+  }
+
+//window.cookieconsent = {}
+
+if (useCookie == true) {
+	// use cookie for storage
+	_cookieValues = readCookie(cookieName)
+
+	//console.log('cookie value: ')
+	//console.log(_cookieValues)
+
+	if (_cookieValues) {
+		_cookieParsedValues = JSON.parse(_cookieValues);
+
+		window.cookieconsent.consentMode = {
+			'technical': _cookieParsedValues.technical,
+			'storage':  _cookieParsedValues.storage,
+			'analytics':  _cookieParsedValues.analytics,
+			'advertising':  _cookieParsedValues.advertising,
+		}
+
+		const consentMode = {
+	      'ad_storage': (_cookieParsedValues.advertising && !dnt()) ? 'granted' : 'denied',
+	      'analytics_storage': (_cookieParsedValues.analytics && !dnt()) ? 'granted' : 'denied',
+	      'ad_user_data': (_cookieParsedValues.advertising && !dnt()) ? 'granted' : 'denied',
+	      'ad_personalization': (_cookieParsedValues.advertising && !gpc()) ? 'granted' : 'denied',
+	      'functionality_storage': _cookieParsedValues.storage ? 'granted' : 'denied',
+	      'personalization_storage': _cookieParsedValues.storage ? 'granted' : 'denied',
+	      'security_storage': _cookieParsedValues.storage ? 'granted' : 'denied',
+	    };
+
+
+	    gtag('consent', 'update', consentMode);
+
+	} else {
+
+		showBanner();
+	}
+} else {
+	// use browser local storage for storage
+	if (localStorage.getItem('consentMode') === null) {
+
+		gtag('consent', 'default', {
+		  'functionality_storage': 'denied',
+		  'security_storage': 'denied',
+		  'ad_storage': 'denied',
+		  'ad_user_data': 'denied',
+		  'ad_personalization': 'denied',
+		  'analytics_storage': 'denied',
+		  'personalization_storage': 'denied',
+		  'wait_for_update': 500,
+		});
+
+		showBanner();
+
+	} else {
+		storedSettings = JSON.parse(localStorage.getItem('consentMode'))
+		//gtag('consent', 'default', JSON.parse(localStorage.getItem('consentMode')));
+
+		const consentMode = {
+	      'ad_storage': (storedSettings.advertising && !dnt()) ? 'granted' : 'denied',
+	      'analytics_storage': (storedSettings.analytics && !dnt()) ? 'granted' : 'denied',
+	      'ad_user_data': (storedSettings.advertising && !dnt()) ? 'granted' : 'denied',
+	      'ad_personalization': (storedSettings.advertising && !gpc()) ? 'granted' : 'denied',
+	      'functionality_storage': storedSettings.storage ? 'granted' : 'denied',
+	      'personalization_storage': storedSettings.storage ? 'granted' : 'denied',
+	      'security_storage': storedSettings.storage ? 'granted' : 'denied',
+	    };
+
+
+	    gtag('consent', 'default', consentMode);
+
+		// todo write values from localStorage
+		window.cookieconsent.consentMode = {
+			'technical': storedSettings.technical,
+			'storage': storedSettings.storage,
+			'analytics': storedSettings.analytics,
+			'advertising': storedSettings.advertising
+		}
+	}
+}
+
+
+
+function setCookie(cookie, callback) {
+	var expires_in = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
+	document.cookie = cookieName+"=".concat(JSON.stringify(cookie), "; expires=").concat(expires_in, "; path=/;");
+	if (callback) callback();
+}
+
+function readCookie(name) {
+    name += '=';
+    for (var ca = document.cookie.split(/;\s*/), i = ca.length - 1; i >= 0; i--)
+        if (!ca[i].indexOf(name))
+            return ca[i].replace(name, '');
+}
+
+
+
+
+function openModal() {
+
+	// turn the options on or off
+
+	if (window.cookieconsent.consentMode.storage == true) {
+		document.querySelector('#ccm__category_storage').setAttribute('aria-checked', 'true');
+		document.querySelector('#ccm__category_storage').setAttribute('aria-label', ccLang__checked);
+	} else {
+		document.querySelector('#ccm__category_storage').setAttribute('aria-checked', 'false');
+		document.querySelector('#ccm__category_storage').setAttribute('aria-label', ccLang__not_checked);
+	}
+
+	if (window.cookieconsent.consentMode.analytics == true) {
+		document.querySelector('#ccm__category_analytics').setAttribute('aria-checked', 'true');
+		document.querySelector('#ccm__category_analytics').setAttribute('aria-label', ccLang__checked);
+	} else {
+		document.querySelector('#ccm__category_analytics').setAttribute('aria-checked', 'false');
+		document.querySelector('#ccm__category_analytics').setAttribute('aria-label', ccLang__not_checked);
+	}
+
+	if (window.cookieconsent.consentMode.advertising == true) {
+		document.querySelector('#ccm__category_advertising').setAttribute('aria-checked', 'true');
+		document.querySelector('#ccm__category_advertising').setAttribute('aria-label', ccLang__checked);
+	} else {
+		document.querySelector('#ccm__category_advertising').setAttribute('aria-checked', 'false');
+		document.querySelector('#ccm__category_advertising').setAttribute('aria-label', ccLang__not_checked);
+	}
+
+
+	modalOpen = true;
+	cookie_consent_modal.classList.add('ccm--visible');
+	cookie_consent_modal.setAttribute('aria-hidden', 'false');
+	cookie_consent_modal.setAttribute('tabindex', '0');
+	cookie_consent_modal.querySelector('.ccm__cheading__close').focus();
+}
+
+function closeModal() {
+
+	if (modalOpen == true) {
+		cookie_consent_modal.classList.remove('ccm--visible');
+	    cookie_consent_modal.setAttribute('aria-hidden', 'true');
+	    cookie_consent_modal.setAttribute('tabindex', '-1');
+		modalOpen = false;
+	}
+}
+
+  function dnt () {
+  	return (navigator.doNotTrack == "1" || window.doNotTrack == "1")
+  }
+
+  function gpc () {
+    return (navigator.globalPrivacyControl || window.globalPrivacyControl)
+  }
+
+  function showBanner() {
+    cookie_consent_banner.style.display = 'block';
+  }
+
+  function hideBanner() {
+    cookie_consent_banner.style.display = 'none';
+  }
+
+
+
+  function setConsent(consent) {
+
+  /*
+  	technical: true,
+	storage -> functionality_storage personalization_storage security_storage
+	analytics -> analytics_storage
+	advertising -> ad_user_data ad_storage ad_personalization
+  */
+
+    const consentMode = {
+      'ad_storage': (consent.advertising && !dnt()) ? 'granted' : 'denied',
+      'analytics_storage': (consent.analytics && !dnt()) ? 'granted' : 'denied',
+      'ad_user_data': (consent.advertising && !dnt()) ? 'granted' : 'denied',
+      'ad_personalization': (consent.advertising && !gpc()) ? 'granted' : 'denied',
+      'functionality_storage': consent.storage ? 'granted' : 'denied',
+      'personalization_storage': consent.storage ? 'granted' : 'denied',
+      'security_storage': consent.storage ? 'granted' : 'denied',
+    };
+
+    gtag('consent', 'update', consentMode);
+
+    localStorage.setItem('consentMode', JSON.stringify(consent));
+
+	const cookieValue = {
+		'ad_storage': consent.advertising ? 'granted' : 'denied',
+    	'analytics_storage': consent.analytics ? 'granted' : 'denied',
+    	'ad_user_data': consent.advertising ? 'granted' : 'denied',
+    	'ad_personalization': consent.advertising ? 'granted' : 'denied',
+    	'functionality_storage': consent.storage ? 'granted' : 'denied',
+    	'personalization_storage': consent.storage ? 'granted' : 'denied',
+    	'security_storage': consent.storage ? 'granted' : 'denied',
+	}
+
+	if (useCookie == true) {
+		setCookie(consent);
+	}
+
+	// save settings for local usage
+	window.cookieconsent.consentMode = consent
+
+  }
+
+  if (cookie_consent_banner) {
+
+    Array.from(document.querySelectorAll('.cookie-consent-banner-open')).map(btn => {
+      btn.addEventListener('click', () => {
+        showBanner()
+      })
+    })
+
+	// on load actions
+	if (useCookie == true) {
+		if (readCookie(cookieName) === null) {
+			showBanner()
+		}
+	} else {
+	    if (window.localStorage.getItem('consentMode')) {
+	      //hideBanner()
+	    } else {
+	      showBanner()
+	    }
+	}
+
+	cookie_consent_banner.querySelector('.ccb__heading__close').addEventListener('click', () => {
+		hideBanner()
+    })
+
+	Array.from(document.querySelectorAll('.ccb__consent-give')).map(btn => {
+      btn.addEventListener('click', () => {
+
+        setConsent({
+	        technical: true,
+	        storage: true,
+	        analytics: true,
+	        advertising: true
+	      })
+	      hideBanner()
+		  closeModal()
+      })
+    })
+
+
+	Array.from(document.querySelectorAll('.ccb__consent-decline')).map(btn => {
+      btn.addEventListener('click', () => {
+
+        setConsent({
+	        technical: true,
+	        storage: false,
+	        analytics: false,
+	        advertising: false
+	      })
+	      hideBanner()
+		  closeModal()
+      })
+    })
+
+
+	document.querySelector('.ccb__edit').addEventListener('click', () => {
+		hideBanner()
+		openModal()
+	})
+
+	document.querySelector('.ccm__cheading__close').addEventListener('click', () => {
+		closeModal()
+	})
+
+
+	Array.from(document.querySelectorAll('.ccm__switch-group')).map(btn => {
+		btn.addEventListener('click', () => {
+
+
+		if (event.target.classList.contains('disabled')) {
+
+		} else {
+			var status = event.target.getAttribute('aria-checked');
+	        var label = event.target.textContent.trim();
+
+	        if (status !== 'true') {
+				event.target.setAttribute('aria-checked', 'true');
+				event.target.setAttribute('aria-label', ccLang__checked);
+
+	        } else {
+				event.target.setAttribute('aria-checked', 'false');
+				event.target.setAttribute('aria-label', ccLang__not_checked);
+	        }
+
+		}
+
+		})
+	})
+
+	document.querySelector('#ccm__footer__consent-modal-submit').addEventListener('click', function () {
+		setConsent({
+	        technical: true,
+	        storage: document.querySelector('#ccm__category_storage').getAttribute('aria-checked') == 'true' ? true : false,
+	        analytics: document.querySelector('#ccm__category_analytics').getAttribute('aria-checked') == 'true' ? true : false,
+	        advertising: document.querySelector('#ccm__category_advertising').getAttribute('aria-checked') == 'true' ? true : false
+	      });
+		closeModal()
+	})
+
+  }
+}
+
+</script>
+<!-- 2026 cookie end -->
+	
+	
+
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.ampeu.hr/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.ampeu.hr/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.ampeu.hr/favicon-16x16.png">
+    <link rel="manifest" href="https://www.ampeu.hr/site.webmanifest">
+
+    <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.ampeu.hr/css/bootstrap-temp.css">
+    <link rel="stylesheet" href="https://www.ampeu.hr/assets/kalendar/css/main.css">
+<title>Ampeu | Agencija za mobilnost i programe EU</title><meta name="generator" content="SEOmatic">
+<meta name="description" content="Agencija za mobilnost i programe EU">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<meta name="robots" content="all">
+<meta content="223594766476508" property="fb:profile_id">
+<meta content="hr" property="og:locale">
+<meta content="en" property="og:locale:alternate">
+<meta content="Ampeu" property="og:site_name">
+<meta content="website" property="og:type">
+<meta content="https://www.ampeu.hr/natjecaji" property="og:url">
+<meta content="Agencija za mobilnost i programe EU" property="og:title">
+<meta content="Agencija za mobilnost i programe EU" property="og:description">
+<meta content="https://www.ampeu.hr/ilustracije/_1200x630_crop_center-center_82_none/ampeu-vizual-4-3.jpg?mtime=1695119371" property="og:image">
+<meta content="1200" property="og:image:width">
+<meta content="630" property="og:image:height">
+<meta content="Različiti animirani likovi koji dočaravaju mogućnosti koje Agencija za mobilnost i programe EU nudi hrvatskim korisnicima. Agencija podupire projekti mobilnosti i suradnje s domaćim i stranim partnerima u svrhu boljeg obrazovanja i uključivijeg društva, osmišljavanja inovativnih rješenja za izazove današnjice te stjecanje vještina budućnosti. " property="og:image:alt">
+<meta content="https://www.instagram.com/ampeu.hr/" property="og:see_also">
+<meta content="https://www.youtube.com/user/AgencijaZaMobilnost" property="og:see_also">
+<meta content="https://www.linkedin.com/company/agencija-za-mobilnost-i-programe-europske-unije" property="og:see_also">
+<meta content="https://www.facebook.com/AgencijaZaMobilnostiProgrameEU" property="og:see_also">
+<meta content="https://twitter.com/ampeu_hr" property="og:see_also">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@ampeu_hr">
+<meta name="twitter:creator" content="@ampeu_hr">
+<meta name="twitter:title" content="Agencija za mobilnost i programe EU">
+<meta name="twitter:description" content="Agencija za mobilnost i programe EU">
+<meta name="twitter:image" content="https://www.ampeu.hr/ilustracije/_800x800_crop_center-center_82_none/ampeu-vizual-4-3.jpg?mtime=1695119371">
+<meta name="twitter:image:width" content="800">
+<meta name="twitter:image:height" content="800">
+<meta name="twitter:image:alt" content="Različiti animirani likovi koji dočaravaju mogućnosti koje Agencija za mobilnost i programe EU nudi hrvatskim korisnicima. Agencija podupire projekti mobilnosti i suradnje s domaćim i stranim partnerima u svrhu boljeg obrazovanja i uključivijeg društva, osmišljavanja inovativnih rješenja za izazove današnjice te stjecanje vještina budućnosti. ">
+<link href="https://www.ampeu.hr/natjecaji" rel="canonical">
+<link href="https://www.ampeu.hr/" rel="home">
+<link type="text/plain" href="https://www.ampeu.hr/humans.txt" rel="author">
+<link href="https://en.ampeu.hr/natjecaji" rel="alternate" hreflang="en">
+<link href="https://www.ampeu.hr/natjecaji" rel="alternate" hreflang="x-default">
+<link href="https://www.ampeu.hr/natjecaji" rel="alternate" hreflang="hr"></head>
+<body>
+
+<!-- 2026 cookie start -->
+	<dialog id="cconsent-modal" aria-labelledby="ccm__content__title" aria-hidden="true" class="" tabindex="-1">
+	<div class="ccm__content">
+		<div class="ccm__content__heading">
+			<h2 id="ccm__content__title">Postavke za davanje privole za tehnologije praćenja</h2>
+			<div id="cookie-text2">
+				<p>Imate mogućnost prilagoditi postavke vezane za davanje privole na bilo koju tehnologiju korištenu u svrhe navedene u nastavku. Za dodatne informacije o korisnosti i funkcioniranju takvih alata za praćenje, molimo pogledajte "Obavijest o kolačićima". Svoje postavke u svakom trenutku možete promijeniti na poveznici "Obavijest o kolačićima".</p>
+				<p>Ako želite, možete kliknuti na X. To će rezultirati nastavkom pregledavanja ove web stranice bez kolačića ili drugih alata za praćenje (osim tehničkih kolačića koji su uvijek aktivni)</p>
+			</div>
+			<button class="ccm__cheading__close" aria-label="close" title="zatvori">×</button>
+		</div>
+		<div class="ccm__content__body">
+			<div class="ccm__cookie_category_row">
+				<div class="ccm__cookie_category_option">
+					<div class="ccm__switch-component">
+						<span class="ccm__switch__status status-off">Off</span>
+						<button class="ccm__switch-group disabled" role="switch" data-category="technical" aria-checked="true" aria-label="Tehnički (nužni) kolačići"><span class="ccm__switch__slider"></span></button>
+						<span class="ccm__switch__status status-on">On</span>
+					</div>
+				</div>
+				<div class="ccm__cookie_category_description">
+					<h3>Tehnički (nužni) kolačići (uvijek aktivni)</h3>
+					<p>Nužni kolačići su neophodni za pružanje osnonih funkcionalnosti web stranice. Možete ih onemogućiti u postavkama preglednika, ali to može utjecati na ispravno funkcioniranje stranice.</p>
+				</div>
+			</div>
+
+			<div class="ccm__cookie_category_row">
+				<div class="ccm__cookie_category_option">
+					<div class="ccm__switch-component">
+						<span class="ccm__switch__status status-off">Off</span>
+						<button class="ccm__switch-group" id="ccm__category_storage" role="switch" data-category="storage" aria-checked="false" aria-label="Funkcionalni kolačići"><span class="ccm__switch__slider"></span></button>
+						<span class="ccm__switch__status status-on">On</span>
+					</div>
+				</div>
+				<div class="ccm__cookie_category_description">
+					<h3>Funkcionalni kolačići</h3>
+					<p>Ove kolačiće koristimo kako bismo vam pružili personalizirano iskustvo prilikom posjete našoj web stranici. Omogućuju pamćenje vaših odabira i preferencija te prilagođavanje sadržaja prema vašim potrebama.</p>
+				</div>
+			</div>
+
+			<div class="ccm__cookie_category_row">
+				<div class="ccm__cookie_category_option">
+					<div class="ccm__switch-component">
+						<span class="ccm__switch__status status-off">Off</span>
+						<button class="ccm__switch-group" id="ccm__category_analytics" role="switch" data-category="analytics" aria-checked="false" aria-label="Statistički kolačići"><span class="ccm__switch__slider"></span></button>
+						<span class="ccm__switch__status status-on">On</span>
+					</div>
+				</div>
+				<div class="ccm__cookie_category_description">
+					<h3>Statistički (analitički) kolačići</h3>
+					<p>Koristimo statističke kolačiće kako bismo prikupljali anonimne informacije o tome kako posjetitelji koriste našu web stranicu. Ovi kolačići pomažu nam u razumijevanju kako poboljšati našu uslugu, analizirajući broj posjetitelja izvore prometa i druge statističke podatke.</p>
+				</div>
+			</div>
+
+			<div class="ccm__cookie_category_row">
+				<div class="ccm__cookie_category_option">
+					<div class="ccm__switch-component">
+						<span class="ccm__switch__status status-off">Off</span>
+						<button class="ccm__switch-group" id="ccm__category_advertising" role="switch" data-category="advertising" aria-checked="false" aria-label="Marketinški kolačići"><span class="ccm__switch__slider"></span></button>
+						<span class="ccm__switch__status status-on">On</span>
+					</div>
+				</div>
+				<div class="ccm__cookie_category_description">
+					<h3>Marketinški kolačići</h3>
+					<p>Koristimo kolačiće trećih strana u svrhu marketinških aktivnosti kako bismo vam pružili relevantne oglase i personalizirani sadržaj na našoj web stranici. Ovi kolačići omogućuju nam da vam prikažemo oglase koji odogovrajau vašim interesima i preferencijama. Marketinški kolačići koriste se za praćenje posjetitelja kroz web stranice u svrhu prikazivanja ciljanih oglasa.</p>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="ccm__footer">
+
+			<button class="ccb__consent-decline">Odbijam sve</button>
+			<button class="ccb__consent-give">Prihvaćam sve</button>
+			<button id="ccm__footer__consent-modal-submit">Potvrđujem svoje odabire</button>
+		</div>
+	</div>
+</dialog>
+
+
+
+
+<div id="cconsent-bar" class="" role="region" aria-label="Postavke kolačića" aria-hidden="false" tabindex="0">
+
+		<button class="ccb__heading__close" aria-label="zatvori" title="zatvori">×</button>
+
+	<div class="ccb__wrapper">
+		<div class="ccb__left">
+			<div id="cookie-title">Privola za obradu osobnih podataka putem kolačića</div>
+			<div id="cookie-text1" class="cc-text"><p>Ova web stranica koristi kolačiće putem kojih obrađujemo Vaše osobne podatke. Više o obradi osobnih podataka putem kolačića na našim stranicama možete pročitati na slijedećoj poveznici <a href="https://www.ampeu.hr/o-nama/obrada-osobnih-podataka/" title="otvori https://www.ampeu.hr/o-nama/obrada-osobnih-podataka/ u novom prozoru" target="_blank">https://www.ampeu.hr/o-nama/obrada-osobnih-podataka/</a>.</p>
+			</div>
+		</div>
+		<div class="ccb__right">
+			<div class="ccb__button">
+				<button class="ccb__edit" aria-hidden="false" tabindex="0">Postavke kolačića</button>
+				<button class="ccb__consent-decline" aria-hidden="false" tabindex="0">Odbijam sve</button>
+				<button class="ccb__consent-give" aria-hidden="false" tabindex="0">Prihvaćam sve</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+    <!-- SVG Symbols -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-menu" viewBox="0 0 28 16">
+        <g fill="currentColor">
+            <path d="m0 14h20v2h-20z"/>
+            <path d="m0 7h24v2h-24z"/>
+            <path d="m0 0h28v2h-28z"/>
+        </g>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 22 22">
+        <rect y="20.192" width="28" height="2" transform="rotate(-45 0 20.1924)" fill="currentColor"/>
+        <rect x="1.414" y=".393" width="28" height="2" transform="rotate(45 1.41418 0.393311)" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+        <g opacity="0.4">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 10.99L4 6H20ZM12 13L4 8V18H20V8L12 13Z" fill="#currentColor"/>
+        </g>
+    </symbol>
+    <symbol id="icon-accessibility" viewBox="0 0 30 30">
+        <path d="M0 15C0 6.8 6.8 0 15 0s15 6.8 15 15-6.8 15-15 15S0 23.2 0 15zm9.4-5.1-1.3-.5-1 2.8 1.2.4 3.8 1.4v3l-1.8 5.5-.5 1.4 2.6.9.5-1.4 1.5-4.6h.8l1.5 4.6.5 1.4 2.6-.9-.2-1.4-1.8-5.4V14l3.8-1.4 1.4-.5-1-2.6-1.4.5-3.5 1.2H13L9.4 9.9zm5.6-.5c1.2 0 2.4-1 2.4-2.4S16.2 4.8 15 4.8s-2.4 1-2.4 2.4 1.2 2.2 2.4 2.2z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+        <g opacity="0.4">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.35 10.04C18.67 6.59 15.64 4 12 4C9.11 4 6.6 5.64 5.35 8.04C2.34 8.36 0 10.91 0 14C0 17.31 2.69 20 6 20H19C21.76 20 24 17.76 24 15C24 12.36 21.95 10.22 19.35 10.04ZM19 18H6C3.79 18 2 16.21 2 14C2 11.95 3.53 10.24 5.56 10.03L6.63 9.92L7.13 8.97C8.08 7.14 9.94 6 12 6C14.62 6 16.88 7.86 17.39 10.43L17.69 11.93L19.22 12.04C20.78 12.14 22 13.45 22 15C22 16.65 20.65 18 19 18ZM10.55 10H13.45V13H16L12 17L8 13H10.55V10Z" fill="currentColor"/>
+        </g>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 30 30">
+        <path d="M23.75 16.25H16.25V23.75H13.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-minus" viewBox="0 0 24 24">
+        <path d="M3 11H21V13H3V11Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+        <path d="M7.41 15.705L12 11.125L16.59 15.705L18 14.295L12 8.29496L6 14.295L7.41 15.705Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-arrow-down" viewBox="0 0 24 24">
+        <path d="M16.59 8.29504L12 12.875L7.41 8.29504L6 9.70504L12 15.705L18 9.70504L16.59 8.29504Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-hamburger" viewBox="0 0 28 16">
+        <rect y="14" width="20" height="2" fill="currentColor" />
+        <rect y="7" width="24" height="2" fill="currentColor" />
+        <rect width="28" height="2" fill="currentColor" />
+    </symbol>
+    <symbol id="icon-arrow-left" viewBox="0 0 22 20">
+        <path d="M10.9997 16.6665L12.2922 15.4915L7.17718 10.8332L18.333 10.8332V9.1665L7.17718 9.1665L12.2922 4.50817L10.9997 3.33317L3.66634 9.99984L10.9997 16.6665Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 22 20">
+        <path d="M11.0003 3.3335L9.70783 4.5085L14.8228 9.16683H3.66699V10.8335H14.8228L9.70783 15.4918L11.0003 16.6668L18.3337 10.0002L11.0003 3.3335Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 50 50">
+        <path d="M 21 3 C 11.622998 3 4 10.623005 4 20 C 4 29.376995 11.622998 37 21 37 C 24.712383 37 28.139151 35.791079 30.9375 33.765625 L 44.085938 46.914062 L 46.914062 44.085938 L 33.886719 31.058594 C 36.443536 28.083 38 24.223631 38 20 C 38 10.623005 30.377002 3 21 3 z M 21 5 C 29.296122 5 36 11.703883 36 20 C 36 28.296117 29.296122 35 21 35 C 12.703878 35 6 28.296117 6 20 C 6 11.703883 12.703878 5 21 5 z"/>
+    </symbol>
+</svg>
+<!-- EOF SVG Symbols -->
+
+<header class="Header Header--isFixed Header--isOpen" data-js="cmp-header">
+    <div class="Header__container" data-js="main-navigation-mobile">
+        <div class="Header__container-inner">
+
+            <div class="Header__logo Logo Logo--app-homepage">
+                <a href="https://www.ampeu.hr/" title="Odi na naslovnicu" class="Logo__content">
+                <h1 class="Logo__content">
+                                        <img
+                        src="https://www.ampeu.hr/images/ampeu-logo.svg"
+                        alt="AMPEU Logo">
+                                        <span class="sr-only">Agencija za mobilnost i programe EU</span>
+                </h1>
+                </a>
+            </div>
+        
+            <div class="Header__trigger-container ml-auto">
+                <button class="Header__trigger" data-js="cmp-menu-trigger" aria-expanded="false" aria-controls="main-menu">
+                    <svg class="icon-container icon-1.5x">
+                        <use xlink:href="#icon-menu"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="Header__group">
+
+                <div class="Header__group-inner Header__group-inner--space-evenly">
+                    <nav
+                        class="Nav Nav--header" 
+                        role="navigation" 
+                        aria-label="Main Site Navigation">
+                        <ul
+                            id="main-menu" 
+                            class="Nav__list" 
+                            role="menubar" 
+                            aria-label="Main Site Navigation">
+                                                                                      
+                                                                              
+                                                                            <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="https://ampeu.hr/programi" title="Programi " id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Programi</span></a>
+
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                                                                            <a class="dropdown-item" href="https://www.ampeu.hr/erasmus" title="Erasmus+" target=""><span>Erasmus+</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.europskesnagesolidarnosti.hr/" title="Europske snage solidarnosti" target="1"><span>Europske snage solidarnosti</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.obzoreuropa.hr/" title="Obzor Europa" target="1"><span>Obzor Europa</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.euraxess.hr/" title="EURAXESS" target="1"><span>EURAXESS</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.ampeu.hr/bilaterala" title="Bilateralni program akademske mobilnosti" target=""><span>Bilateralni program akademske mobilnosti</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.ampeu.hr/ceepus" title="CEEPUS" target=""><span>CEEPUS</span></a>
+                                                                                        </div>
+                                        </li>
+                                                                                                                                                <li role="none" class="active-link">
+                                            <a role="menuitem" href="https://www.ampeu.hr/natjecaji" title="Natječaji"><span>Natječaji</span></a>
+                                        </li>
+                                              
+                                                                                                                                                <li role="none" class="">
+                                            <a role="menuitem" href="https://www.ampeu.hr/novosti" title="Novosti"><span>Novosti</span></a>
+                                        </li>
+                                              
+                                                                                                                                                <li role="none" class="">
+                                            <a role="menuitem" href="https://www.ampeu.hr/dogadanja" title="Događanja"><span>Događanja</span></a>
+                                        </li>
+                                              
+                                                                                                                  
+                                                                            <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="https://www.ampeu.hr/o-nama" title="O nama " id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>O nama</span></a>
+
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                                                                            <a class="dropdown-item" href="https://www.ampeu.hr/o-nama/vise-o-nama" title="Više o nama" target=""><span>Više o nama</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.ampeu.hr/o-nama/vise-o-nama/kontakti" title="Kontakti" target=""><span>Kontakti</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.ampeu.hr/o-nama/dokumenti" title="Dokumenti" target=""><span>Dokumenti</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.ampeu.hr/o-nama/obrada-osobnih-podataka" title="Obrada osobnih podataka" target=""><span>Obrada osobnih podataka</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.ampeu.hr/o-nama/pristup-informacijama" title="Pristup informacijama" target=""><span>Pristup informacijama</span></a>
+                                                                                            <a class="dropdown-item" href="https://www.ampeu.hr/o-nama/izjava-o-pristupačnosti" title="Izjava o pristupačnosti" target=""><span>Izjava o pristupačnosti</span></a>
+                                                                                        </div>
+                                        </li>
+                                                                                                                    <li class="ml-3">
+                            <div id="component-kmkdbz" class="sprig-component" data-hx-target="this" data-hx-include="this" data-hx-trigger="refresh" data-hx-get="https://www.ampeu.hr/index.php?p=actions/sprig-core/components/render" data-hx-vals="{&quot;sprig:siteId&quot;:&quot;1827fac311a504f6dee8d1cc6cfa4ab3d67b35fe06af0d055451badb6fe17bf31&quot;,&quot;sprig:id&quot;:&quot;5a897355c225d6f05b29c958bb02ce6baca14d5f66011052d8f152db5f789bdfcomponent-kmkdbz&quot;,&quot;sprig:component&quot;:&quot;6b4ca5e15bef839973461fb36769361b445e6dc450fe612c17931c4988e46b2e&quot;,&quot;sprig:template&quot;:&quot;7261564ef98b5397373b27987f569aba80be29eb841d210686bf38c9b468377apartials\/_search&quot;}">
+<div class="field">
+    <div class="input-group">
+        <input type="text" id="example-search-input" class="text form-control border-end-0 border" name="query" value sprig s-trigger="keyup changed" s-replace="#results" placeholder="Traži.." data-hx-get="https://www.ampeu.hr/index.php?p=actions/sprig-core/components/render" data-hx-trigger="keyup changed" data-hx-select="#results" data-hx-target="#results" data-hx-swap="outerHTML" data-sprig-parsed>
+        <span class="input-group-append">
+            <button class="btn btn-outline-secondary bg-white border-start-0 border-left-0 border ms-n5" type="button" id="search-button">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+</div>
+
+<div id="results">
+    </div>
+
+<script>
+    const searchInput = document.getElementById('example-search-input');
+    const searchButton = document.getElementById('search-button');
+
+    // Function to perform search
+    function performSearch(query) {
+        if (query.trim() !== '') {
+            window.location.href = '/search/results?query=' + encodeURIComponent(query);
+        }
+    }
+
+    // Event listener for input field
+    searchInput.addEventListener('input', function () {
+        const query = this.value;
+
+        // Update button click handler
+        searchButton.onclick = function () {
+            performSearch(query);
+        };
+    });
+
+    // Event listener for 'Enter' key press
+    searchInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent default form submission if applicable
+            const query = this.value;
+            performSearch(query);
+        }
+    });
+</script>
+</div>
+                        </li>
+                        </ul>
+                    </nav>
+
+                        <div class="Header__extra" data-js="cmp-extra">
+                            <div class="Header__extra-inner">
+
+                                <div class="PageSettings" data-js="cmp-page-settings">
+                                    <div class="PageSettings__block PageSettings__block--top">
+                                        <span tabindex="0" title="Prilagodba stranice" class="PageSettings__trigger" data-js="cmp-page-setting-toggle">
+                                            <svg class="icon-container">
+                                                <use xlink:href="#icon-accessibility"></use>
+                                            </svg>
+                                        </span>
+                                        <button class="PageSettings__close-trigger" data-js="cmp-page-setting-close">
+                                            <svg class="icon-container">
+                                                <use xlink:href="#icon-close"></use>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="PageSettings__block-group" data-js="cmp-page-settings-menu">
+                                                                                <div class="PageSettings__block" data-js="cmp-settings-font-color">
+                                            <ul>
+                                                <li>
+                                                    <span tabindex="0" data-settings="font-color-black" title="Crna slova">Crna slova</span>
+                                                </li>
+                                                <li>
+                                                    <span tabindex="0" data-settings="font-color-light" title="Crna slova">Bijela slova</span>
+                                                </li>
+                                                <li class="active">
+                                                    <span tabindex="0" data-settings="font-color-default" title="Zadane boje">Zadane boje</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="PageSettings__block" data-js="cmp-settings-font-size">
+                                            <ul>
+                                                <li>
+                                                    <span tabindex="0" data-settings="font-size-decrement" title="Manja slova">Manja slova</span>
+                                                </li>
+                                                <li>
+                                                    <span tabindex="0" data-settings="font-size-increment" title="Veća slova">Veća slova</span>
+                                                </li>
+                                                <li class="active">
+                                                    <span tabindex="0" data-settings="font-size-default" title="Zadana slova">Zadana slova</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="PageSettings__block" data-js="cmp-settings-font-family">
+                                            <ul>
+                                                <li>
+                                                    <span tabindex="0" data-settings="font-family-dyslexia" title="Font za disleksiju">Font za disleksiju</span>
+                                                </li>
+                                                <li class="active">
+                                                    <span tabindex="0" data-settings="font-family-default" title="Zadani font">Zadani Font</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                                                            </div>
+                                </div>
+                                                                                                                        <a href="https://en.ampeu.hr/" class="LanguageMenu" title="Change language">en</a>
+                                                        </div>
+                        </div>
+
+                </div>
+                <img src="https://www.ampeu.hr/images/erasmus_header_logo.svg" alt="Erasmus logo" width="180" class="mx-auto d-block my-2">
+<!--                 <button class="Header__desktop-trigger" data-js="cmp-desktop-menu-trigger" aria-expanded="false" aria-controls="main-menu-desktop">
+                    <svg class="icon-container icon-1.5x">
+                        <use xlink:href="#icon-menu"></use>
+                    </svg>
+                </button> -->
+            </div>
+        </div>
+    </div>
+
+<!--     <div class="Header__menu" data-js="cmp-desktop-menu">
+        <div class="container">
+            <div class="Header__menu-inner-container">
+
+                <div class="Header__menu-body Header__menu-body--three-items">
+                                                              
+                                                              
+                            
+                                                            <div class="Header__menu-block">
+                                    <a href="https://ampeu.hr/programi" title="Programi"><span>Programi</span></a>
+                                    <ul>
+                                                                            <li><a href="https://www.ampeu.hr/erasmus" title="Erasmus+"><span>Erasmus+</span></a></li>
+                                                                            <li><a href="https://www.europskesnagesolidarnosti.hr/" title="Europske snage solidarnosti"><span>Europske snage solidarnosti</span></a></li>
+                                                                            <li><a href="https://www.obzoreuropa.hr/" title="Obzor Europa"><span>Obzor Europa</span></a></li>
+                                                                            <li><a href="https://www.euraxess.hr/" title="EURAXESS"><span>EURAXESS</span></a></li>
+                                                                            <li><a href="https://www.ampeu.hr/bilaterala" title="Bilateralni program akademske mobilnosti"><span>Bilateralni program akademske mobilnosti</span></a></li>
+                                                                            <li><a href="https://www.ampeu.hr/ceepus" title="CEEPUS"><span>CEEPUS</span></a></li>
+                                                                        </ul>
+                                </div>
+                                                                                                                <div class="Header__menu-block">
+                                    <a href="https://www.ampeu.hr/natjecaji" title="Natječaji"><span>Natječaji</span></a>
+                                    <ul>
+                                                                                                                                        <li><a href="https://www.ampeu.hr/natjecaji/program-fulbright-specialist-u-2027-i-2028-godini" title="Program „Fulbright Specialist“ u 2027. i 2028. godini"><span>Program „Fulbright Specialist“ u 2027. i 2028. godini</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/natjecaji/natjecaj-ceepus-freemover-stipendije-u-ljetnom-semestru-ak-god-2026-2027" title="Natječaj CEEPUS freemover stipendije u ljetnom semestru ak. god. 2026./2027."><span>Natječaj CEEPUS freemover stipendije u ljetnom semestru ak. god. 2026./2027.</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/natjecaji/otvoren-je-natjecaj-za-mrezne-mobilnosti-u-ceepus-u-u-ljetnom-semestru-akademske-godine-2026-2027" title="Otvoren je natječaj za mrežne mobilnosti u CEEPUS-u u ljetnom semestru akademske godine 2026./2027."><span>Otvoren je natječaj za mrežne mobilnosti u CEEPUS-u u ljetnom semestru akademske godine 2026./2027.</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/natjecaji/natjecaj-za-stipendije-nacionalnoga-stipendijskog-programa-slovacke-republike-u-akademskoj-godini-2026-2027-ljetni-semestar" title="Natječaj za stipendije Nacionalnoga stipendijskog programa Slovačke Republike u akademskoj godini 2026./2027. - ljetni semestar"><span>Natječaj za stipendije Nacionalnoga stipendijskog programa Slovačke Republike u akademskoj godini 2026./2027. - ljetni semestar</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/natjecaji/poziv-na-prijavu-za-sudjelovanje-na-edukaciji-u-podrucju-mladih-od-projekta-do-ucinka-diseminacija-i-odrzivost-rezultata-ka2-projekata" title="Poziv na prijavu za sudjelovanje na edukaciji u području mladih &quot;Od projekta do učinka: diseminacija i održivost rezultata KA2 projekata&quot;"><span>Poziv na prijavu za sudjelovanje na edukaciji u području mladih &quot;Od projekta do učinka: diseminacija i održivost rezultata KA2 projekata&quot;</span></a></li>
+                                                                    </ul>
+                                </div>
+                                      
+                            
+                                                                                                                <div class="Header__menu-block">
+                                    <a href="https://www.ampeu.hr/novosti" title="Novosti"><span>Novosti</span></a>
+                                    <ul>
+                                                                                                                                        <li><a href="https://www.ampeu.hr/novosti/natjecaj-za-srednje-skole-iz-cijele-eu-kako-trgovinski-sporazumi-eu-a-mogu-promicati-demokratske-vrijednosti" title="Natječaj za srednje škole iz cijele EU: Kako trgovinski sporazumi EU-a mogu promicati demokratske vrijednosti?"><span>Natječaj za srednje škole iz cijele EU: Kako trgovinski sporazumi EU-a mogu promicati demokratske vrijednosti?</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/novosti/nagradni-natjecaj-moj-zeleni-zaokret" title="Nagradni natječaj  „Moj zeleni zaokret“"><span>Nagradni natječaj  „Moj zeleni zaokret“</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/novosti/od-ideje-do-erasmus-projekta-poziv-na-radionicu-za-potencijalne-prijavitelje-u-podrucju-obrazovanja-odraslih-priprema-projektnih-prijedloga-u-okviru-kljucne-aktivnosti-1-ka1-2" title="Od ideje do Erasmus+ projekta: Poziv na radionicu za potencijalne prijavitelje u području obrazovanja odraslih – priprema projektnih prijedloga u okviru Ključne aktivnosti 1 (KA1)"><span>Od ideje do Erasmus+ projekta: Poziv na radionicu za potencijalne prijavitelje u području obrazovanja odraslih – priprema projektnih prijedloga u okviru Ključne aktivnosti 1 (KA1)</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/novosti/poziv-na-prijavu-za-sudjelovanje-na-radionici-od-plana-do-ucinka-jacanje-ucinka-i-odrzivosti-ka2-projekata" title="Poziv na prijavu za sudjelovanje na radionici  - Od plana do učinka: jačanje učinka i održivosti KA2 projekata"><span>Poziv na prijavu za sudjelovanje na radionici  - Od plana do učinka: jačanje učinka i održivosti KA2 projekata</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/novosti/madjarskim-visokim-ucilistima-ponovno-omoguceno-sudjelovanje-u-programu-erasmus" title="Mađarskim visokim učilištima ponovno omogućeno sudjelovanje u programu Erasmus+"><span>Mađarskim visokim učilištima ponovno omogućeno sudjelovanje u programu Erasmus+</span></a></li>
+                                                                    </ul>
+                                </div>
+                                      
+                            
+                                                                          
+                                    </div>
+
+
+                <div class="Header__menu-body Header__menu-body--three-items">
+                                                              
+                                                                                    <div class="Header__menu-block">
+                                    <a href="https://www.ampeu.hr/dogadanja" title="Događanja"><span>Događanja</span></a>
+                                    <ul>
+                                                                                                                                        <li><a href="https://www.ampeu.hr/dogadanja/poziv-na-sudjelovanje-na-seminaru-gen-z-na-lokalnoj-razini-dobre-prakse-i-kombinirana-strategija-za-ucinkovit-rad-s-mladima-za-jedinice-lokalne-i-regionalne-samouprave" title="Poziv na sudjelovanje na seminaru „Gen Z na lokalnoj razini: dobre prakse i kombinirana strategija za učinkovit rad s mladima“"><span>Poziv na sudjelovanje na seminaru „Gen Z na lokalnoj razini: dobre prakse i kombinirana strategija za učinkovit rad s mladima“</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/dogadanja/virtualni-godisnji-tematski-sastanak-korisnika-programa-erasmus-i-europske-snage-solidarnosti-kako-uspjesno-komunicirati-svoje-projekte" title="Virtualni godišnji Tematski sastanak korisnika: Kako uspješno komunicirati svoje Erasmus+ i ESS projekte"><span>Virtualni godišnji Tematski sastanak korisnika: Kako uspješno komunicirati svoje Erasmus+ i ESS projekte</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/dogadanja/jesu-li-za-etwinning-potrebne-supermoci-webinar-za-predskolske-ustanove-na-podrucju-rijeke" title="Jesu li za eTwinning potrebne supermoći? - webinar za predškolske ustanove na području Rijeke"><span>Jesu li za eTwinning potrebne supermoći? - webinar za predškolske ustanove na području Rijeke</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/dogadanja/prijavite-se-na-online-seminar-o-mogućnostima-za-osobe-koje-rade-s-mladima" title="Prijavite se na online seminar o mogućnostima za osobe koje rade s mladima"><span>Prijavite se na online seminar o mogućnostima za osobe koje rade s mladima</span></a></li>
+                                                                    <li><a href="https://www.ampeu.hr/dogadanja/prijavite-se-na-online-seminar-i-doznajte-kako-ideju-pretvoriti-u-projekt-solidarnosti" title="Prijavite se na online seminar i doznajte kako ideju pretvoriti u projekt solidarnosti"><span>Prijavite se na online seminar i doznajte kako ideju pretvoriti u projekt solidarnosti</span></a></li>
+                                                                    </ul>
+                                </div>
+                                                        
+                                                                                                            
+                                                            <div class="Header__menu-block">
+                                    <a href="https://www.ampeu.hr/o-nama" title="O nama"><span>O nama</span></a>
+                                    <ul>
+                                                                            <li><a href="https://www.ampeu.hr/o-nama/vise-o-nama" title="Više o nama"><span>Više o nama</span></a></li>
+                                                                            <li><a href="https://www.ampeu.hr/o-nama/vise-o-nama/kontakti" title="Kontakti"><span>Kontakti</span></a></li>
+                                                                            <li><a href="https://www.ampeu.hr/o-nama/dokumenti" title="Dokumenti"><span>Dokumenti</span></a></li>
+                                                                            <li><a href="https://www.ampeu.hr/o-nama/obrada-osobnih-podataka" title="Obrada osobnih podataka"><span>Obrada osobnih podataka</span></a></li>
+                                                                            <li><a href="https://www.ampeu.hr/o-nama/pristup-informacijama" title="Pristup informacijama"><span>Pristup informacijama</span></a></li>
+                                                                            <li><a href="https://www.ampeu.hr/o-nama/izjava-o-pristupačnosti" title="Izjava o pristupačnosti"><span>Izjava o pristupačnosti</span></a></li>
+                                                                        </ul>
+                                </div>
+                                                                          
+                                    </div>
+
+
+
+                <div class="Header__menu-footer">
+                    <p>Pravne informacije</p>
+                    <ul class="Nav">
+                                                        <li><a href="https://www.ampeu.hr/o-nama/obrada-osobnih-podataka/uvjeti-korištenja" title="Uvjeti korištenja"><span>Uvjeti korištenja</span></a></li>
+                            <li><a href="https://www.ampeu.hr/o-nama/pristup-informacijama/kontakti" title="Zaštita privatnosti"><span>Kontakti</span></a></li>
+                            <li><a href="https://www.ampeu.hr/o-nama/izjava-o-pristupačnosti" title="Izjava o pristupačnosti"><span>Izjava o pristupačnosti</span></a></li>
+                            <li><a href="https://www.ampeu.hr/o-nama/obrada-osobnih-podataka/postavke-kolačića" title="Postavke kolačića"><span>Postavke kolačića</span></a></li>
+                                                </ul>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</header>
+
+<main>
+    
+
+    <aside class="NewsItems">
+        <div class="container">
+            <div class="NewsItems__header">
+                <h2 class="NewsItems__title">
+                    Aktivni natječaji                </h2>
+            </div>
+
+            <div class="NewsItems__list NewsItems__list--four-items">
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="NewsItem NewsItem--small">
+                                                    <a href="https://www.ampeu.hr/natjecaji/poziv-za-vanjske-strucnjake-za-ocjenjivanje-projektnih-prijedloga-mreza-visokih-ucilista-u-okviru-programa-ceepus-za-razdoblje-od-2025-do-2032-godine" title="Poziv za vanjske stručnjake za ocjenjivanje projektnih prijedloga mreža visokih učilišta u okviru programa CEEPUS za razdoblje od 2025. do 2032. godine" class="NewsItem__link">
+                                                        <div class="NewsItem__image">
+                                                                                                                                            <img
+                                        loading="lazy"
+                                        decoding="async"
+                                        src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                        srcset="/imager/photos/102668/ceepus_vizual_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                        width="560"
+                                        height="376"
+                                        alt="Petero kolega, dvije žene i tri muškarca, sjede za stolom i jedan muškarac pokazuje rukom prema laptopu.">
+                                                                    </div>
+
+                                <div class="NewsItem__content">
+                                    <p class="NewsItem__meta">
+                                                                        <span>
+                                        <strong>CEEPUS</strong>
+                                    <time datetime="2024-11-25">
+                                        25.11.2024.                                    </time>
+                                    </span>
+                                                                        </p>
+                                    <p class="NewsItem__title">
+                                        Poziv za vanjske stručnjake za ocjenjivanje projektnih prijedloga mreža visokih učilišta u okviru programa CEEPUS za razdoblje od 2025. do 2032. godine
+                                    </p>
+                                                                        <p class="NewsItem__info">
+                                        <strong>
+                                                                                                                                    Rok: 31.12.2030.
+                                                                                                                            </strong>
+                                    </p>
+                                                                    </div>
+                            </a>
+                        </div>       
+                                                                                <div class="NewsItem NewsItem--small">
+                                                    <a href="https://www.ampeu.hr/natjecaji/objavljen-natjecaj-za-erasmus-povelju-u-visokom-obrazovanju-eche-2022" title="Objavljen natječaj za Erasmus povelju u visokom obrazovanju (ECHE) 2022." class="NewsItem__link">
+                                                        <div class="NewsItem__image">
+                                                                                                                                            <img
+                                        loading="lazy"
+                                        decoding="async"
+                                        src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                        srcset="/imager/photos/18071/Erasmus-SECTOR_Higher_edu-H-2_314eb761248ca7b688d67896d6d8533a.jpg 560w"
+                                        width="560"
+                                        height="376"
+                                        alt="Skupina mladih ljudi koji uče skupa; djevojka s mobitelom u ruci">
+                                                                    </div>
+
+                                <div class="NewsItem__content">
+                                    <p class="NewsItem__meta">
+                                                                        <span>
+                                        <strong>Visoko obrazovanje</strong>
+                                    <time datetime="2022-02-28">
+                                        28.02.2022.                                    </time>
+                                    </span>
+                                                                        </p>
+                                    <p class="NewsItem__title">
+                                        Objavljen natječaj za Erasmus povelju u visokom obrazovanju (ECHE) 2022.
+                                    </p>
+                                                                        <p class="NewsItem__info">
+                                        <strong>
+                                                                                                                                    Više rokova
+                                                                                                                            </strong>
+                                    </p>
+                                                                    </div>
+                            </a>
+                        </div>       
+                                                                                <div class="NewsItem NewsItem--small">
+                                                    <a href="https://www.ampeu.hr/natjecaji/program-fulbright-specialist-u-2027-i-2028-godini" title="Program „Fulbright Specialist“ u 2027. i 2028. godini" class="NewsItem__link">
+                                                        <div class="NewsItem__image">
+                                                                                                                                            <img
+                                        loading="lazy"
+                                        decoding="async"
+                                        src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                        srcset="/imager/ilustracije/512796/3817735_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                        width="560"
+                                        height="376"
+                                        alt="">
+                                                                    </div>
+
+                                <div class="NewsItem__content">
+                                    <p class="NewsItem__meta">
+                                                                        <span>
+                                        <strong>Bilateralni program akademske mobilnosti</strong>
+                                    <time datetime="2026-11-02">
+                                        02.11.2026.                                    </time>
+                                    </span>
+                                                                        </p>
+                                    <p class="NewsItem__title">
+                                        Program „Fulbright Specialist“ u 2027. i 2028. godini
+                                    </p>
+                                                                        <p class="NewsItem__info">
+                                        <strong>
+                                                                                                                                    Rok: 31.01.2027.
+                                                                                                                            </strong>
+                                    </p>
+                                                                    </div>
+                            </a>
+                        </div>       
+                                                                                <div class="NewsItem NewsItem--small">
+                                                    <a href="https://www.ampeu.hr/natjecaji/natjecaj-za-stipendije-slobodne-drzave-bavarske-za-diplomske-i-poslijediplomske-studije-u-akademskoj-godini-2027-2028" title="Natječaj za stipendije Slobodne Države Bavarske za diplomske i poslijediplomske studije u akademskoj godini 2027./2028." class="NewsItem__link">
+                                                        <div class="NewsItem__image">
+                                                                                                                                            <img
+                                        loading="lazy"
+                                        decoding="async"
+                                        src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                        srcset="/imager/photos/510810/stipendija_2026-08-24-103714_gynf_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                        width="560"
+                                        height="376"
+                                        alt="">
+                                                                    </div>
+
+                                <div class="NewsItem__content">
+                                    <p class="NewsItem__meta">
+                                                                        <span>
+                                        <strong>Bilateralni program akademske mobilnosti</strong>
+                                    <time datetime="2026-08-24">
+                                        24.08.2026.                                    </time>
+                                    </span>
+                                                                        </p>
+                                    <p class="NewsItem__title">
+                                        Natječaj za stipendije Slobodne Države Bavarske za diplomske i poslijediplomske studije u akademskoj godini 2027./2028.
+                                    </p>
+                                                                        <p class="NewsItem__info">
+                                        <strong>
+                                                                                                                                    Rok: 01.12.2026.
+                                                                                                                            </strong>
+                                    </p>
+                                                                    </div>
+                            </a>
+                        </div>       
+                                                                                <div class="NewsItem NewsItem--small">
+                                                    <a href="https://www.ampeu.hr/natjecaji/natjecaj-za-stipendije-svicarske-konfederacije-u-akademskoj-godini-2027-2028" title="Natječaj za stipendije Švicarske Konfederacije u akademskoj godini 2027./2028." class="NewsItem__link">
+                                                        <div class="NewsItem__image">
+                                                                                                                                            <img
+                                        loading="lazy"
+                                        decoding="async"
+                                        src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                        srcset="/imager/photos/510959/calculator-money_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                        width="560"
+                                        height="376"
+                                        alt="">
+                                                                    </div>
+
+                                <div class="NewsItem__content">
+                                    <p class="NewsItem__meta">
+                                                                        <span>
+                                        <strong>Bilateralni program akademske mobilnosti</strong>
+                                    <time datetime="2026-08-28">
+                                        28.08.2026.                                    </time>
+                                    </span>
+                                                                        </p>
+                                    <p class="NewsItem__title">
+                                        Natječaj za stipendije Švicarske Konfederacije u akademskoj godini 2027./2028.
+                                    </p>
+                                                                        <p class="NewsItem__info">
+                                        <strong>
+                                                                                                                                    Rok: 30.11.2026.
+                                                                                                                            </strong>
+                                    </p>
+                                                                    </div>
+                            </a>
+                        </div>       
+                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+        </div>
+    </aside>
+    <aside class="NewsItems">
+        <div class="container">
+            <div class="NewsItems__header">
+                <h2 class="NewsItems__title">
+                    Zatvoreni natječaji                </h2>
+            </div>
+            <div class="NewsItems__list NewsItems__list--four-items">
+                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-podnosenje-prijedloga-za-program-erasmus-za-2026-godinu" title="Poziv na podnošenje prijedloga za program Erasmus+ za 2026. godinu" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/502525/ErasmusPlus-NAs-Call2026_3_2_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Erasmus+</strong>
+                                    <time datetime="2025-11-14">14.11.2025.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na podnošenje prijedloga za program Erasmus+ za 2026. godinu
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/javni-natjecaj-za-zaposljavanje-042026" title="Javni natječaj za zapošljavanje - travanj 2026." class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/ilustracije/194607/ampeu_ill_20_zaposli-se-u-agenciji_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Ilustracija zaposli se u Agenciji">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong></strong>
+                                    <time datetime="2026-04-17">17.04.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Javni natječaj za zapošljavanje - travanj 2026.
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-podnosenje-prijedloga-za-program-erasmus-za-2025-godinu" title="Poziv na podnošenje prijedloga za program Erasmus+ za 2025. godinu" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/ilustracije/486716/Erasmus-2025-natječaj_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="U krugu fotografija mlade djevojke sa zaštitnom kacigom i sunčanim naočalama na ilustraciji sa školskom pločom na kojoj su ispisane različite matematičke formule">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Područja programa Erasmus+</strong>
+                                    <time datetime="2024-11-26">26.11.2024.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na podnošenje prijedloga za program Erasmus+ za 2025. godinu
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-prijavu-za-sudjelovanje-na-treningu-aktivnosti-sudjelovanja-mladih-korak-po-korak-do-uspjesnih-ka154-projekata-2" title="Poziv na prijavu za sudjelovanje na treningu “Aktivnosti sudjelovanja mladih: Korak po korak do uspješnih KA154 projekata“" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/18123/Erasmus-SECTOR_Youth-H_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Pola slike prikazuje djevojku na prosvjedu dok ostatak prikazuje dječaka koji igra video igrice">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Mladi</strong>
+                                    <time datetime="2025-09-01">01.09.2025.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na prijavu za sudjelovanje na treningu “Aktivnosti sudjelovanja mladih: Korak po korak do uspješnih KA154 projekata“
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-godisnju-konferenciju-programa-obzor-europa-i-projektnu-radionicu-20-i-21-svibnja-2025" title="Poziv na godišnju konferenciju programa Obzor Europa i projektnu radionicu, 20. i 21. svibnja 2025." class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/495340/godkonf2_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Ilustracija Horizon Europe">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Obzor Europa</strong>
+                                    <time datetime="2025-05-08">08.05.2025.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na godišnju konferenciju programa Obzor Europa i projektnu radionicu, 20. i 21. svibnja 2025.
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-podnosenje-prijedloga-za-program-erasmus-za-2024-godinu" title="Poziv na podnošenje prijedloga za program Erasmus+ za 2024. godinu" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/441575/SM1_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Četvero mladih ljudi u učionici">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Područja programa Erasmus+</strong>
+                                    <time datetime="2023-12-01">01.12.2023.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na podnošenje prijedloga za program Erasmus+ za 2024. godinu
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/natjecaj-za-radna-mjesta-15" title="Natječaj za radna mjesta" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/ilustracije/194607/ampeu_ill_20_zaposli-se-u-agenciji_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Ilustracija zaposli se u Agenciji">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong></strong>
+                                    <time datetime="2024-03-06">06.03.2024.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Natječaj za radna mjesta
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-podnosenje-prijedloga-za-program-erasmus-za-2023-godinu" title="Poziv na podnošenje prijedloga za program Erasmus+ za 2023. godinu" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/382878/e_poziv_v2_f40c6293622169323751fe19216df437.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Na fotografiji sveučilišne zgrade prikazani su mladi ljudi kako zajedno uče i surađuju">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Erasmus+</strong>
+                                    <time datetime="2022-11-23">23.11.2022.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na podnošenje prijedloga za program Erasmus+ za 2023. godinu
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-edukaciju-kako-razvijati-e-projekte-ukljucivanja-i-raznolikosti" title="Poziv na edukaciju „Kako razvijati E+ projekte uključivanja i raznolikosti“" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/91779/inkluzija_vizual_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Ilustracija na temu Erasmus+ prioriteta uključivanje i raznolikost koja pokazuje likove s manje mogućnosti">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Aktivnosti suradnje i osposobljavanja (TCA)</strong>
+                                    <time datetime="2023-09-05">05.09.2023.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na edukaciju „Kako razvijati E+ projekte uključivanja i raznolikosti“
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-podnošenje-prijedloga-za-program-erasmus-za-2022-godinu" title="Poziv na podnošenje prijedloga za program Erasmus+ za 2022. godinu" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/ilustracije/247980/e_infografika-za-poziv_v2_500e8336e6402456d042947945b0e7c0.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Infografika s podacima o Pozivu za podnošenje projektnih prijedloga za Erasmus+ 2022. godine">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Erasmus+</strong>
+                                    <time datetime="2021-11-24">24.11.2021.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na podnošenje prijedloga za program Erasmus+ za 2022. godinu
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-prijavu-za-sudjelovanje-na-tca-seminaru-centralised-actions-addressed-to-higher-education" title="Poziv na prijavu za sudjelovanje na TCA seminaru: “Centralised actions addressed to higher education”" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/256194/Laptop-i-knjige_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Stol na kojemu je otvoren laptop. Iza laptopa posloženo je šest knjiga jedna na drugu">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Aktivnosti suradnje i osposobljavanja (TCA)</strong>
+                                    <time datetime="2022-07-14">14.07.2022.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na prijavu za sudjelovanje na TCA seminaru: “Centralised actions addressed to higher education”
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-dostavu-prijava-za-sudjelovanje-na-etwinningovoj-mobilnosti-2" title="Poziv na dostavu prijava za sudjelovanje na eTwinningovoj  mobilnosti" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/261671/Ženska-osoba-tipka-na-laptop_03f957ea173137c174a1d65e6fd513f5.PNG 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Ženske ruke tipkaju na laptopu">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>eTwinning</strong>
+                                    <time datetime="2022-07-28">28.07.2022.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na dostavu prijava za sudjelovanje na eTwinningovoj  mobilnosti
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-prijavu-za-sudjelovanje-na-tca-seminaru-estimating-the-budget-for-the-implementation-of-a-proposal-for-a-partnership-for-cooperation" title="Poziv na prijavu za sudjelovanje na TCA kontaktnom seminaru na Cipru" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/308704/aaron-burden-QJDzYT_K8Xg-unsplash_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Na stolu se nalaze knjiga i bilježnica">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Aktivnosti suradnje i osposobljavanja (TCA)</strong>
+                                    <time datetime="2022-06-07">07.06.2022.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na prijavu za sudjelovanje na TCA kontaktnom seminaru na Cipru
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/javni-natjecaj-za-imenovanje-ravnatelja-agencije-za-mobilnost-i-programe-europske-unije" title="Javni natječaj za imenovanje ravnatelja Agencije za mobilnost i programe Europske unije" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/ilustracije/194607/ampeu_ill_20_zaposli-se-u-agenciji_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Ilustracija zaposli se u Agenciji">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong></strong>
+                                    <time datetime="2022-04-08">08.04.2022.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Javni natječaj za imenovanje ravnatelja Agencije za mobilnost i programe Europske unije
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-prijavu-za-sudjelovanje-na-online-tca-seminar-league-of-skills" title="Poziv na prijavu za sudjelovanje na online TCA seminaru “LEAGUE OF SKILLS”" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/250137/Online-sastanak_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Žena sjedi za stolom, u jednoj ruci drži kemijsku, drugu ruku drži na tipkovnici laptopa na kojemu je prikaz online sastanka. pored laptopa su na stolu bilježnica, biljka, svjetiljka, slušalice i naočale">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Strukovno obrazovanje i osposobljavanje</strong>
+                                    <time datetime="2021-11-25">25.11.2021.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na prijavu za sudjelovanje na online TCA seminaru “LEAGUE OF SKILLS”
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                                                                                                                                                            <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/natjecaj-ceepus-freemover-stipendije-u-ljetnom-semestru-ak-god-2026-2027" title="Natječaj CEEPUS freemover stipendije u ljetnom semestru ak. god. 2026./2027." class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/5118/Ceepus_logo_03f957ea173137c174a1d65e6fd513f5.png 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="CEEPUS logo">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>CEEPUS</strong>
+                                    <time datetime="2026-10-09">09.10.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Natječaj CEEPUS freemover stipendije u ljetnom semestru ak. god. 2026./2027.
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/otvoren-je-natjecaj-za-mrezne-mobilnosti-u-ceepus-u-u-ljetnom-semestru-akademske-godine-2026-2027" title="Otvoren je natječaj za mrežne mobilnosti u CEEPUS-u u ljetnom semestru akademske godine 2026./2027." class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/508460/ceepus_karta-1-1_03f957ea173137c174a1d65e6fd513f5.webp 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>CEEPUS</strong>
+                                    <time datetime="2026-10-08">08.10.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Otvoren je natječaj za mrežne mobilnosti u CEEPUS-u u ljetnom semestru akademske godine 2026./2027.
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/natjecaj-za-stipendije-nacionalnoga-stipendijskog-programa-slovacke-republike-u-akademskoj-godini-2026-2027-ljetni-semestar" title="Natječaj za stipendije Nacionalnoga stipendijskog programa Slovačke Republike u akademskoj godini 2026./2027. - ljetni semestar" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/511947/planning-student-loan-studying-abroad-college-university-degree-concept-education-scholarship-student-loan-study-financial-save-money-degree-saving-education_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Bilateralni program akademske mobilnosti</strong>
+                                    <time datetime="2026-10-05">05.10.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Natječaj za stipendije Nacionalnoga stipendijskog programa Slovačke Republike u akademskoj godini 2026./2027. - ljetni semestar
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/javni-poziv-na-prijavu-za-mjesto-gostujuceg-profesora-na-sveucilistu-alberta-u-edmontonu-u-akademskoj-godini-2027-2028" title="Javni poziv na prijavu za mjesto gostujućeg profesora na Sveučilištu Alberta u Edmontonu u akademskoj godini 2027./2028." class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/510822/prijava_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Bilateralni program akademske mobilnosti</strong>
+                                    <time datetime="2026-08-24">24.08.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Javni poziv na prijavu za mjesto gostujućeg profesora na Sveučilištu Alberta u Edmontonu u akademskoj godini 2027./2028.
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/poziv-na-prijavu-za-sudjelovanje-na-edukaciji-u-podrucju-mladih-od-projekta-do-ucinka-diseminacija-i-odrzivost-rezultata-ka2-projekata" title="Poziv na prijavu za sudjelovanje na edukaciji u području mladih &quot;Od projekta do učinka: diseminacija i održivost rezultata KA2 projekata&quot;" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/ilustracije/497953/laptop-2548147_1280_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Mladi</strong>
+                                    <time datetime="2026-09-18">18.09.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Poziv na prijavu za sudjelovanje na edukaciji u području mladih &quot;Od projekta do učinka: diseminacija i održivost rezultata KA2 projekata&quot;
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/otvorene-prijave-za-chevening-stipendije-za-studij-u-ujedinjenoj-kraljevini-velike-britanije-i-sjeverne-irske" title="Otvorene prijave za Chevening stipendije za studij u Ujedinjenoj Kraljevini Velike Britanije i Sjeverne Irske" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/511334/UK_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Bilateralni program akademske mobilnosti</strong>
+                                    <time datetime="2026-09-14">14.09.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Otvorene prijave za Chevening stipendije za studij u Ujedinjenoj Kraljevini Velike Britanije i Sjeverne Irske
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/prijavite-se-na-medjunarodni-erasmus-dogadjaj-u-austriji" title="Prijavite se na međunarodni Erasmus+ događaj u Austriji" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/510625/fotka-graz_03f957ea173137c174a1d65e6fd513f5.webp 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong></strong>
+                                    <time datetime="2026-07-27">27.07.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Prijavite se na međunarodni Erasmus+ događaj u Austriji
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/javni-natjecaj-za-zaposljavanje-kolovoz-2026" title="Javni natječaj za zapošljavanje - kolovoz 2026." class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/ilustracije/194607/ampeu_ill_20_zaposli-se-u-agenciji_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="Ilustracija zaposli se u Agenciji">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong></strong>
+                                    <time datetime="2026-08-28">28.08.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Javni natječaj za zapošljavanje - kolovoz 2026.
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/prijava-za-sudjelovanje-na-seminaru-o-intenzivnim-kombiniranim-programima-bip-u-ljubljani" title="Prijava za sudjelovanje na seminaru o intenzivnim kombiniranim programima (BIP) u Ljubljani" class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/510491/image-57_03f957ea173137c174a1d65e6fd513f5.png 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong></strong>
+                                    <time datetime="2026-07-20">20.07.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Prijava za sudjelovanje na seminaru o intenzivnim kombiniranim programima (BIP) u Ljubljani
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                                                <div class="NewsItem NewsItem--small">
+                                            <a href="https://www.ampeu.hr/natjecaji/stipendije-programa-hubert-h-humphrey-za-akademsku-godinu-2027-2028" title="Stipendije programa Hubert H. Humphrey za akademsku godinu 2027./2028." class="NewsItem__link">
+                                                <div class="NewsItem__image">
+                                                                                                                            <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27560%27%20height%3D%27376%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                                    srcset="/imager/photos/508742/young-woman-fills-visa-application-form-female-signs-documents-sitting-wooden-table-with_03f957ea173137c174a1d65e6fd513f5.jpg 560w"
+                                    width="560"
+                                    height="376"
+                                    alt="">
+                                                            </div>
+
+                            <div class="NewsItem__content">
+                                <p class="NewsItem__meta">
+                                                                <span>
+                                    <strong>Bilateralni program akademske mobilnosti</strong>
+                                    <time datetime="2026-06-03">03.06.2026.</time>
+                                </span>
+                                                                </p>
+                                <p class="NewsItem__title">
+                                    Stipendije programa Hubert H. Humphrey za akademsku godinu 2027./2028.
+                                </p>
+                                                                <p class="NewsItem__info">
+                                    <strong>Rok je prošao</strong>
+                                </p>
+                                                            </div>
+                        </a>
+                    </div>       
+                                        </div>
+        </div>
+    </aside>
+    <section class="Pagination__container">
+        <nav class="Pagination is-centered" role="navigation">
+            <ul class="Pagination__list">
+                                                <li class="Pagination__list-element is-active">
+                    <a href="/" title="1">1</a>
+                </li>
+                                <li class="Pagination__list-element">
+                    <a href="https://www.ampeu.hr/natjecaji/p2" title="2">2</a>
+                </li>
+                                <li class="Pagination__list-element">
+                    <a href="https://www.ampeu.hr/natjecaji/p3" title="3">3</a>
+                </li>
+                                                <li class="Pagination__list-element is-last">
+                    <a href="https://www.ampeu.hr/natjecaji/p2" title="Iduća stranica">
+                        <svg class="icon-container icon-1.5x">
+                            <use xlink:href="#icon-arrow-right"/>
+                        </svg>
+                    </a>
+                </li>
+                            </ul>
+        </nav>
+    </section>
+</main>
+<footer class="Footer">
+    <div class="Footer__container">
+        <div class="Footer__section Footer__section--upper">
+            <div class="Footer__block">
+                <div class="Footer__section-header Footer__section-header--primary">
+                                        <p class="title">Trebaš pomoć?</p>
+                    <span class="subtitle">Reci nam kako ti možemo pomoći</span>
+                                    </div>
+
+                <a href="mailto:info@ampeu.hr" class="ButtonCta ButtonCta--full-width ButtonCta--icon">
+                    <svg class="icon-container icon-1.5x">
+                        <use xlink:href="#icon-mail" />
+                    </svg>
+                    <span>Pošalji e-poruku</span>
+                </a>
+                                <a href="https://www.ampeu.hr/publikacije" class="ButtonCta ButtonCta--full-width ButtonCta--icon">
+                                    <svg class="icon-container icon-1.5x">
+                        <use xlink:href="#icon-download" />
+                    </svg>
+                    <span>Preuzmi publikacije</span>
+                </a>
+                <a href="https://www.ampeu.hr/newsletter" class="ButtonCta ButtonCta--full-width ButtonCta--icon">
+                    <svg class="icon-container icon-1.5x">
+                        <use xlink:href="#icon-mail" />
+                    </svg>
+                    <span>Prijavi se na Vjesnik AMPEU-a</span>
+                </a>
+            </div>
+            <div class="Footer__block">
+                <div class="Footer__section-header Footer__section-header--secondary">
+                                        <p class="title">Agencija za mobilnost i programe Europske unije</p>
+                    <span class="subtitle">Adresa i kontakt</span>
+                                    </div>
+                <div class="Footer__info">
+                    <p>
+                        <a href="https://maps.app.goo.gl/Pj5NBubxdGVVoJaB7" title="prikaži Frankopanska 26 na mapi" target="_blank">
+                            Frankopanska 26, zgrada Leksikografskog zavoda Miroslav Krleža, HR - 10000 Zagreb
+                        </a>
+                    </p>
+					<p><strong>Služba za znanost:</strong> <a href="https://maps.app.goo.gl/hncN7jgtnur6jpeC8" target="_blank" title="prikaži Martićeva 29 na mapi">Martićeva 29, HR - 10000 Zagreb</a></p>
+                    <p>
+                        <a
+                            href="tel:+38515556498"
+                            title="+385 (0) 1 5556 498">
+                            Tel: +385 (0) 1 5556 498
+                        </a><br>
+                        <a
+                            href="fax:+38515005699"
+                            title="+385 (0) 1 5005 699">
+                            Fax: +385 (0) 1 5005 699
+                        </a>
+                        <br>
+                        <a
+                            href="mailto:info@ampeu.hr"
+                            title="info@ampeu.hr">
+                            e-pošta: <strong>info@ampeu.hr</strong>
+                        </a>
+                    </p>
+
+                    <p>OIB: 25385906011</p>
+                </div>
+            </div>
+            <div class="Footer__block">
+                <nav class="Nav Nav--column Footer__nav">
+                    <ul class="Nav__list">
+                                                <li><a href="https://www.ampeu.hr/" title="Naslovnica"><span>Naslovnica</span></a></li>
+                        <li><a href="https://www.ampeu.hr/programi" title="Programi"><span>Programi</span></a></li>
+                        <li><a href="https://www.ampeu.hr/natjecaji" title="Natječaji"><span>Natječaji</span></a></li>
+                        <li><a href="https://www.ampeu.hr/novosti" title="Novosti"><span>Novosti</span></a></li>
+                        <li><a href="https://www.ampeu.hr/dogadanja" title="Događanja"><span>Događanja</span></a></li>
+                        <li><a href="https://www.ampeu.hr/o-nama" title="O nama"><span>O nama</span></a></li>
+                                            </ul>
+                </nav>
+
+                <div class="Footer__block-info">
+
+                                            <img
+                            loading="lazy"
+                            decoding="async"
+                            src="https://www.ampeu.hr/images/sufinancira-europska-unija.png"
+                            width="160"
+                            height="42"
+                            alt="Sufinanica europska unija logo">
+                                        
+
+                </div>
+                <div class="Footer__block-info">
+
+                                            <img
+                            loading="lazy"
+                            decoding="async"
+                            src="https://www.ampeu.hr/images/ampeu-zeleno-poslovanje-hr.png"
+                            width="160"
+                            height="42"
+                            alt="Sufinanica europska unija logo">
+                                        
+
+                </div>
+
+            </div>
+        </div>
+        <div class="Footer__section Footer__section--lower">
+            <div class="Socials">
+                <ul class="Socials__list">
+                    <li>
+                        <a href="https://www.facebook.com/AgencijaZaMobilnostiProgrameEU" title="Facebook">
+                            <img
+                                loading="lazy"
+                                decoding="async"
+                                src="https://www.ampeu.hr/images/icon-facebook.aa8f5a1d716272e97b861a4faa8e05ee.svg"
+                                width="32"
+                                height="32"
+                                alt="Facebook social icon">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/user/AgencijaZaMobilnost" title="Youtube">
+                            <img
+                                loading="lazy"
+                                decoding="async"
+                                src="https://www.ampeu.hr/images/icon-youtube.e7ef4e9965625a926e3317bb67055579.svg"
+                                width="32"
+                                height="32"
+                                alt="Youtube social icon">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/agencija-za-mobilnost-i-programe-europske-unije" title="LinkedIn">
+                            <img
+                                loading="lazy"
+                                decoding="async"
+                                src="https://www.ampeu.hr/images/icon-linkedin.66cd6d5989a90459f9c8a91bafea75ca.svg"
+                                width="32"
+                                height="32"
+                                alt="LinkedIn social icon">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/ampeu.hr/" title="Instagram">
+                            <img
+                                loading="lazy"
+                                decoding="async"
+                                src="https://www.ampeu.hr/images/icon-instagram.00ee021d3b0c4f68133898b4968d8c7a.svg"
+                                width="32"
+                                height="32"
+                                alt="Instagram social icon">
+                        </a>
+                    </li>
+					<!--
+                    <li>
+                        <a href="https://twitter.com/ampeu_hr" title="Twitter">
+                            <img
+                                loading="lazy"
+                                decoding="async"
+                                src="https://www.ampeu.hr/images/icon-twitter.a34c3d9034ee472b958aad0b305d762b.svg"
+                                width="32"
+                                height="32"
+                                alt="Twitter social icon">
+                        </a>
+                    </li>
+					-->
+                </ul>
+            </div>
+
+            <div class="Footer__address-block">
+                <div class="Footer__address-navigation">
+                    <nav class="Nav Nav--row Nav--small">
+                        <ul class="Nav__list">
+                                                        <li><a href="https://www.ampeu.hr/dokumentacija" title="Dokumentacija"><span>Dokumentacija</span></a></li>
+                            <li><a href="https://www.ampeu.hr/o-nama/obrada-osobnih-podataka/uvjeti-korištenja" title="Uvjeti korištenja"><span>Uvjeti korištenja</span></a></li>
+                            <!--<li><a href="https://www.ampeu.hr/o-nama/vi%C5%A1e-o-nama/kontakti" title="Kontakti"><span>Kontakti</span></a></li>-->
+                            <li><a href="https://www.ampeu.hr/o-nama/vise-o-nama/kontakti" title="Kontakti"><span>Kontakti</span></a></li>
+                            <li><a href="https://www.ampeu.hr/o-nama/izjava-o-pristupačnosti" title="Izjava o pristupačnosti"><span>Izjava o pristupačnosti</span></a></li>
+                            <li><a href="https://www.ampeu.hr/o-nama/obrada-osobnih-podataka/postavke-kolačića" title="Politika korištenja kolačića"><span>Politika korištenja kolačića</span></a></li>
+                            <li><a href="#" title="Postavke kolačića" class="cookie-consent-banner-open"><span>Postavke kolačića</span></a></li>
+                                                    </ul>
+                    </nav>
+                    <p>© AMPEU, 2026.</p>
+                </div>
+                <div class="Footer__address-colophone">
+                                        <p>Ova mrežna stranica je ostvarena uz financijsku potporu Europske komisije. Ona izražava isključivo stajalište autora mrežne stranice i Komisija se ne može smatrati odgovornom pri upotrebi informacija koje se na njoj nalaze.</p>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.ampeu.hr/js/horizontal_timeline.2.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://www.ampeu.hr/assets/kalendar/js/main.js"></script>
+<script type="text/javascript" src="https://www.ampeu.hr/js/vendor.60fdf4cd7bf9a68870a6.min.js"></script>
+<script type="text/javascript" src="https://www.ampeu.hr/js/bundle.9719b7bc04ddd58a78ba.min.js"></script>
+<script type="text/javascript">
+  const lightbox = GLightbox({
+    touchNavigation: true,
+    loop: true,
+    autoplayVideos: true
+});
+</script>
+<script>
+    const $dropdown = $(".dropdown");
+const $dropdownToggle = $(".dropdown-toggle");
+const $dropdownMenu = $(".dropdown-menu");
+const showClass = "show";
+
+$(window).on("load resize", function() {
+  if (this.matchMedia("(min-width: 768px)").matches) {
+    $dropdown.hover(
+      function() {
+        const $this = $(this);
+        $this.addClass(showClass);
+        $this.find($dropdownToggle).attr("aria-expanded", "true");
+        $this.find($dropdownMenu).addClass(showClass);
+      },
+      function() {
+        const $this = $(this);
+        $this.removeClass(showClass);
+        $this.find($dropdownToggle).attr("aria-expanded", "false");
+        $this.find($dropdownMenu).removeClass(showClass);
+      }
+    );
+  } else {
+    $dropdown.off("mouseenter mouseleave");
+  }
+});
+</script>
+ <script>
+    $('#timeline').horizontalTimeline({ 
+    autoplay: false,
+    useTouchSwipe: false,
+    useScrollBtns: false,
+    useNavBtns: true,
+    
+    iconClass: {
+        "base": "fas fa-3x", // Space separated class names
+        "scrollLeft": "fa-chevron-left",
+        "scrollRight": "fa-chevron-right",
+        "prev": "fa-arrow-left",
+        "next": "fa-arrow-right",
+        "pause": "fa-pause",
+        "play": "fa-play"
+    }
+    });
+</script> 
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"WebSite","author":{"@id":"https://www.ampeu.hr#identity"},"copyrightHolder":{"@id":"https://www.ampeu.hr#identity"},"creator":{"@id":"https://kontrast.studio#creator"},"description":"Agencija za mobilnost i programe EU","image":{"@type":"ImageObject","url":"https://www.ampeu.hr/ilustracije/_1200x630_crop_center-center_82_none/ampeu-vizual-4-3.jpg?mtime=1695119371"},"mainEntityOfPage":"https://www.ampeu.hr/natjecaji","name":"Agencija za mobilnost i programe EU","url":"https://www.ampeu.hr/natjecaji"},{"@id":"https://www.ampeu.hr#identity","@type":"GovernmentOrganization","alternateName":"Ampeu","description":"Agencija za mobilnost i programe Europske unije (AMPEU) javna je ustanova u sustavu Ministarstva znanosti i obrazovanja, koja provodi i promovira programe Europske unije i druge međunarodne programe u području znanosti, obrazovanja, osposobljavanja, i mladih.","name":"Agencija za mobilnost i programe EU","sameAs":["https://twitter.com/ampeu_hr","https://www.facebook.com/AgencijaZaMobilnostiProgrameEU","https://www.linkedin.com/company/agencija-za-mobilnost-i-programe-europske-unije","https://www.youtube.com/user/AgencijaZaMobilnost","https://www.instagram.com/ampeu.hr/"],"url":"https://www.ampeu.hr"},{"@id":"https://kontrast.studio#creator","@type":"Corporation","address":{"@type":"PostalAddress","addressCountry":"Croatia","addressLocality":"Zagreb","addressRegion":"Zagreb","postalCode":"10000","streetAddress":"Vlaška 133"},"alternateName":"Kontrast","description":"Kontrast is a web design and development company based in Zagreb, Croatia.","email":"info@kontrast.studio","image":{"@type":"ImageObject","height":"276","url":"http://ampeu/photos/logo.png","width":"1054"},"logo":{"@type":"ImageObject","height":"60","url":"https://www.ampeu.hr/photos/_600x60_fit_center-center_82_none/logo.png?mtime=1705594107","width":"229"},"name":"Kontrast, obrt za računalne usluge","telephone":"+385917936499","url":"https://kontrast.studio"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.ampeu.hr/","name":"Agencija za mobilnost i programe Europske unije","position":1}],"name":"Breadcrumbs"}]}</script><script src="https://www.ampeu.hr/cpresources/1f967182/htmx.min.js?v=1734955462"></script></body>
+</html>

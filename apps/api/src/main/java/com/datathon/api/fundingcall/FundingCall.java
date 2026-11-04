@@ -119,6 +119,11 @@ public class FundingCall {
     @OrderColumn(name = "position")
     private List<Attachment> attachments = new ArrayList<>();
 
+    @ElementCollection
+    @CollectionTable(name = "funding_call_legal_reference", joinColumns = @JoinColumn(name = "funding_call_id"))
+    @OrderColumn(name = "position")
+    private List<LegalReference> legalReferences = new ArrayList<>();
+
     @Column(columnDefinition = "TEXT")
     private String eligibilityQuestions;
 
@@ -142,6 +147,10 @@ public class FundingCall {
     private Long duplicateOf;
 
     private Instant fetchedAt;
+
+    private Instant firstSeenAt;
+
+    private Instant contentChangedAt;
 
     @Column(columnDefinition = "TEXT")
     private String sourceText;

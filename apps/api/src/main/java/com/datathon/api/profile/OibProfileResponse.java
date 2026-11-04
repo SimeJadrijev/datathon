@@ -8,6 +8,7 @@ public record OibProfileResponse(
         String source) {
 
     static final String SUDREG_SOURCE = "sudreg";
+    static final String ASSOCIATION_REGISTRY_SOURCE = "registar-udruga";
 
     public record Seat(String municipality, String county) {
     }

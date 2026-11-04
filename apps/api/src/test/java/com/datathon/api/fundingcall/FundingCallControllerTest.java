@@ -4,8 +4,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
 import com.datathon.api.common.FacetCount;
 import com.datathon.api.common.GlobalExceptionHandler;
@@ -13,11 +15,13 @@ import com.datathon.api.common.NotFoundException;
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.dto.AttachmentResponse;
 import com.datathon.api.fundingcall.dto.FundingCallDetail;
+import com.datathon.api.fundingcall.dto.FundingCallExport;
 import com.datathon.api.fundingcall.dto.FundingCallFacets;
 import com.datathon.api.fundingcall.dto.FundingCallFilter;
 import com.datathon.api.fundingcall.dto.FundingCallSort;
 import com.datathon.api.fundingcall.dto.FundingCallStatusFilter;
 import com.datathon.api.fundingcall.dto.FundingCallSummary;
+import com.datathon.api.legalbasis.LegalBasis;
 import com.datathon.api.source.SourceCode;
 import com.datathon.api.source.SourceInfo;
 import com.datathon.api.source.SourceRef;
@@ -33,8 +37,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(FundingCallController.class)
-@Import(GlobalExceptionHandler.class)
+@WebMvcTest(controllers = FundingCallController.class, properties = "app.public-url=https://radar.example")
+@Import({GlobalExceptionHandler.class, AtomFeedWriter.class})
 class FundingCallControllerTest {
 
     private static final SourceInfo SOURCE = new SourceInfo(SourceCode.FZOEU, "Fond za zaštitu okoliša", "https://www.fzoeu.hr");
@@ -49,7 +53,7 @@ class FundingCallControllerTest {
     void listReturnsOurPageShape() throws Exception {
         var summary = new FundingCallSummary(7L, "Poziv za vozila", "Fond", SourceRef.from(SOURCE), FundingCallType.PUBLIC_CALL,
                 FundingCallStatus.OPEN, LocalDate.of(2026, 12, 1), null, null, new BigDecimal("9000.00"),
-                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY, Area.TRANSPORT), List.of("ALL"), false, "https://example.org/7");
+                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY, Area.TRANSPORT), List.of("ALL"), false, "https://example.org/7", null);
         when(fundingCallService.list(any())).thenReturn(new PageResponse<>(List.of(summary), 1, 0, 20));
 
         mockMvc.perform(get("/api/funding-calls").param("status", "OPEN").param("targetGroup", "COMPANY"))
@@ -105,7 +109,9 @@ class FundingCallControllerTest {
         var detail = new FundingCallDetail(7L, "Poziv za vozila", "Fond", SOURCE, FundingCallType.PUBLIC_CALL, FundingCallStatus.OPEN,
                 LocalDate.of(2026, 3, 2), null, "do iskorištenja sredstava", null, null, new BigDecimal("9000.00"),
                 List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY), List.of("ALL"), "Uvjeti", List.of("Zahtjev"),
-                List.of(new AttachmentResponse("Poziv", "https://example.org/poziv.pdf")), true, List.of("deadline"), false,
+                List.of(new AttachmentResponse("Poziv", "https://example.org/poziv.pdf")),
+                List.of(new LegalBasis("Zakona o Fondu", "107/2003", "https://narodne-novine.nn.hr/eli/sluzbeni/2003/107",
+                        null, null, null)), true, List.of("deadline"), false,
                 Instant.parse("2026-10-24T08:15:00Z"), "https://example.org/7");
         when(fundingCallService.getById(7L)).thenReturn(detail);
 
@@ -116,6 +122,7 @@ class FundingCallControllerTest {
                 .andExpect(jsonPath("$.conditionsSummary").value("Uvjeti"))
                 .andExpect(jsonPath("$.requiredDocuments[0]").value("Zahtjev"))
                 .andExpect(jsonPath("$.attachments[0].name").value("Poziv"))
+                .andExpect(jsonPath("$.legalBasis[0].gazetteNumber").value("107/2003"))
                 .andExpect(jsonPath("$.aiFields[0]").value("deadline"))
                 .andExpect(jsonPath("$.fieldsReviewed").value(false))
                 .andExpect(jsonPath("$.fetchedAt").value("2026-10-24T08:15:00Z"))
@@ -200,5 +207,36 @@ class FundingCallControllerTest {
         mockMvc.perform(get("/api/funding-calls").param("q", "a".repeat(201)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.message").value("q: smije imati najviše 200 znakova"));
+    }
+
+    @Test
+    void exportIsNotMistakenForAnIdAndPointsToTheSchema() throws Exception {
+        when(fundingCallService.export(any())).thenReturn(FundingCallExport.of(List.of(), Instant.parse("2026-11-03T10:00:00Z")));
+
+        mockMvc.perform(get("/api/funding-calls/export").param("status", "OPEN"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.conformsTo").value("/api/standard/funding-call.schema.json"))
+                .andExpect(jsonPath("$.count").value(0))
+                .andExpect(jsonPath("$.records").isArray());
+    }
+
+    @Test
+    void feedIsAtomWithLinksToOurDetailPages() throws Exception {
+        var summary = new FundingCallSummary(7L, "Poziv za vozila & bicikle", "Fond", SourceRef.from(SOURCE), FundingCallType.PUBLIC_CALL,
+                FundingCallStatus.OPEN, LocalDate.of(2026, 12, 1), null, null, new BigDecimal("9000.00"),
+                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY), List.of("ALL"), false, "https://example.org/7",
+                Instant.parse("2026-11-02T08:00:00Z"));
+        when(fundingCallService.newest(any())).thenReturn(List.of(summary));
+
+        mockMvc.perform(get("/api/funding-calls/feed.atom").param("targetGroup", "CITIZEN"))
+                .andExpect(status().isOk())
+                .andExpect(content()
+                        .contentTypeCompatibleWith("application/atom+xml"))
+                .andExpect(xpath(
+                        "/*[local-name()='feed']/*[local-name()='entry']/*[local-name()='id']")
+                        .string("https://radar.example/natjecaji/7"))
+                .andExpect(xpath(
+                        "/*[local-name()='feed']/*[local-name()='entry']/*[local-name()='title']")
+                        .string("Poziv za vozila & bicikle"));
     }
 }

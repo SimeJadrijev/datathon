@@ -8,6 +8,7 @@ import com.datathon.api.common.InvalidRequestException;
 import com.datathon.api.common.NotFoundException;
 import com.datathon.api.common.PageRequests;
 import com.datathon.api.common.PageResponse;
+import com.datathon.api.legalbasis.LegalBasisService;
 import com.datathon.api.regulation.dto.RegulationDetail;
 import com.datathon.api.regulation.dto.RegulationFacets;
 import com.datathon.api.regulation.dto.RegulationFilter;
@@ -27,6 +28,7 @@ public class RegulationService {
 
     private final RegulationRepository regulationRepository;
     private final FacetCounter facetCounter;
+    private final LegalBasisService legalBasisService;
 
     @Transactional(readOnly = true)
     public PageResponse<RegulationSummary> list(RegulationFilter filter) {
@@ -38,7 +40,7 @@ public class RegulationService {
     @Transactional(readOnly = true)
     public RegulationDetail getById(Long id) {
         return regulationRepository.findById(id)
-                .map(RegulationDetail::from)
+                .map(regulation -> RegulationDetail.from(regulation, legalBasisService.citingFundingCalls(regulation)))
                 .orElseThrow(() -> new NotFoundException("Propis ne postoji."));
     }
 

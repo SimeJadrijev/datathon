@@ -42,6 +42,10 @@ public class SourceRunLog {
 
     private int fetched;
 
+    private Integer created;
+
+    private Integer updated;
+
     private int skipped;
 
     private int errors;

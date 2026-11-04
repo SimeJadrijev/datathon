@@ -3,6 +3,7 @@ package com.datathon.api.source;
 import static com.datathon.api.fundingcall.FundingCallSpecifications.fromSource;
 import static com.datathon.api.fundingcall.FundingCallSpecifications.visible;
 
+import com.datathon.api.association.AssociationRepository;
 import com.datathon.api.fundingcall.FundingCallRepository;
 import com.datathon.api.ingest.SourceRunLogRepository;
 import com.datathon.api.ingest.SourceRunLogRepository.LastSuccessfulRun;
@@ -24,6 +25,7 @@ public class SourceService {
     private final SourceCatalog sourceCatalog;
     private final FundingCallRepository fundingCallRepository;
     private final RegulationRepository regulationRepository;
+    private final AssociationRepository associationRepository;
     private final SourceRunLogRepository sourceRunLogRepository;
     private final SnapshotDate snapshotDate;
 
@@ -49,6 +51,7 @@ public class SourceService {
     private Long recordCount(SourceCode code) {
         return switch (code) {
             case NARODNE_NOVINE -> regulationRepository.count();
+            case ASSOCIATION_REGISTRY -> associationRepository.count();
             case SUDREG -> null;
             default -> fundingCallRepository.count(visible().and(fromSource(code)));
         };

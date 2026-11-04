@@ -186,3 +186,32 @@
         order: 1;
     }
 }
+
+.legalBasisList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: 0;
+    list-style: none;
+    line-height: var(--line-height-snug);
+}
+
+.legalBasisList li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.citedTitle {
+    font-weight: var(--font-weight-semibold);
+}
+
+.issues a {
+    display: inline;
+}
+
+.issues a svg {
+    display: inline-block;
+    margin-left: var(--space-1);
+    vertical-align: -0.125em;
+}

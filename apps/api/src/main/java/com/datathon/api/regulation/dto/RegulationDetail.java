@@ -1,6 +1,7 @@
 package com.datathon.api.regulation.dto;
 
 import com.datathon.api.fundingcall.Area;
+import com.datathon.api.legalbasis.CitingFundingCall;
 import com.datathon.api.regulation.Regulation;
 import com.datathon.api.regulation.RegulationType;
 import java.time.Instant;
@@ -21,9 +22,10 @@ public record RegulationDetail(
         String eliUrl,
         String pdfUrl,
         boolean eliMetadata,
-        Instant fetchedAt) {
+        Instant fetchedAt,
+        List<CitingFundingCall> citingFundingCalls) {
 
-    public static RegulationDetail from(Regulation regulation) {
+    public static RegulationDetail from(Regulation regulation, List<CitingFundingCall> citingFundingCalls) {
         return new RegulationDetail(
                 regulation.getId(),
                 regulation.getTitle(),
@@ -38,6 +40,7 @@ public record RegulationDetail(
                 regulation.getEliUrl(),
                 regulation.getPdfUrl(),
                 regulation.isEliMetadata(),
-                regulation.getFetchedAt());
+                regulation.getFetchedAt(),
+                citingFundingCalls);
     }
 }

@@ -3,3 +3,4 @@ export * from "./FundingCallDetail.type.ts";
 export * from "./FundingCallFacets.type.ts";
 export * from "./FundingCallFilter.type.ts";
 export * from "./FundingCallFilterPatch.type.ts";
+export * from "./LegalBasis.type.ts";

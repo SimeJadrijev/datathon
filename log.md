@@ -165,3 +165,19 @@
 - Isti dan, s pravim ključem (API pokrenut s `LLM_BUDGET_USD=0.50`, `LLM_MAX_ATTEMPTS=1`, bez batcheva): 4 provjere kroz web, ukupno 0,084 USD (Sonnet, oko 14k ulaznih tokena po provjeri). Natječaj 78 (obnova poljoprivrednog potencijala): svi "Da" daju "Vjerojatno ispunjavaš" sa 4 citata; "Ne" na uvjet od 30 % daje "Vjerojatno ne ispunjavaš" s citatom tog uvjeta. Natječaj 61 (osiguranje): u oba scenarija UNCLEAR s citatima, jer je tekst poziva na izvoru kratak. Za video koristiti 78, ne 61.
 - Screenshotovi za #9 (33 snimke, WEB-5 do WEB-9, 1280 px i 375 px) u `work/screenshots/pkg-7/`, snimljeni Playwright skriptom. Stanja učitavanja i greške izazvana presretanjem zahtjeva u pregledniku (lažni 503 i 429), presude su pravi odgovori modela. Ukupna potrošnja na ključu u lokalnoj bazi: 0,255 USD za 9 provjera (5 ručnih, 4 iz skripte, od toga 1 nepotrebna jer je zadržani zahtjev pušten pri zatvaranju preglednika).
 - Popravak na webu: obavijest o isteklom roku imala je dvije točke ("Rok je bio 08. 02. 2021.."), jer `formatDate` već završava točkom.
+
+## 2026-11-03/04 (Luka, #11 nice-to-have, branch `feature/nice-11`)
+- Novi izvori:
+  - eKohezija (svi EU pozivi 2021.-2027., javni JSON API);
+  - 18 ministarstava (Vladin CMS, među njima i Datathon MPUDT-a);
+  - 32 grada i županije (WordPress REST, Joomla RSS, DNN, HTML liste, Zagreb);
+  - agencije (HRZZ, AMPEU, ribarstvo);
+  - sveučilišta, studentski zborovi i centri.
+  - Pregled izvora u `work/sources-research.md`, odluke u `work/decisions.md` (3.11.).
+- Pravna osnova: navodi Narodnih novina iz teksta poziva, veza s propisom (91 % navoda s nazivom upareno) i ciljani uvoz starijih citiranih propisa.
+- Export u predloženom standardu s JSON Schemom, Atom feed umjesto mail obavijesti, oznaka „novo”, brojanje novih i promijenjenih po izvoru, dnevni ingest.
+- Registar udruga: profil udruge iz OIB-a.
+- Bug: Hibernate CHECK constrainti na enum stupcima rušili su ingest na postojećim bazama kod svake nove vrijednosti izvora. Sad se brišu pri startu.
+- Seed osvježen preko zasebne baze `datathon_seed` (radna lokalna baza nije imala AI rezultate) i provjeren na praznoj bazi bez ključeva. AI trošak: 0,54 USD (Haiku).
+- `ANTHROPIC_API_KEY` je u `apps/api/.env` (nije u gitu). Ključ je bio zalijepljen u chat, pa ga treba rotirati.
+- Testovi: 378 API testova, `yarn lint` i `yarn build` prolaze.

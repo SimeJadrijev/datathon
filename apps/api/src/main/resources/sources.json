@@ -24,6 +24,46 @@
     "license": "nije provjereno"
   },
   {
+    "code": "EU_FUNDS_COHESION",
+    "name": "EU fondovi 2021.-2027. (eKohezija)",
+    "description": "Svi pozivi iz programa Konkurentnost i kohezija, Integrirani teritorijalni program i Učinkoviti ljudski potencijali 2021.-2027., preko javnog JSON API-ja sustava eKohezija koji koristi eufondovi.gov.hr. Uzimamo samo otvorene i ograničene pozive, bez izravnih dodjela.",
+    "url": "https://eufondovi.gov.hr",
+    "method": "API",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "GOV_HR_NEWS",
+    "name": "Ministarstva i državni uredi (vijesti)",
+    "description": "Javni pozivi, natječaji i nagradni natječaji koje ministarstva objavljuju kao vijesti na zajedničkom Vladinom sustavu (*.gov.hr). Čitamo njihovu pretragu vijesti za zadnjih 120 dana i zadržavamo samo objave koje izgledaju kao poziv.",
+    "url": "https://vlada.gov.hr",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "LOCAL_GOVERNMENT",
+    "name": "Gradovi i županije",
+    "description": "Natječaji, javni pozivi, stipendije i potpore gradova i županija: Grad Zagreb, Split, Osijek, Dubrovnik, Zadar, Bjelovar, Karlovac, Koprivnica, Čakovec, Slavonski Brod, Vukovar i drugi te 17 županija. Čitamo WordPress REST API-je, RSS feedove i HTML liste, a oglase za posao, prodaju i zakup izbacujemo po naslovu.",
+    "url": "https://www.zagreb.hr/natjecaji/860",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "AGENCIES",
+    "name": "Agencije i zaklade",
+    "description": "Hrvatska zaklada za znanost (istraživački projekti i doktorandi), Agencija za mobilnost i programe EU (Erasmus+, stipendije za studij u inozemstvu) i Program za ribarstvo (euribarstvo.hr).",
+    "url": "https://www.ampeu.hr/natjecaji",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
+    "code": "UNIVERSITIES",
+    "name": "Sveučilišta i studentski centri",
+    "description": "Natječaji za studente i studentske organizacije: Erasmus+ i druga mobilnost, stipendije, Rektorove nagrade, financiranje studentskih projekata i udruga (studentski zborovi) te smještaj u studentskim domovima. Sveučilišta u Zagrebu, Splitu, Rijeci, Osijeku, Zadru, Dubrovniku, Puli, Slavonskom Brodu, Sjever, HKS, studentski centri i TVZ. Natječaje za radna mjesta i izbore u zvanje izbacujemo.",
+    "url": "https://www.unizg.hr",
+    "method": "HTML",
+    "license": "nije provjereno"
+  },
+  {
     "code": "HZZ",
     "name": "Hrvatski zavod za zapošljavanje (mjere)",
     "description": "Mjere aktivne politike zapošljavanja, kontinuirane tijekom godine, preko javnog WordPress REST API-ja.",
@@ -62,5 +102,13 @@
     "url": "https://sudreg-data.gov.hr",
     "method": "API",
     "license": "nije provjereno"
+  },
+  {
+    "code": "ASSOCIATION_REGISTRY",
+    "name": "Registar udruga",
+    "description": "Registar udruga Republike Hrvatske (Ministarstvo pravosuđa, uprave i digitalne transformacije) na data.gov.hr. Iz OIB-a udruge popunjava profil: naziv, sjedište, županiju i područja djelovanja iz ciljeva udruge. Uvozimo samo aktivne udruge.",
+    "url": "https://data.gov.hr/ckan/dataset/registar-udruga",
+    "method": "API",
+    "license": "Otvorena dozvola"
   }
 ]

@@ -28,6 +28,10 @@ final class DocumentLinks {
         return new ArrayList<>(byUrl.values());
     }
 
+    static boolean isDocument(String url) {
+        return url != null && DOCUMENT.matcher(url).find();
+    }
+
     private static String name(Element link, String url) {
         String text = link.text().strip();
         String name = text.isEmpty() ? url.substring(url.lastIndexOf('/') + 1) : text;

@@ -16,7 +16,7 @@ export const HowItWorks = () => {
             <ol className={styles.steps}>
                 <li>
                     <strong>Odgovori na tri kratka pitanja</strong>
-                    <span>ili upiši OIB pa obrazac popunimo iz Sudskog registra.</span>
+                    <span>ili upiši OIB tvrtke ili udruge pa obrazac popunimo iz Sudskog registra ili Registra udruga.</span>
                 </li>
                 <li>
                     <strong>Pogledaj natječaje koji ti odgovaraju</strong>

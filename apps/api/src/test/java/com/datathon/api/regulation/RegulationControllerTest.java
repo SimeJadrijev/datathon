@@ -14,6 +14,8 @@ import com.datathon.api.common.InvalidRequestException;
 import com.datathon.api.common.NotFoundException;
 import com.datathon.api.common.PageResponse;
 import com.datathon.api.fundingcall.Area;
+import com.datathon.api.fundingcall.FundingCallStatus;
+import com.datathon.api.legalbasis.CitingFundingCall;
 import com.datathon.api.regulation.dto.RegulationDetail;
 import com.datathon.api.regulation.dto.RegulationFacets;
 import com.datathon.api.regulation.dto.RegulationFilter;
@@ -67,7 +69,8 @@ class RegulationControllerTest {
                 LocalDate.of(2026, 2, 1), LocalDate.of(2026, 1, 20), List.of(Area.ENERGY), null,
                 "https://narodne-novine.nn.hr/clanci/sluzbeni/2026_02_12_150.html",
                 "https://narodne-novine.nn.hr/eli/sluzbeni/2026/12/150", "https://narodne-novine.nn.hr/pdf/150.pdf",
-                true, Instant.parse("2026-10-24T08:15:00Z"));
+                true, Instant.parse("2026-10-24T08:15:00Z"),
+                List.of(new CitingFundingCall(9L, "Poziv za energiju", "Fond", FundingCallStatus.OPEN, null)));
         when(regulationService.getById(5L)).thenReturn(detail);
 
         mockMvc.perform(get("/api/regulations/5"))
@@ -78,6 +81,7 @@ class RegulationControllerTest {
                 .andExpect(jsonPath("$.eliUrl").value("https://narodne-novine.nn.hr/eli/sluzbeni/2026/12/150"))
                 .andExpect(jsonPath("$.pdfUrl").value("https://narodne-novine.nn.hr/pdf/150.pdf"))
                 .andExpect(jsonPath("$.eliMetadata").value(true))
+                .andExpect(jsonPath("$.citingFundingCalls[0].id").value(9))
                 .andExpect(jsonPath("$.fetchedAt").value("2026-10-24T08:15:00Z"));
     }
 
