@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.tuple;
 
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallRepository;
+import com.datathon.api.ingest.extract.CallTitleFilter;
 import com.datathon.api.ingest.extract.FundingFilter;
 import com.datathon.api.ingest.extract.RuleExtractor;
 import com.datathon.api.source.SourceCode;
@@ -22,7 +23,7 @@ import org.springframework.context.annotation.Import;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import({IngestService.class, FundingFilter.class, RuleExtractor.class, FundingCallUpserter.class,
+@Import({IngestService.class, FundingFilter.class, CallTitleFilter.class, RuleExtractor.class, FundingCallUpserter.class,
         ExpiredFundingCallCloser.class, IngestServiceTest.Fetchers.class})
 class IngestServiceTest {
 

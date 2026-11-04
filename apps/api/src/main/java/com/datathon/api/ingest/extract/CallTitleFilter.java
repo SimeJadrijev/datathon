@@ -16,14 +16,20 @@ public class CallTitleFilter {
     private static final Pattern NOT_A_CALL = Pattern.compile(
             "potpisan|potpisivanj|uruč|održan|predstavi|predstavlj|sastan|posjet|obiša|obilaz|rezultat|"
                     + "\\blist[ae]\\b|rang[ -]list|privremen|odluk[aeu] o (dodjeli|odabiru|financiranju)|anket|"
-                    + "ministar|ministric|tajni[kc]|čestit|konferencij|radionic|info(rmativn)?[ -]?dan|webinar|"
-                    + "isplać|isplat|prija?m u|prijem|radn(i|og|om) odnos|radn(o|a|ih|om) mjest|zaposlenik|vježbenik|"
-                    + "oglas|kupnj|kupoprodaj|nekretnin|zemljišt|sućut|kandidatur|testiranj|provjer[ae]? znanja|"
+                    + "\\bministar\\b|\\bministric|tajni[kc]|čestit|konferencij|radionic|info(rmativn)?[ -]?dan|webinar|"
+                    + "isplać|(?<!za )isplat|prija?m u|prijem|radn(i|og|om) odnos|radn(o|a|ih|om) mjest|zaposlenik|vježbenik|"
+                    + "oglas|(?<!(sufinanciranj|subvencioniranj|financiranj)\\w{0,3} )kupnj|kupoprodaj|nekretnin|zemljišt|"
+                    + "sućut|kandidatur|testiranj|provjer[ae]? znanja|"
                     + "obustav|poništ|zatvaranj|izvješ|ispravak|dražb|koncesij|dozvol|zakup|najam|prodaj|ponud|"
                     + "imenovanj|savjetovanj|mrtvozor|intervju|rješenje o|služb[eu] (na|za)|domaćic|"
-                    + "dodjel\\w* lokacij|površin\\w* javne|javn\\w* površin|natje[čc]aj\\w* za zapošljav|pokojnik|prijevoz|"
+                    + "dodjel\\w* lokacij|površin\\w* javne|javn\\w* površin|natje[čc]aj\\w* za zapošljav|pokojnik|"
+                    + "(?<!(troškov|sufinanciranj|subvencioniranj|financiranj)\\w{0,3} )prijevoz|"
                     + "radn\\w* mjest|referent|savjetnik|suradnik|tehničar|zapovjednik|pomoćnik\\w* u nastavi|član(a|ova)\\b|"
-                    + "priznanj|^odluk\\w*\\s+o\\s+(?!raspisivanj)|^pravilnik|ishod|reklamn",
+                    + "priznanj|^odluk\\w*\\s+o\\s+(?!raspisivanj)|^pravilnik|ishod|reklamn|"
+                    + "objavljen\\w* (su )?odluk|dostav\\w* odluk|odluk\\w* (o ulasku|o financiranju|povjerenstv)|"
+                    + "finalist|kviz|okupio|\\bupis(a|u)?\\b|popis dobitnik|poziv na razgovor|otkazan|premještaj|"
+                    + "plan\\w* objave|važn\\w* obavijest|obavijest\\w* (i upute|za korisnike|korisnicima|potencijalnim)|"
+                    + "u tijeku je",
             FLAGS);
 
     private static final Pattern CALL_WORDING = Pattern.compile(

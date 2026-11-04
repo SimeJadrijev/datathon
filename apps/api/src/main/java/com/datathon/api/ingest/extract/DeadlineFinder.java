@@ -2,6 +2,7 @@ package com.datathon.api.ingest.extract;
 
 import com.datathon.api.ingest.extract.CroatianDates.DateMatch;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,6 +39,9 @@ public final class DeadlineFinder {
     private static final Pattern UNTIL_FUNDS_USED = Pattern.compile(
             "do\\s+(?:utroška|iskorištenja|iskorištenosti)\\s+(?:raspoloživih\\s+|osiguranih\\s+)?sredstava", FLAGS);
 
+    private static final Pattern RANGE_START = Pattern.compile(
+            "^\\d{1,2}\\.\\s?(?:\\d{1,2}\\.|\\p{L}+)\\s?\\d{2,4}\\.?\\s*(?:godine\\s*)?(?:do|–|-)\\s*(?:dana\\s*)?$", FLAGS);
+
     private DeadlineFinder() {
     }
 
@@ -61,6 +65,10 @@ public final class DeadlineFinder {
         return matcher.find() ? Optional.of("do iskorištenja sredstava") : Optional.empty();
     }
 
+    private static boolean isRange(String between) {
+        return RANGE_START.matcher(between).find();
+    }
+
     private static Optional<LocalDate> findAfter(Pattern keyword, String text, LocalDate publishedAt, boolean checkPeriod) {
         Matcher matcher = keyword.matcher(text);
         while (matcher.find()) {
@@ -68,9 +76,14 @@ public final class DeadlineFinder {
                 continue;
             }
             String window = text.substring(matcher.start(), Math.min(text.length(), matcher.end() + WINDOW_CHARS));
-            for (DateMatch date : CroatianDates.findAll(window)) {
+            List<DateMatch> dates = CroatianDates.findAll(window);
+            for (int i = 0; i < dates.size(); i++) {
+                DateMatch date = dates.get(i);
                 if (PERIOD_BETWEEN.matcher(window.substring(0, date.position())).find()) {
                     break;
+                }
+                if (i + 1 < dates.size() && isRange(window.substring(date.position(), dates.get(i + 1).position()))) {
+                    return Optional.of(dates.get(i + 1).date());
                 }
                 if (publishedAt == null || date.date().isAfter(publishedAt)) {
                     return Optional.of(date.date());

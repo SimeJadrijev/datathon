@@ -1,7 +1,7 @@
 package com.datathon.api.ingest;
 
 import com.datathon.api.fundingcall.ExpiredFundingCallCloser;
-import com.datathon.api.ingest.extract.FundingFilter;
+import com.datathon.api.ingest.extract.CallTitleFilter;
 import com.datathon.api.ingest.extract.RuleExtractor;
 import com.datathon.api.source.SourceCode;
 import java.time.Instant;
@@ -20,7 +20,7 @@ public class IngestService {
 
     private final List<SourceFetcher> fetchers;
     private final List<RegulationIngest> regulationIngests;
-    private final FundingFilter fundingFilter;
+    private final CallTitleFilter callTitleFilter;
     private final RuleExtractor ruleExtractor;
     private final FundingCallUpserter upserter;
     private final IngestRunRepository ingestRunRepository;
@@ -108,7 +108,7 @@ public class IngestService {
     }
 
     private void processItem(SourceFetcher fetcher, RawItem item, SourceRunLog runLog) {
-        if (fetcher.needsTitleFilter() && !fundingFilter.isFunding(item.title())) {
+        if (fetcher.needsTitleFilter() && !callTitleFilter.isCall(item.title())) {
             runLog.setSkipped(runLog.getSkipped() + 1);
             return;
         }

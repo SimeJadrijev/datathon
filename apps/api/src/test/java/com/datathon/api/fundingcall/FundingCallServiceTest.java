@@ -50,7 +50,7 @@ class FundingCallServiceTest {
     }
 
     @Test
-    void closeExpiredClosesOnlyOpenCallsWhoseDeadlineHasPassed() {
+    void closeExpiredClosesOpenAndAnnouncedCallsWhoseDeadlineHasPassed() {
         LocalDate today = LocalDate.of(2026, 10, 30);
         save("Istekao", FundingCallStatus.OPEN, TargetGroup.COMPANY).setDeadline(today.minusDays(1));
         save("Ističe danas", FundingCallStatus.OPEN, TargetGroup.COMPANY).setDeadline(today);
@@ -61,9 +61,25 @@ class FundingCallServiceTest {
         int closed = fundingCallRepository.closeExpired(today);
         entityManager.clear();
 
-        assertThat(closed).isEqualTo(1);
+        assertThat(closed).isEqualTo(2);
         assertThat(fundingCallRepository.findByStatus(FundingCallStatus.CLOSED))
-                .extracting(FundingCall::getTitle).containsExactly("Istekao");
+                .extracting(FundingCall::getTitle).containsExactlyInAnyOrder("Istekao", "Najavljen");
+    }
+
+    @Test
+    void openCallsWithoutDeadlineThatAreSuspendedOrForAPastYearAreClosed() {
+        save("Javni poziv za udruge za 2022. godinu", FundingCallStatus.OPEN, TargetGroup.ASSOCIATION);
+        save("OBUSTAVA - Javni natječaj za donacije", FundingCallStatus.OPEN, TargetGroup.ASSOCIATION);
+        save("Javni poziv za udruge za " + LocalDate.now().getYear() + ". godinu", FundingCallStatus.OPEN,
+                TargetGroup.ASSOCIATION);
+        entityManager.flush();
+
+        new ExpiredFundingCallCloser(fundingCallRepository).closeExpired();
+        entityManager.flush();
+        entityManager.clear();
+
+        assertThat(fundingCallRepository.findByStatus(FundingCallStatus.OPEN)).extracting(FundingCall::getTitle)
+                .containsExactly("Javni poziv za udruge za " + LocalDate.now().getYear() + ". godinu");
     }
 
     @Test

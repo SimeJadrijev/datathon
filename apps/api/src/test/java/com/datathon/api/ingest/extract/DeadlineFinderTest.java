@@ -56,4 +56,16 @@ class DeadlineFinderTest {
 
         assertThat(DeadlineFinder.find(text, PUBLISHED)).contains(LocalDate.of(2026, 5, 15));
     }
+
+    @Test
+    void rangeGivesItsEndDateEvenWhenItStartsAfterPublication() {
+        String text = "Rok za podnošenje prijava: od 16. 3. 2026. do 30. 4. 2026.";
+
+        assertThat(DeadlineFinder.find(text, PUBLISHED)).contains(LocalDate.of(2026, 4, 30));
+    }
+
+    @Test
+    void timeOfDayIsNotReadAsAYear() {
+        assertThat(DeadlineFinder.find("Rok za prijavu: 15.12. 23:59 sati", PUBLISHED)).isEmpty();
+    }
 }

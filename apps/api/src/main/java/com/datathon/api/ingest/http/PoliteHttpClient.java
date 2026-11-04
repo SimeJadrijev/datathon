@@ -19,7 +19,7 @@ public class PoliteHttpClient {
 
     public static final String USER_AGENT = "DatathonBot/0.1 (studentski projekt)";
 
-    private static final Duration PAGE_MAX_AGE = Duration.ofHours(24);
+    private static final Duration PAGE_MAX_AGE = Duration.ofHours(20);
     private static final Duration CONNECT_TIMEOUT = Duration.ofSeconds(5);
     private static final Duration READ_TIMEOUT = Duration.ofSeconds(30);
     private static final Set<Integer> RETRY_STATUSES = Set.of(429, 502, 503, 504);
@@ -58,6 +58,10 @@ public class PoliteHttpClient {
 
     public byte[] getBytes(String url) {
         return fetch(url, "bin", null, false);
+    }
+
+    public byte[] getBytes(String url, Duration maxAge) {
+        return fetch(url, "bin", maxAge, false);
     }
 
     private byte[] fetch(String url, String extension, Duration maxAge, boolean refresh) {

@@ -26,9 +26,13 @@ public interface FundingCallRepository extends JpaRepository<FundingCall, Long>,
     @Modifying
     @Query("""
             update FundingCall c set c.status = com.datathon.api.fundingcall.FundingCallStatus.CLOSED
-            where c.status = com.datathon.api.fundingcall.FundingCallStatus.OPEN and c.deadline < :today
+            where c.status in (com.datathon.api.fundingcall.FundingCallStatus.OPEN,
+                               com.datathon.api.fundingcall.FundingCallStatus.ANNOUNCED)
+              and c.deadline < :today
             """)
     int closeExpired(@Param("today") LocalDate today);
+
+    List<FundingCall> findByStatusAndDeadlineIsNull(FundingCallStatus status);
 
     /** Calls the model has not read yet, open and announced ones first. */
     @Query("""

@@ -34,22 +34,22 @@ public final class KeywordClassifier {
 
         AREAS.put(Area.ENVIRONMENT, compile("okoliš|otpad|klimat|bioraznolik|priroda|kompost|ekološk|zelen"));
         AREAS.put(Area.ENERGY, compile("energet|obnovljiv|fotonapon|solarn|toplinsk\\w* crpk|kondenzacijsk|emisij"));
-        AREAS.put(Area.TRANSPORT, compile("vozil|promet|mobilnost|e-romobil|bicikl|punionic"));
+        AREAS.put(Area.TRANSPORT, compile("vozil|(?<!(godišnj|ukupn|ostvaren|prihod)\\w{0,3} )promet|mobilnost|e-romobil|bicikl|punionic"));
         AREAS.put(Area.AGRICULTURE, compile("poljopriv|ruraln|ribarst|stočar|sjemen|pčel|šumarst|agro"));
         AREAS.put(Area.EDUCATION, compile("obrazov(n|anj)|odgoj|edukacij|škol|student|učenik|stipendij|udžbenik|izobrazb"
                 + "|osposobljavanj"));
         AREAS.put(Area.SCIENCE, compile("znanost|istraživ|znanstven|akademsk"));
-        AREAS.put(Area.CULTURE, compile("kultur|umjetnost|baštin|knjižn|muzej|kazališ"));
+        AREAS.put(Area.CULTURE, compile("(?<!(ratarsk|povrtn|industrijsk|trajn|poljoprivredn|krmn)\\w{0,3} )kultur|umjetnost|baštin|knjižn|muzej|kazališ"));
         AREAS.put(Area.SPORT, compile("\\bsport|tjelesn\\w* aktivnost"));
         AREAS.put(Area.SOCIAL, compile("socijal|siromaš|invaliditet|beskućn|starij\\w* osob|ranjiv"));
         AREAS.put(Area.HEALTH, compile("zdravstv|zdravlj|ovisnost|bolest"));
         AREAS.put(Area.EMPLOYMENT, compile("zapošljavanj|samozapošljavanj|nezaposlen|radn\\w* mjest|pripravništv"));
         AREAS.put(Area.ENTREPRENEURSHIP, compile("poduzet|obrtni|gospodarsk|investicij|mal\\w* gospodarstv|jamstv|zajam"
-                + "|kredit"));
+                + "|\\bkredit"));
         AREAS.put(Area.INNOVATION, compile("inovac|startup|start-up|razvoj proizvoda|pametn\\w* specijalizacij|\\bS3\\b"));
         AREAS.put(Area.DIGITALIZATION, compile("digital"));
         AREAS.put(Area.TOURISM, compile("turiz"));
-        AREAS.put(Area.YOUTH, compile("\\bmlad(i|ih|ima)\\b|mladež"));
+        AREAS.put(Area.YOUTH, compile("\\bmlad(i|ih|ima|e|u|og)\\b|mladež"));
         AREAS.put(Area.CIVIL_SOCIETY, compile("udrug|civiln\\w* društv|volonter"));
     }
 

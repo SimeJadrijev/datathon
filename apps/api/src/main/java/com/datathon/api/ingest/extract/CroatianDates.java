@@ -27,7 +27,7 @@ public final class CroatianDates {
             Map.entry("prosinac", 12));
 
     private static final Pattern DATE = Pattern.compile(
-            "\\b(\\d{1,2})\\.\\s?(?:(\\d{1,2})\\.\\s?|(" + monthAlternatives() + ")\\s+)(\\d{4}|\\d{2})(?!\\d)",
+            "\\b(\\d{1,2})\\.\\s?(?:(\\d{1,2})\\.\\s?|(" + monthAlternatives() + ")\\s+)(\\d{4}|\\d{2})(?![\\d:])",
             Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE | Pattern.UNICODE_CHARACTER_CLASS);
 
     private CroatianDates() {
