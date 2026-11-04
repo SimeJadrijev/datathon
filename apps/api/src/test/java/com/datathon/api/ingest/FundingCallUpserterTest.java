@@ -68,6 +68,42 @@ class FundingCallUpserterTest {
     }
 
     @Test
+    void structuredDeadlineReplacesTheOneTheModelClearedOnTheNextIngest() {
+        RawItem item = item(null).toBuilder().deadlineHint(TODAY.plusDays(20)).build();
+        upserter.upsert(SourceCode.FZOEU, item, fields(FundingCallStatus.OPEN, TODAY.plusDays(20)));
+        FundingCall call = stored();
+        call.setDeadline(null);
+        call.setDeadlineFromSource(false);
+        call.getAiFields().add("deadline");
+
+        Result result = upserter.upsert(SourceCode.FZOEU, item, fields(FundingCallStatus.OPEN, TODAY.plusDays(20)));
+
+        assertThat(result).isEqualTo(Result.UNCHANGED);
+        assertThat(stored().getDeadline()).isEqualTo(TODAY.plusDays(20));
+        assertThat(stored().isDeadlineFromSource()).isTrue();
+        assertThat(stored().getAiFields()).doesNotContain("deadline");
+    }
+
+    @Test
+    void continuousMeasureStaysOpenWithoutTheDeadlineTheModelFound() {
+        RawItem item = item(FundingCallStatus.OPEN).toBuilder().deadlineNoteHint("kontinuirano, bez roka").build();
+        ExtractedFields continuous = new ExtractedFields(null, FundingCallStatus.OPEN, null, null,
+                "kontinuirano, bez roka", null, null, null, Set.of(), Set.of(), Set.of(), Set.of());
+        upserter.upsert(SourceCode.HZZ, item, continuous);
+        FundingCall call = fundingCallRepository.findBySourceAndExternalId(SourceCode.HZZ, "upsert-1").orElseThrow();
+        call.setDeadline(TODAY.minusDays(30));
+        call.setStatus(FundingCallStatus.CLOSED);
+        call.getAiFields().add("deadline");
+
+        upserter.upsert(SourceCode.HZZ, item, continuous);
+
+        FundingCall stored = fundingCallRepository.findBySourceAndExternalId(SourceCode.HZZ, "upsert-1").orElseThrow();
+        assertThat(stored.getStatus()).isEqualTo(FundingCallStatus.OPEN);
+        assertThat(stored.getDeadline()).isNull();
+        assertThat(stored.isDeadlineFromSource()).isTrue();
+    }
+
+    @Test
     void sourceSayingClosedWinsOverTheModelDeadline() {
         upserter.upsert(SourceCode.FZOEU, item(null), fields(FundingCallStatus.OPEN, TODAY.plusDays(5)));
         FundingCall call = stored();

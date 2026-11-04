@@ -2,6 +2,7 @@ package com.datathon.api.ai;
 
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallStatuses;
+import com.datathon.api.ingest.extract.DeadlineFinder;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collection;
@@ -78,6 +79,12 @@ public class FundingCallExtractionMerger {
      * rules take "31. 3. 2028." for the deadline, but it is the end of the procurement period (FZOEU electric cars).
      */
     private void overrideDeadline(FundingCall call, FundingCallExtraction extraction) {
+        if (call.isDeadlineFromSource()) {
+            return;
+        }
+        if (extraction.deadline() == null && call.getDeadlineNote() == null) {
+            DeadlineFinder.findNote(call.getSourceText()).ifPresent(call::setDeadlineNote);
+        }
         boolean changes = extraction.deadline() != null || call.getDeadline() != null;
         call.setDeadline(extraction.deadline());
         if (changes) {
@@ -87,7 +94,8 @@ public class FundingCallExtractionMerger {
 
     /** A deadline read by the model can contradict the status the rules derived from a wrong date. */
     private void refreshStatus(FundingCall call, FundingCallExtraction extraction) {
-        if (extraction.deadline() == null || FundingCallStatuses.isCancelled(call.getTitle())) {
+        if (call.isDeadlineFromSource() || extraction.deadline() == null
+                || FundingCallStatuses.isCancelled(call.getTitle())) {
             return;
         }
         call.setStatus(FundingCallStatuses.fromDeadline(extraction.deadline(), call.getStatus(), LocalDate.now()));

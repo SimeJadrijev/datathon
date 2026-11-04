@@ -61,7 +61,7 @@ class SeedServiceTest {
         return new SeedFundingCall(SourceCode.ASSOCIATIONS_OFFICE, externalId, null, "Natječaj za udruge",
                 "Grad Rijeka", FundingCallType.GRANT, FundingCallStatus.OPEN, SNAPSHOT_DATE, null,
                 null, null, null, Set.of(), Set.of(), Set.of("ALL"), Set.of(), null,
-                List.of(), List.of(), null, false, Set.of(), null, null, null, null, false, false, null);
+                List.of(), List.of(), null, false, Set.of(), null, null, null, null, false, false, null, false);
     }
 
     private static SeedRegulation regulation() {

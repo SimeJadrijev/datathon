@@ -43,7 +43,8 @@ public record SeedFundingCall(
         String eligibilityQuestions,
         Boolean fieldsReviewed,
         Boolean hidden,
-        String hiddenReason) {
+        String hiddenReason,
+        Boolean deadlineFromSource) {
 
     /** The export side of the seed: what the database holds now, including the AI results, so a fresh clone has them. */
     static SeedFundingCall from(FundingCall call) {
@@ -56,7 +57,8 @@ public record SeedFundingCall(
                 call.getAttachments().stream().map(SeedAttachment::from).toList(),
                 call.getRawTextHash(), call.isExtractedByLlm(), new TreeSet<>(call.getAiFields()),
                 call.getFetchedAt(), call.getSourceText(), call.getDeadlineNote(), call.getEligibilityQuestions(),
-                call.isFieldsReviewed(), call.isHidden(), call.getHiddenReason());
+                call.isFieldsReviewed(), call.isHidden(), call.getHiddenReason(),
+                call.isDeadlineFromSource());
     }
 
     FundingCall toNewEntity() {
@@ -95,6 +97,7 @@ public record SeedFundingCall(
         fundingCall.setFieldsReviewed(Boolean.TRUE.equals(fieldsReviewed));
         fundingCall.setHidden(Boolean.TRUE.equals(hidden));
         fundingCall.setHiddenReason(hiddenReason);
+        fundingCall.setDeadlineFromSource(Boolean.TRUE.equals(deadlineFromSource));
     }
 
     static <T> void replace(Collection<T> target, Collection<T> values) {

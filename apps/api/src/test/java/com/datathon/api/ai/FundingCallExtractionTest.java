@@ -85,6 +85,29 @@ class FundingCallExtractionTest {
     }
 
     @Test
+    void deadlineFromStructuredSourceDataIsKeptOverTheModel() {
+        FundingCall call = ruleBasedCall();
+        call.setDeadlineFromSource(true);
+
+        merger.apply(call, parse("{\"deadline\":\"2020-01-01\"}"));
+
+        assertThat(call.getDeadline()).isEqualTo(LocalDate.of(2028, 3, 31));
+        assertThat(call.getStatus()).isEqualTo(FundingCallStatus.OPEN);
+        assertThat(call.getAiFields()).doesNotContain("deadline");
+    }
+
+    @Test
+    void clearedDeadlineGetsTheUntilFundsRunOutNote() {
+        FundingCall call = ruleBasedCall();
+        call.setSourceText("Poziv traje do isteka godine ili do iskorištenja sredstava.");
+
+        merger.apply(call, parse("{\"deadline\":null}"));
+
+        assertThat(call.getDeadline()).isNull();
+        assertThat(call.getDeadlineNote()).isEqualTo("do iskorištenja sredstava");
+    }
+
+    @Test
     void deadlineInThePastClosesTheCall() {
         FundingCall call = ruleBasedCall();
 
