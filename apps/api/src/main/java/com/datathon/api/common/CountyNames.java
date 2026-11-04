@@ -39,6 +39,10 @@ public final class CountyNames {
         return FundingCall.ALL_COUNTIES.equals(normalize(county));
     }
 
+    public static boolean areLocal(Collection<String> counties) {
+        return !counties.isEmpty() && counties.stream().noneMatch(CountyNames::isWholeCountry);
+    }
+
     public static Set<String> storedValuesMatching(String requested, Collection<String> storedValues) {
         String wanted = normalize(requested);
         return storedValues.stream()

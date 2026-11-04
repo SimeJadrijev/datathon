@@ -1,5 +1,6 @@
 package com.datathon.api.ingest;
 
+import com.datathon.api.common.CountyNames;
 import com.datathon.api.fundingcall.Attachment;
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallRepository;
@@ -81,6 +82,10 @@ public class FundingCallUpserter {
         }
         if (!aiFields.contains("areas")) {
             replace(fundingCall.getAreas(), fields.areas());
+        }
+        if (CountyNames.areLocal(fields.counties())) {
+            aiFields.remove("counties");
+            replace(fundingCall.getCounties(), fields.counties());
         }
     }
 

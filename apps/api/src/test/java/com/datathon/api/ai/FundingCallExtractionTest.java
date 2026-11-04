@@ -108,6 +108,27 @@ class FundingCallExtractionTest {
     }
 
     @Test
+    void countyOfALocalSourceIsNotWidenedToTheWholeCountry() {
+        FundingCall call = ruleBasedCall();
+        call.getCounties().add("Karlovačka");
+
+        merger.apply(call, parse("{\"counties\":[\"ALL\"]}"));
+
+        assertThat(call.getCounties()).containsExactly("Karlovačka");
+        assertThat(call.getAiFields()).doesNotContain("counties");
+    }
+
+    @Test
+    void nationalCallCanBeNarrowedByTheModel() {
+        FundingCall call = ruleBasedCall();
+        call.getCounties().add(FundingCall.ALL_COUNTIES);
+
+        merger.apply(call, parse("{\"counties\":[\"Splitsko-dalmatinska\"]}"));
+
+        assertThat(call.getCounties()).containsExactly("Splitsko-dalmatinska");
+    }
+
+    @Test
     void deadlineInThePastClosesTheCall() {
         FundingCall call = ruleBasedCall();
 

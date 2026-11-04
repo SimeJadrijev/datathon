@@ -1,5 +1,6 @@
 package com.datathon.api.ai;
 
+import com.datathon.api.common.CountyNames;
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallStatuses;
 import com.datathon.api.ingest.extract.DeadlineFinder;
@@ -33,7 +34,9 @@ public class FundingCallExtractionMerger {
         replace(call, "targetGroups", extraction.targetGroups(), call.getTargetGroups());
         replace(call, "areas", extraction.areas(), call.getAreas());
         replace(call, "activityCodes", extraction.activityCodes(), call.getActivityCodes());
-        replace(call, "counties", extraction.counties(), call.getCounties());
+        if (!CountyNames.areLocal(call.getCounties())) {
+            replace(call, "counties", extraction.counties(), call.getCounties());
+        }
         replace(call, "requiredDocuments", extraction.requiredDocuments(), call.getRequiredDocuments());
         orderAmounts(call);
         refreshStatus(call, extraction);
