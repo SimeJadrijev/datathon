@@ -2,6 +2,7 @@ package com.datathon.api.meta;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.datathon.api.association.AssociationRepository;
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallRepository;
 import com.datathon.api.fundingcall.FundingCallStatus;
@@ -17,7 +18,6 @@ import com.datathon.api.source.SourceService;
 import com.datathon.api.source.SourceSummary;
 import jakarta.persistence.EntityManager;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,6 +51,9 @@ class MetaAndSourceServiceTest {
 
     private MetaService metaService;
     private SourceService sourceService;
+    @Autowired
+    private AssociationRepository associationRepository;
+
     private SnapshotDate snapshotDate;
 
     @BeforeEach
@@ -60,6 +63,7 @@ class MetaAndSourceServiceTest {
         snapshotDate = new SnapshotDate(jsonMapper);
         metaService = new MetaService(snapshotDate, ingestRunRepository, fundingCallRepository, regulationRepository);
         sourceService = new SourceService(new SourceCatalog(jsonMapper), fundingCallRepository, regulationRepository,
+                associationRepository,
                 sourceRunLogRepository, snapshotDate);
     }
 
@@ -113,7 +117,7 @@ class MetaAndSourceServiceTest {
         var sources = sourceService.list();
 
         assertThat(lastFetchOf(sources, SourceCode.HZZ)).isEqualTo(FIRST_RUN);
-        Instant snapshotInstant = LocalDate.of(2026, 10, 26).atStartOfDay(ZoneOffset.UTC).toInstant();
+        Instant snapshotInstant = snapshotDate.value().orElseThrow().atStartOfDay(ZoneOffset.UTC).toInstant();
         assertThat(lastFetchOf(sources, SourceCode.MZOM)).isEqualTo(snapshotInstant);
         assertThat(lastFetchOf(sources, SourceCode.FZOEU)).isEqualTo(snapshotInstant);
         assertThat(lastFetchOf(sources, SourceCode.SUDREG)).isNull();
@@ -128,7 +132,7 @@ class MetaAndSourceServiceTest {
 
         var sources = sourceService.list();
 
-        Instant snapshotInstant = LocalDate.of(2026, 10, 26).atStartOfDay(ZoneOffset.UTC).toInstant();
+        Instant snapshotInstant = snapshotDate.value().orElseThrow().atStartOfDay(ZoneOffset.UTC).toInstant();
         assertThat(lastFetchOf(sources, SourceCode.HZZ)).isEqualTo(snapshotInstant);
     }
 

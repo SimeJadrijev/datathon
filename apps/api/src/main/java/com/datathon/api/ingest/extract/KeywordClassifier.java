@@ -25,7 +25,8 @@ public final class KeywordClassifier {
         GROUPS.put(TargetGroup.CRAFT_BUSINESS, compile("\\bobrt|samostaln\\w* djelatnost"));
         GROUPS.put(TargetGroup.COMPANY, compile("trgovačk\\w* društv|d\\.o\\.o|poduzetni|poslodav|mikro, mal\\w* i srednj"
                 + "|\\bMSP\\b|malog gospodarstva"));
-        GROUPS.put(TargetGroup.ASSOCIATION, compile("udrug|organizacij\\w* civilnog|studentsk\\w* (organizacij|zbor)|neprofitn|OCD\\b|zaklad"));
+        GROUPS.put(TargetGroup.ASSOCIATION, compile("udrug|organizacij\\w* civilnog|studentsk\\w* (organizacij|zbor)|neprofitn"
+                + "|OCD\\b|zaklad"));
         GROUPS.put(TargetGroup.LOCAL_GOVERNMENT, compile("jedinic\\w* lokaln|\\bJLS\\b|\\bJL\\(R\\)S|općin\\w* i grad"
                 + "|gradov\\w* i općin|županij\\w* (?:mogu|kao prijavitelj)|javn\\w* ustanov"));
         GROUPS.put(TargetGroup.FARMER, compile("poljoprivredn\\w* gospodarstv|\\bOPG|poljoprivrednik|ribar"
@@ -35,7 +36,8 @@ public final class KeywordClassifier {
         AREAS.put(Area.ENERGY, compile("energet|obnovljiv|fotonapon|solarn|toplinsk\\w* crpk|kondenzacijsk|emisij"));
         AREAS.put(Area.TRANSPORT, compile("vozil|promet|mobilnost|e-romobil|bicikl|punionic"));
         AREAS.put(Area.AGRICULTURE, compile("poljopriv|ruraln|ribarst|stočar|sjemen|pčel|šumarst|agro"));
-        AREAS.put(Area.EDUCATION, compile("obrazovanj|škol|student|učenik|stipendij|udžbenik|izobrazb|osposobljavanj"));
+        AREAS.put(Area.EDUCATION, compile("obrazov(n|anj)|odgoj|edukacij|škol|student|učenik|stipendij|udžbenik|izobrazb"
+                + "|osposobljavanj"));
         AREAS.put(Area.SCIENCE, compile("znanost|istraživ|znanstven|akademsk"));
         AREAS.put(Area.CULTURE, compile("kultur|umjetnost|baštin|knjižn|muzej|kazališ"));
         AREAS.put(Area.SPORT, compile("\\bsport|tjelesn\\w* aktivnost"));

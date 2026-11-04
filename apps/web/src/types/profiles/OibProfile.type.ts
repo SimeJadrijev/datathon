@@ -9,5 +9,5 @@ export type OibProfile = {
     };
     activityCode: string | null;
     profile: Profile;
-    source: "sudreg";
+    source: "sudreg" | "registar-udruga";
 };

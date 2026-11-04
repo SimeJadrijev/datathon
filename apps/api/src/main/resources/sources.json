@@ -102,5 +102,13 @@
     "url": "https://sudreg-data.gov.hr",
     "method": "API",
     "license": "nije provjereno"
+  },
+  {
+    "code": "ASSOCIATION_REGISTRY",
+    "name": "Registar udruga",
+    "description": "Registar udruga Republike Hrvatske (Ministarstvo pravosuđa, uprave i digitalne transformacije) na data.gov.hr. Iz OIB-a udruge popunjava profil: naziv, sjedište, županiju i područja djelovanja iz ciljeva udruge. Uvozimo samo aktivne udruge.",
+    "url": "https://data.gov.hr/ckan/dataset/registar-udruga",
+    "method": "API",
+    "license": "Otvorena dozvola"
   }
 ]

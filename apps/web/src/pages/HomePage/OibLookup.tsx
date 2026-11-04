@@ -16,12 +16,17 @@ const getErrorMessage = (error: Error) => {
         return INVALID_OIB_MESSAGE;
     }
     if (status === 404) {
-        return "Tvrtka s ovim OIB-om nije pronađena u Sudskom registru.";
+        return "Ni tvrtka ni udruga s ovim OIB-om nije pronađena u Sudskom registru ni u Registru udruga.";
     }
     if (status === 502) {
         return "Sudski registar trenutno nije dostupan.";
     }
     return error.message;
+};
+
+const SOURCE_NAMES: Record<OibProfile["source"], string> = {
+    "sudreg": "Sudski registar",
+    "registar-udruga": "Registar udruga",
 };
 
 const describeCompany = ({companyName, seat, activityCode}: OibProfile) =>
@@ -60,7 +65,7 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
         <form className={styles.lookup} onSubmit={handleSubmit} noValidate>
             <label htmlFor="oib" className={styles.label}>Imaš tvrtku, obrt ili udrugu? Upiši OIB</label>
             <p id="oib-hint" className={styles.hint}>
-                Obrazac popunjavamo iz Sudskog registra: naziv, sjedište i djelatnost. OIB ne spremamo.
+                Obrazac popunjavamo iz Sudskog registra ili Registra udruga: naziv, sjedište i djelatnost. OIB ne spremamo.
             </p>
             <div className={styles.row}>
                 <TextInput
@@ -88,7 +93,7 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
                 )}
                 {lookup.data && (
                     <Notice tone="success" title={`Pronašli smo: ${describeCompany(lookup.data)}`}>
-                        <p>Izvor: Sudski registar. Obrazac je popunjen, provjeri i promijeni što treba.</p>
+                        <p>Izvor: {SOURCE_NAMES[lookup.data.source]}. Obrazac je popunjen, provjeri i promijeni što treba.</p>
                     </Notice>
                 )}
             </div>

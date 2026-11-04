@@ -54,6 +54,9 @@ class UniversityFetcherTest {
         assertThat(CALLS.isStudentCall("Natječaj za voditelje ureda Studentskog zbora Sveučilišta u Rijeci")).isFalse();
         assertThat(CALLS.isStudentCall("3. Odluka o odabiru osoblja za aktivnosti mobilnosti – Erasmus+")).isFalse();
         assertThat(CALLS.isStudentCall("SPUŠTANJE BODNE GRANICE ZA SUBVENCIONIRANI SMJEŠTAJ")).isFalse();
+        assertThat(CALLS.isStudentCall("Erasmus iz prve ruke: studenti prenijeli svoja iskustva iz Almeríje!")).isFalse();
+        assertThat(CALLS.isStudentCall("Obavijest o zaprimljenim i odobrenim prijavama u sklopu natječaja za mobilnost")).isFalse();
+        assertThat(CALLS.isStudentCall("ODLUKA za mobilnost studenata u svrhu studija u okviru Erasmus+ programa")).isFalse();
     }
 
     @Test

@@ -9,6 +9,7 @@ public enum SourceCode {
     LOCAL_GOVERNMENT,
     AGENCIES,
     UNIVERSITIES,
+    ASSOCIATION_REGISTRY,
     HZZ,
     APPRRR,
     MZOM,

@@ -11,7 +11,8 @@ export type SourceCode =
     | "APPRRR"
     | "MZOM"
     | "NARODNE_NOVINE"
-    | "SUDREG";
+    | "SUDREG"
+    | "ASSOCIATION_REGISTRY";
 
 export type SourceMethod = "API" | "HTML" | "PDF";
 

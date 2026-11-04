@@ -48,7 +48,7 @@ public class CallTitleFilter {
     private static final Pattern NOT_A_STUDENT_CALL = Pattern.compile(
             "zvanj|asistent|docent|izbor\\w* (na|u|pristupnik|studentsk)|dobitni|odluk\\w* o (izboru|odabiru|dodjeli|raspodjeli)|"
                     + "prijedlog o raspodjeli|p r i j e d l o g|bodn\\w* granic|info[ -]?dan|podsjeća|voditelj|odbor|domsk\\w* odbor|"
-                    + "izvješ|pravilnik|održan",
+                    + "izvješ|pravilnik|održan|iskustv|prenijel|zaprimljen|odobren|^odluka|ostvaren\\w* pravo|domaćin",
             FLAGS);
 
     private final FundingFilter fundingFilter;
