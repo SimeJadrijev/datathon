@@ -7,32 +7,6 @@
     font-size: var(--font-size-lg);
 }
 
-.explainer {
-    margin-bottom: var(--space-6);
-}
-
-.methods {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-5);
-}
-
-.method {
-    padding-top: var(--space-3);
-    border-top: 2px solid var(--color-primary);
-}
-
-.methodTerm {
-    margin-bottom: var(--space-1);
-    font-weight: var(--font-weight-semibold);
-}
-
-.methodDescription {
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-snug);
-    color: var(--color-text-muted);
-}
-
 .tableFrame {
     overflow: hidden;
     background: var(--color-surface);
@@ -97,13 +71,6 @@
 
 .noWrap {
     white-space: nowrap;
-}
-
-@media (max-width: 960px) {
-    .methods {
-        grid-template-columns: minmax(0, 1fr);
-        gap: var(--space-4);
-    }
 }
 
 /* Phone: every source becomes a block of labelled lines instead of a table that scrolls sideways. */

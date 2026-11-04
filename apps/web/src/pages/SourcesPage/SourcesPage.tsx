@@ -1,7 +1,6 @@
 import {EmptyState, ErrorState, ListSkeleton, PageHeader} from "@/components";
 import {useGetMeta, useGetSources} from "@/hooks";
 import {formatCount, formatDate, pluralize} from "@/utils";
-import {SourcesExplainer} from "./SourcesExplainer.tsx";
 import {SourcesTable} from "./SourcesTable.tsx";
 import styles from "./SourcesPage.module.css";
 
@@ -42,7 +41,6 @@ export const SourcesPage = () => {
                 description="Odakle dolaze natječaji i propisi, kako ih prikupljamo i koliko su svježi. Uz svaki zapis u aplikaciji vodi poveznica na izvornu objavu."
                 meta={facts.length > 0 ? <p className={styles.facts}>{facts.join(" · ")}</p> : undefined}
             />
-            <SourcesExplainer/>
             <section aria-labelledby="sources-title">
                 <h2 id="sources-title" className={styles.heading}>Popis izvora</h2>
                 <SourcesContent/>
