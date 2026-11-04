@@ -21,7 +21,7 @@ final class FundingCallExtractionSchema {
             - totalAmount is the whole budget of the call.
             - maxAmount is the highest grant (support) amount one applicant or project can receive, or the highest flat grant per unit (per vehicle, per month, per person) if the text has a table of amounts. Never a salary, a price of an item, or an eligible cost.
             - minAmount is the lowest such grant amount, only if the text states it (for example the smallest value in a table of flat amounts); never return 0.
-            - deadline is the application deadline as YYYY-MM-DD. null if the deadline is "until funds run out", is missing, or the date is only the end of a project, implementation or procurement period.
+            - deadline is the application deadline as YYYY-MM-DD. If the text gives a closing date and also says the call closes earlier when the funds run out ("do 30.11.2026., odnosno do iskorištenja sredstava"), return that closing date. null only if there is no closing date at all (only "until funds run out"), or the date is only the end of a project, implementation or procurement period.
             - targetGroups (who may apply): CITIZEN = individuals and households, CRAFT_BUSINESS = sole traders (obrt), COMPANY = companies and entrepreneurs, ASSOCIATION = associations and other civil society organisations, LOCAL_GOVERNMENT = local and regional governments and public institutions, STUDENT = pupils and students, FARMER = family farms and agricultural holdings.
             - targetGroups: only groups the text names as applicants. If the text does not say, return an empty list. Never assume.
             - areas: the 3 most important areas at most, only areas the call is really about.

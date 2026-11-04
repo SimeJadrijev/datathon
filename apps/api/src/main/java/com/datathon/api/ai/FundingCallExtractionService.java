@@ -29,6 +29,7 @@ public class FundingCallExtractionService {
     private final LlmClient llmClient;
     private final FundingCallExtractionMerger merger;
     private final TransactionTemplate transactionTemplate;
+    private final ScannedDocuments scannedDocuments;
 
     private final BatchRunner batchRunner;
 
@@ -70,12 +71,17 @@ public class FundingCallExtractionService {
 
     /** The model call runs outside any transaction, so a slow call never holds a database connection. */
     void extract(Long id) {
+        List<String> scanUrls = transactionTemplate.execute(status ->
+                scannedDocuments.urls(fundingCallRepository.findById(id).orElseThrow()));
         FundingCall call = fundingCallRepository.findById(id).orElseThrow();
+        List<byte[]> scans = scannedDocuments.download(scanUrls);
         JsonNode answer = llmClient.complete(new LlmRequest(
                 FundingCallExtractionSchema.PURPOSE,
+                null,
                 FundingCallExtractionSchema.SYSTEM_PROMPT,
-                userText(call),
-                FundingCallExtractionSchema.SCHEMA));
+                userText(call, !scans.isEmpty()),
+                FundingCallExtractionSchema.SCHEMA,
+                scans));
         FundingCallExtraction extraction = FundingCallExtraction.from(answer);
         transactionTemplate.executeWithoutResult(status -> {
             FundingCall managed = fundingCallRepository.findById(id).orElseThrow();
@@ -83,9 +89,12 @@ public class FundingCallExtractionService {
         });
     }
 
-    private String userText(FundingCall call) {
+    private String userText(FundingCall call, boolean hasScans) {
         String text = call.getSourceText();
-        return "Today's date: " + LocalDate.now() + "\n"
+        String scans = hasScans
+                ? "The attached PDF documents are scans of the call documents whose text is empty below. Read them.\n"
+                : "";
+        return scans + "Today's date: " + LocalDate.now() + "\n"
                 + "Source: " + call.getSource() + "\n"
                 + "Title: " + call.getTitle() + "\n"
                 + "URL: " + call.getUrl() + "\n"

@@ -317,3 +317,25 @@ Pregled koda u tri dijela (dohvat, API, web) i provjera seeda dali su oko 60 nal
 - ID-evi s nekih HTML lista izvedeni su iz naslova, pa izmijenjeni naslov stvara novi zapis.
 - Rate limit provjere prihvatljivosti gleda IP, pa iza proxyja svi korisnici dijele limit.
 - „Ustanova” (škole, muzeji) se mapira na JLS. To je u skladu s klasifikatorom natječaja.
+
+## 2026-11-04: rokovi natječaja (Luka, branch `fix/deadlines`)
+Analiza seeda: 42 otvorena natječaja bez roka. Uzrok je većinom kod nas:
+- kod 20 natječaja AI je obrisao strukturirani rok izvora (eKohezija `RokZaPodnosenjeProjektnihPrijava`, udruge.gov.hr „Datum zatvaranja”);
+- 10 HZZ mjera stvarno traje cijelu godinu;
+- 3 FZOEU PDF-a su skenirana, bez teksta;
+- ostatak su kratki sažeci s udruge.gov.hr, gdje je pravi natječaj na stranici grada.
+
+Odluke:
+- **Rok iz strukturiranog polja izvora pobjeđuje AI.**
+  - Novo polje `FundingCall.deadlineFromSource` postavlja se kad parser da `deadlineHint`. Tada merger ne dira rok ni status.
+  - Isti hash pri ingestu vraća rok iz hinta preko AI vrijednosti. Tako se postojeći zapisi poprave bez resetiranja AI rezultata.
+  - Razlog: polje izvora je točno, a model ga ne vidi uvijek (kod eKohezije rok nije u tekstu koji mu šaljemo) ili ga krivo odbaci.
+  - Stupac ima `default false`, jer Hibernate inače ne može dodati `not null` stupac u punu tablicu. Bez toga bi se srušile baze ostalih članova tima.
+- **HZZ:** status mjere sa stranice HZZ-a („kontinuirano” ili „nije aktivna”) pobjeđuje AI, jer i napomena izvora vrijedi kao rok iz izvora. AI je kod 4 aktivne mjere našao prošli datum i zatvorio ih, a sljedeći ingest bi ih ponovno otvorio. Korisnik je odlučio 4.11.
+- **Prompt:** kad tekst kaže „do 30.11.2026., odnosno do iskorištenja sredstava”, model vraća datum. Null je samo kad datuma uopće nema. Kad model ipak obriše rok, upiše se napomena „do iskorištenja sredstava” ako je tekst spominje.
+- **udruge.gov.hr:** pratimo link „Poveznica” na izvorni natječaj (`OriginalCallReader`).
+  - Kod HTML stranice uzimamo glavni tekst (bez izbornika i podnožja, najviše 15k znakova) i najviše 3 PDF-a s te stranice. Kod PDF linka čitamo PDF.
+  - Robots.txt i greške se preskaču.
+  - Posljedica: tekst svih natječaja udruga se jednom promijenio, pa je AI za njih ponovno pokrenut.
+- **Skenirani PDF-ovi:** kad je sekcija PDF-a u tekstu prazna, AI ekstrakcija šalje modelu sam PDF kao document blok (najviše 2 PDF-a, do 5 MB i 20 stranica). Tesseract nije potreban, a trošak je reda 0,002 USD po dokumentu.
+- **eKohezija dokumenti svjesno nisu rađeni.** Detaljni endpoint `MISPublicApi/poziv/{id}` ima upute za prijavitelje, ali rok je već strukturiran, a sažetak i uvjeti su dovoljni.

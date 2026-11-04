@@ -54,6 +54,14 @@ public class PdfTextExtractor {
                 .toList();
     }
 
+    public static int pageCount(byte[] pdf) {
+        try (PDDocument document = Loader.loadPDF(pdf)) {
+            return document.getNumberOfPages();
+        } catch (IOException e) {
+            return 0;
+        }
+    }
+
     public static String readText(byte[] pdf) {
         try (PDDocument document = Loader.loadPDF(pdf)) {
             PDFTextStripper stripper = new PDFTextStripper();

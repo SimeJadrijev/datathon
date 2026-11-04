@@ -74,6 +74,9 @@ public class FundingCall {
     @Column(length = 500)
     private String deadlineNote;
 
+    @Column(columnDefinition = "boolean not null default false")
+    private boolean deadlineFromSource;
+
     @Column(precision = 15, scale = 2)
     private BigDecimal totalAmount;
 

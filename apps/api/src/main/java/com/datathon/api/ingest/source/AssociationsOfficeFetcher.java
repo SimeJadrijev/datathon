@@ -25,9 +25,11 @@ public class AssociationsOfficeFetcher implements SourceFetcher {
     private static final int OPEN = 1;
     private static final int CLOSED = 2;
     private static final int MAX_OPEN_PAGES = 60;
+    private static final String OWN_HOST = "udruge.gov.hr";
 
     private final PoliteHttpClient http;
     private final IngestProperties properties;
+    private final OriginalCallReader originalCallReader;
 
     @Override
     public boolean needsTitleFilter() {
@@ -49,7 +51,12 @@ public class AssociationsOfficeFetcher implements SourceFetcher {
 
     @Override
     public RawItem fetchDetail(RawItem item) {
-        return AssociationsOfficeParser.applyDetail(item, http.getText(item.url()));
+        RawItem detailed = AssociationsOfficeParser.applyDetail(item, http.getText(item.url()));
+        String originalText = detailed.attachments().stream()
+                .findFirst()
+                .map(link -> originalCallReader.read(link, OWN_HOST))
+                .orElse("");
+        return originalText.isBlank() ? detailed : detailed.toBuilder().pdfText(originalText).build();
     }
 
     private void collect(int status, int maxPages, Map<String, RawItem> items) {

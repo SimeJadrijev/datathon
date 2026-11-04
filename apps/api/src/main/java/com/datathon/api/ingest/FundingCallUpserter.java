@@ -46,7 +46,7 @@ public class FundingCallUpserter {
         FundingCall fundingCall = existing.get();
         fundingCall.setFetchedAt(Instant.now());
         if (hash.equals(fundingCall.getRawTextHash())) {
-            applyRuleValuesNotTakenOver(fundingCall, fields);
+            applyRuleValuesNotTakenOver(fundingCall, item, fields);
             fundingCall.setStatus(status(fundingCall, item, fields));
             return Result.UNCHANGED;
         }
@@ -54,11 +54,15 @@ public class FundingCallUpserter {
         return Result.UPDATED;
     }
 
-    private void applyRuleValuesNotTakenOver(FundingCall fundingCall, ExtractedFields fields) {
+    private void applyRuleValuesNotTakenOver(FundingCall fundingCall, RawItem item, ExtractedFields fields) {
         if (fundingCall.isFieldsReviewed()) {
             return;
         }
         Set<String> aiFields = fundingCall.getAiFields();
+        if (isDeadlineFromSource(item)) {
+            aiFields.remove("deadline");
+        }
+        fundingCall.setDeadlineFromSource(isDeadlineFromSource(item));
         if (!aiFields.contains("deadline")) {
             fundingCall.setDeadline(fields.deadline());
             fundingCall.setDeadlineNote(fields.deadlineNote());
@@ -78,6 +82,10 @@ public class FundingCallUpserter {
         if (!aiFields.contains("areas")) {
             replace(fundingCall.getAreas(), fields.areas());
         }
+    }
+
+    private static boolean isDeadlineFromSource(RawItem item) {
+        return item.deadlineHint() != null || item.deadlineNoteHint() != null;
     }
 
     private static FundingCallStatus status(FundingCall fundingCall, RawItem item, ExtractedFields fields) {
@@ -107,6 +115,7 @@ public class FundingCallUpserter {
                 .toList());
         if (!fundingCall.isFieldsReviewed()) {
             applyExtractedValues(fundingCall, fields);
+            fundingCall.setDeadlineFromSource(isDeadlineFromSource(item));
         }
         resetAiResults(fundingCall);
         fundingCall.setStatus(status(fundingCall, item, fields));
