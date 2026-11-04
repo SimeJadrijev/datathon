@@ -339,3 +339,14 @@ Odluke:
   - Posljedica: tekst svih natječaja udruga se jednom promijenio, pa je AI za njih ponovno pokrenut.
 - **Skenirani PDF-ovi:** kad je sekcija PDF-a u tekstu prazna, AI ekstrakcija šalje modelu sam PDF kao document blok (najviše 2 PDF-a, do 5 MB i 20 stranica). Tesseract nije potreban, a trošak je reda 0,002 USD po dokumentu.
 - **eKohezija dokumenti svjesno nisu rađeni.** Detaljni endpoint `MISPublicApi/poziv/{id}` ima upute za prijavitelje, ali rok je već strukturiran, a sažetak i uvjeti su dovoljni.
+
+## 2026-11-04: županija iz izvora pobjeđuje AI (Luka, branch `fix/source-counties`)
+- **Problem:** stipendija Grada Karlovca prikazivala se profilu iz Splitsko-dalmatinske županije.
+  - Izvor je dao Karlovačku županiju, ali je tekst bio kratak, pa je AI vratio `["ALL"]`.
+  - Merger je time pregazio županiju izvora.
+  - Od 49 otvorenih natječaja gradova i općina 10 je imalo `ALL`.
+- **Odluka:** kad izvor da konkretnu županiju (lokalni izvori, polje županije na udruge.gov.hr), AI je ne mijenja.
+  - AI smije samo suziti nacionalni natječaj (izvor kaže `ALL`, a tekst navodi županiju).
+  - Isti hash pri ingestu vraća županiju izvora bez resetiranja AI rezultata (`CountyNames.areLocal`).
+- **Prompt:** `ALL` samo kad tekst kaže da je natječaj nacionalni. Kad mjesto prijavitelja nije navedeno, model vraća praznu listu i ostaje vrijednost izvora.
+- Obrazac je isti kao kod rokova (4.11.): strukturirani podatak izvora je točniji od modela koji vidi kratak tekst.

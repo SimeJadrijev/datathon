@@ -26,7 +26,7 @@ final class FundingCallExtractionSchema {
             - targetGroups: only groups the text names as applicants. If the text does not say, return an empty list. Never assume.
             - areas: the 3 most important areas at most, only areas the call is really about.
             - activityCodes: NKD activity codes only if they are explicitly listed (for example "62.01").
-            - counties: Croatian counties the call applies to; ["ALL"] if it is a national call for the whole country.
+            - counties: Croatian counties the call applies to. ["ALL"] only if the text says the call is national or open to applicants from the whole country. If the text does not say where applicants must be from, return an empty list.
             - conditionsSummary: 1-3 sentences in Croatian: who can apply and for what. State only facts from the text; if something is not in the text, leave it out instead of saying it is unclear.
             - requiredDocuments: short names of documents the applicant attaches, at most 10.""";
 

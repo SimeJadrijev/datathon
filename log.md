@@ -205,3 +205,6 @@
   - Claude čita skenirane PDF-ove (document blok).
 - Seed: ingest samo za eKoheziju, HZZ i udruge, AI za 205 natječaja (0,28 USD), pitanja, izvoz. Otvorenih bez roka: s 42 na 21, od čega je 16 HZZ mjera s napomenom „kontinuirano”. Natječaj 78 je isti.
 - eKohezija dokumentacija svjesno nije rađena (rok je strukturiran). Odluke su u `work/decisions.md` (4.11., rokovi).
+
+## 2026-11-04 (Luka, županije, branch `fix/source-counties`)
+- AI je natječajima gradova i općina s kratkim tekstom postavljao „cijela Hrvatska” (npr. stipendija Grada Karlovca u preporukama za Split). Županija iz izvora sad pobjeđuje AI, a ponovni ingest je vraća bez resetiranja AI-ja. Odluka je u `work/decisions.md`.

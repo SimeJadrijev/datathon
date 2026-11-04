@@ -104,6 +104,23 @@ class FundingCallUpserterTest {
     }
 
     @Test
+    void countyOfTheSourceReplacesTheWholeCountryTheModelSetOnTheNextIngest() {
+        RawItem item = item(null);
+        ExtractedFields karlovac = new ExtractedFields(null, FundingCallStatus.OPEN, null, null, null, null, null, null,
+                Set.of(), Set.of(), Set.of(), Set.of("Karlovačka"));
+        upserter.upsert(SourceCode.FZOEU, item, karlovac);
+        FundingCall call = stored();
+        call.getCounties().clear();
+        call.getCounties().add(FundingCall.ALL_COUNTIES);
+        call.getAiFields().add("counties");
+
+        upserter.upsert(SourceCode.FZOEU, item, karlovac);
+
+        assertThat(stored().getCounties()).containsExactly("Karlovačka");
+        assertThat(stored().getAiFields()).doesNotContain("counties");
+    }
+
+    @Test
     void sourceSayingClosedWinsOverTheModelDeadline() {
         upserter.upsert(SourceCode.FZOEU, item(null), fields(FundingCallStatus.OPEN, TODAY.plusDays(5)));
         FundingCall call = stored();
