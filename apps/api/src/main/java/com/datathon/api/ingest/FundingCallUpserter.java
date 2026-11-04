@@ -3,6 +3,8 @@ package com.datathon.api.ingest;
 import com.datathon.api.fundingcall.Attachment;
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallRepository;
+import com.datathon.api.fundingcall.FundingCallStatus;
+import com.datathon.api.fundingcall.FundingCallStatuses;
 import com.datathon.api.fundingcall.LegalReference;
 import com.datathon.api.ingest.extract.ExtractedFields;
 import com.datathon.api.source.SourceCode;
@@ -10,9 +12,11 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HexFormat;
 import java.util.Optional;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,14 +45,52 @@ public class FundingCallUpserter {
         }
         FundingCall fundingCall = existing.get();
         fundingCall.setFetchedAt(Instant.now());
-        if (fields.status() != null) {
-            fundingCall.setStatus(fields.status());
-        }
         if (hash.equals(fundingCall.getRawTextHash())) {
+            applyRuleValuesNotTakenOver(fundingCall, fields);
+            fundingCall.setStatus(status(fundingCall, item, fields));
             return Result.UNCHANGED;
         }
         applyContent(fundingCall, item, fields, sourceText, hash);
         return Result.UPDATED;
+    }
+
+    private void applyRuleValuesNotTakenOver(FundingCall fundingCall, ExtractedFields fields) {
+        if (fundingCall.isFieldsReviewed()) {
+            return;
+        }
+        Set<String> aiFields = fundingCall.getAiFields();
+        if (!aiFields.contains("deadline")) {
+            fundingCall.setDeadline(fields.deadline());
+            fundingCall.setDeadlineNote(fields.deadlineNote());
+        }
+        if (!aiFields.contains("totalAmount")) {
+            fundingCall.setTotalAmount(fields.totalAmount());
+        }
+        if (!aiFields.contains("minAmount")) {
+            fundingCall.setMinAmount(fields.minAmount());
+        }
+        if (!aiFields.contains("maxAmount")) {
+            fundingCall.setMaxAmount(fields.maxAmount());
+        }
+        if (!aiFields.contains("targetGroups")) {
+            replace(fundingCall.getTargetGroups(), fields.targetGroups());
+        }
+        if (!aiFields.contains("areas")) {
+            replace(fundingCall.getAreas(), fields.areas());
+        }
+    }
+
+    private static FundingCallStatus status(FundingCall fundingCall, RawItem item, ExtractedFields fields) {
+        boolean deadlineFromRules = !fundingCall.isFieldsReviewed() && !fundingCall.getAiFields().contains("deadline");
+        boolean statusFromWording = item.statusHint() != null
+                || FundingCallStatuses.isClosedByTitle(item.title(), fundingCall.getDeadline(), LocalDate.now());
+        FundingCallStatus status;
+        if (deadlineFromRules || statusFromWording || fundingCall.getDeadline() == null) {
+            status = fields.status();
+        } else {
+            status = FundingCallStatuses.fromDeadline(fundingCall.getDeadline(), fundingCall.getStatus(), LocalDate.now());
+        }
+        return status != null ? status : fundingCall.getStatus();
     }
 
     private void applyContent(FundingCall fundingCall, RawItem item, ExtractedFields fields, String sourceText,
@@ -57,7 +99,6 @@ public class FundingCallUpserter {
         fundingCall.setTitle(item.title());
         fundingCall.setProvider(item.provider());
         fundingCall.setType(fields.type());
-        fundingCall.setStatus(fields.status());
         fundingCall.setPublishedAt(fields.publishedAt());
         replace(fundingCall.getCounties(), fields.counties());
         replace(fundingCall.getActivityCodes(), fields.activityCodes());
@@ -68,6 +109,7 @@ public class FundingCallUpserter {
             applyExtractedValues(fundingCall, fields);
         }
         resetAiResults(fundingCall);
+        fundingCall.setStatus(status(fundingCall, item, fields));
         replace(fundingCall.getLegalReferences(), LegalReference.fromText(sourceText));
         fundingCall.setSourceText(sourceText);
         fundingCall.setRawTextHash(hash);

@@ -44,6 +44,7 @@ public class EligibilityQuestionService {
     @Transactional(readOnly = true)
     public List<EligibilityQuestion> findQuestions(Long fundingCallId) {
         FundingCall call = fundingCallRepository.findById(fundingCallId)
+                .filter(found -> !found.isHidden() && found.getDuplicateOf() == null)
                 .orElseThrow(() -> new NotFoundException("Funding call " + fundingCallId + " does not exist",
                         NotFoundException.FUNDING_CALL_MESSAGE));
         if (isClosedForApplications(call)) {

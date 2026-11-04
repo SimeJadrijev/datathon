@@ -70,6 +70,23 @@ class MatchingServiceTest {
     }
 
     @Test
+    void callWithoutATopicStillReachesItsTargetGroupInItsCounty() {
+        var profile = new ProfileRequest(TargetGroup.ASSOCIATION, List.of(), List.of(Area.SOCIAL), "Primorsko-goranska",
+                List.of("skolarin"), List.of());
+        FundingCall smallGrants = call("Javni natječaj za male potpore u 2026.", FundingCallStatus.OPEN,
+                TargetGroup.ASSOCIATION);
+        smallGrants.getCounties().add("Primorsko-goranska");
+        FundingCall fees = call("Sufinanciranje školarine", FundingCallStatus.OPEN, TargetGroup.ASSOCIATION, Area.EDUCATION);
+
+        var matches = matchingService.match(profile, List.of(smallGrants, fees), TODAY);
+
+        assertThat(matches).extracting(match -> match.fundingCall().getTitle())
+                .containsExactlyInAnyOrder("Sufinanciranje školarine", "Javni natječaj za male potpore u 2026.");
+        assertThat(matchOf(matches, "Javni natječaj za male potpore u 2026.").reasons())
+                .contains("područje poziva nije navedeno");
+    }
+
+    @Test
     void closedAndExpiredCallsAreExcluded() {
         FundingCall closed = call("Zatvoren", FundingCallStatus.CLOSED, TargetGroup.COMPANY, Area.ENERGY);
         FundingCall expired = call("Istekao", FundingCallStatus.OPEN, TargetGroup.COMPANY, Area.ENERGY);

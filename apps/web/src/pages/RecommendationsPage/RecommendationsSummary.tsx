@@ -11,7 +11,7 @@ const formatResultCount = (count: number) =>
 
 const describeProfile = (profile: Profile) => {
     const areas = profile.areas.map((area) => AREA_LABELS[area].toLowerCase());
-    const place = profile.county ? formatCounty(profile.county) : "cijela Hrvatska";
+    const place = profile.county ? formatCounty(profile.county) : "samo nacionalni natječaji";
     const keywords = profile.keywords?.map((keyword) => `„${keyword}”`) ?? [];
     return [...areas, place, ...keywords].join(", ");
 };

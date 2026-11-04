@@ -33,5 +33,5 @@ export type EligibilityCheckResponse = {
     reasons: EligibilityReason[];
     missingInfo: string[];
     disclaimer: string;
-    sourceUrl: string;
+    sourceUrl: string | null;
 };

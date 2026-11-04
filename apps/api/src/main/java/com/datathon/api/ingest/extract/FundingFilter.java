@@ -21,7 +21,7 @@ public class FundingFilter {
 
     private static final Pattern FUNDING = Pattern.compile(
             "natje[čc]aj|javn(i|og) poziv|poziv (na|za)|potpor|poticaj|sufinanc|financiranj|stipendij|"
-                    + "subvencij|bespovratn|vaučer|vaucer|nagrad|zajam|kredit|jamstv|mjer[ae]",
+                    + "subvencij|bespovratn|vaučer|vaucer|nagrad|zajam|\\bkredit|jamstv|mjer[ae]",
             FLAGS);
 
     public boolean isFunding(String title) {

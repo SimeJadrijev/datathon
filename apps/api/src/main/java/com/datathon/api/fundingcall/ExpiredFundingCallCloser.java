@@ -1,6 +1,7 @@
 package com.datathon.api.fundingcall;
 
 import java.time.LocalDate;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Marks open calls whose deadline has passed as closed: after the seed is loaded, after every ingest and each night.
+ * Marks open and announced calls whose deadline has passed as closed: after the seed is loaded, after every ingest and each night.
  * Fixing the stored status keeps the list filter, the status facet and the counts on the home page in agreement.
  */
 @Slf4j
@@ -29,12 +30,24 @@ public class ExpiredFundingCallCloser implements ApplicationRunner {
         closeExpired();
     }
 
-    @Scheduled(cron = "0 5 0 * * *")
+    @Scheduled(cron = "0 5 0 * * *", zone = "Europe/Zagreb")
     @Transactional
     public void closeExpired() {
-        int closed = fundingCallRepository.closeExpired(LocalDate.now());
+        LocalDate today = LocalDate.now();
+        int closed = fundingCallRepository.closeExpired(today);
         if (closed > 0) {
             log.info("Closed {} funding calls whose deadline has passed", closed);
+        }
+        closeByTitle(today);
+    }
+
+    private void closeByTitle(LocalDate today) {
+        List<FundingCall> outdated = fundingCallRepository.findByStatusAndDeadlineIsNull(FundingCallStatus.OPEN).stream()
+                .filter(call -> FundingCallStatuses.isClosedByTitle(call.getTitle(), null, today))
+                .toList();
+        outdated.forEach(call -> call.setStatus(FundingCallStatus.CLOSED));
+        if (!outdated.isEmpty()) {
+            log.info("Closed {} open calls without a deadline that are cancelled or for a past year", outdated.size());
         }
     }
 }

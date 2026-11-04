@@ -53,7 +53,7 @@ class FundingCallControllerTest {
     void listReturnsOurPageShape() throws Exception {
         var summary = new FundingCallSummary(7L, "Poziv za vozila", "Fond", SourceRef.from(SOURCE), FundingCallType.PUBLIC_CALL,
                 FundingCallStatus.OPEN, LocalDate.of(2026, 12, 1), null, null, new BigDecimal("9000.00"),
-                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY, Area.TRANSPORT), List.of("ALL"), false, "https://example.org/7", null);
+                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY, Area.TRANSPORT), List.of("ALL"), false, List.of(), "https://example.org/7", null);
         when(fundingCallService.list(any())).thenReturn(new PageResponse<>(List.of(summary), 1, 0, 20));
 
         mockMvc.perform(get("/api/funding-calls").param("status", "OPEN").param("targetGroup", "COMPANY"))
@@ -224,7 +224,7 @@ class FundingCallControllerTest {
     void feedIsAtomWithLinksToOurDetailPages() throws Exception {
         var summary = new FundingCallSummary(7L, "Poziv za vozila & bicikle", "Fond", SourceRef.from(SOURCE), FundingCallType.PUBLIC_CALL,
                 FundingCallStatus.OPEN, LocalDate.of(2026, 12, 1), null, null, new BigDecimal("9000.00"),
-                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY), List.of("ALL"), false, "https://example.org/7",
+                List.of(TargetGroup.CITIZEN), List.of(Area.ENERGY), List.of("ALL"), false, List.of(), "https://example.org/7",
                 Instant.parse("2026-11-02T08:00:00Z"));
         when(fundingCallService.newest(any())).thenReturn(List.of(summary));
 

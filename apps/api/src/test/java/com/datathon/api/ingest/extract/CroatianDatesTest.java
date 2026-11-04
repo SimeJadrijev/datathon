@@ -19,4 +19,9 @@ class CroatianDatesTest {
         assertThat(CroatianDates.findFirst("rok 31.12.26.")).contains(LocalDate.of(2026, 12, 31));
         assertThat(CroatianDates.findFirst("31.02.2026.")).isEmpty();
     }
+
+    @Test
+    void timeAfterADayAndMonthIsNotATwoDigitYear() {
+        assertThat(CroatianDates.findAll("Prijave do 15.12. 23:59")).isEmpty();
+    }
 }

@@ -34,4 +34,29 @@ class AmountParserTest {
         assertThat(AmountParser.parseStructured("12500")).contains(new BigDecimal("12500"));
         assertThat(AmountParser.parseStructured("nije navedeno")).isEmpty();
     }
+
+    @Test
+    void amountAfterBudgetWordingIsTheTotalNotTheMaximum() {
+        var amounts = AmountParser.pick(List.of("U Proračunu Grada osigurana su sredstva u iznosu od 100.000,00 eura. "
+                + "Najviši iznos po projektu je 5.000 eura."));
+
+        assertThat(amounts.total()).isEqualByComparingTo("100000");
+        assertThat(amounts.max()).isEqualByComparingTo("5000");
+    }
+
+    @Test
+    void amountInItsOwnSentenceIsPerBeneficiary() {
+        var amounts = AmountParser.pick(List.of("Proračun programa je 50.000 eura. Potpora se dodjeljuje u iznosu od 2.000 eura."));
+
+        assertThat(amounts.total()).isEqualByComparingTo("50000");
+        assertThat(amounts.max()).isEqualByComparingTo("2000");
+    }
+
+    @Test
+    void minimumAboveMaximumIsSwapped() {
+        var amounts = AmountParser.pick(List.of("Najviši iznos je 3.000 eura, a najniži iznos 7.500 eura."));
+
+        assertThat(amounts.min()).isEqualByComparingTo("3000");
+        assertThat(amounts.max()).isEqualByComparingTo("7500");
+    }
 }

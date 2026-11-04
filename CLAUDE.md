@@ -30,6 +30,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - 3.11.: AI follow-up (issue #7) mergean (PR #23): seed sad nosi AI rezultate (demo radi bez ključa), istekao rok, ručno provjereni pozivi, hrvatske poruke. Detalji u `log.md`.
 - 3.11.: paket 7 gotov: WEB-7 provjeren s pravim AI-jem (natječaj 78 za video), screenshotovi u `work/screenshots/pkg-7/`, PR #24 zatvara issue #9.
 - 3./4.11.: #11 (Luka) na branchu `feature/nice-11`: novi izvori (EU fondovi, ministarstva, gradovi i županije, sveučilišta), pravna osnova, export u standardu, RSS, Registar udruga, osvježen seed. Detalji u `log.md`.
+- 4.11.: lov na bugove na branchu `fix/bug-hunt` (Luka): ispravci dohvata (status, rokovi, iznosi, šum), duplikati, preporuke, web; seed 4.11. Ne pokretati puni ingest nad seedom za stare izvore (vidi `work/decisions.md` 4.11.). Detalji u `log.md`.
 - Zadnje ažurirano: 2026-11-04
 
 ## Tehnički stack i konvencije

@@ -6,7 +6,7 @@ import {
     FUNDING_CALL_SORTS,
     isFundingCallSort,
 } from "@/constants";
-import type {FundingCallFilter, FundingCallStatusFilter} from "@/types";
+import type {FundingCallFilter, FundingCallSort, FundingCallStatusFilter} from "@/types";
 import {formatCount, pluralize} from "@/utils";
 import styles from "./FundingCallsPage.module.css";
 
@@ -38,12 +38,20 @@ interface FundingCallsSummaryProps {
     filter: FundingCallFilter;
     totalElements: number;
     hasFilters: boolean;
+    sort: FundingCallSort | undefined;
     onSortChange: (sort: string) => void;
     onClear: () => void;
 }
 
 // One plain sentence with the real count, then sorting and the reset on the same line.
-export const FundingCallsSummary = ({filter, totalElements, hasFilters, onSortChange, onClear}: FundingCallsSummaryProps) => {
+export const FundingCallsSummary = ({
+    filter,
+    totalElements,
+    hasFilters,
+    sort,
+    onSortChange,
+    onClear,
+}: FundingCallsSummaryProps) => {
     const status = filter.status ?? DEFAULT_FUNDING_CALL_STATUS;
 
     return (
@@ -60,7 +68,7 @@ export const FundingCallsSummary = ({filter, totalElements, hasFilters, onSortCh
                     id={SORT_SELECT_ID}
                     name="sort"
                     className={styles.sortSelect}
-                    value={filter.sort ?? DEFAULT_FUNDING_CALL_SORT}
+                    value={sort ?? DEFAULT_FUNDING_CALL_SORT}
                     onChange={(event) => isFundingCallSort(event.target.value) && onSortChange(event.target.value)}
                 >
                     {FUNDING_CALL_SORTS.map((sort) => (

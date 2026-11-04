@@ -26,7 +26,7 @@ export const FUNDING_CALL_STATUS_FILTER_LABELS: Record<FundingCallStatusFilter, 
     OPEN: "Otvoreni",
     ANNOUNCED: "Najavljeni",
     CLOSED: "Zatvoreni",
-    UNKNOWN: "Status nepoznat",
+    UNKNOWN: "Status nije potvrđen",
 };
 
 export const FUNDING_CALL_SORTS: FundingCallSort[] = ["deadline", "publishedAt", "newest"];

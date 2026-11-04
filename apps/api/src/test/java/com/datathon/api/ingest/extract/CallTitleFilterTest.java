@@ -72,4 +72,42 @@ class CallTitleFilterTest {
         assertThat(FILTER.isCall("Javni poziv za predlaganje programa javnih potreba u kulturi Grada Siska za 2027. godinu")).isTrue();
         assertThat(FILTER.isCall("Javni poziv za sufinanciranje kamata na stambene kredite zdravstvenih radnika")).isTrue();
     }
+
+    @Test
+    void ministryInTheTitleIsNotNews() {
+        assertThat(FILTER.isCall("Javni poziv Ministarstva turizma i sporta za dodjelu potpora")).isTrue();
+        assertThat(FILTER.isCall("Ministar posjetio korisnike potpora")).isFalse();
+    }
+
+    @Test
+    void subsidiesForTransportPurchasesAndPaymentsAreCalls() {
+        assertThat(FILTER.isCall("Javni poziv za sufinanciranje troškova prijevoza studenata")).isTrue();
+        assertThat(FILTER.isCall("Javni poziv za isplatu jednokratne potpore za novorođeno dijete")).isTrue();
+        assertThat(FILTER.isCall("Javni poziv za sufinanciranje kupnje električnih bicikala")).isTrue();
+        assertThat(FILTER.isCall("Javni poziv za prijavu projekata udruga koje osiguravaju uključivanje pomoćnika u nastavi"))
+                .isTrue();
+        assertThat(FILTER.isCall("Javni natječaj za pomoćnika u nastavi")).isFalse();
+    }
+
+    @Test
+    void decisionsWorkshopsAndNoticesAreDropped() {
+        assertThat(List.of(
+                "Objavljene odluke iz Programa potpore za izostanak prihoda od svinjogojske proizvodnje",
+                "Isplaćena potpora iz Programa potpore za poljoprivredne sektore",
+                "Radionice za potencijalne korisnike intervencije 78.02. Potpora za pružanje savjetodavnih usluga",
+                "Otkazana radionica u Gospiću planirana za 16. listopada 2025. za natječaje za intervencije",
+                "Izmjenama plana objave natječaja povećana alokacija u pojedinim intervencijama",
+                "Objavljeni novi natječaji za zapošljavanje",
+                "Obavijest o dostavi odluka za Nacionalne potpore",
+                "Dvadeset i osma Odluka o financiranju u sklopu Poziva NPOO.C3.1.R1-I2.01",
+                "Popis dobitnika državne stipendije u STEM područjima znanosti",
+                "Natječaj za upis studenata na doktorske studije Sveučilišta u Zadru",
+                "Erasmus+ kviz okupio međunarodne studente u Studentskom klubu",
+                "Javni poziv za prijavu kandidata za obavljanje poslova pomoćnika u nastavi",
+                "Javni natječaj za podnošenje prijava za dodjelu poslovnih prostorija u vlasništvu županije",
+                "Godišnji plan raspisivanja javnih poziva i natječaja za dodjelu financijskih sredstava",
+                "Odluka župana o dodjeli financijskih sredstava za financiranje programa",
+                "Javni poziv za iskaz interesa za sudjelovanje u projektnom partnerstvu"))
+                .noneMatch(FILTER::isCall);
+    }
 }

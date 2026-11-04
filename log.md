@@ -181,3 +181,17 @@
 - Seed osvježen preko zasebne baze `datathon_seed` (radna lokalna baza nije imala AI rezultate) i provjeren na praznoj bazi bez ključeva. AI trošak: 0,54 USD (Haiku).
 - `ANTHROPIC_API_KEY` je u `apps/api/.env` (nije u gitu). Ključ je bio zalijepljen u chat, pa ga treba rotirati.
 - Testovi: 378 API testova, `yarn lint` i `yarn build` prolaze.
+
+## 2026-11-04 (Luka, lov na bugove, branch `fix/bug-hunt`)
+- Pregled koda (dohvat, API, web) i provjera seeda: oko 60 nalaza. Popravljeni su oni koji daju krive podatke ili se vide u demu. Odluke i poznata ograničenja su u `work/decisions.md` (4.11.).
+- Dohvat:
+  - status se računa iz spremljenog roka (više ne gazi rok AI-ja);
+  - rasponi rokova, vrijeme kao godina, ukupni iznos naspram max, min veći od max;
+  - stroži filtar naslova za APPRRR i MZOM;
+  - zatvaraju se najavljeni s prošlim rokom te otvoreni bez roka za prošlu godinu ili obustavljeni;
+  - zona Europe/Zagreb, cache 20 h.
+- Šum se skriva (67 objava), duplikati između izvora se označavaju (23).
+- API: prazan `county`, županije bez dijakritika, preporuke za natječaje bez područja, provjera prihvatljivosti za zatvorene i skrivene natječaje, poruke na hrvatskom.
+- Web: AI oznaka po polju, URL može nedostajati, izbornik sortiranja, profil bez županije, tekstovi.
+- Seed 4.11.: 1.222 natječaja (152 otvorena, 150 s AI poljima), ID-evi nepromijenjeni, natječaj 78 isti. Ne pokretati puni ingest nad seedom za stare izvore (razlog u `decisions.md`).
+- Testovi: 406 API testova, `yarn lint` i `yarn build` prolaze. Provjereno i na praznoj bazi bez ključeva.

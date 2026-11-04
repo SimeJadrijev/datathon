@@ -1,7 +1,8 @@
 package com.datathon.api.ai;
 
 import com.datathon.api.fundingcall.FundingCall;
-import com.datathon.api.fundingcall.FundingCallStatus;
+import com.datathon.api.fundingcall.FundingCallStatuses;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.function.Consumer;
@@ -33,6 +34,7 @@ public class FundingCallExtractionMerger {
         replace(call, "activityCodes", extraction.activityCodes(), call.getActivityCodes());
         replace(call, "counties", extraction.counties(), call.getCounties());
         replace(call, "requiredDocuments", extraction.requiredDocuments(), call.getRequiredDocuments());
+        orderAmounts(call);
         refreshStatus(call, extraction);
         call.setExtractedByLlm(true);
     }
@@ -85,10 +87,18 @@ public class FundingCallExtractionMerger {
 
     /** A deadline read by the model can contradict the status the rules derived from a wrong date. */
     private void refreshStatus(FundingCall call, FundingCallExtraction extraction) {
-        if (extraction.deadline() == null || call.getStatus() == FundingCallStatus.ANNOUNCED) {
+        if (extraction.deadline() == null || FundingCallStatuses.isCancelled(call.getTitle())) {
             return;
         }
-        boolean isOpen = !extraction.deadline().isBefore(LocalDate.now());
-        call.setStatus(isOpen ? FundingCallStatus.OPEN : FundingCallStatus.CLOSED);
+        call.setStatus(FundingCallStatuses.fromDeadline(extraction.deadline(), call.getStatus(), LocalDate.now()));
+    }
+
+    private void orderAmounts(FundingCall call) {
+        if (call.getMinAmount() != null && call.getMaxAmount() != null
+                && call.getMinAmount().compareTo(call.getMaxAmount()) > 0) {
+            BigDecimal min = call.getMaxAmount();
+            call.setMaxAmount(call.getMinAmount());
+            call.setMinAmount(min);
+        }
     }
 }

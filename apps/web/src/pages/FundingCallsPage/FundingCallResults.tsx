@@ -52,6 +52,7 @@ export const FundingCallResults = ({
                 filter={summaryFilter}
                 totalElements={data.totalElements}
                 hasFilters={hasFilters}
+                sort={filter.sort}
                 onSortChange={onSortChange}
                 onClear={onClear}
             />

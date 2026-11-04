@@ -29,10 +29,10 @@ export const getDaysUntil = (value: string, today = new Date()) => {
 
 export const formatDate = (value: string) => dateFormatter.format(parseDate(value));
 
-// True for today and the given number of days before it (a "new" regulation, for example).
+// True for the last `days` calendar days including today (a "new" regulation, for example).
 export const isWithinLastDays = (value: string, days: number, today = new Date()) => {
     const daysUntil = getDaysUntil(value, today);
-    return daysUntil <= 0 && daysUntil >= -days;
+    return daysUntil <= 0 && daysUntil > -days;
 };
 
 const padTwoDigits = (value: number) => String(value).padStart(2, "0");

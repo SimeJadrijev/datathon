@@ -52,4 +52,39 @@ class RuleExtractorTest {
 
         assertThat(extractor.extract(item).status()).isEqualTo(FundingCallStatus.CLOSED);
     }
+
+    @Test
+    void openCallWithoutDeadlineForAPastYearIsClosed() {
+        RawItem item = RawItem.builder()
+                .title("Javni poziv za financiranje jednokratnih aktivnosti udruga na području grada Vrgorca za 2023. godinu")
+                .statusHint(FundingCallStatus.OPEN)
+                .build();
+
+        assertThat(extractor.extract(item).status()).isEqualTo(FundingCallStatus.CLOSED);
+    }
+
+    @Test
+    void suspendedCallIsClosedAndCurrentYearStaysOpen() {
+        RawItem suspended = RawItem.builder().title("OBUSTAVA - Javni natječaj za financiranje programa")
+                .statusHint(FundingCallStatus.OPEN).build();
+        RawItem current = RawItem.builder().title("Javni poziv za stipendije za akademsku godinu 2025./2026.")
+                .statusHint(FundingCallStatus.OPEN).build();
+
+        assertThat(extractor.extract(suspended).status()).isEqualTo(FundingCallStatus.CLOSED);
+        assertThat(extractor.extract(current).status()).isEqualTo(FundingCallStatus.OPEN);
+    }
+
+    @Test
+    void announcementWhoseDeadlinePassedIsClosed() {
+        RawItem item = RawItem.builder().title("Najava javnog poziva za potpore").text("Rok za prijavu: 1. 10. 2026.").build();
+
+        assertThat(extractor.extract(item).status()).isEqualTo(FundingCallStatus.CLOSED);
+    }
+
+    @Test
+    void accreditationIsNotALoan() {
+        RawItem item = RawItem.builder().title("Javni poziv za akreditaciju u programu Erasmus+").build();
+
+        assertThat(extractor.extract(item).type()).isEqualTo(FundingCallType.PUBLIC_CALL);
+    }
 }

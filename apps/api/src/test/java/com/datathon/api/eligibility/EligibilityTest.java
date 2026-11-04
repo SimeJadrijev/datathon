@@ -41,7 +41,7 @@ class EligibilityTest {
         List<EligibilityQuestion> questions = List.of(
                 new EligibilityQuestion("q1", "Jeste li punoljetni?", EligibilityQuestionType.YES_NO, List.of()));
         return new EligibilityContext(1L, "Test poziv", "https://example.hr/poziv", CALL_TEXT,
-                LocalDate.of(2026, 12, 1), java.util.Set.of(TargetGroup.CITIZEN), java.util.Set.of("ALL"), questions);
+                LocalDate.of(2026, 12, 1), false, java.util.Set.of(TargetGroup.CITIZEN), java.util.Set.of("ALL"), questions);
     }
 
     private EligibilityJudge judgeAnswering(String json) {

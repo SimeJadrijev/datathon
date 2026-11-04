@@ -38,7 +38,7 @@ export const SourcesPage = () => {
         <>
             <PageHeader
                 title="Izvori podataka"
-                description="Odakle dolaze natječaji i propisi, kako ih prikupljamo i koliko su svježi. Uz svaki zapis u aplikaciji vodi poveznica na izvornu objavu."
+                description="Odakle dolaze natječaji i propisi, kojim ih putem dohvaćamo i koliko su svježi. Uz svaki zapis u aplikaciji vodi poveznica na izvornu objavu."
                 meta={facts.length > 0 ? <p className={styles.facts}>{facts.join(" · ")}</p> : undefined}
             />
             <section aria-labelledby="sources-title">

@@ -28,6 +28,7 @@ public record FundingCallSummary(
         List<Area> areas,
         List<String> counties,
         boolean extractedByLlm,
+        List<String> aiFields,
         String url,
         Instant firstSeenAt) {
 
@@ -47,6 +48,7 @@ public record FundingCallSummary(
                 sorted(fundingCall.getAreas()),
                 sorted(fundingCall.getCounties()),
                 fundingCall.isExtractedByLlm(),
+                sorted(fundingCall.getAiFields()),
                 fundingCall.getUrl(),
                 fundingCall.getFirstSeenAt());
     }

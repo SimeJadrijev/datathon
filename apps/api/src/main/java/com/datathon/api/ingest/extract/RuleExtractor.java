@@ -2,6 +2,7 @@ package com.datathon.api.ingest.extract;
 
 import com.datathon.api.fundingcall.Area;
 import com.datathon.api.fundingcall.FundingCallStatus;
+import com.datathon.api.fundingcall.FundingCallStatuses;
 import com.datathon.api.fundingcall.FundingCallType;
 import com.datathon.api.fundingcall.TargetGroup;
 import com.datathon.api.ingest.RawItem;
@@ -27,8 +28,6 @@ public class RuleExtractor {
     private static final int SHORT_PAGE_CHARS = 500;
     private static final int NKD_WINDOW_CHARS = 300;
     private static final Pattern NKD_KEYWORD = Pattern.compile("\\bNKD\\b");
-    private static final Pattern CANCELLED = Pattern.compile(
-            "poništen|obustavljen|stavljen izvan snage", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
     private static final Pattern NKD_CODE = Pattern.compile("\\b(\\d{2}\\.\\d{1,2})\\b");
 
     private static final List<Map.Entry<String, FundingCallType>> TYPE_KEYWORDS = List.of(
@@ -125,14 +124,26 @@ public class RuleExtractor {
         }
         String title = item.title().toLowerCase(Locale.ROOT);
         return TYPE_KEYWORDS.stream()
-                .filter(entry -> title.contains(entry.getKey()))
+                .filter(entry -> startsAWord(title, entry.getKey()))
                 .map(Map.Entry::getValue)
                 .findFirst()
                 .orElse(null);
     }
 
+    private static boolean startsAWord(String text, String stem) {
+        int index = text.indexOf(stem);
+        while (index >= 0) {
+            if (index == 0 || !Character.isLetter(text.charAt(index - 1))) {
+                return true;
+            }
+            index = text.indexOf(stem, index + 1);
+        }
+        return false;
+    }
+
     private FundingCallStatus status(RawItem item, LocalDate deadline) {
-        if (CANCELLED.matcher(item.title()).find()) {
+        LocalDate today = LocalDate.now(clock);
+        if (FundingCallStatuses.isClosedByTitle(item.title(), deadline, today)) {
             return FundingCallStatus.CLOSED;
         }
         if (item.statusHint() != null) {
@@ -141,7 +152,7 @@ public class RuleExtractor {
         String title = item.title().toLowerCase(Locale.ROOT);
         String head = (title + " " + head(item.text())).toLowerCase(Locale.ROOT);
         if (title.contains("najav")) {
-            return FundingCallStatus.ANNOUNCED;
+            return deadline != null && deadline.isBefore(today) ? FundingCallStatus.CLOSED : FundingCallStatus.ANNOUNCED;
         }
         if (head.contains("zatvoreno") || head.contains("zatvoren je")) {
             return FundingCallStatus.CLOSED;
@@ -149,7 +160,7 @@ public class RuleExtractor {
         if (deadline == null) {
             return null;
         }
-        return deadline.isBefore(LocalDate.now(clock)) ? FundingCallStatus.CLOSED : FundingCallStatus.OPEN;
+        return deadline.isBefore(today) ? FundingCallStatus.CLOSED : FundingCallStatus.OPEN;
     }
 
     private Set<TargetGroup> targetGroups(RawItem item, String body) {

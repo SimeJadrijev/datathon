@@ -31,6 +31,7 @@ public class MatchingService {
     private static final double AREA_POINTS = 3;
     private static final int AREAS_COUNTED = 2;
     private static final double KEYWORD_POINTS = 3;
+    private static final double UNKNOWN_TOPIC_POINTS = 1;
     private static final double ACTIVITY_POINTS = 4;
     private static final double OPEN_POINTS = 2;
     private static final double ANNOUNCED_POINTS = 1;
@@ -118,14 +119,20 @@ public class MatchingService {
         if (!sharedDivisions.isEmpty()) {
             scorecard.add(ACTIVITY_POINTS, "djelatnost NKD " + String.join(", ", sharedDivisions));
         }
-        return !sharedAreas.isEmpty() || !titleKeywords.isEmpty() || !sharedDivisions.isEmpty();
+        boolean topicMatched = !sharedAreas.isEmpty() || !titleKeywords.isEmpty() || !sharedDivisions.isEmpty();
+        boolean topicUnknown = call.getAreas().isEmpty() && call.getActivityCodes().isEmpty();
+        if (!topicMatched && topicUnknown && !call.getTargetGroups().isEmpty()) {
+            scorecard.add(UNKNOWN_TOPIC_POINTS, "područje poziva nije navedeno");
+            return true;
+        }
+        return topicMatched;
     }
 
     private static List<String> keywordsInTitle(ProfileRequest profile, FundingCall call) {
-        String title = call.getTitle().toLowerCase(Locale.ROOT);
+        String title = CountyNames.withoutDiacritics(call.getTitle().toLowerCase(Locale.ROOT));
         return profile.keywords().stream()
                 .map(keyword -> keyword.strip().toLowerCase(Locale.ROOT))
-                .filter(keyword -> !keyword.isEmpty() && title.contains(keyword))
+                .filter(keyword -> !keyword.isEmpty() && title.contains(CountyNames.withoutDiacritics(keyword)))
                 .distinct()
                 .toList();
     }

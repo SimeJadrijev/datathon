@@ -1,7 +1,8 @@
 package com.datathon.api.ingest;
 
+import com.datathon.api.fundingcall.DuplicateMarker;
 import com.datathon.api.fundingcall.ExpiredFundingCallCloser;
-import com.datathon.api.ingest.extract.FundingFilter;
+import com.datathon.api.ingest.extract.CallTitleFilter;
 import com.datathon.api.ingest.extract.RuleExtractor;
 import com.datathon.api.source.SourceCode;
 import java.time.Instant;
@@ -20,12 +21,14 @@ public class IngestService {
 
     private final List<SourceFetcher> fetchers;
     private final List<RegulationIngest> regulationIngests;
-    private final FundingFilter fundingFilter;
+    private final CallTitleFilter callTitleFilter;
     private final RuleExtractor ruleExtractor;
     private final FundingCallUpserter upserter;
     private final IngestRunRepository ingestRunRepository;
     private final SourceRunLogRepository sourceRunLogRepository;
     private final ExpiredFundingCallCloser expiredFundingCallCloser;
+    private final DuplicateMarker duplicateMarker;
+    private final NonCallSweeper nonCallSweeper;
 
     public IngestRun createRun(Optional<SourceCode> source) {
         return ingestRunRepository.save(new IngestRun(Instant.now(), source.orElse(null)));
@@ -40,7 +43,9 @@ public class IngestService {
         for (RegulationIngest regulationIngest : selectedRegulationIngests(run.getRequestedSource())) {
             sourceRunLogRepository.save(runRegulations(run, regulationIngest));
         }
+        nonCallSweeper.hideNonCalls();
         expiredFundingCallCloser.closeExpired();
+        duplicateMarker.markDuplicates();
         run.setFinishedAt(Instant.now());
         ingestRunRepository.save(run);
     }
@@ -108,7 +113,7 @@ public class IngestService {
     }
 
     private void processItem(SourceFetcher fetcher, RawItem item, SourceRunLog runLog) {
-        if (fetcher.needsTitleFilter() && !fundingFilter.isFunding(item.title())) {
+        if (fetcher.needsTitleFilter() && !callTitleFilter.isCall(item.title())) {
             runLog.setSkipped(runLog.getSkipped() + 1);
             return;
         }

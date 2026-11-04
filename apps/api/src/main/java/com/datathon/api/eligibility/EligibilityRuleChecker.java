@@ -1,10 +1,13 @@
 package com.datathon.api.eligibility;
 
+import com.datathon.api.common.CountyNames;
+import com.datathon.api.profile.MatchLabels;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 /**
@@ -42,6 +45,8 @@ public class EligibilityRuleChecker {
         if (context.isDeadlinePassed(LocalDate.now())) {
             reasons.add(new EligibilityReason("Rok prijave (" + context.deadline().format(DATE)
                     + ") je istekao, prijava više nije moguća.", null));
+        } else if (context.closed()) {
+            reasons.add(new EligibilityReason("Poziv je zatvoren, prijava više nije moguća.", null));
         }
     }
 
@@ -50,18 +55,20 @@ public class EligibilityRuleChecker {
         boolean isOtherGroup = request.targetGroup() != null && !context.targetGroups().isEmpty()
                 && !context.targetGroups().contains(request.targetGroup());
         if (isOtherGroup) {
-            reasons.add(new EligibilityReason("Poziv je namijenjen drugoj ciljnoj skupini: " + context.targetGroups() + ".", null));
+            String groups = context.targetGroups().stream().map(MatchLabels::of).sorted().collect(Collectors.joining(", "));
+            reasons.add(new EligibilityReason("Poziv je namijenjen drugoj ciljnoj skupini: " + groups + ".", null));
         }
     }
 
     private void addCountyReason(EligibilityContext context, EligibilityCheckRequest request,
             List<EligibilityReason> reasons) {
         String county = request.county();
-        boolean isNational = context.counties().isEmpty() || context.counties().contains("ALL");
-        boolean isOtherCounty = county != null && !isNational
-                && context.counties().stream().noneMatch(listed -> listed.equalsIgnoreCase(county));
+        boolean isNational = context.counties().isEmpty() || context.counties().stream().anyMatch(CountyNames::isWholeCountry);
+        boolean isOtherCounty = county != null && !county.isBlank() && !isNational && context.counties().stream()
+                .noneMatch(listed -> CountyNames.normalize(listed).equals(CountyNames.normalize(county)));
         if (isOtherCounty) {
-            reasons.add(new EligibilityReason("Poziv se odnosi na druga područja: " + context.counties() + ".", null));
+            reasons.add(new EligibilityReason("Poziv se odnosi na druga područja: "
+                    + String.join(", ", context.counties()) + ".", null));
         }
     }
 

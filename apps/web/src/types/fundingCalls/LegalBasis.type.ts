@@ -4,4 +4,5 @@ export type LegalBasis = {
     gazetteUrl: string;
     regulationId: number | null;
     regulationTitle: string | null;
+    regulationEliUrl: string | null;
 };

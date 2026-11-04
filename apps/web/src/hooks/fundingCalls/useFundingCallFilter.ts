@@ -58,7 +58,8 @@ export const useFundingCallFilter = () => {
     const {q, status, targetGroup, area, county, source, type} = filter;
     // Counts do not depend on the page or the order.
     const facetFilter: FundingCallFilter = {q, status, targetGroup, area, county, source, type};
-    const activeCount = [q, status, targetGroup, area, county, source, type].filter(Boolean).length;
+    const activeStatus = status === DEFAULT_FUNDING_CALL_STATUS ? undefined : status;
+    const activeCount = [q, activeStatus, targetGroup, area, county, source, type].filter(Boolean).length;
 
     // Any change of the filters starts again at the first page. Typing replaces the history entry.
     const updateFilter = (patch: FundingCallFilterPatch, options?: {replace?: boolean}) =>

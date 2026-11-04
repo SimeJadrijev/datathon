@@ -42,7 +42,7 @@ public class ApprrrFetcher implements SourceFetcher {
 
     @Override
     public boolean needsTitleFilter() {
-        return false;
+        return true;
     }
 
     @Override

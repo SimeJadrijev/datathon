@@ -39,7 +39,9 @@ public final class AmountParser {
             Map.entry(Role.MAX, Pattern.compile("najviš|maksimaln|najveć|ne može (?:biti )?već|gornj|do iznosa|do najviše", FLAGS)),
             Map.entry(Role.MIN, Pattern.compile("najniž|minimaln|najmanj|ne može (?:biti )?manj|donj", FLAGS)),
             Map.entry(Role.PER_BENEFICIARY, Pattern.compile("po (?:korisniku|prijavitelju|projektu|zahtjevu|osobi|studentu|učeniku"
-                    + "|vozilu|kućanstvu)|mjesečn|stipendij[ae] (?:iznosi|u iznosu)|u iznosu od", FLAGS)));
+                    + "|vozilu|kućanstvu)|mjesečn|stipendij[ae] (?:iznosi|u iznosu)", FLAGS)));
+    private static final Pattern GENERIC_AMOUNT = Pattern.compile("u iznosu od", FLAGS);
+    private static final Pattern SENTENCE_BREAK = Pattern.compile("[.!?]\\s+\\p{Lu}|\\n", FLAGS & ~Pattern.CASE_INSENSITIVE);
 
     private AmountParser() {
     }
@@ -81,6 +83,9 @@ public final class AmountParser {
         if (total != null && max != null && max.compareTo(total) > 0) {
             return new Amounts(max, min, total);
         }
+        if (min != null && max != null && min.compareTo(max) > 0) {
+            return new Amounts(total, max, min);
+        }
         return new Amounts(total, min, max);
     }
 
@@ -112,7 +117,19 @@ public final class AmountParser {
                 }
             }
         }
-        return best;
+        int genericPosition = lastMatch(GENERIC_AMOUNT, context);
+        boolean genericWins = genericPosition > bestPosition
+                && (best == Role.UNKNOWN || SENTENCE_BREAK.matcher(context.substring(bestPosition, genericPosition)).find());
+        return genericWins ? Role.PER_BENEFICIARY : best;
+    }
+
+    private static int lastMatch(Pattern pattern, String text) {
+        int position = -1;
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            position = matcher.start();
+        }
+        return position;
     }
 
     private static Optional<BigDecimal> toValue(String number, String decimals, String multiplier) {

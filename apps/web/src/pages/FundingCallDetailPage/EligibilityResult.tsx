@@ -83,8 +83,13 @@ export const EligibilityResult = ({result}: EligibilityResultProps) => {
             <div className={styles.disclaimer}>
                 <Icon name="info" className={styles.disclaimerIcon}/>
                 <p>
-                    {result.disclaimer}{" "}
-                    <ExternalLink href={result.sourceUrl}>Službena objava natječaja</ExternalLink>
+                    {result.disclaimer}
+                    {result.sourceUrl && (
+                        <>
+                            {" "}
+                            <ExternalLink href={result.sourceUrl}>Službena objava natječaja</ExternalLink>
+                        </>
+                    )}
                 </p>
             </div>
         </div>

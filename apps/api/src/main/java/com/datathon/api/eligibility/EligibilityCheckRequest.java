@@ -10,7 +10,8 @@ import java.util.Map;
  * {@code county} are the optional profile, used by the rule-based fallback.
  */
 public record EligibilityCheckRequest(
-        @NotNull @Size(max = 10) Map<String, Object> answers,
+        @NotNull(message = "odgovori nedostaju") @Size(max = 10, message = "smije imati najviše 10 odgovora")
+        Map<String, Object> answers,
         TargetGroup targetGroup,
-        @Size(max = 100) String county) {
+        @Size(max = 100, message = "smije imati najviše 100 znakova") String county) {
 }

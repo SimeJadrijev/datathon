@@ -63,7 +63,7 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
 
     return (
         <form className={styles.lookup} onSubmit={handleSubmit} noValidate>
-            <label htmlFor="oib" className={styles.label}>Imaš tvrtku, obrt ili udrugu? Upiši OIB</label>
+            <label htmlFor="oib" className={styles.label}>Imaš tvrtku ili udrugu? Upiši OIB</label>
             <p id="oib-hint" className={styles.hint}>
                 Obrazac popunjavamo iz Sudskog registra ili Registra udruga: naziv, sjedište i djelatnost. OIB ne spremamo.
             </p>

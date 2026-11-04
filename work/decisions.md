@@ -254,3 +254,66 @@ Detalji i obrazloženja u `work/api-plan.md`, odjeljak 3.
   - Seed nosi udruge kao `seed/associations.json.gz` (2 MB), da OIB udruge radi i bez interneta.
 - **Seed se izvozi iz zasebne baze**, ne iz radne lokalne. Radna lokalna baza je bila napunjena starim seedom bez AI rezultata, pa bi izvoz iz nje obrisao AI polja 113 natječaja. Postupak: nova baza `datathon_seed`, koja se pri startu napuni trenutnim seedom; zatim ingest novih izvora i udruge.gov.hr (seed je za udruge imao samo isječak teksta iz POC-a), AI batchevi (Haiku, ukupno 0,54 USD) i izvoz. Na kraju je seed provjeren na praznoj bazi bez ključeva. Rezultat: 1.192 natječaja (167 od 170 otvorenih s AI poljima, 361 s pitanjima za prihvatljivost), 4.121 propis (130 sa sažetkom) i 42.703 udruge. `snapshotDate` je datum najnovijeg dohvata (3.11.), dok su stariji izvori iz seeda od 26.10. Točan datum po izvoru je na stranici Izvori i uz svaki natječaj.
 - **DeadlineFinder:** novo pravilo za datum ispred „rok za prijavu” („do 30.10.2026. rok za prijavu timova”). Prije se uzimao datum iz idućeg retka (rok za predaju rješenja). Pravilo vrijedi samo kad je ispred datuma početak retka ili „do”, pa „Objavljeno 2.3.2026. Rok za…” ostaje kako je bilo.
+
+## 2026-11-04: lov na bugove (Luka, branch `fix/bug-hunt`)
+Pregled koda u tri dijela (dohvat, API, web) i provjera seeda dali su oko 60 nalaza. Popravljeno je ono što žiri vidi ili što daje krive podatke. Ostalo je na dnu, pod poznatim ograničenjima.
+- **Status pri ponovnom dohvatu.** Status se sad računa iz spremljenog roka, a ne iz roka koji su našla pravila.
+  - Zašto: ingest je svaki dan ponovno računao status iz pravila. Tako je gazio rok koji je ispravio AI ili čovjek (`fieldsReviewed`), a brisao je i status ANNOUNCED.
+  - Status iz izvora (`statusHint`) i dalje ima prednost.
+- **Strukturirane vrijednosti bez promjene teksta.** Kad se tekst nije promijenio, a rok ili iznos iz strukturiranih podataka jest (npr. eKohezija), novi rok i iznos se upisuju, osim polja koja je postavio AI ili čovjek.
+  - Formula hasha ostaje ista, jer bi promjena resetirala AI rezultate na svih 727 natječaja.
+- **Čitanje rokova i iznosa:**
+  - za raspon „od X do Y” rok je Y;
+  - „15.12. 23:59” više nije godina 2023.;
+  - „u iznosu od” iza „proračuna/osiguranih sredstava” u istoj rečenici je ukupni iznos, a ne iznos po prijavi;
+  - ako je min veći od max, zamijene se (i u pravilima i nakon AI-ja).
+- **Zatvaranje natječaja.** Zatvaraju se:
+  - najavljeni (ANNOUNCED) natječaji kojima je prošao rok;
+  - otvoreni natječaji bez roka s „obustava/poništen” u naslovu;
+  - otvoreni natječaji bez roka koji su u naslovu samo za prošlu godinu („za 2022. godinu”).
+
+  Zašto: udruge.gov.hr godinama drži takve pozive kao „otvorene”. Na seedu je to zatvorilo 15 poziva. AI više ne otvara ponovno poziv s „poništen” u naslovu.
+- **Šum se skriva, ne briše** (`NonCallSweeper`, `hidden=true`, razlog „Nije natječaj (filtar naslova)”).
+  - Na startu i nakon ingesta pohranjene objave izvora s filtrom naslova prolaze kroz trenutni filtar.
+  - APPRRR i MZOM sad koriste stroži `CallTitleFilter`: izbacuje odluke, radionice, isplate, rang-liste, obavijesti korisnicima i poslove.
+  - Zašto skrivanje, a ne brisanje: ID-evi ostaju isti (natječaj 78 je u videu), a ručno skriveni zapisi se nikad ne otkrivaju.
+  - Na seedu je skriveno 67 objava, sve pregledane ručno.
+- **Duplikati između izvora** (`DuplicateMarker`, `duplicateOf`). Isti naslov iz drugog izvora ili s druge stranice, bez kontradiktornog roka i objavljen unutar 30 dana, pokazuje na primarni zapis.
+  - Agencije, ministarstva, sveučilišta i gradovi su izvori koji prenose tuđe objave, pa nikad nisu primarni.
+  - Računa se na startu i nakon ingesta, pa ga seed ne mora nositi.
+  - Na seedu: 23 duplikata, npr. APPRRR i Ministarstvo poljoprivrede za isti natječaj.
+- **Vremenska zona `Europe/Zagreb`** postavljena je kao zadana za cijeli JVM (`ApiApplication`), a cron closera ima zonu.
+  - Zašto: `LocalDate.now()` se koristi na desetak mjesta, pa bi na UTC poslužitelju natječaj od ponoći do 1-2 h bio „otvoren” dan duže.
+- **Cache:**
+  - stranice vrijede 20 h (prije 24 h, koliko i dnevni cron, pa je svaki drugi dohvat bio jučerašnji);
+  - Registar udruga vrijedi 7 dana (prije zauvijek).
+- **Preporuke:**
+  - natječaj s ciljnom skupinom, ali bez područja, dolazi do te skupine u njenoj županiji, uz mali broj bodova i razlog „područje poziva nije navedeno”;
+  - ključne riječi i županije uspoređuju se bez dijakritika („Medimurska” je isto što i „Međimurska”);
+  - prazan `county=` više ne filtrira na samo nacionalne natječaje.
+- **Provjera prihvatljivosti:**
+  - skriveni i duplicirani natječaji se ne provjeravaju;
+  - zatvoreni natječaj bez roka dobiva odgovor „zatvoren”, bez poziva modela;
+  - poruke pravila su na hrvatskom („tvrtke”, a ne `[COMPANY]`).
+- **Web:**
+  - oznaka AI-a na listi gleda pojedino polje (`aiFields` je dodan u sažetak);
+  - profil bez županije jasno kaže da vidi samo nacionalne natječaje;
+  - OIB više ne obećava obrte, jer se obrtni registar ne može pretražiti.
+
+- **Seed 4.11.**
+  - Postupak:
+    - baza `datathon_seed` je napunjena seedom iz gita;
+    - ingest je pokrenut samo za izvore dodane 3.11. i udruge.gov.hr (30 novih natječaja);
+    - AI ekstrakcija i pitanja za nove natječaje, 0,02 USD;
+    - na kraju izvoz.
+  - Provjereno: ID-evi starih zapisa su isti, natječaj 78 je otvoren s istim pitanjima, a nijedan zapis nije izgubio AI rezultate.
+  - **Ne pokretati puni ingest nad seedom za APPRRR, HZZ, MZOM, NPOO i FZOEU.** Njihovi zapisi nose hash iz POC-a, pa ih ingest sve proglasi promijenjenima i obriše im AI rezultate (provjereno 4.11.: 276 „promijenjenih”). Ako treba, poslije toga pokrenuti AI batch (oko 0,3 USD).
+
+**Poznata ograničenja (svjesno nisu popravljena do predaje):**
+- AI budžet je ukupan, a ne dnevni, i provjere se ne keširaju. Prototip se pokreće samo lokalno, pa ovo nije hitno.
+- Kad dohvat PDF-a ne uspije, tekst se promijeni i AI rezultati se resetiraju.
+- Jedna neuspjela stranica liste ruši cijeli izvor za taj dohvat.
+- Natječaj koji nestane s izvora ostaje otvoren dok mu ne prođe rok.
+- ID-evi s nekih HTML lista izvedeni su iz naslova, pa izmijenjeni naslov stvara novi zapis.
+- Rate limit provjere prihvatljivosti gleda IP, pa iza proxyja svi korisnici dijele limit.
+- „Ustanova” (škole, muzeji) se mapira na JLS. To je u skladu s klasifikatorom natječaja.
