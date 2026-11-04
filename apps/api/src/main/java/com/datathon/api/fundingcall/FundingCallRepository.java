@@ -2,6 +2,7 @@ package com.datathon.api.fundingcall;
 
 import com.datathon.api.source.SourceCode;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,15 @@ public interface FundingCallRepository extends JpaRepository<FundingCall, Long>,
     int closeExpired(@Param("today") LocalDate today);
 
     List<FundingCall> findByStatusAndDeadlineIsNull(FundingCallStatus status);
+
+    List<FundingCall> findByHiddenFalseAndSourceIn(Collection<SourceCode> sources);
+
+    @Modifying
+    @Query(value = """
+            update funding_call set min_amount = max_amount, max_amount = min_amount
+            where min_amount > max_amount
+            """, nativeQuery = true)
+    int swapReversedAmounts();
 
     /** Calls the model has not read yet, open and announced ones first. */
     @Query("""

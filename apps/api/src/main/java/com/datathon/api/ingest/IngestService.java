@@ -28,6 +28,7 @@ public class IngestService {
     private final SourceRunLogRepository sourceRunLogRepository;
     private final ExpiredFundingCallCloser expiredFundingCallCloser;
     private final DuplicateMarker duplicateMarker;
+    private final NonCallSweeper nonCallSweeper;
 
     public IngestRun createRun(Optional<SourceCode> source) {
         return ingestRunRepository.save(new IngestRun(Instant.now(), source.orElse(null)));
@@ -42,6 +43,7 @@ public class IngestService {
         for (RegulationIngest regulationIngest : selectedRegulationIngests(run.getRequestedSource())) {
             sourceRunLogRepository.save(runRegulations(run, regulationIngest));
         }
+        nonCallSweeper.hideNonCalls();
         expiredFundingCallCloser.closeExpired();
         duplicateMarker.markDuplicates();
         run.setFinishedAt(Instant.now());

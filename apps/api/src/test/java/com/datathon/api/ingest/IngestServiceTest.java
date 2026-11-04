@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Import;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import({IngestService.class, FundingFilter.class, CallTitleFilter.class, RuleExtractor.class, FundingCallUpserter.class,
-        ExpiredFundingCallCloser.class, DuplicateMarker.class, IngestServiceTest.Fetchers.class})
+        ExpiredFundingCallCloser.class, DuplicateMarker.class, NonCallSweeper.class, IngestServiceTest.Fetchers.class})
 class IngestServiceTest {
 
     @TestConfiguration

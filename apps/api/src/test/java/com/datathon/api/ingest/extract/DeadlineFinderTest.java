@@ -65,6 +65,14 @@ class DeadlineFinderTest {
     }
 
     @Test
+    void rangeWithOpeningHourGivesItsEndDate() {
+        String text = "Rok za podnošenje zahtjeva za potporu je od 2. studenoga 2026. godine od 12:00 sati "
+                + "do 4. siječnja 2027. godine do 12:00 sati.";
+
+        assertThat(DeadlineFinder.find(text, LocalDate.of(2026, 9, 15))).contains(LocalDate.of(2027, 1, 4));
+    }
+
+    @Test
     void timeOfDayIsNotReadAsAYear() {
         assertThat(DeadlineFinder.find("Rok za prijavu: 15.12. 23:59 sati", PUBLISHED)).isEmpty();
     }

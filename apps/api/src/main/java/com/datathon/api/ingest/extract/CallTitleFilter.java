@@ -24,12 +24,13 @@ public class CallTitleFilter {
                     + "imenovanj|savjetovanj|mrtvozor|intervju|rješenje o|služb[eu] (na|za)|domaćic|"
                     + "dodjel\\w* lokacij|površin\\w* javne|javn\\w* površin|natje[čc]aj\\w* za zapošljav|pokojnik|"
                     + "(?<!(troškov|sufinanciranj|subvencioniranj|financiranj)\\w{0,3} )prijevoz|"
-                    + "radn\\w* mjest|referent|savjetnik|suradnik|tehničar|zapovjednik|pomoćnik\\w* u nastavi|član(a|ova)\\b|"
+                    + "radn\\w* mjest|referent|savjetnik|suradnik|tehničar|zapovjednik|(za|–|-) pomoćnik\\w* u nastavi|član(a|ova)\\b|"
                     + "priznanj|^odluk\\w*\\s+o\\s+(?!raspisivanj)|^pravilnik|ishod|reklamn|"
                     + "objavljen\\w* (su )?odluk|dostav\\w* odluk|odluk\\w* (o ulasku|o financiranju|povjerenstv)|"
                     + "finalist|kviz|okupio|\\bupis(a|u)?\\b|popis dobitnik|poziv na razgovor|otkazan|premještaj|"
                     + "plan\\w* objave|važn\\w* obavijest|obavijest\\w* (i upute|za korisnike|korisnicima|potencijalnim)|"
-                    + "u tijeku je",
+                    + "u tijeku je|pitanja i odgovori|obavljanj\\w* poslova|poslovn\\w* prostor|godišnj\\w* plan|"
+                    + "odluk\\w* (župan|gradonačelnik|načelnik)|projektn\\w* partnerstv",
             FLAGS);
 
     private static final Pattern CALL_WORDING = Pattern.compile(

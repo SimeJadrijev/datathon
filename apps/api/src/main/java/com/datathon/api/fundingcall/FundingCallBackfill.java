@@ -25,6 +25,10 @@ public class FundingCallBackfill implements ApplicationRunner {
         if (dated > 0) {
             log.info("Set first seen time for {} funding calls", dated);
         }
+        int swapped = fundingCallRepository.swapReversedAmounts();
+        if (swapped > 0) {
+            log.info("Swapped minimum and maximum amount for {} funding calls", swapped);
+        }
         fillLegalReferences();
     }
 

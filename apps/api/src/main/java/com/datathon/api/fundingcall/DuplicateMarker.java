@@ -45,6 +45,7 @@ public class DuplicateMarker implements ApplicationRunner {
     private final FundingCallRepository fundingCallRepository;
 
     @Override
+    @Transactional
     public void run(ApplicationArguments args) {
         markDuplicates();
     }

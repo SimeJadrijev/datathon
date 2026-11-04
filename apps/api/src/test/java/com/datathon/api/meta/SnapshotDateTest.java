@@ -12,6 +12,6 @@ class SnapshotDateTest {
     void readsTheDateFromTheSeedFile() {
         var snapshotDate = new SnapshotDate(JsonMapper.builder().build());
 
-        assertThat(snapshotDate.value()).contains(LocalDate.of(2026, 11, 3));
+        assertThat(snapshotDate.value()).contains(LocalDate.of(2026, 11, 4));
     }
 }

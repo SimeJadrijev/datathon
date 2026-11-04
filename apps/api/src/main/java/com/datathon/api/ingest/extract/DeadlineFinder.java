@@ -40,7 +40,8 @@ public final class DeadlineFinder {
             "do\\s+(?:utroška|iskorištenja|iskorištenosti)\\s+(?:raspoloživih\\s+|osiguranih\\s+)?sredstava", FLAGS);
 
     private static final Pattern RANGE_START = Pattern.compile(
-            "^\\d{1,2}\\.\\s?(?:\\d{1,2}\\.|\\p{L}+)\\s?\\d{2,4}\\.?\\s*(?:godine\\s*)?(?:do|–|-)\\s*(?:dana\\s*)?$", FLAGS);
+            "^\\d{1,2}\\.\\s?(?:\\d{1,2}\\.|\\p{L}+)\\s?\\d{2,4}\\.?\\s*(?:godine\\s*)?"
+                    + "(?:,?\\s*(?:od|u)\\s+\\d{1,2}[:.]\\d{2}\\s*(?:sati|h)?\\s*)?(?:do|–|-)\\s*(?:dana\\s*)?$", FLAGS);
 
     private DeadlineFinder() {
     }
