@@ -195,3 +195,13 @@
 - Web: AI oznaka po polju, URL može nedostajati, izbornik sortiranja, profil bez županije, tekstovi.
 - Seed 4.11.: 1.222 natječaja (152 otvorena, 150 s AI poljima), ID-evi nepromijenjeni, natječaj 78 isti. Ne pokretati puni ingest nad seedom za stare izvore (razlog u `decisions.md`).
 - Testovi: 406 API testova, `yarn lint` i `yarn build` prolaze. Provjereno i na praznoj bazi bez ključeva.
+
+## 2026-11-04 (Luka, rokovi natječaja, branch `fix/deadlines`)
+- Analiza: od 42 otvorena natječaja bez roka, kod 20 je AI obrisao strukturirani rok izvora (eKohezija, udruge.gov.hr). Ostalo su HZZ mjere bez roka, skenirani FZOEU PDF-ovi i kratki sažeci udruga.
+- Popravci:
+  - strukturirani rok i status izvora pobjeđuju AI (`deadlineFromSource`);
+  - prompt vraća datum i kad je uz njega „do iskorištenja sredstava”;
+  - udruge.gov.hr prati link na izvorni natječaj grada i njegove PDF-ove;
+  - Claude čita skenirane PDF-ove (document blok).
+- Seed: ingest samo za eKoheziju, HZZ i udruge, AI za 205 natječaja (0,28 USD), pitanja, izvoz. Otvorenih bez roka: s 42 na 21, od čega je 16 HZZ mjera s napomenom „kontinuirano”. Natječaj 78 je isti.
+- eKohezija dokumentacija svjesno nije rađena (rok je strukturiran). Odluke su u `work/decisions.md` (4.11., rokovi).
