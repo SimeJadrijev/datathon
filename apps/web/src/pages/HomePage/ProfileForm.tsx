@@ -105,12 +105,12 @@ export const ProfileForm = ({initialProfile, onSubmit, onCancel}: ProfileFormPro
                                 value={values.county}
                                 onChange={(event) => handleChange({county: event.target.value})}
                             >
-                                <option value="">Sve županije</option>
+                                <option value="">Bez županije (samo nacionalni natječaji)</option>
                                 {COUNTIES.map((county) => (
                                     <option key={county} value={county}>{formatCounty(county)}</option>
                                 ))}
                             </Select>
-                            <p className={styles.hint}>Uvijek se prikazuju natječaji za cijelu Hrvatsku.</p>
+                            <p className={styles.hint}>Uvijek se prikazuju natječaji za cijelu Hrvatsku. Odaberi županiju da vidiš i lokalne.</p>
                         </div>
                         <div className={styles.field}>
                             <label htmlFor="keywords" className={styles.label}>Ključne riječi</label>

@@ -21,6 +21,7 @@ export type FundingCallSummary = {
     areas: Area[];
     counties: string[];
     extractedByLlm: boolean;
-    url: string;
+    aiFields: string[];
+    url: string | null;
     firstSeenAt: string | null;
 };

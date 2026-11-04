@@ -15,6 +15,7 @@ export type FundingCallFilter = {
     county?: string;
     source?: SourceCode;
     type?: FundingCallType;
+    deadlineBefore?: string;
     sort?: FundingCallSort;
     page?: number;
     size?: number;

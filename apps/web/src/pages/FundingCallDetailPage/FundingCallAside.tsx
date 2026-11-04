@@ -64,7 +64,9 @@ export const FundingCallAside = ({fundingCall}: FundingCallAsideProps) => {
                         po prijavi
                     </p>
                 )}
-                <ExternalButtonLink href={url} className={styles.primaryAction}>Otvori službenu objavu</ExternalButtonLink>
+                {url && (
+                    <ExternalButtonLink href={url} className={styles.primaryAction}>Otvori službenu objavu</ExternalButtonLink>
+                )}
             </div>
             <section className={styles.panel} aria-labelledby="source-title">
                 <h2 id="source-title" className={styles.panelTitle}>Izvor</h2>
@@ -73,7 +75,7 @@ export const FundingCallAside = ({fundingCall}: FundingCallAsideProps) => {
                 <p className={styles.sourceMeta}>
                     {fetchedAt ? `Podaci dohvaćeni ${formatDateTime(fetchedAt)}.` : "Datum dohvata nije zabilježen."}
                     {" "}
-                    <Link href={routes.SOURCES}>Kako prikupljamo podatke</Link>
+                    <Link href={routes.SOURCES}>Svi izvori podataka</Link>
                 </p>
             </section>
         </aside>

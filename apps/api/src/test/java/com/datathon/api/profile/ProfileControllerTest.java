@@ -48,7 +48,7 @@ class ProfileControllerTest {
         var summary = new FundingCallSummary(7L, "Vaučeri za digitalizaciju", "Ministarstvo",
                 new SourceRef(SourceCode.EU_FUNDS_NPOO, "EU fondovi (NPOO)"), FundingCallType.PUBLIC_CALL,
                 FundingCallStatus.OPEN, LocalDate.of(2026, 12, 1), null, null, null, List.of(TargetGroup.COMPANY),
-                List.of(Area.DIGITALIZATION), List.of("ALL"), false, "https://example.org/7", null);
+                List.of(Area.DIGITALIZATION), List.of("ALL"), false, List.of(), "https://example.org/7", null);
         when(profileMatchService.match(any()))
                 .thenReturn(List.of(new MatchResult(summary, 9.0, List.of("ciljna skupina: tvrtke", "otvoren"), false)));
 

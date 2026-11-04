@@ -1,10 +1,13 @@
 import type {FundingCallDetail} from "@/types";
 import {formatAmount} from "@/utils";
 
-// "1.000 € – 7.500 €", "do 7.500 €" or "od 1.000 €"; undefined when the call names no amount per application.
+// "1.000 € – 7.500 €", "7.500 €", "do 7.500 €" or "od 1.000 €"; undefined when the call names no amount per application.
 export const formatAmountRange = ({minAmount, maxAmount}: Pick<FundingCallDetail, "minAmount" | "maxAmount">) => {
     if (minAmount !== null && maxAmount !== null && minAmount !== maxAmount) {
         return `${formatAmount(minAmount)} – ${formatAmount(maxAmount)}`;
+    }
+    if (minAmount !== null && minAmount === maxAmount) {
+        return formatAmount(minAmount);
     }
     if (maxAmount !== null) {
         return `do ${formatAmount(maxAmount)}`;

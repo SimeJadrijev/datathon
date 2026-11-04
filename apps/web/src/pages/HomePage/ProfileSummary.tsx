@@ -30,7 +30,7 @@ export const ProfileSummary = ({profile, onEdit, onClear}: ProfileSummaryProps) 
                 </div>
                 <div className={styles.row}>
                     <dt>Županija</dt>
-                    <dd>{profile.county ? formatCounty(profile.county) : "Sve županije"}</dd>
+                    <dd>{profile.county ? formatCounty(profile.county) : "Nije odabrana, samo nacionalni natječaji"}</dd>
                 </div>
                 {profile.activityCodes && (
                     <div className={styles.row}>

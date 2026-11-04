@@ -50,7 +50,7 @@ const ProfileDeadlinesBody = ({profile}: ProfileDeadlinesBodyProps) => {
         <ol className={styles.list}>
             {nextDeadlines.map((fundingCall) => (
                 <li key={fundingCall.id} className={styles.item}>
-                    <DeadlineDate deadline={fundingCall.deadline} isExtractedByAi={fundingCall.extractedByLlm} isCompact/>
+                    <DeadlineDate deadline={fundingCall.deadline} isExtractedByAi={fundingCall.aiFields.includes("deadline")} isCompact/>
                     <div className={styles.text}>
                         {isDeadlineUrgent(fundingCall.deadline) && <span className={styles.soon}>Rok uskoro</span>}
                         <Link href={fundingCallDetailPath(fundingCall.id)} className={styles.title}>

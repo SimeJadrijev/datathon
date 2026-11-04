@@ -18,10 +18,10 @@ const STATUS_TONES: Record<FundingCallStatus, BadgeTone> = {
 
 const formatAmounts =({maxAmount, totalAmount}: Pick<FundingCallSummary, "maxAmount" | "totalAmount">) => {
     if (maxAmount !== null) {
-        return {value: `do ${formatAmount(maxAmount)}`, label: "po prijavi"};
+        return {value: `do ${formatAmount(maxAmount)}`, label: "po prijavi", field: "maxAmount"};
     }
     if (totalAmount !== null) {
-        return {value: formatAmount(totalAmount), label: "ukupno"};
+        return {value: formatAmount(totalAmount), label: "ukupno", field: "totalAmount"};
     }
     return undefined;
 };
@@ -68,7 +68,9 @@ interface FundingCallRowProps {
 export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => {
     const returnTo = useCurrentPath();
     const amount = formatAmounts(fundingCall);
-    const isAi = fundingCall.extractedByLlm;
+    const isAiDeadline = fundingCall.aiFields.includes("deadline");
+    const isAiAmount = amount !== undefined && fundingCall.aiFields.includes(amount.field);
+    const isAi = isAiDeadline || isAiAmount;
     const typeLabel = fundingCall.type ? FUNDING_CALL_TYPE_LABELS[fundingCall.type] : undefined;
     const metaText = [typeLabel, fundingCall.provider].filter(Boolean).join(" · ");
     const isNotOpen = fundingCall.status !== null && fundingCall.status !== "OPEN";
@@ -77,7 +79,7 @@ export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => 
     return (
         <article className={styles.row}>
             <div className={styles.date}>
-                <DeadlineDate deadline={fundingCall.deadline} isExtractedByAi={isAi}/>
+                <DeadlineDate deadline={fundingCall.deadline} isExtractedByAi={isAiDeadline}/>
             </div>
             <div className={styles.main}>
                 <p className={styles.meta}>
@@ -101,7 +103,7 @@ export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => 
                     Izvor: {fundingCall.source.name}
                     {isAi && (
                         <span className={styles.aiNote}>
-                            {" · "}{describeAiValues(fundingCall.deadline !== null, amount !== undefined)}
+                            {" · "}{describeAiValues(isAiDeadline && fundingCall.deadline !== null, isAiAmount)}
                         </span>
                     )}
                 </p>
@@ -109,12 +111,14 @@ export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => 
             <div className={styles.side}>
                 {amount && (
                     <p className={styles.amount}>
-                        <span className={classNames("tabular-nums", isAi && styles.aiValue)}>{amount.value}</span>
+                        <span className={classNames("tabular-nums", isAiAmount && styles.aiValue)}>{amount.value}</span>
                         <span className={styles.amountLabel}>{amount.label}</span>
                     </p>
                 )}
                 <DeadlineText deadline={fundingCall.deadline} deadlineNote={fundingCall.deadlineNote}/>
-                <ExternalLink href={fundingCall.url} className={styles.sourceLink}>Službena objava</ExternalLink>
+                {fundingCall.url && (
+                    <ExternalLink href={fundingCall.url} className={styles.sourceLink}>Službena objava</ExternalLink>
+                )}
             </div>
         </article>
     );

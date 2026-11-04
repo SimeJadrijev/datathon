@@ -31,7 +31,9 @@ import type {FundingCallFacets, FundingCallFilter, FundingCallFilterPatch} from 
 import {toCountyCounts} from "./countyCounts.ts";
 import styles from "./FundingCallsPage.module.css";
 
-const FUNDING_SOURCES = SOURCE_CODES.filter((code) => code !== "NARODNE_NOVINE" && code !== "SUDREG");
+const FUNDING_SOURCES = SOURCE_CODES.filter(
+    (code) => code !== "NARODNE_NOVINE" && code !== "SUDREG" && code !== "ASSOCIATION_REGISTRY",
+);
 
 const getTargetGroupLabel = (value: string) => (isTargetGroup(value) ? TARGET_GROUP_LABELS[value] : undefined);
 const getAreaLabel = (value: string) => (isArea(value) ? AREA_LABELS[value] : undefined);
