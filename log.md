@@ -156,3 +156,19 @@
 - Otvoreno: 54 otvorena poziva s udruge.gov.hr nemaju AI polja jer u seedu imaju < 300 znakova teksta (POC je spremio samo isječak s popisa). Rješenje: ingest `ASSOCIATIONS_OFFICE` pa ponovno AI-2 + izvoz seeda. Postojeće lokalne baze ne dobivaju novi seed bez `docker compose down -v`.
 - Napomena: lokalni `datathon-postgres` je usred batcha netko zaustavio (`docker stop`); ponovno pokrenut, podaci nisu izgubljeni.
 - Nije commitano.
+
+## 2026-11-03/04 (Luka, #11 nice-to-have, branch `feature/nice-11`)
+- Novi izvori:
+  - eKohezija (svi EU pozivi 2021.-2027., javni JSON API);
+  - 18 ministarstava (Vladin CMS, među njima i Datathon MPUDT-a);
+  - 32 grada i županije (WordPress REST, Joomla RSS, DNN, HTML liste, Zagreb);
+  - agencije (HRZZ, AMPEU, ribarstvo);
+  - sveučilišta, studentski zborovi i centri.
+  - Pregled izvora u `work/sources-research.md`, odluke u `work/decisions.md` (3.11.).
+- Pravna osnova: navodi Narodnih novina iz teksta poziva, veza s propisom (91 % navoda s nazivom upareno) i ciljani uvoz starijih citiranih propisa.
+- Export u predloženom standardu s JSON Schemom, Atom feed umjesto mail obavijesti, oznaka „novo”, brojanje novih i promijenjenih po izvoru, dnevni ingest.
+- Registar udruga: profil udruge iz OIB-a.
+- Bug: Hibernate CHECK constrainti na enum stupcima rušili su ingest na postojećim bazama kod svake nove vrijednosti izvora. Sad se brišu pri startu.
+- Seed osvježen preko zasebne baze `datathon_seed` (radna lokalna baza nije imala AI rezultate) i provjeren na praznoj bazi bez ključeva. AI trošak: 0,54 USD (Haiku).
+- `ANTHROPIC_API_KEY` je u `apps/api/.env` (nije u gitu). Ključ je bio zalijepljen u chat, pa ga treba rotirati.
+- Testovi: 378 API testova, `yarn lint` i `yarn build` prolaze.

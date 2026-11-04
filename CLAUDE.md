@@ -28,7 +28,8 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - 29.10.: redizajn weba (OtvoreniRadar, zelena paleta) na branchu `refactor-ui` (PR #18, Nino), pravila u `DESIGN_SYSTEM.md`. Prijedlog "manje AI izgleda" (serif naslovi + IBM Plex Sans, lista umjesto kartica, pravi brojevi na početnoj) na branchu `design/ui-polish` (na vrhu `refactor-ui`, PR u `refactor-ui`), uz skill `web-design-guidelines` i popravke po njemu.
 - 2.11.: paket 7 (issue #9, liste, detalji, zakoni, izvori, WEB-5 do 9) gotov na branchu `feature/pkg-7-web-browse`, PR prema `main` otvoren 2.11. Otvoreno: screenshotovi za kriterije i provjera WEB-7 s pravim AI-4 podacima. Detalji u `log.md`.
 - 3.11.: AI follow-up (issue #7) gotov lokalno, nije commitan: seed sad nosi AI rezultate (demo radi bez ključa), istekao rok, ručno provjereni pozivi, hrvatske poruke. Detalji u `log.md`.
-- Zadnje ažurirano: 2026-11-03
+- 3./4.11.: #11 (Luka) na branchu `feature/nice-11`: novi izvori (EU fondovi, ministarstva, gradovi i županije, sveučilišta), pravna osnova, export u standardu, RSS, Registar udruga, osvježen seed. Detalji u `log.md`.
+- Zadnje ažurirano: 2026-11-04
 
 ## Tehnički stack i konvencije
 - Monorepo: `apps/web` (React 19, TS, Vite, wouter, TanStack Query, axios), `apps/api` (Spring Boot 4, Java 25, JPA, Postgres u Dockeru). Pokretanje: vidi `README.md`.
@@ -51,6 +52,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 | `work/decisions.md` | odluke + obrazloženja |
 | `work/tasks.md` | tko radi što, status |
 | `work/mvp-task-specs.md` | 8 radnih paketa (40 koraka s ID-evima) na engleskom, jedan paket = jedan GitHub issue = jedan vlasnik |
+| `work/sources-research.md` | istraženi izvori natječaja (dodani, kandidati, odbačeni s razlogom) |
 | `work/api-plan.md` | plan implementacije paketa 4 (API-1 do API-7), nalazi iz koda, odluke |
 | `log.md` | kronološki dnevnik |
 | `README.md` | opis projekta i pokretanje |

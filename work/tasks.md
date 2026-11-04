@@ -48,11 +48,13 @@ Detaljna razrada je u `work/mvp-task-specs.md` (v3, 26.10.): **8 radnih paketa**
 
 **~~Blocker~~ RIJEŠENO 3.11. (seed sad nosi AI rezultate, vidi `log.md`) za WEB-7, WEB-8 i demo bez ključa (28.10.):** AI rezultati (polja iz AI-2, sažeci AI-3, pitanja AI-4) nisu u seedu. Svježa baza ima 0 pitanja za prihvatljivost, 0 sažetaka propisa i 0 natječaja s `extractedByLlm`. Tko nema `ANTHROPIC_API_KEY` i ne pokrene admin batcheve, ne vidi panel "Ispunjavam li uvjete?" ni AI sažetke. Odluka AI paketa kaže "demo radi bez ključa", pa treba izvoz AI rezultata u seed (ili zaseban seed file). Vlasnik: AI paket (#7) ili DELIVERY. Javiti Ninu.
 
-### Nice-to-have (tek kad MVP stoji)
-- Scheduler s pravom razlikom dvaju dohvata + stvarne obavijesti (mail).
-- Poveznica zakon↔natječaj preko NN broja/ELI.
-- Standard "Otvoreni podaci o natječajima" (jedna stranica + JSON primjer, DCAT-AP).
-- eufondovi.gov.hr, Registar udruga po OIB-u, JPT popis, NKD 2025 preko data.gov.hr.
+### Nice-to-have (#11, Luka, branch `feature/nice-11`, 3.11.)
+- GOTOVO: novi izvori eKohezija (EU 2021.-2027.), 18 ministarstava, 32 grada i županije, agencije (HRZZ, AMPEU, ribarstvo), sveučilišta i studentski centri. Seed sada ima 1.192 natječaja, a 167 od 170 otvorenih ima AI polja.
+- GOTOVO: Registar udruga, profil udruge iz OIB-a (42.703 aktivne udruge u seedu).
+- GOTOVO: pravna osnova (navodi NN u tekstu poziva, veza s propisom; ciljani uvoz starijih citiranih propisa).
+- GOTOVO: export u predloženom standardu i JSON Schema.
+- GOTOVO: „novo” (firstSeenAt), brojanje novih i promijenjenih po izvoru, dnevni raspored, Atom feed umjesto maila.
+- Nije rađeno: JPT popis davatelja, NKD 2025, preostali gradovi (popis u `work/sources-research.md`), automatska detekcija duplikata među izvorima (npr. APPRRR i Ministarstvo poljoprivrede objavljuju isti poziv).
 
 ### Rizici za praćenje
 - Javni GitHub vs sigurnosna politika (fallback: arhiva/link na SharePointu).

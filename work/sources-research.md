@@ -11,6 +11,10 @@ Pregledano oko 40 kandidata. [V] znači da je izvor dohvaćen i provjeren (uklju
   - Prijavitelji, iznosi i rokovi su strukturirani.
   - Nema preklapanja s NPOO (fondovieu.gov.hr).
 
+## Dodano poslije, nakon pregleda po vrsti CMS-a (3.11.)
+- 18 ministarstava (Vladin CMS, zajednička pretraga), 22 grada i županije (WordPress REST, Joomla RSS, DNN EasyDNN, Zagreb). Popis i odluke su u `work/decisions.md` (3.11.).
+- Ostalo nedodano, s mogućim selektorima: dubrovnik.hr `div.news-item.post-item`, pula.hr (AI crawleri blokirani), porec.hr `div.list-item-wrapper`, kutina.hr `article.card h3 a`, grad-zadar.hr `div.col-sm-4 h2 a`, bbz.hr `article.post h4 a`, licko-senjska.hr `h2.entry-title-index a`, istra-istria.hr `div.entry h2 a`, zadarska i bpz (Joomla K2 `div.catItemView h3.catItemTitle a`), smz.hr `ul.mod-articlescategory a`, rijeka.hr i koprivnica.hr (HTML stabla). Bez čistog HTML-a: vinkovci.hr, zagrebacka-zupanija.hr (eprijave.hr), varazdin.hr.
+
 ## Kandidati za kasnije (redoslijed po vrijednosti i trudu)
 | Izvor | Pristup | Publika | Napomena |
 |---|---|---|---|

@@ -38,13 +38,24 @@ Sluša na `http://localhost:8080`.
 
 `mvnw` je Maven Wrapper: sam skine verziju Mavena propisanu u projektu, pa nije potrebna lokalna instalacija. Ako imaš vlastiti Maven (3.9+), možeš koristiti `mvn` umjesto `./mvnw` (npr. `mvn clean install`).
 
-Pri prvom startu baza se puni iz seeda (`resources/seed`). Svježe natječaje s izvora (udruge.gov.hr, FZOEU) dohvaća ingest. Pokreće se admin rutom, uz `ADMIN_KEY` postavljen pri pokretanju API-ja:
+Pri prvom startu baza se puni iz seeda (`resources/seed`). Svježe natječaje s izvora dohvaća ingest: udruge.gov.hr, FZOEU, NPOO, eKohezija (EU fondovi 2021.-2027.), HZZ, APPRRR, MZOM, 18 ministarstava (vijesti na Vladinom sustavu), 32 grada i županije, agencije (HRZZ, AMPEU), sveučilišta i studentski centri te Narodne novine. Registar udruga (`?source=ASSOCIATION_REGISTRY`, 132 MB pri prvom dohvatu) puni tablicu udruga za profil iz OIB-a. Pokreće se admin rutom, uz `ADMIN_KEY` postavljen pri pokretanju API-ja:
 
 ```bash
 curl -X POST -H "X-Admin-Key: $ADMIN_KEY" "http://localhost:8080/api/admin/ingest?source=FZOEU"   # bez source = svi izvori
 ```
 
-Ruta odmah vraća `202` s `runId`, a ingest radi u pozadini (prvi put nekoliko minuta, poslije iz cachea u `data/cache/`). Rezultat po izvoru je u tablici `source_run_log`. Ingest se može pokrenuti i pri startu sa `INGEST_ON_STARTUP=true`.
+Ruta odmah vraća `202` s `runId`, a ingest radi u pozadini (prvi put nekoliko minuta, poslije iz cachea u `data/cache/`). Rezultat po izvoru (dohvaćeno, novo, promijenjeno, greške) je u tablici `source_run_log`. Ingest se može pokrenuti i pri startu sa `INGEST_ON_STARTUP=true`, ili svaki dan sa `INGEST_SCHEDULE_ENABLED=true` (vrijeme u `INGEST_SCHEDULE_CRON`, zadano 5:30).
+
+Ključevi (`SUDREG_CLIENT_ID`, `SUDREG_CLIENT_SECRET`, `ANTHROPIC_API_KEY`) drže se u `apps/api/.env`, koji nije u gitu. Spring ga ne čita sam, pa ga učitaj prije pokretanja:
+
+```bash
+set -a; . ./.env; set +a
+ADMIN_KEY=... ./mvnw spring-boot:run
+```
+
+Javne rute za dijeljenje podataka:
+- `GET /api/funding-calls/feed.atom?targetGroup=STUDENT&county=...`: Atom feed novih natječaja za iste filtre kao lista (gumb "Prati nove (RSS)" na webu).
+- `GET /api/funding-calls/export?status=OPEN`: natječaji u predloženom standardu "Otvoreni podaci o natječajima", shema na `/api/standard/funding-call.schema.json`.
 
 #### AI rezultati i osvježavanje seeda
 
