@@ -83,6 +83,19 @@ class FundingCallServiceTest {
     }
 
     @Test
+    void blankCountyIsNoFilterAndCountySpellingsWithoutDiacriticsMatch() {
+        save("Nacionalni", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("ALL");
+        save("Međimurski", FundingCallStatus.OPEN, TargetGroup.COMPANY).getCounties().add("Medimurska");
+        entityManager.flush();
+
+        var blank = fundingCallService.list(filter(FundingCallStatusFilter.OPEN, null, " ", null, null));
+        var county = fundingCallService.list(filter(FundingCallStatusFilter.OPEN, null, "Međimurska županija", null, null));
+
+        assertThat(titles(blank)).containsExactlyInAnyOrder("Nacionalni", "Međimurski");
+        assertThat(titles(county)).containsExactlyInAnyOrder("Nacionalni", "Međimurski");
+    }
+
+    @Test
     void returnsOnlyOpenCallsForTheRequestedTargetGroup() {
         save("Otvoren za tvrtke", FundingCallStatus.OPEN, TargetGroup.COMPANY);
         save("Otvoren za studente", FundingCallStatus.OPEN, TargetGroup.STUDENT);

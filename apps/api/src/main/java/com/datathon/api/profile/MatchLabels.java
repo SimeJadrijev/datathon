@@ -3,12 +3,12 @@ package com.datathon.api.profile;
 import com.datathon.api.fundingcall.Area;
 import com.datathon.api.fundingcall.TargetGroup;
 
-final class MatchLabels {
+public final class MatchLabels {
 
     private MatchLabels() {
     }
 
-    static String of(TargetGroup targetGroup) {
+    public static String of(TargetGroup targetGroup) {
         return switch (targetGroup) {
             case CITIZEN -> "građani";
             case CRAFT_BUSINESS -> "obrtnici";
@@ -20,7 +20,7 @@ final class MatchLabels {
         };
     }
 
-    static String of(Area area) {
+    public static String of(Area area) {
         return switch (area) {
             case ENVIRONMENT -> "okoliš";
             case ENERGY -> "energetika";

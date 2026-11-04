@@ -3,6 +3,7 @@ package com.datathon.api.eligibility;
 import com.datathon.api.common.InvalidRequestException;
 import com.datathon.api.common.NotFoundException;
 import com.datathon.api.fundingcall.FundingCall;
+import com.datathon.api.fundingcall.FundingCallStatus;
 import com.datathon.api.fundingcall.FundingCallRepository;
 import com.datathon.api.integration.llm.LlmResponseException;
 import com.datathon.api.integration.llm.LlmUnavailableException;
@@ -33,7 +34,7 @@ public class EligibilityCheckService {
     public EligibilityCheckResponse check(Long fundingCallId, EligibilityCheckRequest request) {
         EligibilityContext context = loadContext(fundingCallId);
         Map<String, Object> answers = validatedAnswers(context.questions(), request.answers());
-        if (context.isDeadlinePassed(LocalDate.now())) {
+        if (context.isClosedForApplications(LocalDate.now())) {
             return ruleChecker.expired(context);
         }
         if (!answers.isEmpty()) {
@@ -49,11 +50,13 @@ public class EligibilityCheckService {
     private EligibilityContext loadContext(Long id) {
         return transactionTemplate.execute(status -> {
             FundingCall call = fundingCallRepository.findById(id)
+                    .filter(found -> !found.isHidden() && found.getDuplicateOf() == null)
                     .orElseThrow(() -> new NotFoundException("Funding call " + id + " does not exist",
                             NotFoundException.FUNDING_CALL_MESSAGE));
             return new EligibilityContext(call.getId(), call.getTitle(), call.getUrl(),
                     call.getSourceText() != null ? call.getSourceText() : "",
                     call.getDeadline(),
+                    call.getStatus() == FundingCallStatus.CLOSED,
                     new HashSet<>(call.getTargetGroups()),
                     new HashSet<>(call.getCounties()),
                     questionStore.read(call.getEligibilityQuestions()));

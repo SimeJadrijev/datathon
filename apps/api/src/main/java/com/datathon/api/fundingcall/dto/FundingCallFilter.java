@@ -24,5 +24,7 @@ public record FundingCallFilter(
     public FundingCallFilter {
         status = status == null ? FundingCallStatusFilter.OPEN : status;
         sort = sort == null ? FundingCallSort.DEADLINE : sort;
+        county = county == null || county.isBlank() ? null : county.strip();
+        q = q == null || q.isBlank() ? null : q;
     }
 }

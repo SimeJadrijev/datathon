@@ -8,6 +8,7 @@ public final class PageRequests {
 
     public static final int DEFAULT_SIZE = 20;
     public static final int MAX_SIZE = 100;
+    public static final int MAX_PAGE = 10_000;
 
     private PageRequests() {
     }
@@ -18,6 +19,9 @@ public final class PageRequests {
         int pageSize = size == null ? DEFAULT_SIZE : size;
         if (pageNumber < 0) {
             throw new InvalidRequestException("page: ne smije biti negativan");
+        }
+        if (pageNumber > MAX_PAGE) {
+            throw new InvalidRequestException("page: smije biti najviše " + MAX_PAGE);
         }
         if (pageSize < 1) {
             throw new InvalidRequestException("size: mora biti najmanje 1");
