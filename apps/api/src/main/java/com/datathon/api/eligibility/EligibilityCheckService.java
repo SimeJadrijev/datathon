@@ -70,7 +70,7 @@ public class EligibilityCheckService {
             boolean isKnown = questions.stream().anyMatch(question -> question.id().equals(entry.getKey()));
             if (!isKnown || !isAcceptableValue(entry.getValue())) {
                 throw new InvalidRequestException("Unknown question id or invalid answer: " + entry.getKey(),
-                        "Odgovor na pitanje " + entry.getKey() + " nije ispravan. Osvježite stranicu i pokušajte ponovno.");
+                        "Odgovor na pitanje " + entry.getKey() + " nije ispravan. Osvježi stranicu i pokušaj ponovno.");
             }
             valid.put(entry.getKey(), entry.getValue());
         }

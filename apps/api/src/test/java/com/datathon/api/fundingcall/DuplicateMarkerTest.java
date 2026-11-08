@@ -73,6 +73,20 @@ class DuplicateMarkerTest {
         assertThat(news.getDuplicateOf()).isNull();
     }
 
+    @Test
+    void samePageStoredUnderTwoIdsOfOneSourceIsADuplicate() {
+        String url = "https://www.smz.hr/natj/javni?view=article&id=12207:javni-poziv&catid=107";
+        FundingCall first = save(SourceCode.LOCAL_GOVERNMENT, "smz.hr:a3158d33-141", "Javni poziv u kulturi", null);
+        first.setUrl(url);
+        FundingCall second = save(SourceCode.LOCAL_GOVERNMENT, "smz.hr:d7d88e1e-165", "Javni poziv u kulturi", null);
+        second.setUrl(url);
+
+        duplicateMarker.markDuplicates();
+
+        assertThat(first.getDuplicateOf()).isNull();
+        assertThat(second.getDuplicateOf()).isEqualTo(first.getId());
+    }
+
     private FundingCall save(SourceCode source, String externalId, String title, LocalDate publishedAt) {
         FundingCall call = new FundingCall(source, externalId, title);
         call.setPublishedAt(publishedAt);

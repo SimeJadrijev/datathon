@@ -128,9 +128,14 @@ public class FundingCallService {
         Map<String, Long> countsByLabel = new HashMap<>();
         for (FacetCount county : counties) {
             String name = CountyNames.normalize(county.value());
-            long count = FundingCall.ALL_COUNTIES.equals(name)
-                    ? wholeCountryCount
-                    : county.count() + wholeCountryCount - alsoWholeCountry.getOrDefault(name, 0L);
+            long count;
+            if (FundingCall.ALL_COUNTIES.equals(name)) {
+                count = wholeCountryCount;
+            } else if (CountyNames.isCounty(county.value())) {
+                count = county.count() + wholeCountryCount - alsoWholeCountry.getOrDefault(name, 0L);
+            } else {
+                count = county.count();
+            }
             countsByLabel.put(county.value(), count);
         }
         return FacetCount.sortedByCount(countsByLabel);

@@ -199,4 +199,19 @@ class LocalGovernmentFetchersTest {
         assertThat(items).extracting(RawItem::title).filteredOn(CALLS::isCall)
                 .noneMatch(title -> title.startsWith("Javni natječaj za zapošljavanje"));
     }
+
+    @Test
+    void abbreviatedMonthDateOfTheBjelovarListIsRead() {
+        assertThat(LocalHtmlListFetcher.shortMonthDate("26 lis 2026 JAVNI POZIV za dodjelu potpora"))
+                .isEqualTo(LocalDate.of(2026, 10, 26));
+        assertThat(LocalHtmlListFetcher.shortMonthDate("7 kol 2026 Javni poziv")).isEqualTo(LocalDate.of(2026, 8, 7));
+        assertThat(LocalHtmlListFetcher.shortMonthDate("Javni poziv bez datuma")).isNull();
+    }
+
+    @Test
+    void titleWhitespaceIsCollapsed() {
+        RawItem item = RawItem.builder().title(" Erasmus+ natječaj -  države\u00A0članice\n EU-a ").build();
+
+        assertThat(item.title()).isEqualTo("Erasmus+ natječaj - države članice EU-a");
+    }
 }

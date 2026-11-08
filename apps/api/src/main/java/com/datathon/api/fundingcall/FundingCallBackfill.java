@@ -1,6 +1,9 @@
 package com.datathon.api.fundingcall;
 
+import com.datathon.api.common.CountyNames;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
@@ -16,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class FundingCallBackfill implements ApplicationRunner {
 
+    private static final Pattern WHITESPACE = Pattern.compile("[\\s\\u00A0]+");
+
     private final FundingCallRepository fundingCallRepository;
 
     @Override
@@ -30,6 +35,30 @@ public class FundingCallBackfill implements ApplicationRunner {
             log.info("Swapped minimum and maximum amount for {} funding calls", swapped);
         }
         fillLegalReferences();
+        tidyCountiesAndTitles();
+    }
+
+    /** Older seeds and databases hold county names in several spellings and titles with double spaces. */
+    private void tidyCountiesAndTitles() {
+        int tidied = 0;
+        for (FundingCall fundingCall : fundingCallRepository.findAll()) {
+            boolean changed = false;
+            Set<String> counties = CountyNames.canonical(fundingCall.getCounties());
+            if (!counties.equals(fundingCall.getCounties())) {
+                fundingCall.getCounties().clear();
+                fundingCall.getCounties().addAll(counties);
+                changed = true;
+            }
+            String title = WHITESPACE.matcher(fundingCall.getTitle()).replaceAll(" ").strip();
+            if (!title.equals(fundingCall.getTitle())) {
+                fundingCall.setTitle(title);
+                changed = true;
+            }
+            tidied += changed ? 1 : 0;
+        }
+        if (tidied > 0) {
+            log.info("Tidied county names or title spacing of {} funding calls", tidied);
+        }
     }
 
     private void fillLegalReferences() {

@@ -28,7 +28,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 public class GlobalExceptionHandler {
 
     private static final String INVALID_VALUE = "neispravna vrijednost";
-    private static final String INVALID_REQUEST = "Neispravan zahtjev. Provjerite unesene podatke.";
+    private static final String INVALID_REQUEST = "Neispravan zahtjev. Provjeri unesene podatke.";
 
     @ExceptionHandler(NotFoundException.class)
     ResponseEntity<ErrorResponse> handleNotFound(NotFoundException e) {

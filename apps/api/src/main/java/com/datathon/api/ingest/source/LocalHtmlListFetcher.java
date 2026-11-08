@@ -9,9 +9,11 @@ import com.datathon.api.ingest.http.HttpFetchException;
 import com.datathon.api.ingest.http.PoliteHttpClient;
 import com.datathon.api.ingest.http.RobotsBlockedException;
 import com.datathon.api.source.SourceCode;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +56,12 @@ public class LocalHtmlListFetcher implements SourceFetcher {
     private static final Pattern READ_MORE = Pattern.compile("\\s*(pročitaj|saznaj|opširnije|više)( više)?\\s*$",
             Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
     private static final Pattern ISO_DATE = Pattern.compile("\\b(\\d{4}-\\d{2}-\\d{2})\\b");
+    /** bbz.hr dates its list as "26 lis 2026"; without this the model guessed the month and often got it wrong. */
+    private static final Pattern SHORT_MONTH_DATE = Pattern.compile(
+            "\\b(\\d{1,2})\\.?\\s+(sij|velj|ožu|tra|svi|lip|srp|kol|ruj|lis|stu|pro)\\.?\\s+(\\d{4})\\b",
+            Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+    private static final List<String> SHORT_MONTHS = List.of("sij", "velj", "ožu", "tra", "svi", "lip", "srp", "kol",
+            "ruj", "lis", "stu", "pro");
     private static final Pattern ID = Pattern.compile("/(\\d+)(?:[-/]|$)|/([^/?#]+?)(?:\\.html?|\\.aspx)?/?$");
 
     private final PoliteHttpClient http;
@@ -144,7 +152,20 @@ public class LocalHtmlListFetcher implements SourceFetcher {
         if (iso.find()) {
             return IsoDates.leading(iso.group(1));
         }
-        return CroatianDates.findFirst(text).orElse(null);
+        return CroatianDates.findFirst(text).orElseGet(() -> shortMonthDate(text));
+    }
+
+    static LocalDate shortMonthDate(String text) {
+        Matcher matcher = SHORT_MONTH_DATE.matcher(text);
+        if (!matcher.find()) {
+            return null;
+        }
+        int month = SHORT_MONTHS.indexOf(matcher.group(2).toLowerCase(Locale.ROOT)) + 1;
+        try {
+            return LocalDate.of(Integer.parseInt(matcher.group(3)), month, Integer.parseInt(matcher.group(1)));
+        } catch (DateTimeException e) {
+            return null;
+        }
     }
 
     private static String idOf(String url) {
