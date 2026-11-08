@@ -11,20 +11,32 @@
 	<groupId>com.datathon</groupId>
 	<artifactId>api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
-	<url/>
+	<name>OtvoreniRadar API</name>
+	<description>Agregator javnih natječaja i propisa RH (Datathon Portala otvorenih podataka 2026, tim Nazor)</description>
+	<url>https://github.com/SimeJadrijev/datathon</url>
 	<licenses>
-		<license/>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+		</license>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<name>Ivan Mosić</name>
+		</developer>
+		<developer>
+			<name>Šime Jadrijev</name>
+		</developer>
+		<developer>
+			<name>Luka Žuljević</name>
+		</developer>
+		<developer>
+			<name>Nino Milas</name>
+		</developer>
 	</developers>
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<connection>scm:git:https://github.com/SimeJadrijev/datathon.git</connection>
+		<url>https://github.com/SimeJadrijev/datathon</url>
 	</scm>
 	<properties>
 		<java.version>25</java.version>

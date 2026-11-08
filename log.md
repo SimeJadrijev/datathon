@@ -208,3 +208,14 @@
 
 ## 2026-11-04 (Luka, županije, branch `fix/source-counties`)
 - AI je natječajima gradova i općina s kratkim tekstom postavljao „cijela Hrvatska” (npr. stipendija Grada Karlovca u preporukama za Split). Županija iz izvora sad pobjeđuje AI, a ponovni ingest je vraća bez resetiranja AI-ja. Odluka je u `work/decisions.md`.
+
+## 2026-11-08 (Nino, licence i usklađenost s pravilima prije predaje)
+- Nove datoteke: `DATA_SOURCES.md` (svi izvori, izdavatelji, licence; licence s data.gov.hr provjerene preko CKAN API-ja) i `THIRD_PARTY_LICENSES.md` (npm i Maven ovisnosti, fontovi, Lucide ikone, servisi). Nema GPL/AGPL ni nekomercijalnih licenci.
+- Nalazi: GitHub repo je PRIVATAN i nema `LICENSE`; nema tehničke ni projektne dokumentacije, nema javnog demo linka, video još nije snimljen. S data.gov.hr koristimo samo Registar udruga i Sudski registar.
+- Tajne: na remote branchevima nema ključeva. Lokalni `stash@{0}` (Nino) sadrži `poc/.env` s pravim Anthropic i Sudreg ključem: obrisati stash i rotirati ključeve.
+- `yarn build` i `yarn lint` prolaze. API testovi bez Dockera: integracijski (13 klasa) padaju jer Postgres nije pokrenut, ostali prolaze.
+- Čeka korisnika: imena autora za LICENSE (MIT), objava repoa (sigurnosna politika), naziv tima i mentor za mail, popis korištenih AI alata.
+- 8.11.: dodan `LICENSE` (MIT, 2026, Ivan Mosić, Šime Jadrijev, Luka Žuljević, Nino Milas). Tim: Nazor, mentor Mario Čagalj (u `team/team.md`).
+- 8.11.: README (naziv, autori, izvori, AI alati, licenca), `package.json` i `pom.xml` dobili MIT i autore. Odluka o javnom repou u `work/decisions.md`.
+- 8.11.: napisan `ARCHITECTURE.md` (dijagram, moduli, ingest, AI, povezivanje, API i standardi, preduvjeti, ograničenja), link u README-u.
+- 8.11.: napisan `PROJECT.md` (projektna dokumentacija; brojke iz seeda 4.11.: 1.222 natječaja, 157 otvorenih, 66 tijela, 4.121 propis). Uloge u timu su pretpostavka iz `team/team.md`, potvrditi.
