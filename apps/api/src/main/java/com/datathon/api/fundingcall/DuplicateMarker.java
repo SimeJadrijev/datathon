@@ -64,7 +64,7 @@ public class DuplicateMarker implements ApplicationRunner {
             marked += markWithinGroup(sameTitle);
         }
         if (marked > 0) {
-            log.info("Marked {} funding calls as duplicates of a call from another source", marked);
+            log.info("Marked {} funding calls as duplicates of another call (other source or same page)", marked);
         }
     }
 
@@ -88,6 +88,9 @@ public class DuplicateMarker implements ApplicationRunner {
     }
 
     static boolean isSameCall(FundingCall first, FundingCall second) {
+        if (isSameUrl(first, second)) {
+            return true;
+        }
         if (origin(first).equals(origin(second))) {
             return false;
         }
@@ -95,6 +98,11 @@ public class DuplicateMarker implements ApplicationRunner {
             return false;
         }
         return isPublishedClose(first.getPublishedAt(), second.getPublishedAt());
+    }
+
+    /** The same page stored twice: a site changed the link format of a list, so one call got a second external id. */
+    private static boolean isSameUrl(FundingCall first, FundingCall second) {
+        return first.getUrl() != null && !first.getUrl().isBlank() && first.getUrl().equals(second.getUrl());
     }
 
     private static boolean isPublishedClose(LocalDate first, LocalDate second) {

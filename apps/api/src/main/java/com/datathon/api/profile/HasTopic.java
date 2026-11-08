@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HasTopic {
 
-    String message() default "Odaberite barem jedno područje, ključnu riječ ili djelatnost.";
+    String message() default "Odaberi barem jedno područje, ključnu riječ ili djelatnost.";
 
     Class<?>[] groups() default {};
 

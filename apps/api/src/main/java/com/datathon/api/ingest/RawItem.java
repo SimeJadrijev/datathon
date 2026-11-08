@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 import lombok.Builder;
 
 @Builder(toBuilder = true)
@@ -32,7 +33,11 @@ public record RawItem(
         List<RawAttachment> attachments,
         Map<String, String> extra) {
 
+    /** Sites put line breaks, double and non-breaking spaces in titles; the list shows them as one line. */
+    private static final Pattern WHITESPACE = Pattern.compile("[\\s\\u00A0]+");
+
     public RawItem {
+        title = title == null ? null : WHITESPACE.matcher(title).replaceAll(" ").strip();
         categories = categories == null ? List.of() : List.copyOf(categories);
         countiesHint = countiesHint == null ? Set.of() : Set.copyOf(countiesHint);
         targetGroupsHint = targetGroupsHint == null ? Set.of() : Set.copyOf(targetGroupsHint);

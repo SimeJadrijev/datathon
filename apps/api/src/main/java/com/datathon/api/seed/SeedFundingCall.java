@@ -1,5 +1,6 @@
 package com.datathon.api.seed;
 
+import com.datathon.api.common.CountyNames;
 import com.datathon.api.fundingcall.Area;
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallStatus;
@@ -80,7 +81,7 @@ public record SeedFundingCall(
         fundingCall.setMaxAmount(maxAmount);
         replace(fundingCall.getTargetGroups(), targetGroups);
         replace(fundingCall.getAreas(), areas);
-        replace(fundingCall.getCounties(), counties);
+        replace(fundingCall.getCounties(), CountyNames.canonical(counties));
         replace(fundingCall.getActivityCodes(), activityCodes);
         fundingCall.setConditionsSummary(conditionsSummary);
         replace(fundingCall.getRequiredDocuments(), requiredDocuments);

@@ -10,5 +10,5 @@ public record EligibilityCheckResponse(
         String sourceUrl) {
 
     public static final String DISCLAIMER = "Informativna procjena na temelju teksta poziva, nije pravni savjet. "
-            + "Provjerite uvjete u službenoj dokumentaciji.";
+            + "Provjeri uvjete u službenoj dokumentaciji.";
 }

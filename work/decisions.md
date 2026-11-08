@@ -355,3 +355,15 @@ Odluke:
 - **Repo `SimeJadrijev/datathon` postaje javan 9.11.** Zatvara otvoreno pitanje od 22.10. (korisnik potvrdio da je u redu). Licenca: MIT (jednostavna, sve ovisnosti kompatibilne).
 - **AI alati za dokumentaciju:** Claude (Code + API), Gemini, ChatGPT/Codex. Navedeni u README-u (Pravila čl. VIII).
 - Stash s ključevima obrisan 8.11.; ključeve još treba rotirati.
+
+## 2026-11-08: provjera podataka prije predaje (Nino, branch `fix/data-validation`)
+- **Jedan zapis županije.** U bazi i u exportu standarda bilo je 40-ak zapisa za 21 županiju („Istarska županija”, „PRIMORSKO-GORANSKA”, „Medimurska”, „Područje cijele Hrvatske” uz `ALL`). Fasete su ih spajale, ali detalj, export i Atom feed pokazivali su sirove vrijednosti.
+  - Odluka: sprema se kratki službeni naziv (isti popis kao `COUNTIES` na webu) ili `ALL` (`CountyNames.canonical`). Primjenjuje se na pravila, AI i uvoz seeda. Backfill pri startu popravlja postojeće baze bez resetiranja.
+  - Nazivi koji nisu županija („Izvan Republike Hrvatske”) ostaju kakvi jesu.
+- **Ista stranica dvaput = duplikat.** smz.hr je promijenio format linkova, pa je 13 natječaja dobilo drugi `externalId` s istim URL-om. `DuplicateMarker` sad označava i isti URL unutar istog izvora (ID-evi se ne mijenjaju, da ingest nad seedom ne napravi nove retke).
+- **Datum objave s bbz.hr** („26 lis 2026”) čita se pravilom. AI je krivo pogađao mjesec (lis → studeni, lip → srpanj): 12 natječaja ispravljeno u seedu. AI datum objave u budućnosti se odbacuje.
+- **Naslovi:** višestruki i neprelomljivi razmaci sažimaju se u jedan.
+- **Poruke API-ja na „ti”**, kao web (DESIGN_SYSTEM). Pitanja za provjeru uvjeta u seedu (AI) i dalje su na „vi”: to bi tražilo ponovno generiranje, a ne smeta razumijevanju.
+- **Preporuke: prag zastarjelosti natječaja bez statusa i roka ostaje 365 dana** (korisnik). Isproban je prag od 90 dana (izbacio bi Fulbright i Erasmus+ pozive iz siječnja do ožujka), ali je ocijenjen prestrogim.
+- **„Izvan Republike Hrvatske” u filteru županija** više ne broji nacionalne natječaje (bilo 76, sad 1). Nacionalni se pridružuju samo pravim županijama (`CountyNames.isCounty`).
+- **Provjereno i ostavljeno:** 9 eKohezija poziva „zatvoreno” s rokom u budućnosti (status izvora, poziv zatvoren ranije); 193 natječaja bez statusa i roka (prikazani kao „nepoznat”); istekli otvoreni (9) zatvaraju se pri startu; export prolazi vlastitu JSON Schemu.

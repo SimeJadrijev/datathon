@@ -32,6 +32,7 @@ Tim: 4 osobe (korisnik + 3 prijatelja). Cilj: **pobijediti na natjecanju**. Jezi
 - 3./4.11.: #11 (Luka) na branchu `feature/nice-11`: novi izvori (EU fondovi, ministarstva, gradovi i županije, sveučilišta), pravna osnova, export u standardu, RSS, Registar udruga, osvježen seed. Detalji u `log.md`.
 - 4.11.: lov na bugove na branchu `fix/bug-hunt` (Luka): ispravci dohvata (status, rokovi, iznosi, šum), duplikati, preporuke, web; seed 4.11. Ne pokretati puni ingest nad seedom za stare izvore (vidi `work/decisions.md` 4.11.). Detalji u `log.md`.
 - 4.11.: rokovi natječaja na branchu `fix/deadlines` (Luka): strukturirani rok izvora pobjeđuje AI, praćenje linka s udruge.gov.hr, Claude čita skenirane PDF-ove, seed osvježen. Detalji u `log.md`.
+- 8.11.: provjera podataka na branchu `fix/data-validation` (Nino): jedinstvene županije, duplikati istog URL-a, datumi bbz.hr, poruke na "ti". Detalji u `log.md`.
 - Zadnje ažurirano: 2026-11-08
 
 ## Tehnički stack i konvencije

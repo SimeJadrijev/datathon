@@ -1,5 +1,6 @@
 package com.datathon.api.ai;
 
+import com.datathon.api.common.CountyNames;
 import com.datathon.api.fundingcall.Area;
 import com.datathon.api.fundingcall.FundingCall;
 import com.datathon.api.fundingcall.FundingCallType;
@@ -119,9 +120,6 @@ public record FundingCallExtraction(
 
     /** "All of Croatia" is stored as the single marker {@link FundingCall#ALL_COUNTIES}. */
     private static Set<String> counties(JsonNode array) {
-        Set<String> values = strings(array, Integer.MAX_VALUE);
-        boolean wholeCountry = values.stream()
-                .anyMatch(county -> county.equalsIgnoreCase("ALL") || county.equalsIgnoreCase("sve"));
-        return wholeCountry ? Set.of(FundingCall.ALL_COUNTIES) : values;
+        return CountyNames.canonical(strings(array, Integer.MAX_VALUE));
     }
 }

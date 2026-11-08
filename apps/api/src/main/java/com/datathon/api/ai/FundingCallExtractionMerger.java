@@ -25,7 +25,7 @@ public class FundingCallExtractionMerger {
         }
         setIfMissing(call, "provider", call.getProvider(), extraction.provider(), call::setProvider);
         set(call, "type", extraction.type(), call::setType);
-        setIfMissing(call, "publishedAt", call.getPublishedAt(), extraction.publishedAt(), call::setPublishedAt);
+        setIfMissing(call, "publishedAt", call.getPublishedAt(), pastOrNull(extraction.publishedAt()), call::setPublishedAt);
         overrideDeadline(call, extraction);
         set(call, "totalAmount", extraction.totalAmount(), call::setTotalAmount);
         set(call, "minAmount", extraction.minAmount(), call::setMinAmount);
@@ -66,6 +66,11 @@ public class FundingCallExtractionMerger {
         if (current == null) {
             set(call, field, value, setter);
         }
+    }
+
+    /** A call cannot be published after we read it; a future date means the model misread an abbreviated month. */
+    private static LocalDate pastOrNull(LocalDate publishedAt) {
+        return publishedAt != null && publishedAt.isAfter(LocalDate.now()) ? null : publishedAt;
     }
 
     private <T> void replace(FundingCall call, String field, Collection<T> values, Collection<T> target) {

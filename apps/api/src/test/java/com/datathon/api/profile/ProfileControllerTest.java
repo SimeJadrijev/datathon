@@ -98,7 +98,7 @@ class ProfileControllerTest {
     @Test
     void profileWithoutAreasKeywordsOrActivityCodesReturnsBadRequest() throws Exception {
         postProfile("{\"type\": \"COMPANY\", \"county\": \"Zagreb\"}").andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message").value("Odaberite barem jedno područje, ključnu riječ ili djelatnost."));
+                .andExpect(jsonPath("$.message").value("Odaberi barem jedno područje, ključnu riječ ili djelatnost."));
     }
 
     @Test

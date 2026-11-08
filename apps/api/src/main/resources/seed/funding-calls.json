@@ -24282,7 +24282,7 @@
     "SOCIAL"
    ],
    "counties": [
-    "Područje cijele Hrvatske"
+    "ALL"
    ],
    "activityCodes": [],
    "conditionsSummary": "Javni poziv za udruge civilnog društva registrirane najmanje dvije godine, čije djelatnosti pridonose prioritetnim područjima Poziva, za financiranje programa i projekata u 2024. godini. Korisnici programa moraju biti stanovnici grada Vukovara, a udruga mora osigurati sufinanciranje od najmanje 30%.",
@@ -24815,7 +24815,7 @@
     "SPORT"
    ],
    "counties": [
-    "Područje cijele Hrvatske"
+    "ALL"
    ],
    "activityCodes": [],
    "conditionsSummary": "Javni poziv za predlaganje javnih potreba u sportu Grada Đakova za 2026. godinu. Sredstva su namijenjena financiranju programa i projekata u sportu, a poziv je otvoren do iskorištenja sredstava, najkasnije do 1. prosinca 2026.",
@@ -32134,7 +32134,7 @@
     "HEALTH"
    ],
    "counties": [
-    "Područje cijele Hrvatske"
+    "ALL"
    ],
    "activityCodes": [],
    "conditionsSummary": "Javni poziv je namijenjen udrugama koje mogu prijaviti jednokratne aktivnosti u području socijalne djelatnosti i zaštite zdravlja, zdrave prehrane i prevencije ovisnosti. Financiraju se inicijalna pomoć, jačanje kapaciteta, manje potpore za opremu, obilježavanje datuma, manifestacije i edukacije, u rasponu od 150 do 700 eura po aktivnosti.",
@@ -34043,7 +34043,7 @@
     "HEALTH"
    ],
    "counties": [
-    "Područje cijele Hrvatske"
+    "ALL"
    ],
    "activityCodes": [],
    "conditionsSummary": "Javni poziv je za predlaganje javnih potreba organizacija civilnog društva od interesa za Grad Đakovo u 2027. godini. Financijske potpore dodjeljuju se udrugama za programe i projekte iz područja tehničke kulture, zdravstva, socijalne djelatnosti, branitelja, vatrogastva, gospodarstva, poljoprivrede i turizma.",
@@ -34148,7 +34148,7 @@
     "SPORT"
    ],
    "counties": [
-    "Područje cijele Hrvatske"
+    "ALL"
    ],
    "activityCodes": [],
    "conditionsSummary": "Javni poziv je za predlaganje javnih potreba u sportu Grada Đakova za 2027. godinu, a planirana je dodjela financijskih potpora u okviru raspoloživih sredstava proračuna Grada za 2027. godinu iz područja sporta. Tekst ne navodi tko može podnijeti prijedlog.",
@@ -34971,11 +34971,11 @@
     "TOURISM"
    ],
    "counties": [
-    "Dubrovačko-neretvanska županija",
-    "Primorsko-goranska županija",
-    "Splitsko-dalmatinska županija",
-    "Zadarska županija",
-    "Šibensko-kninska županija"
+    "Dubrovačko-neretvanska",
+    "Primorsko-goranska",
+    "Splitsko-dalmatinska",
+    "Zadarska",
+    "Šibensko-kninska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Prijavitelji mogu biti trgovačka društva čiji su osnivači javnopravna tijela, jedinice lokalne i područne (regionalne) samouprave te ustanove. Poziv financira izgradnju, revitalizaciju, uređenje i opremanje objekata poduzetničke infrastrukture na otocima navedenih županija, uz prateće kulturne i/ili turističke aktivnosti.",
@@ -35258,16 +35258,16 @@
     "ENERGY"
    ],
    "counties": [
-    "Bjelovarsko-bilogorska županija",
-    "Brodsko-posavska županija",
+    "Bjelovarsko-bilogorska",
+    "Brodsko-posavska",
     "Grad Zagreb",
-    "Karlovačka županija",
-    "Koprivničko-križevačka županija",
-    "Krapinsko-zagorska županija",
-    "Međimurska županija",
-    "Sisačko-moslavačka županija",
-    "Varaždinska županija",
-    "Zagrebačka županija"
+    "Karlovačka",
+    "Koprivničko-križevačka",
+    "Krapinsko-zagorska",
+    "Međimurska",
+    "Sisačko-moslavačka",
+    "Varaždinska",
+    "Zagrebačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Prijavitelji su ministarstva, državne upravne organizacije, organizacije civilnog društva, jedinice lokalne i područne (regionalne) samouprave, ustanove i znanstvenoistraživačke institucije. Mogu se sufinancirati izrada projektne dokumentacije i obnova zgrada javnog sektora oštećenih u potresu iz 2020. godine.",
@@ -35452,7 +35452,7 @@
     "SOCIAL"
    ],
    "counties": [
-    "Požeško-slavonska županija"
+    "Požeško-slavonska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Prijavitelji su jedinice lokalne samouprave i područne (regionalne) samouprave s područja Urbanog područja Požega, a projekt je partnerstvo moguće. Sredstva se dodjeljuju za revitalizaciju brownfield lokacija i objekata na urbanom području grada Požege i njihovu prenamjenu u javnu integriranu višenamjensku infrastrukturu društvene, kulturne, obrazovne, sportske ili socijalne namjene.",
@@ -35744,7 +35744,7 @@
     "TOURISM"
    ],
    "counties": [
-    "Brodsko-posavska županija"
+    "Brodsko-posavska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Pravo prijave imaju jedinice lokalne samouprave s područja Urbanog područja Slavonski Brod, a prijavitelji mogu projekt provoditi samostalno ili u partnerstvu s razvojnim agencijama. Sredstva su namijenjena ulaganju u javnu turističku infrastrukturu i s njom povezane zelene površine.",
@@ -36224,7 +36224,7 @@
     "SPORT"
    ],
    "counties": [
-    "Vukovarsko-srijemska županija"
+    "Vukovarsko-srijemska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Prihvatljivi prijavitelji su jedinice lokalne samouprave s područja UP Vinkovci, a prijava je za izgradnju, rekonstrukciju i opremanje integrirane višenamjenske društveno-kulturne ili sportske infrastrukture. Partnerstvo je prihvatljivo, a partneri moraju biti razvojne agencije s područja UP Vinkovci.",
@@ -36555,7 +36555,7 @@
     "SOCIAL"
    ],
    "counties": [
-    "Primorsko-goranska županija"
+    "Primorsko-goranska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Pravo prijave imaju jedinice lokalne samouprave i jedinice područne (regionalne) samouprave iz obuhvata Urbane aglomeracije Rijeka, samostalno ili u partnerstvu. Sredstva se mogu koristiti za rekonstrukciju, izgradnju i opremanje brownfield lokacija i objekata te njihovu prenamjenu u javne prostore društvene, kulturne, sportske i socijalne namjene.",
@@ -36603,7 +36603,7 @@
     "TOURISM"
    ],
    "counties": [
-    "Požeško-slavonska županija"
+    "Požeško-slavonska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Prihvatljivi prijavitelji su jedinica područne (regionalne) samouprave Požeško-slavonska županija i jedinice lokalne samouprave s područja Urbanog područja Požega. Bespovratna sredstva namijenjena su razvoju javne turističke infrastrukture i povezanih javnih i zelenih površina.",
@@ -36788,7 +36788,7 @@
     "TOURISM"
    ],
    "counties": [
-    "Karlovačka županija"
+    "Karlovačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Pravo prijave imaju jedinice lokalne samouprave, i to unaprijed određeni prijavitelji i partneri za pojedine projektne prijedloge na Urbanom području Karlovac. Bespovratna sredstva namijenjena su revitalizaciji i valorizaciji kulturno-povijesne baštine te izgradnji, obnovi i opremanju objekata i prostora za kulturne i turističke aktivnosti.",
@@ -36883,11 +36883,11 @@
     "INNOVATION"
    ],
    "counties": [
-    "Dubrovačko-neretvanska županija",
-    "Splitsko-dalmatinska županija",
-    "Vukovarsko-srijemska županija",
-    "Zadarska županija",
-    "Zagrebačka županija"
+    "Dubrovačko-neretvanska",
+    "Splitsko-dalmatinska",
+    "Vukovarsko-srijemska",
+    "Zadarska",
+    "Zagrebačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Prijavitelji su trgovačka društva čiji su osnivači javnopravna tijela te jedinice lokalne samouprave. Poziv financira izgradnju i unaprjeđenje cestovne infrastrukture županijskog i lokalnog značaja radi uklanjanja uskih grla u javnom prijevozu.",
@@ -37402,7 +37402,7 @@
     "INNOVATION"
    ],
    "counties": [
-    "Sisačko-moslavačka županija"
+    "Sisačko-moslavačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Prijavitelji su jedinice područne (regionalne) samouprave, trgovačka društva čiji su osnivači javnopravna tijela te ustanove. Poziv financira ulaganja u izgradnju i opremanje poduzetničkih inkubatora za usluge MSP-ovima na području Sisačko-moslavačke županije.",
@@ -37579,7 +37579,7 @@
     "SPORT"
    ],
    "counties": [
-    "Brodsko-posavska županija"
+    "Brodsko-posavska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Prihvatljivi prijavitelji su jedinice lokalne samouprave s područja Urbanog područja Slavonski Brod, a mogu ulagati u izgradnju, rekonstrukciju i opremanje integrirane višenamjenske društveno-kulturne (društveni domovi) te sportsko-zelene infrastrukture. Partneri mogu biti razvojne agencije s Urbanog područja Slavonski Brod.",
@@ -37628,7 +37628,7 @@
     "SPORT"
    ],
    "counties": [
-    "Primorsko-goranska županija"
+    "Primorsko-goranska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Prijavitelji su jedinice lokalne samouprave iz Urbane aglomeracije Rijeka (14 JLS-ova Primorsko-goranske županije), a sredstva su namijenjena izgradnji, rekonstrukciji i opremanju višenamjenske društveno-kulturne i sportsko-rekreacijske infrastrukture te obnovi javnih površina i s njima povezane zelene infrastrukture. Partnerstvo je prihvatljivo, a partneri moraju ispunjavati iste uvjete kao prijavitelj.",
@@ -37995,7 +37995,7 @@
     "Bjelovarsko-bilogorska",
     "Brodsko-posavska",
     "Koprivničko-križevačka",
-    "Medimurska",
+    "Međimurska",
     "Osječko-baranjska",
     "Požeško-slavonska",
     "Sisačko-moslavačka",
@@ -38095,7 +38095,7 @@
     "SPORT"
    ],
    "counties": [
-    "Bjelovarsko-bilogorska županija"
+    "Bjelovarsko-bilogorska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Pravo prijave imaju jedinice lokalne samouprave s područja Urbanog područja Bjelovar, samostalno ili u partnerstvu. Sredstva su namijenjena izgradnji, rekonstrukciji, obnovi, uređenju i opremanju javne integrirane višenamjenske infrastrukture (društveno-kulturne, sportsko-edukativne i sportsko-zelene) u javnom vlasništvu.",
@@ -38144,7 +38144,7 @@
     "INNOVATION"
    ],
    "counties": [
-    "Istarska županija"
+    "Istarska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Mikro, mali i srednji poduzetnici sa sjedištem ili podružnicom u Istarskoj županiji mogu se prijaviti za ulaganja u inovacije organizacije poslovanja, procesa ili proizvodne inovacije usmjerene zelenoj i digitalnoj tranziciji na području Grada Pule i Labinštine (Grad Labin, Općine Kršan, Sveta Nedelja, Pićan i Raša).",
@@ -38609,7 +38609,7 @@
     "ENTREPRENEURSHIP"
    ],
    "counties": [
-    "Istarska županija"
+    "Istarska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Ograničeni poziv upućen unaprijed određenim prijaviteljima: Gradu Puli i Općini Pićan, za uspostavu reciklažnih dvorišta na njihovom području te provedbu edukacija i informativnih aktivnosti o odvajanju i recikliranju otpada. Najviši iznos bespovratnih sredstava iznosi 4.500.000 eura za Grad Pulu i 450.000 eura za Općinu Pićan, uz sufinanciranje do 85% prihvatljivih troškova.",
@@ -40040,14 +40040,14 @@
     "INNOVATION"
    ],
    "counties": [
-    "Dubrovačko-neretvanska županija",
-    "Istarska županija",
-    "Karlovačka županija",
-    "Ličko-senjska županija",
-    "Primorsko-goranska županija",
-    "Splitsko-dalmatinska županija",
-    "Zadarska županija",
-    "Šibensko-kninska županija"
+    "Dubrovačko-neretvanska",
+    "Istarska",
+    "Karlovačka",
+    "Ličko-senjska",
+    "Primorsko-goranska",
+    "Splitsko-dalmatinska",
+    "Zadarska",
+    "Šibensko-kninska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Poziv je namijenjen mikro, malim i srednjim poduzećima te start-upovima iz Hrvatske i Italije za razvoj, testiranje i komercijalizaciju inovativnih rješenja u području plavog gospodarstva. Za prijavu je obvezno prekogranično partnerstvo s najmanje jednim hrvatskim i jednim talijanskim poduzetnikom.",
@@ -49604,7 +49604,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "GRANT",
    "status": null,
-   "publishedAt": "2026-11-26",
+   "publishedAt": "2026-10-26",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -49625,7 +49625,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "type"
    ],
    "fetchedAt": "2026-11-04T13:23:24.572659Z",
@@ -49645,7 +49644,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "PUBLIC_CALL",
    "status": null,
-   "publishedAt": null,
+   "publishedAt": "2026-09-29",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -49681,7 +49680,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "PUBLIC_CALL",
    "status": null,
-   "publishedAt": "2026-07-07",
+   "publishedAt": "2026-08-07",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -49706,7 +49705,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "targetGroups"
    ],
    "fetchedAt": "2026-11-04T13:23:24.620190Z",
@@ -49747,7 +49745,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "type"
    ],
    "fetchedAt": "2026-11-04T13:23:24.644396Z",
@@ -49767,7 +49764,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "PUBLIC_CALL",
    "status": null,
-   "publishedAt": "2026-07-15",
+   "publishedAt": "2026-06-15",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -49789,7 +49786,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "type"
    ],
    "fetchedAt": "2026-11-04T13:23:24.669316Z",
@@ -49809,7 +49805,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "PUBLIC_CALL",
    "status": null,
-   "publishedAt": "2026-07-12",
+   "publishedAt": "2026-06-12",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -49833,7 +49829,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "targetGroups",
     "type"
    ],
@@ -49854,7 +49849,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "SUBSIDY",
    "status": null,
-   "publishedAt": "2026-07-05",
+   "publishedAt": "2026-06-05",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -49878,7 +49873,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "targetGroups",
     "type"
    ],
@@ -49899,7 +49893,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "PUBLIC_CALL",
    "status": null,
-   "publishedAt": null,
+   "publishedAt": "2026-06-01",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -49933,7 +49927,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "LOAN",
    "status": null,
-   "publishedAt": null,
+   "publishedAt": "2026-05-20",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -49993,7 +49987,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "targetGroups",
     "type"
    ],
@@ -50038,7 +50031,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "type"
    ],
    "fetchedAt": "2026-11-04T13:23:24.817521Z",
@@ -50058,7 +50050,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "PUBLIC_CALL",
    "status": null,
-   "publishedAt": null,
+   "publishedAt": "2026-03-02",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -50097,7 +50089,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "SUBSIDY",
    "status": null,
-   "publishedAt": null,
+   "publishedAt": "2026-03-02",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -50162,7 +50154,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "targetGroups",
     "type"
    ],
@@ -50206,7 +50197,6 @@
    "aiFields": [
     "areas",
     "conditionsSummary",
-    "publishedAt",
     "targetGroups",
     "type"
    ],
@@ -50227,7 +50217,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": "LOAN",
    "status": null,
-   "publishedAt": null,
+   "publishedAt": "2026-02-09",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -51174,7 +51164,7 @@
     "EDUCATION"
    ],
    "counties": [
-    "Sisačko-moslavačka županija"
+    "Sisačko-moslavačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Natječaj je namijenjen redovitim studentima s područja Sisačko-moslavačke županije za dodjelu stipendija za akademsku godinu 2025./2026. Prijava se podnosi on-line putem obrasca, a ispisani obrazac s kontrolnim brojem potpisuje se i šalje poštom s potrebnom dokumentacijom.",
@@ -51360,7 +51350,7 @@
     "EDUCATION"
    ],
    "counties": [
-    "Sisačko-moslavačka županija"
+    "Sisačko-moslavačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Natječaj je namijenjen redovitim studentima s područja Sisačko-moslavačke županije za dodjelu stipendija za akademsku godinu 2024./2025. Prijava se podnosi on-line putem elektroničkog obrasca, a ispisani obrazac s kontrolnim brojem potpisuje se i šalje poštom.",
@@ -51421,7 +51411,7 @@
     "SOCIAL"
    ],
    "counties": [
-    "Sisačko-moslavačka županija"
+    "Sisačko-moslavačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Stipendije mogu dobiti redoviti učenici četverogodišnjih i petogodišnjih programa srednjih škola s područja Sisačko-moslavačke županije za školsku godinu 2024./2025. Prijava se podnosi putem elektroničkog on-line obrasca, a potpisani PDF obrazac s kontrolnim brojem šalje se s dokumentacijom poštom u natječajnom roku.",
@@ -51482,7 +51472,7 @@
     "CULTURE"
    ],
    "counties": [
-    "Sisačko-moslavačka županija"
+    "Sisačko-moslavačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Javni poziv je namijenjen udrugama i drugim organizacijama civilnog društva za predlaganje programa javnih potreba u kulturi Sisačko-moslavačke županije za 2025. godinu. Prijave se šalju u natječajnom roku do 31. listopada 2024. godine.",
@@ -51686,7 +51676,7 @@
     "EDUCATION"
    ],
    "counties": [
-    "Sisačko-moslavačka županija"
+    "Sisačko-moslavačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Natječaj je namijenjen redovitim učenicima četverogodišnjih i petogodišnjih programa srednjih škola s područja Sisačko-moslavačke županije za školsku godinu 2023./24. Dodjeljuje se 25 stipendija.",
@@ -53360,7 +53350,7 @@
     "EDUCATION"
    ],
    "counties": [
-    "PRIMORSKO-GORANSKA"
+    "Primorsko-goranska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Natječaj za dodjelu stipendija učenicima i studentima za školsku/akademsku godinu 2026./2027. Grada Rijeke. Studenti se mogu prijaviti u kategorijama izvrsnosti, deficitarnosti zanimanja i socio-ekonomskog statusa.",
@@ -56606,7 +56596,7 @@
    ],
    "counties": [
     "Grad Zagreb",
-    "Zagrebačka županija"
+    "Zagrebačka"
    ],
    "activityCodes": [],
    "conditionsSummary": "Natječaj je namijenjen studentima u redovitom statusu koji ostvaruju pravo na subvencionirano stanovanje u studentskim domovima Studentskog centra u Zagrebu u akademskoj godini 2026./2027. Studenti koji ostanu ispod bodne granice mogu ostvariti subvenciju od 152,00 € mjesečno za smještaj kod privatnog stanodavca.",
@@ -58136,7 +58126,7 @@
     "SOCIAL"
    ],
    "counties": [
-    "Zadarska županija"
+    "Zadarska"
    ],
    "activityCodes": [],
    "conditionsSummary": "Natječaj je namijenjen studentima u redovitom statusu za raspodjelu mjesta na subvencionirano stanovanje u Studentskom domu Sveučilišta u Zadru za akademsku godinu 2026./2027. Prijava se podnosi putem mrežne forme e-molba, a dokumentacija se šalje preporučenom poštom.",
@@ -58674,7 +58664,7 @@
    "source": "UNIVERSITIES",
    "externalId": "unizg.hr:erasmus-natjecaj-za-mobilnost-studenata-za-studijski-boravak-drzave-clanice-eu-a-i-trece-zem-1",
    "url": "https://www.unizg.hr/nc/vijest/article/erasmus-natjecaj-za-mobilnost-studenata-za-studijski-boravak-drzave-clanice-eu-a-i-trece-zem-1/",
-   "title": "Erasmus+ natječaj za mobilnost studenata za studijski boravak -  države članice EU-a i treće zemlje pridružene programu ak. god. 2026./27. (zimski i ljetni semestar)",
+   "title": "Erasmus+ natječaj za mobilnost studenata za studijski boravak - države članice EU-a i treće zemlje pridružene programu ak. god. 2026./27. (zimski i ljetni semestar)",
    "provider": "Sveučilište u Zagrebu",
    "type": "PUBLIC_CALL",
    "status": null,
@@ -58936,7 +58926,7 @@
    "source": "UNIVERSITIES",
    "externalId": "unizg.hr:erasmus-natjecaj-za-mobilnost-studenata-za-studijski-boravak-drzave-clanice-eu-a-i-trece-zem",
    "url": "https://www.unizg.hr/nc/vijest/article/erasmus-natjecaj-za-mobilnost-studenata-za-studijski-boravak-drzave-clanice-eu-a-i-trece-zem/",
-   "title": "Erasmus+ natječaj za mobilnost studenata za studijski boravak -  države članice EU-a i treće zemlje pridružene programu ak. god. 2025./26. (zimski i ljetni semestar)",
+   "title": "Erasmus+ natječaj za mobilnost studenata za studijski boravak - države članice EU-a i treće zemlje pridružene programu ak. god. 2025./26. (zimski i ljetni semestar)",
    "provider": "Sveučilište u Zagrebu",
    "type": "SCHOLARSHIP",
    "status": "CLOSED",
@@ -60773,7 +60763,7 @@
    "provider": "Bjelovarsko-bilogorska županija",
    "type": null,
    "status": null,
-   "publishedAt": null,
+   "publishedAt": "2026-01-30",
    "deadline": null,
    "totalAmount": null,
    "minAmount": null,
@@ -60831,8 +60821,7 @@
    "extractedByLlm": true,
    "aiFields": [
     "conditionsSummary",
-    "counties",
-    "publishedAt"
+    "counties"
    ],
    "fetchedAt": "2026-11-04T10:59:41.806822Z",
    "sourceText": "16 sij 2026 Godišnji plan raspisivanja javnih poziva i natječaja za dodjelu financijskih sredstava udrugama iz Proračuna Bjelovarsko-bilogorske županije za 2026. godinu SAZNAJTE VIŠE\nGodišnji plan raspisivanja javnih poziva i natječaja  za dodjelu financijskih sredstava udrugama iz Proračuna Bjelovarsko-bilogorske županije za 2026. godinu\nJavni pozivi",

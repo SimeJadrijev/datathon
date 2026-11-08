@@ -1,5 +1,6 @@
 package com.datathon.api.ingest.extract;
 
+import com.datathon.api.common.CountyNames;
 import com.datathon.api.fundingcall.Area;
 import com.datathon.api.fundingcall.FundingCallStatus;
 import com.datathon.api.fundingcall.FundingCallType;
@@ -21,4 +22,8 @@ public record ExtractedFields(
         Set<Area> areas,
         Set<String> activityCodes,
         Set<String> counties) {
+
+    public ExtractedFields {
+        counties = CountyNames.canonical(counties);
+    }
 }

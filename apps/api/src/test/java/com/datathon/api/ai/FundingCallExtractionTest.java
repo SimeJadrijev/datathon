@@ -129,6 +129,26 @@ class FundingCallExtractionTest {
     }
 
     @Test
+    void modelCountySpellingIsStoredAsTheShortName() {
+        FundingCall call = ruleBasedCall();
+
+        merger.apply(call, parse("{\"counties\":[\"Splitsko-dalmatinska županija\"]}"));
+
+        assertThat(call.getCounties()).containsExactly("Splitsko-dalmatinska");
+    }
+
+    @Test
+    void publishDateInTheFutureFromTheModelIsIgnored() {
+        FundingCall call = ruleBasedCall();
+        call.setPublishedAt(null);
+
+        merger.apply(call, parse("{\"publishedAt\":\"" + LocalDate.now().plusDays(20) + "\"}"));
+
+        assertThat(call.getPublishedAt()).isNull();
+        assertThat(call.getAiFields()).doesNotContain("publishedAt");
+    }
+
+    @Test
     void deadlineInThePastClosesTheCall() {
         FundingCall call = ruleBasedCall();
 

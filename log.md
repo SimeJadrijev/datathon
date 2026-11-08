@@ -219,3 +219,10 @@
 - 8.11.: README (naziv, autori, izvori, AI alati, licenca), `package.json` i `pom.xml` dobili MIT i autore. Odluka o javnom repou u `work/decisions.md`.
 - 8.11.: napisan `ARCHITECTURE.md` (dijagram, moduli, ingest, AI, povezivanje, API i standardi, preduvjeti, ograničenja), link u README-u.
 - 8.11.: napisan `PROJECT.md` (projektna dokumentacija; brojke iz seeda 4.11.: 1.222 natječaja, 157 otvorenih, 66 tijela, 4.121 propis). Uloge u timu su pretpostavka iz `team/team.md`, potvrditi.
+
+## 2026-11-08 (Nino, provjera podataka i bugova, branch `fix/data-validation`)
+- Skriptom provjeren seed (1.222 natječaja, 4.121 propis): statusi i rokovi, iznosi, datumi, URL-ovi, duplikati, enumi, AI polja. API pokrenut na praznoj bazi i provjerene sve javne rute; export validiran JSON Schemom.
+- Popravci: jedinstveni nazivi županija (kod, backfill, seed), duplikati istog URL-a (13 sa smz.hr), datumi objave s bbz.hr (12), razmaci u naslovima, AI datum objave u budućnosti se odbacuje, poruke API-ja na „ti”. Odluke u `work/decisions.md`.
+- Prolaz kroz web u Chromeu (profil, preporuke, detalj 78 s provjerom uvjeta, lista i filtri, zakoni, izvori, bez grešaka u konzoli). Nađeno i popravljeno: „Izvan RH (76)” u filteru županija. Zastarjeli natječaji bez statusa u preporukama: prag 365 dana ostaje (90 je bilo prestrogo, odluka korisnika).
+- Otvoreno za tim: stranica Izvori za 13 od 14 izvora pokazuje „Licenca: nije provjereno” (`sources.json`).
+- Testovi: 435 API testova (8 novih), `yarn lint` i `yarn build` prolaze. Natječaj 78 nepromijenjen.

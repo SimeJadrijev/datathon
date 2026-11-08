@@ -37,7 +37,7 @@ public class EligibilityRuleChecker {
         List<EligibilityReason> reasons = new ArrayList<>();
         addDeadlineReason(context, reasons);
         return new EligibilityCheckResponse(EligibilityVerdict.LIKELY_NOT_ELIGIBLE, reasons,
-                List.of("Provjerite kod davatelja hoće li poziv biti ponovno raspisan."),
+                List.of("Provjeri kod davatelja hoće li poziv biti ponovno raspisan."),
                 EligibilityCheckResponse.DISCLAIMER, context.url());
     }
 
@@ -75,7 +75,7 @@ public class EligibilityRuleChecker {
     private List<String> missingInfo(EligibilityContext context, Map<String, Object> answers) {
         List<String> missing = new ArrayList<>();
         if (!context.questions().isEmpty() && answers.size() < context.questions().size()) {
-            missing.add("Odgovorite na sva pitanja o uvjetima poziva.");
+            missing.add("Odgovori na sva pitanja o uvjetima poziva.");
         }
         missing.add("Detaljna procjena trenutno nije dostupna, prikazani su samo osnovni podaci o pozivu.");
         return missing;
