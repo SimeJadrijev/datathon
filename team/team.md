@@ -13,4 +13,5 @@ _Zadnje ažurirano: 2026-10-22. Svi: frontend + backend znanje za web aplikacije
 - Pokrivenost je dobra za web aplikaciju s podatkovnom pipeline i jednim AI/ML elementom. Nema dizajnera pa UI/UX (10 b) nosi frontend član, što treba planirati.
 - Nitko nije naveden kao GIS stručnjak. Ako ideja traži prostorne podatke, to je rizik koji treba pokriti bibliotekama (PostGIS, GeoPandas).
 - Uloge su prijedlog asistenta na temelju opisa, nisu potvrđene.
-- Mentor: još nije pronađen (HITNO, vidi `work/tasks.md`).
+- Naziv tima: **Nazor**. Mentor (voditelj tima): **Mario Čagalj**.
+- Puna imena (za LICENSE i predaju): Ivan Mosić (prezime potvrditi), Šime Jadrijev, Luka Žuljević, Nino Milas.

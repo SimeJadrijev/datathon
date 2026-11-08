@@ -1,6 +1,8 @@
-# Datathon
+# OtvoreniRadar
 
-Prototip za Datathon Portala otvorenih podataka 2026. Monorepo s web aplikacijom i API-jem.
+Prototip tima **Nazor** za Datathon Portala otvorenih podataka 2026 (izazov C). Javni natječaji, pozivi i propisi RH na jednom mjestu, s preporukama prema profilu i AI provjerom uvjeta. Monorepo s web aplikacijom i API-jem.
+
+Autori: Ivan Mosić, Šime Jadrijev, Luka Žuljević, Nino Milas. Mentor: Mario Čagalj.
 
 ## Struktura
 
@@ -98,3 +100,30 @@ Otvara se na `http://localhost:5173`.
 
 - Web poziva API na putanji `/api` (axios `baseURL`). U `yarn dev` Vite proxy prosljeđuje `/api` na `http://localhost:8080`, pa API mora biti pokrenut. Ako nije, ekrani s podacima pokazuju poruku o grešci.
 - Web stranice bez podataka (layout, navigacija) rade i bez baze i API-ja: dovoljan je samo korak 3.
+
+## Dokumentacija
+
+- Projektna dokumentacija (problem, korisnici, rješenje, vrijednost, daljnji razvoj): [`PROJECT.md`](PROJECT.md)
+
+## Arhitektura
+
+Opis dijelova sustava, toka podataka, AI obrade, standarda i preduvjeta za uvođenje: [`ARCHITECTURE.md`](ARCHITECTURE.md).
+
+## Izvori podataka
+
+Svi skupovi podataka, izdavatelji, poveznice i licence su u [`DATA_SOURCES.md`](DATA_SOURCES.md). Podaci s Portala otvorenih podataka (data.gov.hr) koriste se prema Otvorenoj dozvoli RH, uz navođenje izvora.
+
+## Korišteni alati
+
+Rješenje je izvorno djelo tima. Uz biblioteke otvorenog koda (popis u [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md)) koristili smo ove AI alate (Pravila, čl. VIII):
+
+| Alat | Za što |
+|---|---|
+| Claude Code (Anthropic) | pomoć pri pisanju i pregledu koda, dokumentacije i testova |
+| Claude API (Anthropic, modeli Haiku i Sonnet) | dio aplikacije: izvlačenje polja iz natječaja, sažeci propisa, pitanja i provjera uvjeta. Rezultati su spremljeni u bazu, a aplikacija radi i bez ključa. |
+| Gemini (Google) | brainstorming i odabir ideje |
+| ChatGPT / Codex (OpenAI) | pomoć pri razvoju i pisanju koda |
+
+## Licenca
+
+Kod je objavljen pod licencom [MIT](LICENSE), © 2026 Ivan Mosić, Šime Jadrijev, Luka Žuljević, Nino Milas. Licence tuđih komponenti su u [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).

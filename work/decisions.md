@@ -350,3 +350,8 @@ Odluke:
   - Isti hash pri ingestu vraća županiju izvora bez resetiranja AI rezultata (`CountyNames.areLocal`).
 - **Prompt:** `ALL` samo kad tekst kaže da je natječaj nacionalni. Kad mjesto prijavitelja nije navedeno, model vraća praznu listu i ostaje vrijednost izvora.
 - Obrazac je isti kao kod rokova (4.11.): strukturirani podatak izvora je točniji od modela koji vidi kratak tekst.
+
+## 2026-11-08: Predaja: javni repo, MIT, AI alati (korisnik)
+- **Repo `SimeJadrijev/datathon` postaje javan 9.11.** Zatvara otvoreno pitanje od 22.10. (korisnik potvrdio da je u redu). Licenca: MIT (jednostavna, sve ovisnosti kompatibilne).
+- **AI alati za dokumentaciju:** Claude (Code + API), Gemini, ChatGPT/Codex. Navedeni u README-u (Pravila čl. VIII).
+- Stash s ključevima obrisan 8.11.; ključeve još treba rotirati.
