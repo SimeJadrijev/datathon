@@ -7,7 +7,6 @@ export type Attachment = {
     url: string;
 };
 
-// Mirrors FundingCallDetail from GET /api/funding-calls/{id}. aiFields names the fields the model filled in.
 export type FundingCallDetail = Omit<FundingCallSummary, "source" | "firstSeenAt"> & {
     source: SourceInfo;
     publishedAt: string | null;

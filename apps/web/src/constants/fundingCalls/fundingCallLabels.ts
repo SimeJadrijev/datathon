@@ -17,7 +17,6 @@ export const FUNDING_CALL_STATUS_LABELS: Record<FundingCallStatus, string> = {
     CLOSED: "Zatvoren",
 };
 
-// OPEN first: it is the API default, so it is never written into the URL.
 export const FUNDING_CALL_STATUS_FILTERS: FundingCallStatusFilter[] = ["OPEN", "ANNOUNCED", "CLOSED", "UNKNOWN"];
 
 export const DEFAULT_FUNDING_CALL_STATUS: FundingCallStatusFilter = "OPEN";

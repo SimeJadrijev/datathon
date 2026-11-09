@@ -43,7 +43,6 @@ interface FundingCallsSummaryProps {
     onClear: () => void;
 }
 
-// One plain sentence with the real count, then sorting and the reset on the same line.
 export const FundingCallsSummary = ({
     filter,
     totalElements,

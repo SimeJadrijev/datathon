@@ -2,7 +2,6 @@ package com.datathon.api.eligibility;
 
 import java.util.Locale;
 
-/** Compares quotes with the call text while ignoring spaces, punctuation, quote marks and letter case. */
 final class TextMatch {
 
     private TextMatch() {

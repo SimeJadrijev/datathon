@@ -3,7 +3,6 @@ import type {FacetCount} from "@/types";
 import type {FilterOption} from "./FilterSelect.tsx";
 
 interface FilterOptionsInput {
-    // Every value the filter can take; used without counts when the facets did not load.
     values: readonly string[];
     counts: FacetCount[] | undefined;
     getLabel: (value: string) => string | undefined;
@@ -12,7 +11,6 @@ interface FilterOptionsInput {
 
 const byLabel = (first: FilterOption, second: FilterOption) => first.label.localeCompare(second.label, LOCALE);
 
-// With counts, only values that have results are offered (no dead ends), plus the selected one even at 0.
 export const toFilterOptions = ({values, counts, getLabel, selected}: FilterOptionsInput): FilterOption[] => {
     const toOption = (value: string, count?: number): FilterOption[] => {
         const label = getLabel(value);

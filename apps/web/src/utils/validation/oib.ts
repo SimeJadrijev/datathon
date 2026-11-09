@@ -1,6 +1,5 @@
 const OIB_PATTERN = /^\d{11}$/;
 
-// ISO 7064 MOD 11,10, the same check the API does before it calls the Court Register.
 export const isValidOib = (value: string) => {
     if (!OIB_PATTERN.test(value)) {
         return false;

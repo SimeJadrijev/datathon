@@ -38,7 +38,6 @@
     line-height: var(--line-height-snug);
 }
 
-/* Serif numbers in primary green, the same voice as "Kako radi" on the home page. */
 .questionNumber {
     flex-shrink: 0;
     font-family: var(--font-family-display);
@@ -103,7 +102,6 @@
     border-radius: var(--radius-md);
 }
 
-/* Model-written verdict: dashed AI frame, so it never reads as an official decision. */
 .resultAi {
     border-style: dashed;
     border-color: var(--color-ai);

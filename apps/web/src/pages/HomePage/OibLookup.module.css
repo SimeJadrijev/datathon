@@ -1,4 +1,3 @@
-/* The fast path: a soft green panel, so it is the first thing a company sees. */
 .lookup {
     display: flex;
     flex-direction: column;

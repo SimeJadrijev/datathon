@@ -12,10 +12,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Marks open and announced calls whose deadline has passed as closed: after the seed is loaded, after every ingest and each night.
- * Fixing the stored status keeps the list filter, the status facet and the counts on the home page in agreement.
- */
 @Slf4j
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE + 1)

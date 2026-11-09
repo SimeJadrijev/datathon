@@ -29,7 +29,6 @@ const EligibilityForm = ({fundingCallId, questions}: EligibilityFormProps) => {
     const [invalidIds, setInvalidIds] = useState<string[]>([]);
     const [hasNoAnswers, setHasNoAnswers] = useState(false);
 
-    // A result is about the answers it was given; once they change it would mislead, so it goes away.
     const handleAnswerChange = (questionId: string, value: string) => {
         setDraft((current) => ({...current, [questionId]: value}));
         setInvalidIds((current) => current.filter((id) => id !== questionId));
@@ -109,7 +108,6 @@ interface EligibilityPanelProps {
     fundingCallId: number;
 }
 
-// The panel shows only for calls with prepared questions; without them there is nothing honest to ask.
 export const EligibilityPanel = ({fundingCallId}: EligibilityPanelProps) => {
     const {data: questions} = useGetEligibilityQuestions(fundingCallId);
 

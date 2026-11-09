@@ -3,14 +3,12 @@ import type {EligibilityQuestion} from "@/types";
 import {getQuestionInputId, NO, YES} from "./eligibilityAnswers.ts";
 import styles from "./EligibilityPanel.module.css";
 
-// "Ne znam" clears the answer: a radio cannot be unchecked, and guessing would only mislead the check.
 const UNKNOWN = "";
 
 const getOptions = (question: EligibilityQuestion) => {
     if (question.type === "YES_NO") {
         return [{value: YES, label: "Da"}, {value: NO, label: "Ne"}];
     }
-    // The options come from the AI: drop blanks (they would clash with "Ne znam") and repeats (duplicate keys).
     const options = new Set((question.options ?? []).filter((option) => option.trim()));
     return [...options].map((option) => ({value: option, label: option}));
 };

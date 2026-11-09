@@ -39,7 +39,7 @@ Za sve izvore u ovom odjeljku licenca nije izričito navedena na stranici. Oslan
 
 ## 4. Namjerno izostavljeni izvori
 
-Samobor, Međimurska županija, Pula i HAMAG-BICRO: `robots.txt` blokira AI crawlere ili traži `ai-train=no`, a mi tekst šaljemo modelu. Detalji u `work/decisions.md` i `work/sources-research.md`.
+Samobor, Međimurska županija, Pula i HAMAG-BICRO: `robots.txt` blokira AI crawlere ili traži `ai-train=no`, a mi tekst šaljemo modelu.
 
 ## 5. Obrada umjetnom inteligencijom
 

@@ -47,7 +47,6 @@ public record SeedFundingCall(
         String hiddenReason,
         Boolean deadlineFromSource) {
 
-    /** The export side of the seed: what the database holds now, including the AI results, so a fresh clone has them. */
     static SeedFundingCall from(FundingCall call) {
         return new SeedFundingCall(call.getSource(), call.getExternalId(), call.getUrl(), call.getTitle(),
                 call.getProvider(), call.getType(), call.getStatus(), call.getPublishedAt(), call.getDeadline(),
@@ -94,7 +93,6 @@ public record SeedFundingCall(
         fundingCall.setSourceText(sourceText);
         fundingCall.setDeadlineNote(deadlineNote);
         fundingCall.setEligibilityQuestions(eligibilityQuestions);
-        // Boxed because older seed files do not have these fields, and Jackson 3 does not map a missing value to false.
         fundingCall.setFieldsReviewed(Boolean.TRUE.equals(fieldsReviewed));
         fundingCall.setHidden(Boolean.TRUE.equals(hidden));
         fundingCall.setHiddenReason(hiddenReason);

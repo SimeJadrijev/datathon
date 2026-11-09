@@ -10,7 +10,6 @@ final class IsoDates {
     private IsoDates() {
     }
 
-    /** Reads the date part of "2026-10-13T10:00:00"; an empty or malformed value gives null instead of a failure. */
     static LocalDate leading(String dateTime) {
         if (dateTime == null || dateTime.length() < DATE_CHARS) {
             return null;

@@ -11,13 +11,11 @@ import {ProfileForm} from "./ProfileForm.tsx";
 import {ProfileSummary} from "./ProfileSummary.tsx";
 import styles from "./HomePage.module.css";
 
-// Long enough to notice the mistake, short enough that an old notice cannot overwrite a newly filled form.
 const UNDO_TIMEOUT_MS = 10_000;
 
 export const HomePage = () => {
     const {profile, saveProfile, clearProfile} = useProfile();
     const [isEditing, setIsEditing] = useState(false);
-    // Kept after "Obriši profil" so the delete can be undone instead of asking for confirmation first.
     const [clearedProfile, setClearedProfile] = useState<Profile>();
     const [, navigate] = useLocation();
     const meta = useGetMeta();
@@ -83,7 +81,6 @@ export const HomePage = () => {
                     </div>
                     {renderProfile()}
                 </div>
-                {/* No aria-label: the section inside is already named by its heading. */}
                 <aside className={styles.aside}>
                     {profile ? <ProfileDeadlines profile={profile}/> : <HowItWorks/>}
                 </aside>

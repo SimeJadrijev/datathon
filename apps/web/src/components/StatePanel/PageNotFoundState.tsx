@@ -5,7 +5,6 @@ interface PageNotFoundStateProps {
     firstPageHref: string;
 }
 
-// An old or hand-edited link can point past the last page of a list that has since become shorter.
 export const PageNotFoundState = ({firstPageHref}: PageNotFoundStateProps) => {
     return (
         <EmptyState

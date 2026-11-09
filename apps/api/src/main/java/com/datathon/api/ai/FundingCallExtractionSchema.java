@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-/** Schema and prompt for reading a funding call. Ported from the POC (poc/extract/llm.py). */
 final class FundingCallExtractionSchema {
 
     static final String PURPOSE = "extract-funding-call";

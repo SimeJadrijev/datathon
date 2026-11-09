@@ -8,7 +8,6 @@ const UNVERIFIED_LICENSE = "nije provjereno";
 
 const formatHost = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
-// The Court Register is not stored: it is asked live each time someone looks up an OIB.
 const describeLastFetch = ({code, lastSuccessfulFetch}: SourceSummary) => {
     if (lastSuccessfulFetch) {
         return formatDate(lastSuccessfulFetch);
@@ -20,7 +19,6 @@ interface SourcesTableProps {
     sources: SourceSummary[];
 }
 
-// A real table on wide screens; under 768 px every row becomes a small card with labelled cells (data-label).
 export const SourcesTable = ({sources}: SourcesTableProps) => {
     return (
         <div className={styles.tableFrame}>

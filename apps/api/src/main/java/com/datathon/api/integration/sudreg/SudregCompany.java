@@ -29,7 +29,6 @@ record SudregCompany(
                 toActivityCode(mainActivity));
     }
 
-    /** Sudreg stores the NKD code as a number without the dot: 6201 is 62.01 and 150 is 01.50. */
     static String toActivityCode(Integer mainActivity) {
         if (mainActivity == null || mainActivity == 0) {
             return null;

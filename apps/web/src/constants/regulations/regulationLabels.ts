@@ -10,7 +10,6 @@ export const REGULATION_TYPE_LABELS: Record<RegulationType, string> = {
     OTHER: "Ostalo",
 };
 
-// A regulation published within this many days is marked "Novo".
 export const NEW_REGULATION_DAYS = 30;
 
 export const REGULATION_PERIODS: RegulationPeriod[] = ["30d", "90d", "thisYear", "lastYear"];

@@ -37,7 +37,6 @@ public class RegulationSummaryService {
     private final TransactionTemplate transactionTemplate;
     private final BatchRunner batchRunner;
 
-    /** Starts a batch in the background. Throws when a batch is already running. */
     public void start(int limit) {
         batchRunner.start("summarize-regulations", () -> run(limit));
     }
@@ -66,7 +65,6 @@ public class RegulationSummaryService {
         return new ExtractionRunResult(summarized, failed, skipped, cost);
     }
 
-    /** The page fetch and the model call run outside any transaction. */
     void summarize(Long id) {
         Regulation regulation = regulationRepository.findById(id).orElseThrow();
         String text = narodneNovineClient.fetchText(regulation.getUrl());
@@ -97,10 +95,6 @@ public class RegulationSummaryService {
                 + (text.length() <= MAX_WHOLE_CHARS ? "--- TEXT ---" + NL + text : excerpts(text));
     }
 
-    /**
-     * For a long act: the start (subject and purpose), the passage about entry into force (it can sit anywhere
-     * near the end) and the very end.
-     */
     private String excerpts(String text) {
         String head = text.substring(0, HEAD_CHARS);
         String tail = text.substring(text.length() - TAIL_CHARS);

@@ -100,7 +100,6 @@ public class DuplicateMarker implements ApplicationRunner {
         return isPublishedClose(first.getPublishedAt(), second.getPublishedAt());
     }
 
-    /** The same page stored twice: a site changed the link format of a list, so one call got a second external id. */
     private static boolean isSameUrl(FundingCall first, FundingCall second) {
         return first.getUrl() != null && !first.getUrl().isBlank() && first.getUrl().equals(second.getUrl());
     }

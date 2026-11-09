@@ -16,7 +16,6 @@ const formatDeadlineFact = ({deadline, deadlineNote}: FundingCallDetail) => {
     return deadlineNote ?? <UnknownValue/>;
 };
 
-// A value is marked as AI-read only when it is shown; "provjeri na izvoru" is never underlined.
 const buildFacts = (fundingCall: FundingCallDetail): Fact[] => {
     const {deadline, totalAmount, targetGroups, areas, counties} = fundingCall;
     const amountRange = formatAmountRange(fundingCall);

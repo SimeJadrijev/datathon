@@ -9,7 +9,6 @@ const dateFormatter = new Intl.DateTimeFormat(LOCALE, {
     year: "numeric",
 });
 
-// A date-only ISO string ("2026-10-23") is read as a local date, not as UTC midnight.
 export const parseDate = (value: string) => {
     const match = DATE_ONLY_PATTERN.exec(value);
     if (!match) {
@@ -29,7 +28,6 @@ export const getDaysUntil = (value: string, today = new Date()) => {
 
 export const formatDate = (value: string) => dateFormatter.format(parseDate(value));
 
-// True for the last `days` calendar days including today (a "new" regulation, for example).
 export const isWithinLastDays = (value: string, days: number, today = new Date()) => {
     const daysUntil = getDaysUntil(value, today);
     return daysUntil <= 0 && daysUntil > -days;
@@ -37,7 +35,6 @@ export const isWithinLastDays = (value: string, days: number, today = new Date()
 
 const padTwoDigits = (value: number) => String(value).padStart(2, "0");
 
-// Local calendar date as the API expects it: "2026-11-02".
 export const toIsoDate = (date: Date) =>
     `${date.getFullYear()}-${padTwoDigits(date.getMonth() + 1)}-${padTwoDigits(date.getDate())}`;
 
@@ -45,7 +42,6 @@ const monthFormatter = new Intl.DateTimeFormat(LOCALE, {month: "short"});
 
 const timeFormatter = new Intl.DateTimeFormat(LOCALE, {hour: "2-digit", minute: "2-digit"});
 
-// Parts for a calendar-style date block: "2" / "stu" / 2026.
 export const getDateParts = (value: string) => {
     const date = parseDate(value);
     return {
@@ -55,7 +51,6 @@ export const getDateParts = (value: string) => {
     };
 };
 
-// "29. 10. 2026. u 06:00"
 export const formatDateTime = (value: string) => {
     const date = parseDate(value);
     return `${dateFormatter.format(date)} u ${timeFormatter.format(date)}`;

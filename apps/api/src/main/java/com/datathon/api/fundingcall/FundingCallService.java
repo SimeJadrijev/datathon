@@ -109,8 +109,6 @@ public class FundingCallService {
         return visible().and(matchingExcept(filter, countyValues, facet));
     }
 
-    // Filtering by a county also returns the calls for the whole country, so its count includes them too;
-    // otherwise "Istarska županija (1)" would open a list of 43 calls.
     private List<FacetCount> countyFacet(FundingCallFilter filter, Set<String> countyValues) {
         Specification<FundingCall> specification = specificationIgnoring(filter, countyValues, FundingCallFacet.COUNTY);
         List<FacetCount> counties = mergeCountySpellings(

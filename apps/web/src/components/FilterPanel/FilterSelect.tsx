@@ -19,7 +19,6 @@ interface FilterSelectProps {
 
 const formatOption = ({label, count}: FilterOption) => (count === undefined ? label : `${label} (${count})`);
 
-// Native select with "all" as the first option; counts come from the facets endpoint.
 export const FilterSelect = ({label, name, value, allLabel, options, onChange}: FilterSelectProps) => {
     const selectId = useId();
 
@@ -45,5 +44,4 @@ interface FilterGridProps {
     children: ReactNode;
 }
 
-// Grid for several FilterSelects: as many columns as fit, one column on phones.
 export const FilterGrid = ({children}: FilterGridProps) => <div className={styles.grid}>{children}</div>;

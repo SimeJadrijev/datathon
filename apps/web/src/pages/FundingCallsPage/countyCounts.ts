@@ -1,9 +1,6 @@
 import {ALL_COUNTIES, COUNTIES, findCounty} from "@/constants";
 import type {FacetCount} from "@/types";
 
-// Facet values use the spelling most calls have ("Istarska županija"); the filter and the URL use the short
-// name, so both are mapped to it and a county never shows up twice. A county without calls of its own still
-// gets the calls for the whole country, which is exactly what filtering by it returns.
 export const toCountyCounts = (counts: FacetCount[] | undefined): FacetCount[] | undefined => {
     if (!counts) {
         return undefined;

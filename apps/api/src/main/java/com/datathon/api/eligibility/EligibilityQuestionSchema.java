@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-/** Schema and prompt for writing the questions an applicant answers to see if they fit a call. */
 final class EligibilityQuestionSchema {
 
     static final String PURPOSE = "eligibility-questions";

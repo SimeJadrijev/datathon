@@ -7,7 +7,6 @@ import {ErrorPage} from "@/pages";
 
 const MAX_RETRIES = 2;
 
-// A 4xx answer will not change on retry, so the error state shows at once.
 const shouldRetry = (failureCount: number, error: Error) => {
     const isClientError = error instanceof ApiError && error.status !== undefined && error.status < 500;
     return !isClientError && failureCount < MAX_RETRIES;

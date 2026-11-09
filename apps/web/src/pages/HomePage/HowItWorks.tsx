@@ -8,7 +8,6 @@ const BROWSE_LINKS = [
     {path: routes.SOURCES, label: "Izvori podataka", description: "odakle dolaze podaci i koliko su svježi"},
 ];
 
-// Shown before a profile exists: what happens next, and a way in without a profile.
 export const HowItWorks = () => {
     return (
         <section className={styles.panel} aria-labelledby="how-it-works-title">

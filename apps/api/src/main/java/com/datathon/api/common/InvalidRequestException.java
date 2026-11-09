@@ -1,9 +1,5 @@
 package com.datathon.api.common;
 
-/**
- * The message is for the log. The user message, when given, is the Croatian text the UI shows; without it the
- * message itself is shown (older callers already pass Croatian text).
- */
 public class InvalidRequestException extends RuntimeException {
 
     private final String userMessage;

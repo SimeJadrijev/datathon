@@ -14,10 +14,6 @@ final class WordPressPaging {
     private WordPressPaging() {
     }
 
-    /**
-     * WordPress answers HTTP 400 for a page past the last one, so a source with exactly 100 or 200 items ends
-     * with that answer. On the first page the same answer is a real failure.
-     */
     static Optional<JsonNode> readPage(int page, IntFunction<JsonNode> reader) {
         try {
             return Optional.of(reader.apply(page));

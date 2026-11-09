@@ -5,7 +5,6 @@ export type FundingCallType = "GRANT" | "SUBSIDY" | "PUBLIC_CALL" | "SCHOLARSHIP
 
 export type FundingCallStatus = "ANNOUNCED" | "OPEN" | "CLOSED";
 
-// Mirrors FundingCallSummary from GET /api/funding-calls and POST /api/profiles/match.
 export type FundingCallSummary = {
     id: number;
     title: string;

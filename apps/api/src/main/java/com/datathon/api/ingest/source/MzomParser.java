@@ -63,7 +63,6 @@ public final class MzomParser {
         return builder.build();
     }
 
-    /** The list mixes in job ads and other personnel notices, which the title filter does not always catch. */
     public static boolean isJobRelated(RawItem item) {
         return item.categories().stream()
                 .map(category -> category.toLowerCase(Locale.ROOT))

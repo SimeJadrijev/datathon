@@ -29,7 +29,6 @@ interface RegulationDetailProps {
     regulation: RegulationDetailType;
 }
 
-// Editorial order: the facts, then the official text, and only then our summary of it.
 export const RegulationDetail = ({regulation}: RegulationDetailProps) => {
     const {title, type, gazetteNumber, publishedAt, summary, url, eliUrl, pdfUrl, eliMetadata, fetchedAt, citingFundingCalls} = regulation;
     const description = [type && REGULATION_TYPE_LABELS[type], gazetteNumber && `Narodne novine ${gazetteNumber}`]

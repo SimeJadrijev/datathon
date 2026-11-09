@@ -39,7 +39,6 @@ public final class NkdAreaMapper {
     private NkdAreaMapper() {
     }
 
-    /** Employment is always added, because every company can apply for hiring subsidies. */
     public static List<Area> forActivityCode(String activityCode) {
         if (activityCode == null) {
             return WITHOUT_ACTIVITY_CODE;

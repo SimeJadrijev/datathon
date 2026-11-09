@@ -26,7 +26,6 @@ const formatAmounts =({maxAmount, totalAmount}: Pick<FundingCallSummary, "maxAmo
     return undefined;
 };
 
-// Names only the values this row shows, so the note never talks about an amount that is not there.
 const describeAiValues = (hasDeadline: boolean, hasAmount: boolean) => {
     if (hasDeadline && hasAmount) {
         return "rok i iznos pročitao je AI iz teksta objave, provjeri ih na izvoru";
@@ -64,7 +63,6 @@ interface FundingCallRowProps {
     children?: ReactNode;
 }
 
-// One funding call in a list. Goes inside FundingCallList, which draws the frame and the dividers.
 export const FundingCallRow = ({fundingCall, children}: FundingCallRowProps) => {
     const returnTo = useCurrentPath();
     const amount = formatAmounts(fundingCall);

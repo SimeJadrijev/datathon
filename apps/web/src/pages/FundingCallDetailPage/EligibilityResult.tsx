@@ -10,7 +10,6 @@ interface VerdictCopy {
     className: string | undefined;
 }
 
-// Words and an icon carry the verdict; colour only repeats it.
 const VERDICTS: Record<EligibilityVerdict, VerdictCopy> = {
     LIKELY_ELIGIBLE: {
         title: "Vjerojatno ispunjavaš uvjete",
@@ -38,7 +37,6 @@ interface EligibilityResultProps {
 
 export const EligibilityResult = ({result}: EligibilityResultProps) => {
     const verdict = VERDICTS[result.verdict];
-    // Only model reasons carry a quote; without one the API answered from simple rules, which is not AI.
     const isAi = result.reasons.some((reason) => reason.quote);
 
     return (

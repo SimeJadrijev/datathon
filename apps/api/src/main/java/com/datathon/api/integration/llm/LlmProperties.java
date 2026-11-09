@@ -7,9 +7,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
- * Bound from the {@code llm} block of application.yaml, which holds all defaults.
- */
 @ConfigurationProperties("llm")
 @Getter
 @RequiredArgsConstructor
@@ -30,9 +27,6 @@ public class LlmProperties {
         return apiKey != null && !apiKey.isBlank();
     }
 
-    /**
-     * USD per million tokens.
-     */
     public record Price(BigDecimal input, BigDecimal output) {
     }
     

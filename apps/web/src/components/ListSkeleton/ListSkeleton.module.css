@@ -4,7 +4,6 @@
     color: var(--color-text-muted);
 }
 
-/* Same frame and row rhythm as FundingCallList, so nothing jumps when the data arrives. */
 .list {
     overflow: hidden;
     padding: 0;

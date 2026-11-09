@@ -14,7 +14,6 @@ interface TargetGroupFieldProps {
 }
 
 export const TargetGroupField = ({value, error, onChange, ref}: TargetGroupFieldProps) => {
-    // A checked radio fires no change event, so a click on the selected option clears it.
     const handleClick = (targetGroup: TargetGroup) => {
         if (value === targetGroup) {
             onChange("");

@@ -25,7 +25,6 @@ export type SourceInfo = SourceRef & {
     url: string;
 };
 
-// Mirrors SourceSummary from GET /api/sources.
 export type SourceSummary = SourceInfo & {
     description: string;
     method: SourceMethod;

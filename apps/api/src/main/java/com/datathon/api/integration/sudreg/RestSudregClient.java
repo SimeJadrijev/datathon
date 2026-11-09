@@ -17,9 +17,6 @@ import tools.jackson.core.JacksonException;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
-/**
- * Exception messages here never carry the request URL, the OIB or the credentials, because exception text is logged.
- */
 public class RestSudregClient implements SudregClient {
 
     private static final String SOURCE = "Sudreg";
@@ -73,7 +70,6 @@ public class RestSudregClient implements SudregClient {
         return retryWithNewToken(oib);
     }
 
-    /** A token can be revoked before it expires, so one 401 gets a single retry with a fresh token. */
     private String retryWithNewToken(String oib) {
         try {
             return requestDetails(oib, token());
@@ -111,7 +107,6 @@ public class RestSudregClient implements SudregClient {
         }
     }
 
-    /** Keeps a safety margin, but never more than half of a short lifetime, so a 30 s token is still reused. */
     private static Duration usableLifetime(Duration lifetime) {
         Duration margin = TOKEN_EXPIRY_MARGIN.compareTo(lifetime.dividedBy(2)) < 0
                 ? TOKEN_EXPIRY_MARGIN

@@ -56,7 +56,6 @@
     color: var(--color-warning);
 }
 
-/* "Kako radi": plain numbered steps like a printed leaflet, no boxed numbers. */
 .steps {
     display: flex;
     flex-direction: column;

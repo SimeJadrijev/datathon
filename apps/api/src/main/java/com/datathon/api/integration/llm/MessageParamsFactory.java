@@ -14,10 +14,6 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-/**
- * Builds the SDK request. The answer is forced into the requested {@link ResponseSchema} with structured outputs
- * (JSON schema), the same way as in the POC, so the model cannot return a value outside an enum.
- */
 @Component
 @RequiredArgsConstructor
 public class MessageParamsFactory {

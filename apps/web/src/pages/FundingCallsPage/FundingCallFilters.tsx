@@ -40,7 +40,6 @@ const getAreaLabel = (value: string) => (isArea(value) ? AREA_LABELS[value] : un
 const getSourceLabel = (value: string) => (isSourceCode(value) ? SOURCE_SHORT_NAMES[value] : undefined);
 const getTypeLabel = (value: string) => (isFundingCallType(value) ? FUNDING_CALL_TYPE_LABELS[value] : undefined);
 
-// "Cijela Hrvatska" first: most calls are national, and it reads as the natural first choice.
 const withWholeCountryFirst = <T extends {value: string}>(options: T[]) => [
     ...options.filter((option) => option.value === ALL_COUNTIES),
     ...options.filter((option) => option.value !== ALL_COUNTIES),

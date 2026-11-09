@@ -73,7 +73,6 @@
     white-space: nowrap;
 }
 
-/* Phone: every source becomes a block of labelled lines instead of a table that scrolls sideways. */
 @media (max-width: 768px) {
     .table thead {
         position: absolute;

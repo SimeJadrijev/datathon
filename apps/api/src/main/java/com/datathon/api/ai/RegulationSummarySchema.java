@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-/** Schema and prompt for summarising a law or regulation from Narodne novine. */
 final class RegulationSummarySchema {
 
     static final String PURPOSE = "summarize-regulation";

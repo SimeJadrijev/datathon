@@ -4,7 +4,6 @@ import com.datathon.api.fundingcall.Area;
 import java.util.Set;
 import tools.jackson.databind.JsonNode;
 
-/** What the model read from a regulation. Null or empty means "not in the text". */
 public record RegulationSummary(String summary, Set<Area> areas) {
 
     static final int MAX_AREAS = 3;

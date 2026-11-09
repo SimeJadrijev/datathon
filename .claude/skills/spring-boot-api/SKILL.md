@@ -147,4 +147,4 @@ This is the core of the "Use of open data" criterion, so it must be reliable and
 1. `./mvnw -q compile` passes (Windows: `mvnw.cmd -q compile`); if you touched logic that has tests, also `./mvnw test`.
 2. If the API is running, check the endpoint with `curl` and show the real response.
 3. New endpoint used by the frontend: tell the user the exact JSON shape so the type in `apps/web/src/types/` can be aligned (or add it yourself following the `react-web` skill).
-4. A new architecture decision (new dependency, new source, model change) goes into `work/decisions.md` with the reasoning.
+4. A new architecture decision (new dependency, new source, model change) goes into the PR description with the reasoning.

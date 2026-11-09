@@ -25,7 +25,6 @@ import {
 
 const MAX_QUERY_LENGTH = 200;
 
-// "Istarska županija" in a hand-written link means the same as the short name the filter uses.
 const readCountyParam = (params: URLSearchParams) => {
     const county = readTextParam(params, "county", MAX_QUERY_LENGTH);
     return county && (findCounty(county) ?? county);
@@ -44,24 +43,20 @@ const parseFilter = (params: URLSearchParams): FundingCallFilter => ({
     size: FUNDING_CALL_PAGE_SIZE,
 });
 
-// Defaults stay out of the URL, so the plain list keeps the short address /natjecaji.
 const withoutDefaults = (patch: FundingCallFilterPatch): SearchParamPatch => ({
     ...patch,
     ...("status" in patch && patch.status === DEFAULT_FUNDING_CALL_STATUS && {status: undefined}),
     ...("sort" in patch && patch.sort === DEFAULT_FUNDING_CALL_SORT && {sort: undefined}),
 });
 
-// Filter state lives in the query string: a copied link shows the same list and the back button works.
 export const useFundingCallFilter = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const filter = parseFilter(searchParams);
     const {q, status, targetGroup, area, county, source, type} = filter;
-    // Counts do not depend on the page or the order.
     const facetFilter: FundingCallFilter = {q, status, targetGroup, area, county, source, type};
     const activeStatus = status === DEFAULT_FUNDING_CALL_STATUS ? undefined : status;
     const activeCount = [q, activeStatus, targetGroup, area, county, source, type].filter(Boolean).length;
 
-    // Any change of the filters starts again at the first page. Typing replaces the history entry.
     const updateFilter = (patch: FundingCallFilterPatch, options?: {replace?: boolean}) =>
         setSearchParams((current) => patchSearchParams(current, {...withoutDefaults(patch), page: undefined}), options);
 

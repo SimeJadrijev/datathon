@@ -13,8 +13,6 @@ type DatedFundingCall = FundingCallSummary & {deadline: string};
 const hasUpcomingDeadline = (fundingCall: FundingCallSummary): fundingCall is DatedFundingCall =>
     fundingCall.deadline !== null && getDaysUntil(fundingCall.deadline) >= 0;
 
-// The profile's matches whose deadline comes next. Matches without a deadline cannot be "next", so they are left out.
-// ISO date strings sort correctly as text.
 const getNextDeadlines = (results: MatchResult[]) =>
     results
         .map(({fundingCall}) => fundingCall)
@@ -71,7 +69,6 @@ interface ProfileDeadlinesProps {
     profile: Profile;
 }
 
-// Shown once a profile exists: the next deadlines among the profile's own matches (same query as "Moji natječaji").
 export const ProfileDeadlines = ({profile}: ProfileDeadlinesProps) => {
     return (
         <section className={styles.panel} aria-labelledby="profile-deadlines-title">

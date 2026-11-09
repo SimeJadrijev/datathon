@@ -9,7 +9,6 @@ const MAX_QUERY_LENGTH = 200;
 const daysAgo = (days: number, today: Date) =>
     new Date(today.getFullYear(), today.getMonth(), today.getDate() - days);
 
-// The URL keeps the period ("?period=30d"), so a shared link still means "the last 30 days" a week later.
 const getPublishedRange = (period: RegulationPeriod | undefined, today = new Date()) => {
     const year = today.getFullYear();
     switch (period) {
@@ -37,7 +36,6 @@ export const useRegulationFilter = () => {
         page: readPageParam(searchParams),
         size: REGULATION_PAGE_SIZE,
     };
-    // Counts do not depend on the page.
     const {q, type, area, publishedFrom, publishedTo} = filter;
     const facetFilter: RegulationFilter = {q, type, area, publishedFrom, publishedTo};
     const activeCount = [filter.q, filter.type, filter.area, period].filter(Boolean).length;

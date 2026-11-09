@@ -76,7 +76,6 @@ public class ApprrrFetcher implements SourceFetcher {
         }
     }
 
-    /** The feed holds only the 10 newest posts but includes announcements filed outside the calls category. */
     private void addFreshFromFeed(Map<String, RawItem> items) {
         List<FeedEntry> entries;
         try {

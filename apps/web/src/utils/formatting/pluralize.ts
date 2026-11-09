@@ -8,7 +8,6 @@ interface PluralForms {
     many: string;
 }
 
-// Croatian plural: 1 natječaj, 2 natječaja, 5 natječaja; 21 behaves like 1, 11 to 14 like 5.
 export const pluralize = (count: number, forms: PluralForms) => {
     const lastDigit = count % 10;
     const lastTwoDigits = count % 100;

@@ -10,7 +10,6 @@ const parseId = (value: string | undefined) => {
     return Number.isInteger(id) && id > 0 ? id : undefined;
 };
 
-// Leads back to the list the user came from, with its filters; a shared link falls back to all calls.
 const useBackLink = () => {
     const returnTo = useReturnPath();
     if (returnTo?.startsWith(routes.RECOMMENDATIONS)) {

@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-/** Schema and prompt for judging an applicant's answers against the text of a call. */
 final class EligibilityJudgeSchema {
 
     static final String PURPOSE = "eligibility-check";

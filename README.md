@@ -10,7 +10,6 @@ Autori: Ivan Mosić, Šime Jadrijev, Luka Žuljević, Nino Milas. Mentor: Mario 
 |---|---|
 | `apps/web` | Frontend: React 19, TypeScript, Vite, wouter, TanStack Query, axios |
 | `apps/api` | Backend: Spring Boot 4, Java 25, JPA, PostgreSQL |
-| `context/`, `work/`, `team/` | Dokumentacija natjecanja i tima (nije dio aplikacije) |
 
 ## Preduvjeti
 

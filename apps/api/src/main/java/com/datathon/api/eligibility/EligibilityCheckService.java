@@ -30,7 +30,6 @@ public class EligibilityCheckService {
     private final EligibilityRuleChecker ruleChecker;
     private final TransactionTemplate transactionTemplate;
 
-    /** Never fails because of the model: when it is down or answers badly, the rule-based answer is returned. */
     public EligibilityCheckResponse check(Long fundingCallId, EligibilityCheckRequest request) {
         EligibilityContext context = loadContext(fundingCallId);
         Map<String, Object> answers = validatedAnswers(context.questions(), request.answers());
@@ -63,7 +62,6 @@ public class EligibilityCheckService {
         });
     }
 
-    /** Only known question ids and short Boolean, number or text values pass, so a request cannot inflate the prompt. */
     private Map<String, Object> validatedAnswers(List<EligibilityQuestion> questions, Map<String, Object> answers) {
         Map<String, Object> valid = new LinkedHashMap<>();
         for (Map.Entry<String, Object> entry : answers.entrySet()) {

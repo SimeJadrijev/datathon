@@ -42,7 +42,6 @@
     min-width: 0;
 }
 
-/* Full title, never clamped: official titles carry the details people search for. */
 .title {
     font-size: var(--font-size-lg);
     line-height: var(--line-height-snug);
@@ -57,7 +56,6 @@
     outline: none;
 }
 
-/* The whole row opens the detail page; links inside it sit above this layer. */
 .titleLink::after {
     content: "";
     position: absolute;
@@ -101,7 +99,6 @@
     color: var(--color-text-muted);
 }
 
-/* AI-read value: dashed underline in the AI colour instead of a badge on the whole row. */
 .aiValue {
     text-decoration: underline dashed var(--color-ai);
     text-decoration-thickness: 1px;
