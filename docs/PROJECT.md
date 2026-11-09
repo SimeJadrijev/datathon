@@ -5,7 +5,7 @@ Datathon Portala otvorenih podataka 2026, **izazov C: Gospodarstvo i učinkovito
 
 > Svi javni natječaji, pozivi i propisi RH na jednom mjestu. Upišeš OIB i vidiš koji natječaji ti odgovaraju i zašto, a za svaki možeš u minuti provjeriti ispunjavaš li uvjete.
 
-Tehnički detalji su u [`ARCHITECTURE.md`](ARCHITECTURE.md), izvori podataka u [`DATA_SOURCES.md`](DATA_SOURCES.md), a pokretanje u [`README.md`](README.md).
+Tehnički detalji su u [`ARCHITECTURE.md`](ARCHITECTURE.md), izvori podataka u [`DATA_SOURCES.md`](DATA_SOURCES.md), a pokretanje u [`README.md`](../README.md).
 
 ## 1. Problem
 
@@ -127,4 +127,4 @@ Stanje snimke od 4. 11. 2026.: **1.222 natječaja** (157 otvorenih, za 155 su pr
 | Luka Žuljević | izvori, pouzdanost dohvata, DevOps |
 | Nino Milas | frontend, UX i integracija |
 
-Mentor: Mario Čagalj. Korišteni AI alati navedeni su u [`README.md`](README.md#korišteni-alati).
+Mentor: Mario Čagalj. Korišteni AI alati navedeni su u [`README.md`](../README.md#korišteni-alati).

@@ -10,6 +10,7 @@ Autori: Ivan Mosić, Šime Jadrijev, Luka Žuljević, Nino Milas. Mentor: Mario 
 |---|---|
 | `apps/web` | Frontend: React 19, TypeScript, Vite, wouter, TanStack Query, axios |
 | `apps/api` | Backend: Spring Boot 4, Java 25, JPA, PostgreSQL |
+| `docs/` | Projektna i tehnička dokumentacija, izvori podataka, dizajn sustav, licence |
 
 ## Preduvjeti
 
@@ -102,19 +103,19 @@ Otvara se na `http://localhost:5173`.
 
 ## Dokumentacija
 
-- Projektna dokumentacija (problem, korisnici, rješenje, vrijednost, daljnji razvoj): [`PROJECT.md`](PROJECT.md)
+- Projektna dokumentacija (problem, korisnici, rješenje, vrijednost, daljnji razvoj): [`PROJECT.md`](docs/PROJECT.md)
 
 ## Arhitektura
 
-Opis dijelova sustava, toka podataka, AI obrade, standarda i preduvjeta za uvođenje: [`ARCHITECTURE.md`](ARCHITECTURE.md).
+Opis dijelova sustava, toka podataka, AI obrade, standarda i preduvjeta za uvođenje: [`ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ## Izvori podataka
 
-Svi skupovi podataka, izdavatelji, poveznice i licence su u [`DATA_SOURCES.md`](DATA_SOURCES.md). Podaci s Portala otvorenih podataka (data.gov.hr) koriste se prema Otvorenoj dozvoli RH, uz navođenje izvora.
+Svi skupovi podataka, izdavatelji, poveznice i licence su u [`DATA_SOURCES.md`](docs/DATA_SOURCES.md). Podaci s Portala otvorenih podataka (data.gov.hr) koriste se prema Otvorenoj dozvoli RH, uz navođenje izvora.
 
 ## Korišteni alati
 
-Rješenje je izvorno djelo tima. Uz biblioteke otvorenog koda (popis u [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md)) koristili smo ove AI alate (Pravila, čl. VIII):
+Rješenje je izvorno djelo tima. Uz biblioteke otvorenog koda (popis u [`THIRD_PARTY_LICENSES.md`](docs/THIRD_PARTY_LICENSES.md)) koristili smo ove AI alate (Pravila, čl. VIII):
 
 | Alat | Za što |
 |---|---|
@@ -125,4 +126,4 @@ Rješenje je izvorno djelo tima. Uz biblioteke otvorenog koda (popis u [`THIRD_P
 
 ## Licenca
 
-Kod je objavljen pod licencom [MIT](LICENSE), © 2026 Ivan Mosić, Šime Jadrijev, Luka Žuljević, Nino Milas. Licence tuđih komponenti su u [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
+Kod je objavljen pod licencom [MIT](LICENSE), © 2026 Ivan Mosić, Šime Jadrijev, Luka Žuljević, Nino Milas. Licence tuđih komponenti su u [`THIRD_PARTY_LICENSES.md`](docs/THIRD_PARTY_LICENSES.md).
