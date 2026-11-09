@@ -3,6 +3,8 @@
 **Tim Nazor** (Ivan Mosić, Šime Jadrijev, Luka Žuljević, Nino Milas; mentor Mario Čagalj)
 Datathon Portala otvorenih podataka 2026, **izazov C: Gospodarstvo i učinkovito upravljanje**
 
+**Demo:** https://otvoreniradar.zulja.org
+
 > Svi javni natječaji, pozivi i propisi RH na jednom mjestu. Upišeš OIB i vidiš koji natječaji ti odgovaraju i zašto, a za svaki možeš u minuti provjeriti ispunjavaš li uvjete.
 
 Tehnički detalji su u [`ARCHITECTURE.md`](ARCHITECTURE.md), izvori podataka u [`DATA_SOURCES.md`](DATA_SOURCES.md), a pokretanje u [`README.md`](../README.md).

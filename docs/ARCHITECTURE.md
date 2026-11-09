@@ -112,7 +112,7 @@ Preporuke su objašnjive: svaki rezultat ima bodove i razloge („lokalno: Split
 - Stanje s poslužitelja drži TanStack Query (cache, ponovni pokušaj samo za greške poslužitelja), rute su wouter.
 - **Nema prijave ni korisničkih računa.** Profil se sprema samo u preglednik (`localStorage`) i šalje se API-ju samo za izračun preporuka. Poslužitelj ga ne pohranjuje.
 - Dizajn sustav (`DESIGN_SYSTEM.md`): tokeni, pristupačnost (kontrast, fokus, semantički naslovi), prilagodba za mobitel, svako stanje (učitavanje, prazno, greška) ima svoj prikaz.
-- U razvoju Vite proxy prosljeđuje `/api` na API. U produkciji web i API idu iza istog reverse proxyja.
+- U razvoju Vite proxy prosljeđuje `/api` na API. U produkciji web i API idu iza istog reverse proxyja: demo na https://otvoreniradar.zulja.org vrti se u Docker Composeu (PostgreSQL, API, Nginx) iza Cloudflare tunela.
 
 ## 5. API i interoperabilnost
 

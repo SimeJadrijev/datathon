@@ -2,6 +2,8 @@
 
 Prototip tima **Nazor** za Datathon Portala otvorenih podataka 2026 (izazov C). Javni natječaji, pozivi i propisi RH na jednom mjestu, s preporukama prema profilu i AI provjerom uvjeta. Monorepo s web aplikacijom i API-jem.
 
+**Demo:** https://otvoreniradar.zulja.org
+
 Autori: Ivan Mosić, Šime Jadrijev, Luka Žuljević, Nino Milas. Mentor: Mario Čagalj.
 
 ## Struktura
