@@ -13,7 +13,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import tools.jackson.databind.json.JsonMapper;
 
-/** The exported seed must bring the AI results back, otherwise a fresh clone has no summaries or questions. */
 class SeedExportTest {
 
     private static final String QUESTIONS = "[{\"id\":\"q1\",\"text\":\"Jeste li obrt?\",\"type\":\"YES_NO\",\"options\":[]}]";

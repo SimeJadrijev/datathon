@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Set;
 import tools.jackson.databind.JsonNode;
 
-/** What the model read from a funding call. Null or empty means "not in the text". */
 public record FundingCallExtraction(
         String provider,
         FundingCallType type,
@@ -34,7 +33,6 @@ public record FundingCallExtraction(
     static final int MAX_DOCUMENTS = 10;
     static final int MIN_SUMMARY_LENGTH = 20;
 
-    /** Lenient: an unknown enum value or a bad date is dropped, it does not fail the whole call. */
     public static FundingCallExtraction from(JsonNode node) {
         return new FundingCallExtraction(
                 text(node, "provider"),
@@ -67,7 +65,6 @@ public record FundingCallExtraction(
         return isPositive ? value.decimalValue() : null;
     }
 
-    /** A one-word "summary" is a model glitch, not a summary. */
     private static String summary(JsonNode node, String field) {
         String text = text(node, field);
         return text != null && text.length() >= MIN_SUMMARY_LENGTH ? text : null;
@@ -118,7 +115,6 @@ public record FundingCallExtraction(
         return values;
     }
 
-    /** "All of Croatia" is stored as the single marker {@link FundingCall#ALL_COUNTIES}. */
     private static Set<String> counties(JsonNode array) {
         return CountyNames.canonical(strings(array, Integer.MAX_VALUE));
     }

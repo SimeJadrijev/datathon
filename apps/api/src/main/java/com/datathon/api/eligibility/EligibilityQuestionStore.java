@@ -8,7 +8,6 @@ import tools.jackson.core.JacksonException;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.json.JsonMapper;
 
-/** Questions live in {@code FundingCall.eligibilityQuestions} as raw JSON; this class is the only one that reads it. */
 @Component
 @RequiredArgsConstructor
 @Slf4j

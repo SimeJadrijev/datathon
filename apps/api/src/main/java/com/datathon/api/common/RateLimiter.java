@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Component;
 
-/** In-memory sliding window per key. Enough for one instance (the demo); not shared between instances. */
 @Component
 public class RateLimiter {
 
@@ -26,7 +25,6 @@ public class RateLimiter {
         this.clock = clock;
     }
 
-    /** Throws {@link TooManyRequestsException} when {@code key} already made {@code limit} requests in the window. */
     public void check(String key, int limit, Duration window) {
         Instant now = clock.instant();
         if (requests.size() > PRUNE_THRESHOLD) {

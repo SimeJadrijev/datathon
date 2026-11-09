@@ -3,7 +3,6 @@ import type {Profile} from "@/types";
 import {pluralize} from "@/utils";
 import styles from "./RecommendationsPage.module.css";
 
-// API-6 returns at most 20 results.
 const MAX_RESULTS = 20;
 
 const formatResultCount = (count: number) =>
@@ -23,7 +22,6 @@ interface RecommendationsSummaryProps {
 
 export const RecommendationsSummary = ({profile, count}: RecommendationsSummaryProps) => {
     return (
-        // A short hidden h2 so the result rows (h3) sit under a heading; the sentence stays a plain summary line.
         <>
             <h2 className="visually-hidden">Natječaji za tvoj profil</h2>
             <p className={styles.summary}>

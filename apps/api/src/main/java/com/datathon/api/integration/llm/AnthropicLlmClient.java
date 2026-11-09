@@ -13,10 +13,6 @@ import tools.jackson.core.JacksonException;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
-/**
- * The SDK handles auth, retries (429, 5xx) and timeouts. The answer is the JSON text of the first text block,
- * parsed with our own (Jackson 3) mapper, so no SDK type leaves this class.
- */
 @Slf4j
 @RequiredArgsConstructor
 public class AnthropicLlmClient implements LlmClient {
@@ -52,7 +48,6 @@ public class AnthropicLlmClient implements LlmClient {
         }
     }
 
-    /** A cut-off or refused answer must not be saved as "the model found nothing". */
     private void assertComplete(Message message) {
         StopReason.Known stopReason = message.stopReason().map(StopReason::known).orElse(null);
         if (stopReason == StopReason.Known.MAX_TOKENS || stopReason == StopReason.Known.REFUSAL) {

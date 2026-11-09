@@ -52,7 +52,6 @@
     line-height: var(--line-height-snug);
 }
 
-/* AI-extracted list: the dashed AI line runs along the items instead of marking each one. */
 .aiList {
     padding-left: var(--space-5);
     border-left: 1px dashed var(--color-ai);
@@ -67,12 +66,10 @@
     line-height: var(--line-height-snug);
 }
 
-/* Long official file names: the icon stays next to the last word instead of floating on its own line. */
 .attachmentList a {
     display: inline;
 }
 
-/* The global reset makes svg a block, which would push the icon onto its own line inside an inline link. */
 .attachmentList a svg {
     display: inline-block;
     margin-left: var(--space-1);
@@ -173,7 +170,6 @@
         grid-template-columns: minmax(0, 1fr);
     }
 
-    /* One column: the deadline and the official link come first, the source block after the content. */
     .aside {
         display: contents;
     }

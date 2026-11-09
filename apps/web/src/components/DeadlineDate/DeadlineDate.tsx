@@ -7,7 +7,6 @@ interface DeadlineDateProps {
     isCompact?: boolean;
 }
 
-// Decorative: the row next to it says the deadline in words for screen readers.
 export const DeadlineDate = ({deadline, isExtractedByAi = false, isCompact = false}: DeadlineDateProps) => {
     if (!deadline) {
         return (

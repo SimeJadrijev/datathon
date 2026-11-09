@@ -33,7 +33,6 @@ public class FundingCallExtractionService {
 
     private final BatchRunner batchRunner;
 
-    /** Starts a batch in the background. Throws when a batch is already running. */
     public void start(int limit) {
         batchRunner.start("extract-funding-calls", () -> run(limit));
     }
@@ -63,13 +62,11 @@ public class FundingCallExtractionService {
         return new ExtractionRunResult(extracted, failed, skipped, cost);
     }
 
-    /** A call the model cannot read is not offered again, otherwise every batch would pay for it once more. */
     private void markAttempted(Long id) {
         transactionTemplate.executeWithoutResult(status ->
                 fundingCallRepository.findById(id).ifPresent(call -> call.setExtractedByLlm(true)));
     }
 
-    /** The model call runs outside any transaction, so a slow call never holds a database connection. */
     void extract(Long id) {
         List<String> scanUrls = transactionTemplate.execute(status ->
                 scannedDocuments.urls(fundingCallRepository.findById(id).orElseThrow()));

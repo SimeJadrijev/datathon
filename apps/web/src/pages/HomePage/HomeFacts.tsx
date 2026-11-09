@@ -14,7 +14,6 @@ interface HomeFactsProps {
     meta: UseQueryResult<Meta>;
 }
 
-// Real numbers instead of a slogan: they show the data is live. The freshness links to the sources page.
 export const HomeFacts = ({meta}: HomeFactsProps) => {
     if (!meta.data) {
         return <p className={styles.facts}><Link href={routes.SOURCES}>Podaci iz službenih izvora</Link></p>;

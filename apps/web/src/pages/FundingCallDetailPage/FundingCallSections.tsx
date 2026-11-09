@@ -44,11 +44,9 @@ const ConditionsSummary = ({fundingCall}: ConditionsSummaryProps) => {
 
 interface FundingCallSectionsProps {
     fundingCall: FundingCallDetail;
-    // The eligibility check sits right after the conditions it is about.
     children?: ReactNode;
 }
 
-// Documents and attachments show only when the source lists them; an empty block would only add noise.
 export const FundingCallSections = ({fundingCall, children}: FundingCallSectionsProps) => {
     const {requiredDocuments, attachments, legalBasis} = fundingCall;
     const areDocumentsAi = isAiField(fundingCall, "requiredDocuments");

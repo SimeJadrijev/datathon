@@ -9,10 +9,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
-/**
- * Reads the text of an act from Narodne novine. robots.txt allows /clanci/sluzbeni/ articles, but not /clanci/oglasi/,
- * so only the official part is read. At most one request per second.
- */
 @Component
 @Slf4j
 public class NarodneNovineClient {

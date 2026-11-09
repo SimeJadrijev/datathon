@@ -1,4 +1,3 @@
-/* Reading column for the regulation itself; the not-found and error states keep the full page width. */
 .page {
     max-width: var(--content-width-narrow);
 }

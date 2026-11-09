@@ -9,7 +9,7 @@ UI/UX is worth **10 of 60 points**, and the video (10 pts) is recorded from this
 
 ## Stack (verified in `package.json`)
 - React 19, TypeScript (strict), Vite, **wouter** (NOT React Router), **TanStack Query v5**, axios, `react-error-boundary`.
-- No UI library or CSS framework. **Don't add dependencies (Tailwind, MUI, shadcn, zustand, date-fns...) without asking the user** - it's a team decision and goes into `work/decisions.md`.
+- No UI library or CSS framework. **Don't add dependencies (Tailwind, MUI, shadcn, zustand, date-fns...) without asking the user** - it's a team decision and goes into the PR description.
 - Package manager is **yarn** (`yarn.lock`). Don't use npm/pnpm.
 
 ## Structure (existing, respect it)
@@ -112,6 +112,6 @@ src/
 - **Design system (mandatory):** before creating or changing any page, component or styling, read `DESIGN_SYSTEM.md` (repo root) and follow its tokens, component conventions, layout patterns and visual principles. Reuse existing components from `@/components` (`Button`, `TextInput`, `Select`, `Badge`, `Notice`, `Card`, `PageHeader`, `FundingCallList`, `FundingCallRow`, `DeadlineDate`, state components, `Icon`) before introducing new ones. Any deliberate deviation is documented and justified in `DESIGN_SYSTEM.md`. If the design system changes, update `DESIGN_SYSTEM.md` in the same change.
 
 ## Before saying it's done
-1. In `apps/web`: `yarn lint` and `yarn build` pass (rule from CLAUDE.md, mandatory before submission).
+1. In `apps/web`: `yarn lint` and `yarn build` pass (mandatory before submission).
 2. Check any UI-visible change in the browser (`yarn dev`): happy path + empty state + error (e.g. API stopped).
 3. If you added a type for a new endpoint, verify it matches the real JSON from the backend, not an assumed one.

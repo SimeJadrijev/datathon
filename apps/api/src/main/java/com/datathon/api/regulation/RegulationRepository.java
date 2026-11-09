@@ -14,7 +14,6 @@ public interface RegulationRepository extends JpaRepository<Regulation, Long>, J
 
     List<Regulation> findByGazetteNumberIn(Collection<String> gazetteNumbers);
 
-    /** Acts without a summary: laws first, newest first. */
     @Query("""
             select r.id from Regulation r
             where r.summary is null

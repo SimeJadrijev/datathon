@@ -23,7 +23,6 @@ public interface FundingCallRepository extends JpaRepository<FundingCall, Long>,
     @Query("select distinct county from FundingCall fundingCall join fundingCall.counties county")
     List<String> findDistinctCounties();
 
-    /** Sources keep listing a call as open after its deadline, so the stored status is corrected from the deadline. */
     @Modifying
     @Query("""
             update FundingCall c set c.status = com.datathon.api.fundingcall.FundingCallStatus.CLOSED
@@ -44,7 +43,6 @@ public interface FundingCallRepository extends JpaRepository<FundingCall, Long>,
             """, nativeQuery = true)
     int swapReversedAmounts();
 
-    /** Calls the model has not read yet, open and announced ones first. */
     @Query("""
             select c.id from FundingCall c
             where c.extractedByLlm = false and c.hidden = false and c.sourceText is not null and length(c.sourceText) > 300
@@ -54,10 +52,6 @@ public interface FundingCallRepository extends JpaRepository<FundingCall, Long>,
             """)
     List<Long> findIdsForExtraction(Pageable pageable);
 
-    /**
-     * Calls with enough text and no eligibility questions yet, open and announced ones first. Closed and expired
-     * calls are left out: nobody can apply, so questions would only cost money and invite a misleading answer.
-     */
     @Query("""
             select c.id from FundingCall c
             where c.eligibilityQuestions is null and c.hidden = false

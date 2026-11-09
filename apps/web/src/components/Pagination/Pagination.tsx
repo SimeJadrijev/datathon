@@ -11,7 +11,6 @@ interface PageLinkProps {
     children: ReactNode;
 }
 
-// Without an href the link is shown greyed out, so "Prethodna" and "Sljedeća" never jump around.
 const PageLink = ({href, children}: PageLinkProps) => {
     if (!href) {
         return <span className={classNames(styles.link, styles.disabled)} aria-hidden="true">{children}</span>;
@@ -26,7 +25,6 @@ interface PaginationProps {
     getPageHref: (page: number) => string;
 }
 
-// Links, not buttons: every page has its own address, so it can be shared or opened in a new tab.
 export const Pagination = ({page, pageSize, totalElements, getPageHref}: PaginationProps) => {
     const pageCount = Math.ceil(totalElements / pageSize);
     if (pageCount <= 1) {

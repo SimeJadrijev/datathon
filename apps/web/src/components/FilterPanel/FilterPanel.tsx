@@ -7,12 +7,10 @@ import styles from "./FilterPanel.module.css";
 interface FilterPanelProps {
     children: ReactNode;
     activeCount: number;
-    // Search stays visible on phones; only the filters below it fold away.
     search?: ReactNode;
     label?: string;
 }
 
-// Filter controls of a list. On small screens they fold behind a "Filtri" button so the results come first.
 export const FilterPanel = ({children, activeCount, search, label = "Filtri"}: FilterPanelProps) => {
     const panelId = useId();
     const [isOpen, setIsOpen] = useState(false);

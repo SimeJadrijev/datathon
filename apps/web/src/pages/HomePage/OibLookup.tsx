@@ -54,7 +54,6 @@ export const OibLookup = ({onFound}: OibLookupProps) => {
     };
 
     const handleChange = (value: string) => {
-        // Cut after removing spaces and dashes, so a pasted "21173 725829" keeps all 11 digits.
         setOib(value.replace(/\D/g, "").slice(0, OIB_LENGTH));
         setValidationError(undefined);
     };

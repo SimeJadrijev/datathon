@@ -7,7 +7,6 @@ interface ListSkeletonProps {
     rows?: number;
 }
 
-// Loading state for lists: keeps the layout stable while data arrives. The label is read by screen readers.
 export const ListSkeleton = ({label, rows = DEFAULT_ROWS}: ListSkeletonProps) => {
     const rowIds = Array.from({length: rows}, (_, index) => `skeleton-${index}`);
 

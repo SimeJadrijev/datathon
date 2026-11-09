@@ -31,7 +31,6 @@
     margin-bottom: var(--space-3);
 }
 
-/* An h2 for the heading order (rows are h3), styled as a plain summary sentence. */
 .summary {
     font-family: var(--font-family);
     font-size: var(--font-size-sm);

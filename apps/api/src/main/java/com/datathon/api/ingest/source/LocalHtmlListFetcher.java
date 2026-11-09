@@ -56,7 +56,6 @@ public class LocalHtmlListFetcher implements SourceFetcher {
     private static final Pattern READ_MORE = Pattern.compile("\\s*(pročitaj|saznaj|opširnije|više)( više)?\\s*$",
             Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
     private static final Pattern ISO_DATE = Pattern.compile("\\b(\\d{4}-\\d{2}-\\d{2})\\b");
-    /** bbz.hr dates its list as "26 lis 2026"; without this the model guessed the month and often got it wrong. */
     private static final Pattern SHORT_MONTH_DATE = Pattern.compile(
             "\\b(\\d{1,2})\\.?\\s+(sij|velj|ožu|tra|svi|lip|srp|kol|ruj|lis|stu|pro)\\.?\\s+(\\d{4})\\b",
             Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);

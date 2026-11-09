@@ -10,10 +10,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
-/**
- * Fallback when the model is not available. Plain rules over the fields of the call and the optional profile.
- * It never gives more than UNCLEAR, because rules over a few fields cannot say a person qualifies.
- */
 @Component
 public class EligibilityRuleChecker {
 
@@ -29,10 +25,6 @@ public class EligibilityRuleChecker {
                 EligibilityCheckResponse.DISCLAIMER, context.url());
     }
 
-    /**
-     * Whatever the answers are, nobody can apply after the deadline, so the model is not asked and the answer
-     * is never LIKELY_ELIGIBLE (it would contradict the "deadline passed" notice on the detail page).
-     */
     public EligibilityCheckResponse expired(EligibilityContext context) {
         List<EligibilityReason> reasons = new ArrayList<>();
         addDeadlineReason(context, reasons);

@@ -9,7 +9,6 @@ interface AiBlockProps {
     className?: string;
 }
 
-// Frame for text a model wrote: dashed AI border, its own label and one sentence that says what to check.
 export const AiBlock = ({label, note, children, className}: AiBlockProps) => {
     return (
         <div className={classNames(styles.block, className)}>

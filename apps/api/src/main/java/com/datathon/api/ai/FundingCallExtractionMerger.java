@@ -10,10 +10,6 @@ import java.util.Collection;
 import java.util.function.Consumer;
 import org.springframework.stereotype.Component;
 
-/**
- * The model value replaces the rule value only when the model returned a value (not null, not empty).
- * Names of the fields the model set are saved in {@code aiFields}.
- */
 @Component
 public class FundingCallExtractionMerger {
 
@@ -43,10 +39,6 @@ public class FundingCallExtractionMerger {
         call.setExtractedByLlm(true);
     }
 
-    /**
-     * A person checked the deadline, amounts and groups of this call by hand, so the model must not overwrite them.
-     * It still writes the texts nobody reviews: the conditions summary and the required documents.
-     */
     private void applyTextOnly(FundingCall call, FundingCallExtraction extraction) {
         set(call, "conditionsSummary", extraction.conditionsSummary(), call::setConditionsSummary);
         replace(call, "requiredDocuments", extraction.requiredDocuments(), call.getRequiredDocuments());
@@ -61,14 +53,12 @@ public class FundingCallExtractionMerger {
         call.getAiFields().add(field);
     }
 
-    /** Provider and publish date come from the source's own metadata when it has them, so the model only fills gaps. */
     private <T> void setIfMissing(FundingCall call, String field, Object current, T value, Consumer<T> setter) {
         if (current == null) {
             set(call, field, value, setter);
         }
     }
 
-    /** A call cannot be published after we read it; a future date means the model misread an abbreviated month. */
     private static LocalDate pastOrNull(LocalDate publishedAt) {
         return publishedAt != null && publishedAt.isAfter(LocalDate.now()) ? null : publishedAt;
     }
@@ -82,10 +72,6 @@ public class FundingCallExtractionMerger {
         call.getAiFields().add(field);
     }
 
-    /**
-     * Unlike other fields, a null deadline from the model clears the rule value. The model read the whole text:
-     * rules take "31. 3. 2028." for the deadline, but it is the end of the procurement period (FZOEU electric cars).
-     */
     private void overrideDeadline(FundingCall call, FundingCallExtraction extraction) {
         if (call.isDeadlineFromSource()) {
             return;
@@ -100,7 +86,6 @@ public class FundingCallExtractionMerger {
         }
     }
 
-    /** A deadline read by the model can contradict the status the rules derived from a wrong date. */
     private void refreshStatus(FundingCall call, FundingCallExtraction extraction) {
         if (call.isDeadlineFromSource() || extraction.deadline() == null
                 || FundingCallStatuses.isCancelled(call.getTitle())) {

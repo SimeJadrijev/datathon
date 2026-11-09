@@ -1,6 +1,5 @@
 import type {EligibilityAnswer, EligibilityQuestion} from "@/types";
 
-// What the form holds per question: "yes" / "no", the chosen option, or the typed number as text.
 export type DraftAnswers = Record<string, string>;
 
 export const YES = "yes";
@@ -10,7 +9,6 @@ export const getQuestionInputId = (questionId: string) => `eligibility-${questio
 
 const THOUSANDS_ONLY = /^\d{1,3}(\.\d{3})+$/;
 
-// Croatian numbers: "1.500,5" is 1500.5 and "1.500" is 1500; "25" and "25.5" also work.
 const parseNumber = (text: string) => {
     const compact = text.replace(/\s/g, "");
     const hasCroatianSeparators = compact.includes(",") || THOUSANDS_ONLY.test(compact);
@@ -24,7 +22,6 @@ interface ParsedAnswers {
     invalidIds: string[];
 }
 
-// Questions left empty are simply not sent: the check then says what is still unknown.
 export const parseAnswers = (questions: EligibilityQuestion[], draft: DraftAnswers): ParsedAnswers => {
     const answers: Record<string, EligibilityAnswer> = {};
     const invalidIds: string[] = [];

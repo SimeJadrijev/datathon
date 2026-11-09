@@ -41,10 +41,6 @@ public final class CountyNames {
         return WHOLE_COUNTRY_NAMES.contains(name) ? FundingCall.ALL_COUNTIES : name;
     }
 
-    /**
-     * The one spelling we store and show: sources and the model write "Istarska županija", "ISTARSKA", "Medimurska" or
-     * "Područje cijele Hrvatske". Names that are not a Croatian county (e.g. "Izvan Republike Hrvatske") stay as they are.
-     */
     public static String canonical(String county) {
         String key = normalize(county);
         if (FundingCall.ALL_COUNTIES.equals(key)) {
@@ -53,7 +49,6 @@ public final class CountyNames {
         return CANONICAL_BY_KEY.getOrDefault(key, county == null ? "" : county.strip());
     }
 
-    /** Canonical names without blanks; a whole-country entry wins over single counties. */
     public static Set<String> canonical(Collection<String> counties) {
         if (counties == null) {
             return Set.of();
@@ -73,7 +68,6 @@ public final class CountyNames {
         return DIACRITICS.matcher(decomposed).replaceAll("");
     }
 
-    /** One of the 21 Croatian counties (any spelling); national calls are offered there, not abroad. */
     public static boolean isCounty(String name) {
         return CANONICAL_BY_KEY.containsKey(normalize(name));
     }

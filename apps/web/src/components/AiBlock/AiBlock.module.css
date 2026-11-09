@@ -13,7 +13,6 @@
     color: var(--color-ai);
 }
 
-/* Model text keeps its line breaks (short paragraphs, bullet lines). */
 .body {
     white-space: pre-line;
 }

@@ -1,6 +1,5 @@
 import styles from "./AppLayout.module.css";
 
-// Radar arcs: the product scans official sources for the user. Same drawing as public/favicon.svg.
 export const BrandMark = () => {
     return (
         <span className={styles.brandMark} aria-hidden="true">

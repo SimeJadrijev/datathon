@@ -38,7 +38,6 @@ public class FundingCallBackfill implements ApplicationRunner {
         tidyCountiesAndTitles();
     }
 
-    /** Older seeds and databases hold county names in several spellings and titles with double spaces. */
     private void tidyCountiesAndTitles() {
         int tidied = 0;
         for (FundingCall fundingCall : fundingCallRepository.findAll()) {

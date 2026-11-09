@@ -7,7 +7,6 @@ const STORAGE_KEY = "datathon.profile.v1";
 const isStringArray = (value: unknown): value is string[] =>
     Array.isArray(value) && value.every((item) => typeof item === "string");
 
-// Profiles saved before keyword validation may hold keywords the API rejects (3 to 50 characters).
 const parseKeywords = (value: unknown) => {
     if (!isStringArray(value)) {
         return undefined;
@@ -54,7 +53,7 @@ const writeStoredProfile = (profile: Profile | undefined) => {
             localStorage.removeItem(STORAGE_KEY);
         }
     } catch {
-        // Storage can be blocked (private mode); the profile then lives only in memory.
+        return;
     }
 };
 

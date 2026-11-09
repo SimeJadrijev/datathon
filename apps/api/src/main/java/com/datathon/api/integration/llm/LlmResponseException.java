@@ -1,6 +1,5 @@
 package com.datathon.api.integration.llm;
 
-/** The model answered, but not with usable JSON. */
 public class LlmResponseException extends RuntimeException {
 
     public LlmResponseException(String message) {

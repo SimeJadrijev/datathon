@@ -3,7 +3,6 @@ import type {CitingFundingCall} from "./CitingFundingCall.type.ts";
 
 export type RegulationType = "LAW" | "DECREE" | "ORDINANCE" | "DECISION" | "OTHER";
 
-// Mirrors RegulationSummary from GET /api/regulations.
 export type RegulationSummary = {
     id: number;
     title: string;
@@ -14,7 +13,6 @@ export type RegulationSummary = {
     hasSummary: boolean;
 };
 
-// Mirrors RegulationDetail from GET /api/regulations/{id}. summary is written by AI.
 export type RegulationDetail = Omit<RegulationSummary, "hasSummary"> & {
     documentNumber: number | null;
     enactedAt: string | null;

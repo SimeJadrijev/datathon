@@ -41,7 +41,6 @@ export const FundingCallResults = ({
     if (isError) {
         return <ErrorState message={error.message} onRetry={() => refetch()}/>;
     }
-    // A link past the last page (?page=99): the count above an empty list would contradict itself.
     if (data.content.length === 0 && data.page > 0) {
         return <PageNotFoundState firstPageHref={getPageHref(0)}/>;
     }
@@ -65,7 +64,6 @@ export const FundingCallResults = ({
                     actions={hasFilters && <Button variant="secondary" onClick={onClear}>Poništi filtre</Button>}
                 />
             ) : (
-                // Old results stay visible (dimmed) while the new ones load, so the list never flickers.
                 <div className={classNames(isPlaceholderData && styles.stale)} aria-busy={isPlaceholderData}>
                     <FundingCallList>
                         {data.content.map((fundingCall) => (

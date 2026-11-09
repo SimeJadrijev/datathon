@@ -71,7 +71,6 @@ public class NarodneNoviniIngest implements RegulationIngest {
         return new Outcome(all.size(), errors, errorMessage);
     }
 
-    /** Adds each page to {@code collected} as soon as it is saved, so a failing later page loses nothing. */
     private void fetchYear(int year, List<ParsedRegulation> collected) {
         Set<String> seen = new HashSet<>();
         for (int page = 0; page < MAX_PAGES_PER_YEAR; page++) {

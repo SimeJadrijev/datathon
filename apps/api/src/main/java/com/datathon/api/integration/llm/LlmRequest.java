@@ -2,7 +2,6 @@ package com.datathon.api.integration.llm;
 
 import java.util.List;
 
-/** {@code model} may be null: the configured default model is used. */
 public record LlmRequest(String purpose, String model, String systemPrompt, String userText,
         ResponseSchema responseSchema, List<byte[]> pdfDocuments) {
 

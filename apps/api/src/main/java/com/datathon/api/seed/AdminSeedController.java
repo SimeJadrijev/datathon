@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Save the responses into {@code src/main/resources/seed/}; see README, section on refreshing the seed. */
 @RestController
 @RequestMapping("/api/admin/seed")
 @RequiredArgsConstructor

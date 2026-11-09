@@ -46,7 +46,6 @@ interface FundingCallAsideProps {
     fundingCall: FundingCallDetail;
 }
 
-// The facts people decide on (deadline, amount, the official link) stay in view while they read.
 export const FundingCallAside = ({fundingCall}: FundingCallAsideProps) => {
     const {source, fetchedAt, url} = fundingCall;
     const amountRange = formatAmountRange(fundingCall);

@@ -79,7 +79,6 @@ public final class ApprrrParser {
         return Optional.ofNullable(item.extra().get(INTERVENTION_PAGE_KEY));
     }
 
-    /** The post only announces the call; the documents are listed on the page of the intervention it links to. */
     public static RawItem applyInterventionPage(RawItem item, String html) {
         if (!item.attachments().isEmpty()) {
             return item;

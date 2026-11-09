@@ -17,7 +17,6 @@ export const SOURCE_CODES: SourceCode[] = [
     "ASSOCIATION_REGISTRY",
 ];
 
-// Short names for filters, where the facets endpoint returns only codes. Full names come from GET /api/sources.
 export const SOURCE_SHORT_NAMES: Record<SourceCode, string> = {
     ASSOCIATIONS_OFFICE: "Ured za udruge",
     FZOEU: "FZOEU",

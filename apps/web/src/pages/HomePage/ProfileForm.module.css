@@ -15,7 +15,6 @@
     color: var(--color-text-muted);
 }
 
-/* "ili" between the OIB shortcut and the manual form: a line with a green circle in the middle. */
 .or {
     display: flex;
     align-items: center;
@@ -75,7 +74,6 @@
     letter-spacing: var(--letter-spacing-tight);
 }
 
-/* Plain number, like a printed form: no badge box. */
 .step {
     min-width: 1.25em;
     font-variant-numeric: tabular-nums;
@@ -129,7 +127,6 @@
     transition: border-color var(--duration-fast) var(--easing), background-color var(--duration-fast) var(--easing);
 }
 
-/* Radio indicator, drawn so the native input can stay visually hidden but focusable. */
 .option::before {
     content: "";
     position: absolute;

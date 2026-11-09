@@ -24,11 +24,6 @@ public class RegulationUpserter {
         }
     }
 
-    /**
-     * AI summaries and the areas they add belong to the stored act, so a refresh must not wipe them. Type and
-     * publication date from the list are only a first guess: once ELI has corrected them, the list does not
-     * overwrite them again.
-     */
     private static void apply(Regulation regulation, ParsedRegulation item) {
         boolean keepEliValues = regulation.isEliMetadata() && !item.eliMetadata();
         regulation.setTitle(item.title());

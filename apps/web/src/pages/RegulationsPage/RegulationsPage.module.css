@@ -7,7 +7,6 @@
     margin-bottom: var(--space-3);
 }
 
-/* An h2 for the heading order (rows are h3), styled as a plain summary sentence. */
 .summary {
     font-family: var(--font-family);
     font-size: var(--font-size-sm);
@@ -45,7 +44,6 @@
     outline-offset: -2px;
 }
 
-/* Publication date as a printed dateline: serif, like the gazette itself. */
 .date {
     padding-top: 2px;
     font-family: var(--font-family-display);
@@ -79,7 +77,6 @@
     color: var(--color-text-muted);
 }
 
-/* Full title, never clamped: the official title is the content. */
 .title {
     font-size: var(--font-size-lg);
     line-height: var(--line-height-snug);

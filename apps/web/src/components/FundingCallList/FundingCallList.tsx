@@ -5,7 +5,6 @@ interface FundingCallListProps {
     children: ReactNode;
 }
 
-// Frame for FundingCallRow items. Pass <li> elements as children.
 export const FundingCallList = ({children}: FundingCallListProps) => {
     return <ol className={styles.list}>{children}</ol>;
 };

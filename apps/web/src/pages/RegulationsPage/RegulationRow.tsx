@@ -10,7 +10,6 @@ interface RegulationRowProps {
     regulation: RegulationSummary;
 }
 
-// Editorial row: publication date first, as in the gazette, then the type and number, then the full title.
 export const RegulationRow = ({regulation}: RegulationRowProps) => {
     const returnTo = useCurrentPath();
     const {id, title, type, gazetteNumber, publishedAt, areas, hasSummary} = regulation;
@@ -18,7 +17,6 @@ export const RegulationRow = ({regulation}: RegulationRowProps) => {
         .filter(Boolean)
         .join(" · ");
     const areaText = areas.map((area) => AREA_LABELS[area]).join(", ");
-    // Most of the first page is new, so "new" is a quiet word under the date, not a badge on every row.
     const isNew = publishedAt !== null && isWithinLastDays(publishedAt, NEW_REGULATION_DAYS);
 
     return (

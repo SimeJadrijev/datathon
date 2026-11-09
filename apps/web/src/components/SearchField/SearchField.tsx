@@ -12,13 +12,11 @@ interface SearchFieldProps {
     onChange: (value: string) => void;
 }
 
-// Search box that reports its text after a short pause, so the list does not reload on every key.
 export const SearchField = ({label, value, placeholder, onChange}: SearchFieldProps) => {
     const inputId = useId();
     const [text, setText] = useState(value);
     const [committedValue, setCommittedValue] = useState(value);
 
-    // The value can change from outside ("Poništi filtre", the back button): show it instead of the old text.
     if (value !== committedValue) {
         setCommittedValue(value);
         setText(value);
@@ -37,8 +35,6 @@ export const SearchField = ({label, value, placeholder, onChange}: SearchFieldPr
         onChange(text.trim());
     };
 
-    // Leaving the field commits the text at once. Otherwise a click on "Poništi filtre" within the debounce
-    // would clear the URL, and the pending timer would then put the old search back.
     const handleBlur = () => {
         if (text.trim() !== value) {
             onChange(text.trim());

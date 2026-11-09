@@ -12,10 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Writes the database back into the seed format. AI results are paid for once with a key; exporting them into
- * {@code resources/seed/} lets a fresh clone (and a juror without a key) see summaries and eligibility questions.
- */
 @Service
 @RequiredArgsConstructor
 public class SeedExportService {
@@ -25,10 +21,6 @@ public class SeedExportService {
     private final FundingCallRepository fundingCallRepository;
     private final RegulationRepository regulationRepository;
 
-    /**
-     * Sorted by id: the seed is imported in file order, so the export keeps the order of the committed file and
-     * the git diff shows only real changes. Records added later by ingest go at the end.
-     */
     @Transactional(readOnly = true)
     public FundingCallSnapshot exportFundingCalls() {
         List<SeedFundingCall> calls = fundingCallRepository.findAll(Sort.by("id")).stream()
@@ -46,7 +38,6 @@ public class SeedExportService {
                 regulations);
     }
 
-    /** The newest fetch time, because the UI shows the snapshot date as "data as of". */
     private LocalDate snapshotDate(List<Instant> fetchedAt) {
         return fetchedAt.stream()
                 .filter(Objects::nonNull)

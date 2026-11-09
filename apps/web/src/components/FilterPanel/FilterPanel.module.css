@@ -6,7 +6,6 @@
     display: none;
 }
 
-/* Desktop: search sits inside the panel frame, above the filters. */
 .wrapper:has(.search) .panel {
     border-top: 0;
     border-top-left-radius: 0;
@@ -50,7 +49,6 @@
         width: 100%;
     }
 
-    /* Phone: search on its own, the "Filtri" button under it, the panel folded. */
     .search {
         margin-bottom: var(--space-2);
         padding: 0;

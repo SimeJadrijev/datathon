@@ -19,7 +19,6 @@ public class HttpFetchException extends RuntimeException {
         this.statusCode = 0;
     }
 
-    /** The HTTP status the server answered with, or 0 when there was no answer. */
     public int statusCode() {
         return statusCode;
     }

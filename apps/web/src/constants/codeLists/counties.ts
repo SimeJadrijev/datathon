@@ -1,4 +1,3 @@
-// Values match FundingCall.counties in the seed data (short county names), in Croatian alphabetical order.
 export const COUNTIES = [
     "Bjelovarsko-bilogorska",
     "Brodsko-posavska",
@@ -23,12 +22,10 @@ export const COUNTIES = [
     "Zagrebačka",
 ];
 
-// FundingCall.counties holds "ALL" for calls open to the whole country.
 export const ALL_COUNTIES = "ALL";
 
 const COUNTY_SUFFIX = /\s+županija$/i;
 
-// Short names get "županija"; full names ("Istarska županija"), Zagreb and places abroad stay as they are.
 export const formatCounty = (county: string) => {
     if (county === ALL_COUNTIES) {
         return "Cijela Hrvatska";
@@ -39,7 +36,6 @@ export const formatCounty = (county: string) => {
     return `${county} županija`;
 };
 
-// The Court Register gives full names ("Istarska županija"); the form uses the short ones.
 export const findCounty = (name: string | null | undefined) => {
     if (!name) {
         return undefined;

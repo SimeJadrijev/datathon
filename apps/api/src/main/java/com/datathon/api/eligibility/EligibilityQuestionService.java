@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 import tools.jackson.databind.JsonNode;
 
-/** Writes the eligibility questions once per call, in advance, so the check itself needs one model call at most. */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -53,13 +52,11 @@ public class EligibilityQuestionService {
         return questionStore.read(call.getEligibilityQuestions());
     }
 
-    /** An empty list hides the eligibility panel; the detail page already says the deadline has passed. */
     private boolean isClosedForApplications(FundingCall call) {
         boolean isExpired = call.getDeadline() != null && call.getDeadline().isBefore(LocalDate.now());
         return isExpired || call.getStatus() == FundingCallStatus.CLOSED;
     }
 
-    /** Starts a batch in the background. Throws when a batch is already running. */
     public void start(int limit) {
         batchRunner.start("generate-eligibility-questions", () -> run(limit));
     }
@@ -100,7 +97,6 @@ public class EligibilityQuestionService {
                 fundingCallRepository.findById(id).orElseThrow().setEligibilityQuestions(json));
     }
 
-    /** Ids are assigned here (q1, q2, ...), so they are always unique and stable. A broken question is dropped. */
     List<EligibilityQuestion> parse(JsonNode answer) {
         List<EligibilityQuestion> questions = new ArrayList<>();
         for (JsonNode item : answer.path("questions")) {

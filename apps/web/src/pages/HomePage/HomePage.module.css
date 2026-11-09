@@ -9,7 +9,6 @@
     min-width: 0;
 }
 
-/* One row as tall as its button: centre the icon on the row instead of the first text line. */
 .undo {
     align-items: center;
     margin-bottom: var(--space-4);

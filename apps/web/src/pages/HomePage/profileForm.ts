@@ -2,7 +2,6 @@ import {findCounty} from "@/constants";
 import type {Area, OibProfile, Profile, TargetGroup} from "@/types";
 
 const MAX_KEYWORDS = 10;
-// Same limits as ProfileRequest.keywords in the API (API-6).
 const MIN_KEYWORD_LENGTH = 3;
 const MAX_KEYWORD_LENGTH = 50;
 
@@ -28,7 +27,6 @@ export const toFormValues = (profile?: Profile): ProfileFormValues => ({
     activityCodes: profile?.activityCodes ?? [],
 });
 
-// Fills the form from the Court Register, but keeps the keywords the user already typed.
 export const fromOibProfile = (oibProfile: OibProfile, values: ProfileFormValues): ProfileFormValues => ({
     ...values,
     type: oibProfile.profile.type,

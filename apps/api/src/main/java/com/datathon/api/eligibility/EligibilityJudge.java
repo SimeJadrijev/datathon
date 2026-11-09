@@ -10,10 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.JsonNode;
 
-/**
- * One model call that judges the answers. The model must quote the call; a quote that is not in the text is
- * dropped, and a verdict with no quote left becomes UNCLEAR, so a made-up reason never reaches the user.
- */
 @Component
 @RequiredArgsConstructor
 public class EligibilityJudge {
@@ -26,7 +22,6 @@ public class EligibilityJudge {
     private final LlmClient llmClient;
     private final LlmProperties properties;
 
-    /** Throws the LLM exceptions of {@link LlmClient}; the caller decides on the fallback. */
     public EligibilityCheckResponse judge(EligibilityContext context, Map<String, Object> answers) {
         JsonNode answer = llmClient.complete(new LlmRequest(
                 EligibilityJudgeSchema.PURPOSE,

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Throws every error the handler maps, so the tests can check the one error shape without a real endpoint. */
 @RestController
 @RequestMapping("/test-errors")
 class ErrorTestController {
